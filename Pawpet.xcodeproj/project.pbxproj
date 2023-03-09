@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
-		C6C450CF298FF2920094FF5A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CE298FF2920094FF5A /* SceneDelegate.swift */; };
 		C6C450D1298FF2920094FF5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450D0298FF2920094FF5A /* ViewController.swift */; };
-		C6C450D4298FF2920094FF5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D2298FF2920094FF5A /* Main.storyboard */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
 		C6C450E4298FF2930094FF5A /* PawpetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450E3298FF2930094FF5A /* PawpetTests.swift */; };
 		C6C450EE298FF2930094FF5A /* PawpetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450ED298FF2930094FF5A /* PawpetUITests.swift */; };
 		C6C450F0298FF2930094FF5A /* PawpetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450EF298FF2930094FF5A /* PawpetUITestsLaunchTests.swift */; };
+		C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450FC298FF5310094FF5A /* MainTabBarController.swift */; };
+		C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450FE298FF58E0094FF5A /* SearchViewController.swift */; };
+		C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45100298FF5990094FF5A /* ProfileViewController.swift */; };
+		C6C45103298FF5E70094FF5A /* MessagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45102298FF5E70094FF5A /* MessagerViewController.swift */; };
+		C6C45105298FF6070094FF5A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45104298FF6070094FF5A /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C6C450CE298FF2920094FF5A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C6C450D0298FF2920094FF5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C6C450D3298FF2920094FF5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6C450D8298FF2930094FF5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6C450DA298FF2930094FF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +52,11 @@
 		C6C450E9298FF2930094FF5A /* PawpetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PawpetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450ED298FF2930094FF5A /* PawpetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetUITests.swift; sourceTree = "<group>"; };
 		C6C450EF298FF2930094FF5A /* PawpetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C6C450FC298FF5310094FF5A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		C6C450FE298FF58E0094FF5A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C6C45100298FF5990094FF5A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C6C45102298FF5E70094FF5A /* MessagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerViewController.swift; sourceTree = "<group>"; };
+		C6C45104298FF6070094FF5A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +107,12 @@
 		C6C450CB298FF2920094FF5A /* Pawpet */ = {
 			isa = PBXGroup;
 			children = (
-				C6C450CC298FF2920094FF5A /* AppDelegate.swift */,
-				C6C450CE298FF2920094FF5A /* SceneDelegate.swift */,
+				C6C45106298FF6160094FF5A /* Application */,
 				C6C450D0298FF2920094FF5A /* ViewController.swift */,
-				C6C450D2298FF2920094FF5A /* Main.storyboard */,
+				C6C45107298FF6580094FF5A /* Modules */,
 				C6C450D5298FF2930094FF5A /* Assets.xcassets */,
 				C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */,
-				C6C450DA298FF2930094FF5A /* Info.plist */,
+				C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */,
 			);
 			path = Pawpet;
 			sourceTree = "<group>";
@@ -125,6 +132,59 @@
 				C6C450EF298FF2930094FF5A /* PawpetUITestsLaunchTests.swift */,
 			);
 			path = PawpetUITests;
+			sourceTree = "<group>";
+		};
+		C6C45106298FF6160094FF5A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C6C450CC298FF2920094FF5A /* AppDelegate.swift */,
+				C6C450DA298FF2930094FF5A /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C6C45107298FF6580094FF5A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C6C450FC298FF5310094FF5A /* MainTabBarController.swift */,
+				C6C4510A298FF6740094FF5A /* Search */,
+				C6C45108298FF6690094FF5A /* Post */,
+				C6C45109298FF66E0094FF5A /* Messager */,
+				C6C4510B298FF6790094FF5A /* Profile */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C6C45108298FF6690094FF5A /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				C6C45104298FF6070094FF5A /* PostViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		C6C45109298FF66E0094FF5A /* Messager */ = {
+			isa = PBXGroup;
+			children = (
+				C6C45102298FF5E70094FF5A /* MessagerViewController.swift */,
+			);
+			path = Messager;
+			sourceTree = "<group>";
+		};
+		C6C4510A298FF6740094FF5A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C6C450FE298FF58E0094FF5A /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		C6C4510B298FF6790094FF5A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C6C45100298FF5990094FF5A /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +293,6 @@
 			files = (
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
 				C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */,
-				C6C450D4298FF2920094FF5A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +318,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6C450D1298FF2920094FF5A /* ViewController.swift in Sources */,
+				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
+				C6C45103298FF5E70094FF5A /* MessagerViewController.swift in Sources */,
+				C6C45105298FF6070094FF5A /* PostViewController.swift in Sources */,
 				C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */,
-				C6C450CF298FF2920094FF5A /* SceneDelegate.swift in Sources */,
+				C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */,
+				C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */,
+				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +361,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C6C450D2298FF2920094FF5A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C6C450D3298FF2920094FF5A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -439,10 +495,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5QL6TNF9LL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pawpet/Info.plist;
+				INFOPLIST_FILE = Pawpet/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,10 +522,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5QL6TNF9LL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pawpet/Info.plist;
+				INFOPLIST_FILE = Pawpet/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
