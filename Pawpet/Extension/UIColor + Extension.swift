@@ -10,10 +10,10 @@ import UIKit
 extension UIColor {
 
     // MARK: - OFTEN USED COLORS
-    static let accentColor = hexColor(hex: "4E453D")
+    static let accentColor = hexColor(hex: "272727") // ok
     static let titleColor = hexColor(hex: "")
-    static let backgroundColor = hexColor(hex: "FAF9F6")
-    static let subtitleColor = hexColor(hex: "")
+    static let backgroundColor = hexColor(hex: "F3F3F3") // ok
+    static let subtitleColor = hexColor(hex: "B4B4B4") // ok
     static let errorColor = hexColor(hex: "")
 
     // MARK: - HEX INIT
