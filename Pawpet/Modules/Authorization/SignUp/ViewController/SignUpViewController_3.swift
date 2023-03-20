@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SignUpViewController_3: UIViewController {
     // MARK: - PromptView
@@ -13,7 +14,6 @@ class SignUpViewController_3: UIViewController {
                                         and: "This will help you to enter the application")
     // MARK: - TextField
     private var firstTextField = AuthTextField("••••••", isSecure: true)
-    private var secondTextField = AuthTextField("••••••", isSecure: true)
 
     // MARK: - Button
     private lazy var nextButton: AuthButton = {
@@ -23,10 +23,20 @@ class SignUpViewController_3: UIViewController {
         return button
     }()
 
+    // MARK: - Lottie View
+    private var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "WatchingDog")
+        view.loopMode = .loop
+        view.layer.allowsEdgeAntialiasing = true
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
+        animationView.play()
     }
 }
 
@@ -37,10 +47,18 @@ extension SignUpViewController_3 {
         
         let stackView = getMainStackView()
         view.addSubview(stackView)
+        view.addSubview(animationView)
 
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalToSuperview().inset(100)
+        }
+
+        animationView.snp.makeConstraints { make in
+            make.height.equalTo(160)
+            make.width.equalTo(320)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(stackView.snp.bottom).offset(10)
         }
     }
 
@@ -51,7 +69,6 @@ extension SignUpViewController_3 {
 
         stackView.addArrangedSubview(promptView)
         stackView.addArrangedSubview(firstTextField)
-        stackView.addArrangedSubview(secondTextField)
         stackView.addArrangedSubview(nextButton)
 
         return stackView

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SignUpViewController_2: UIViewController {
 
@@ -23,12 +24,22 @@ class SignUpViewController_2: UIViewController {
         return button
     }()
 
+    // MARK: - Lottie View
+    private var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "WatchingDog")
+        view.loopMode = .loop
+        view.layer.allowsEdgeAntialiasing = true
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
-
+        animationView.play()
     }
+
 }
 
 // MARK: - UI + Constraints
@@ -40,11 +51,19 @@ extension SignUpViewController_2 {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let stackView = getMainStackView()
+
         view.addSubview(stackView)
+        view.addSubview(animationView)
 
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalToSuperview().inset(100)
+        }
+        animationView.snp.makeConstraints { make in
+            make.height.equalTo(160)
+            make.width.equalTo(320)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(stackView.snp.bottom).offset(10)
         }
     }
 

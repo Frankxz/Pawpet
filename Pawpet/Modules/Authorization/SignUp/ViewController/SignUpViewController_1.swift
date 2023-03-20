@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SignUpViewController_1: UIViewController {
 
@@ -27,11 +28,20 @@ class SignUpViewController_1: UIViewController {
         return button
     }()
 
+    // MARK: - Lottie View
+    private var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "DroppedDog")
+        view.loopMode = .playOnce
+        view.layer.allowsEdgeAntialiasing = true
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
-
+        animationView.play()
     }
 }
 
@@ -48,10 +58,17 @@ extension SignUpViewController_1 {
         let mainStackView = getMainStackView()
 
         view.addSubview(mainStackView)
+        view.addSubview(animationView)
+
+        animationView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(74)
+            make.top.equalToSuperview().inset(100)
+            make.height.equalTo(200)
+        }
 
         mainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(100)
+            make.top.equalTo(animationView.snp.bottom).offset(50)
         }
     }
 
