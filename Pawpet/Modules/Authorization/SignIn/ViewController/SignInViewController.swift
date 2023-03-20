@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WelcomeViewController: UIViewController {
+class SignInViewController: UIViewController {
 
     // MARK: - Labels
     private var titleLabel: UILabel = {
@@ -37,61 +37,14 @@ class WelcomeViewController: UIViewController {
 
 
     // MARK: - TextFields
-    private var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.layer.cornerRadius = 12
-        textField.backgroundColor = .backgroundColor
-        textField.setLeftPaddingPoints(32)
-        textField.setRightPaddingPoints(32)
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "email@mail.com",
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.subtitleColor,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)
-            ]
-        )
-        textField.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        textField.textColor = UIColor.accentColor.withAlphaComponent(0.8)
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        return textField
-    }()
-
-    private var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.layer.cornerRadius = 12
-        textField.backgroundColor = .backgroundColor
-        textField.setLeftPaddingPoints(32)
-        textField.setRightPaddingPoints(32)
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "•••••••••",
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.subtitleColor,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)
-            ]
-        )
-        textField.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        textField.textColor = UIColor.accentColor.withAlphaComponent(0.8)
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+    private var emailTextField = AuthTextField("email@mail.com")
+    private var passwordTextField = AuthTextField("••••••", isSecure: true)
 
     // MARK: - Buttons
-    private lazy var signInButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
-        button.layer.cornerRadius = 16
-        button.backgroundColor = .accentColor
+    private lazy var signInButton: AuthButton = {
+        let button = AuthButton()
         button.addTarget(self, action: #selector(signInButtonTapped(_:)), for: .touchUpInside)
-        let title = NSAttributedString(
-            string: "Sign in",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .medium),
-                NSAttributedString.Key.foregroundColor: UIColor.subtitleColor
-            ]
-        )
-        button.setAttributedTitle(title, for: .normal)
+        button.setupTitle(for: "Sign in")
         return button
     }()
 
@@ -132,9 +85,10 @@ class WelcomeViewController: UIViewController {
 }
 
 // MARK: - UI
-extension WelcomeViewController {
+extension SignInViewController {
     private func configurateView() {
         view.backgroundColor = .white
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         makeConstraints()
     }
 
@@ -157,7 +111,6 @@ extension WelcomeViewController {
         textFieldsStackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(24)
             make.top.equalTo(labelStackView.snp.bottom).offset(24)
-            make.height.equalTo(160)
         }
 
         forgotButton.snp.makeConstraints { make in
@@ -168,7 +121,6 @@ extension WelcomeViewController {
         signInButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(24)
             make.top.equalTo(forgotButton.snp.bottom).offset(24)
-            make.height.equalTo(70)
         }
 
         signUpStackView.snp.makeConstraints { make in
@@ -214,13 +166,14 @@ extension WelcomeViewController {
 }
 
 // MARK: - Buttons logic
-extension WelcomeViewController {
+extension SignInViewController {
     @objc private func signInButtonTapped(_ sender: UIButton) {
-
+        print("Sign in..")
     }
 
     @objc private func signUpButtonTapped(_ sender: UIButton) {
-
+        print("Sing up...")
+        navigationController?.pushViewController(SignUpViewController_1(), animated: true)
     }
 
     @objc private func forgotButtonTapped(_ sender: UIButton) {
