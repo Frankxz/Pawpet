@@ -29,11 +29,14 @@ class PromptView: UIView {
     }()
 
     // MARK: - Init
-    init(with title: String, and subtitle: String) {
+    init(with title: String, and subtitle: String, aligment: NSTextAlignment = .left) {
         super.init(frame: .zero)
         titleLabel.text = title
+        titleLabel.textAlignment = aligment
+
         subtitleLabel.text = subtitle
-        setupView()
+        subtitleLabel.textAlignment = aligment
+        setupView(aligment: aligment)
     }
 
     required init?(coder: NSCoder) {
@@ -42,10 +45,10 @@ class PromptView: UIView {
 }
 
 extension PromptView {
-    private func setupView() {
+    private func setupView(aligment: NSTextAlignment) {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .leading
+        aligment == .left ? (stackView.alignment = .leading) : (stackView.alignment = .center)
 
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subtitleLabel)

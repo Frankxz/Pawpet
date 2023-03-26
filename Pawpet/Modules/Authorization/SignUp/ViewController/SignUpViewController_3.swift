@@ -79,6 +79,8 @@ extension SignUpViewController_3 {
 extension SignUpViewController_3 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Password entered")
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.navigationController?.pushViewController(SignUpViewController_4(), animated: true)
+        }
     }
 }
