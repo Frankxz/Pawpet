@@ -15,16 +15,16 @@ class SignUpViewController_1: UIViewController {
 
     // MARK: - Buttons
     private lazy var personalButton: OptionButton = {
-        let button = OptionButton(systemImage: "person")
+        let button = OptionButton(animationName: "PersonalOption")
         button.addTarget(self, action: #selector(personalButtonTapped(_:)), for: .touchUpInside)
-        button.setupSubtitle(for: "Personal use", with: 14)
+        button.setupSubtitle(for: "Personal use", with: 16)
         return button
     }()
 
     private lazy var companyButton: OptionButton = {
-        let button = OptionButton(systemImage: "person.3")
+        let button = OptionButton(animationName: "CompanyOption")
         button.addTarget(self, action: #selector(companyButtonTapped(_:)), for: .touchUpInside)
-        button.setupSubtitle(for: "Commercial use", with: 14)
+        button.setupSubtitle(for: "Commercial use", with: 16)
         return button
     }()
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class OptionButton: UIButton {
 
@@ -15,10 +16,13 @@ class OptionButton: UIButton {
     public let enabledColor = UIColor.systemBlue
     public let disabledColor = UIColor.clear
 
+    // MARK: - Lottie View
+    private var animationView: LottieAnimationView?
+
 
 
     // MARK: - Init
-    init(systemImage imageName: String = "", size: CGFloat = 56, isLeftAligment: Bool = false) {
+    init(systemImage imageName: String = "", size: CGFloat = 56, isLeftAligment: Bool = false, animationName: String = "") {
         super.init(frame: .zero)
 
         layer.cornerRadius = 16
@@ -35,6 +39,9 @@ class OptionButton: UIButton {
         makeShadows()
         isLeftAligment ? configureInsets() : ()
 
+        if animationName != "" {
+            setupAnimationView(animationName: animationName)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -45,7 +52,7 @@ class OptionButton: UIButton {
 // MARK: - Configuring Title
 extension OptionButton {
     public func setupTitle(for text: String,
-                           with font: UIFont = .systemFont(ofSize: 18, weight: .bold)) {
+                           with font: UIFont = .systemFont(ofSize: 20, weight: .bold)) {
         let color =  UIColor.subtitleColor 
         let title = NSAttributedString(
             string: text,
@@ -108,6 +115,27 @@ extension OptionButton {
                 self.transform = .identity
             }
         })
+    }
+}
+
+// MARK: - Constraints
+extension OptionButton {
+    private func setupAnimationView(animationName: String) {
+        animationView = LottieAnimationView(name: animationName)
+        guard let animationView = animationView else {return}
+
+        animationView.loopMode = .autoReverse
+        animationView.layer.allowsEdgeAntialiasing = true
+        animationView.contentMode = .scaleAspectFill
+
+        addSubview(animationView)
+
+        animationView.snp.makeConstraints { make in
+            make.width.height.equalTo(120)
+            make.top.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
+        }
+        animationView.play()
     }
 }
 

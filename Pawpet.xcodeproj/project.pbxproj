@@ -31,6 +31,8 @@
 		C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */; };
 		C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */; };
 		C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */; };
+		C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DBE29D1DF02003F4A2F /* PersonalOption.json */; };
+		C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DC029D1DF12003F4A2F /* CompanyOption.json */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -89,6 +91,8 @@
 		C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCollectionView.swift; sourceTree = "<group>"; };
 		C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
+		C6490DBE29D1DF02003F4A2F /* PersonalOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PersonalOption.json; sourceTree = "<group>"; };
+		C6490DC029D1DF12003F4A2F /* CompanyOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CompanyOption.json; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				C6490DA029C8D54C003F4A2F /* DroppedDog.json */,
 				C6490DA229C8D7F9003F4A2F /* WatchingDog.json */,
 				C6490DA829D06407003F4A2F /* ReadyCoala.json */,
+				C6490DBE29D1DF02003F4A2F /* PersonalOption.json */,
+				C6490DC029D1DF12003F4A2F /* CompanyOption.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -514,9 +520,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */,
+				C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */,
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
+				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,
 				C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
