@@ -18,7 +18,7 @@ class SectionButton: UIButton {
         image.tintColor = .accentColor
 
 
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .default)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular, scale: .default)
        image.preferredSymbolConfiguration = imageConfig
         
         return image
@@ -57,7 +57,7 @@ extension SectionButton {
         addSubview(mainLabel)
 
         icon.snp.makeConstraints { make in
-            make.width.height.equalTo(60)
+            make.width.height.equalTo(70)
             make.left.centerY.equalToSuperview()
         }
 

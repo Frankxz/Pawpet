@@ -9,21 +9,52 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    // MARK: - Labels
+    private let welcomeLabel = PromptView(with: "Hello, Miller !", and: "")
+
+    // MARK: - Segmented control
+    private let sectionControl: CustomSegmentedControl = {
+        let items = ["Animals", "Accessories", "Feed"]
+        let control = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 320, height: 40), items: items)
+        return control
+    }()
+
+    // MARK: - CollectionView
+    private let chapterCollectionView = ChapterCollectionView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemYellow
-        // Do any additional setup after loading the view.
+        configurateView()
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - UI + Constraints
+extension SearchViewController {
+    private func configurateView() {
+        view.backgroundColor = .white
+        setupConstraints()
     }
-    */
 
+    private func setupConstraints() {
+        view.addSubview(sectionControl)
+        view.addSubview(welcomeLabel)
+        view.addSubview(chapterCollectionView)
+
+        welcomeLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(80)
+            make.left.equalToSuperview().inset(20)
+        }
+
+        sectionControl.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(20)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(20)
+            make.height.equalTo(40)
+        }
+
+        chapterCollectionView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(sectionControl.snp.bottom).offset(20)
+            make.height.equalTo(140)
+        }
+    }
 }

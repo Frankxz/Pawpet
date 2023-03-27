@@ -96,11 +96,11 @@ extension ProfileViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
 
-        favoritesButton.snp.makeConstraints { $0.height.equalTo(65) }
-        settingsButton.snp.makeConstraints { $0.height.equalTo(65) }
-        exitButton.snp.makeConstraints { $0.height.equalTo(65) }
+        favoritesButton.snp.makeConstraints { $0.height.equalTo(70) }
+        settingsButton.snp.makeConstraints { $0.height.equalTo(70) }
+        exitButton.snp.makeConstraints { $0.height.equalTo(70) }
 
         stackView.addArrangedSubview(favoritesButton)
         stackView.addArrangedSubview(settingsButton)
