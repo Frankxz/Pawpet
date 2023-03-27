@@ -169,6 +169,11 @@ extension SignInViewController {
 extension SignInViewController {
     @objc private func signInButtonTapped(_ sender: UIButton) {
         print("Sign in..")
+        let mainTabBarController = MainTabBarController()
+        mainTabBarController.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.present(mainTabBarController, animated: true)
+        }
     }
 
     @objc private func signUpButtonTapped(_ sender: UIButton) {

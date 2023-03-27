@@ -79,9 +79,13 @@ extension SignUpViewController_4 {
 // MARK: - Button logic
 extension SignUpViewController_4 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        print("Password entered")
+        print("Registered")
+        
+        let mainTabBarController = MainTabBarController()
+        mainTabBarController.modalPresentationStyle = .fullScreen
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+            self.present(mainTabBarController, animated: true)
         }
     }
 }

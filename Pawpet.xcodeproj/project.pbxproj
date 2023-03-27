@@ -24,6 +24,8 @@
 		C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA229C8D7F9003F4A2F /* WatchingDog.json */; };
 		C6490DA529D04F8B003F4A2F /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DA429D04F8B003F4A2F /* SignUpViewController_4.swift */; };
 		C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA829D06407003F4A2F /* ReadyCoala.json */; };
+		C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DAA29D15B92003F4A2F /* LabelView.swift */; };
+		C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DAC29D184DC003F4A2F /* SectionButton.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -75,6 +77,8 @@
 		C6490DA229C8D7F9003F4A2F /* WatchingDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WatchingDog.json; sourceTree = "<group>"; };
 		C6490DA429D04F8B003F4A2F /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
 		C6490DA829D06407003F4A2F /* ReadyCoala.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ReadyCoala.json; sourceTree = "<group>"; };
+		C6490DAA29D15B92003F4A2F /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		C6490DAC29D184DC003F4A2F /* SectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionButton.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,7 +173,6 @@
 			children = (
 				C6490D9829C8C435003F4A2F /* SignUp */,
 				C6490D9929C8C444003F4A2F /* SignIn */,
-				C6490D9029C3855D003F4A2F /* View */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -181,6 +184,8 @@
 				C6490D9229C387F7003F4A2F /* AuthButton.swift */,
 				C6490D9429C8AB97003F4A2F /* OptionButton.swift */,
 				C6490D9B29C8C4B2003F4A2F /* PromptView.swift */,
+				C6490DAA29D15B92003F4A2F /* LabelView.swift */,
+				C6490DAC29D184DC003F4A2F /* SectionButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				C6C45108298FF6690094FF5A /* Post */,
 				C6C45109298FF66E0094FF5A /* Messager */,
 				C6C4510B298FF6790094FF5A /* Profile */,
+				C6490D9029C3855D003F4A2F /* View */,
 				C6490D8729BA0BC0003F4A2F /* Authorization */,
 			);
 			path = Modules;
@@ -586,7 +592,9 @@
 				C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */,
 				C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */,
 				C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */,
+				C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
+				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */,
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,

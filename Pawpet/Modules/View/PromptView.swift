@@ -22,7 +22,7 @@ class PromptView: UIView {
     private var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "This is important for further registration."
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .subtitleColor
         label.numberOfLines = 0
         return label
