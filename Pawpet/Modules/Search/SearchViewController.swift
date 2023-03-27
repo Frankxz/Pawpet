@@ -21,6 +21,7 @@ class SearchViewController: UIViewController {
 
     // MARK: - CollectionView
     private let chapterCollectionView = ChapterCollectionView()
+    private let cardCollectionView = CardCollectionView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ extension SearchViewController {
         view.addSubview(sectionControl)
         view.addSubview(welcomeLabel)
         view.addSubview(chapterCollectionView)
+        view.addSubview(cardCollectionView)
 
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(80)
@@ -55,6 +57,11 @@ extension SearchViewController {
             make.left.right.equalToSuperview()
             make.top.equalTo(sectionControl.snp.bottom).offset(20)
             make.height.equalTo(140)
+        }
+
+        cardCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(chapterCollectionView.snp.bottom).inset(20)
+            make.left.right.bottom.equalToSuperview()
         }
     }
 }

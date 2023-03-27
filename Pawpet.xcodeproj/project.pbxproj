@@ -29,6 +29,8 @@
 		C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DB129D1A761003F4A2F /* CustomSegmentedControl.swift */; };
 		C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DB329D1B284003F4A2F /* ChapterCollectionViewCell.swift */; };
 		C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */; };
+		C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */; };
+		C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -85,6 +87,8 @@
 		C6490DB129D1A761003F4A2F /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		C6490DB329D1B284003F4A2F /* ChapterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCollectionView.swift; sourceTree = "<group>"; };
+		C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 		C6490DB729D1B29A003F4A2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C6490DB929D1C4B6003F4A2F /* CardCollectionView */,
 				C6490DB829D1C3EA003F4A2F /* ChapterCollectionView */,
 			);
 			path = View;
@@ -281,6 +286,15 @@
 				C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */,
 			);
 			path = ChapterCollectionView;
+			sourceTree = "<group>";
+		};
+		C6490DB929D1C4B6003F4A2F /* CardCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */,
+				C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */,
+			);
+			path = CardCollectionView;
 			sourceTree = "<group>";
 		};
 		C6C450C0298FF2920094FF5A = {
@@ -635,6 +649,7 @@
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_4.swift in Sources */,
+				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
 				C6C45103298FF5E70094FF5A /* MessagerViewController.swift in Sources */,
@@ -645,6 +660,7 @@
 				C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */,
 				C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
+				C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */,
 				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */,
