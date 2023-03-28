@@ -33,6 +33,8 @@
 		C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */; };
 		C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DBE29D1DF02003F4A2F /* PersonalOption.json */; };
 		C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DC029D1DF12003F4A2F /* CompanyOption.json */; };
+		C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC329D31DEC003F4A2F /* DetailViewController.swift */; };
+		C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC529D31F90003F4A2F /* BottomSheetView.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -93,6 +95,8 @@
 		C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
 		C6490DBE29D1DF02003F4A2F /* PersonalOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PersonalOption.json; sourceTree = "<group>"; };
 		C6490DC029D1DF12003F4A2F /* CompanyOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CompanyOption.json; sourceTree = "<group>"; };
+		C6490DC329D31DEC003F4A2F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C6490DC529D31F90003F4A2F /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -303,6 +307,14 @@
 			path = CardCollectionView;
 			sourceTree = "<group>";
 		};
+		C6490DC229D31DD0003F4A2F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DC329D31DEC003F4A2F /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		C6C450C0298FF2920094FF5A = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				C6C450FC298FF5310094FF5A /* MainTabBarController.swift */,
+				C6490DC529D31F90003F4A2F /* BottomSheetView.swift */,
+				C6490DC229D31DD0003F4A2F /* Detail */,
 				C6C4510A298FF6740094FF5A /* Search */,
 				C6C45108298FF6690094FF5A /* Post */,
 				C6C45109298FF66E0094FF5A /* Messager */,
@@ -655,6 +669,7 @@
 			files = (
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
+				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_4.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
@@ -677,6 +692,7 @@
 				C6490D9E29C8CC14003F4A2F /* SignUpViewController_3.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */,
+				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

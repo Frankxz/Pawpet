@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     // MARK: - Labels
     private let welcomeLabel = PromptView(with: "Hello, Miller !", and: "")
 
@@ -19,13 +19,34 @@ class SearchViewController: UIViewController {
         return control
     }()
 
+    // MARK: - ImageView
+    private var avatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 8
+        imageView.layer.borderColor = UIColor.subtitleColor.cgColor
+        imageView.layer.borderWidth = 1
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+
     // MARK: - CollectionView
     private let chapterCollectionView = ChapterCollectionView()
     private let cardCollectionView = CardCollectionView()
 
+    // MARK: - Ovvderiding properties
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return navigationController?.topViewController != self
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    // MARK: - Lyfecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
+        cardCollectionView.searchViewControllerDelegate = self
     }
 }
 
@@ -33,10 +54,12 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
     private func configurateView() {
         view.backgroundColor = .white
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         setupConstraints()
     }
 
     private func setupConstraints() {
+        view.addSubview(avatarImageView)
         view.addSubview(sectionControl)
         view.addSubview(welcomeLabel)
         view.addSubview(chapterCollectionView)
@@ -63,5 +86,20 @@ extension SearchViewController {
             make.top.equalTo(chapterCollectionView.snp.bottom).inset(20)
             make.left.right.bottom.equalToSuperview()
         }
+
+        avatarImageView.snp.makeConstraints { make in
+            make.height.width.equalTo(38)
+            make.top.equalToSuperview().inset(80)
+            make.right.equalToSuperview().inset(20)
+        }
+    }
+}
+
+// MARK: - Delegate
+extension SearchViewController: SearchViewControllerDelegate {
+    func pushToDetailVC() {
+        print("Push to DetailVC")
+        //hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(DetailViewController(), animated: true)
     }
 }

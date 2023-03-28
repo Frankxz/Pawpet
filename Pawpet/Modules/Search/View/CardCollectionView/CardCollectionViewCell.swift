@@ -41,29 +41,11 @@ class CardCollectionViewCell: UICollectionViewCell {
     // MARK: - Buttons
     let saveButton: UIButton = {
         let button = UIButton()
-        var configuration = UIButton.Configuration.plain()
-        //configuration.contentInsets = .init(top: 0, leading: 6, bottom: 0, trailing: 6)
-        //configuration.imagePadding = 5
-        configuration.imagePlacement = .all
-
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .thin, scale: .large)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
         let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
 
-        button.configuration = configuration
-
         button.setImage(image, for: .normal)
-
-        button.backgroundColor = .accentColor
-        button.layer.cornerRadius = 18
-
-        let title = NSAttributedString(
-            string: "",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
-                NSAttributedString.Key.foregroundColor: UIColor.subtitleColor
-            ]
-        )
-        button.setAttributedTitle(title, for: .normal)
+        button.backgroundColor = .clear
         button.tintColor = .subtitleColor
         return button
     }()
@@ -113,7 +95,7 @@ extension CardCollectionViewCell {
 
         saveButton.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview()
             make.height.equalTo(36)
             make.width.equalTo(36)
         }

@@ -6,8 +6,13 @@
 //
 
 import UIKit
+ protocol SearchViewControllerDelegate: AnyObject {
+    func pushToDetailVC()
+}
 
 class CardCollectionView: UICollectionView {
+
+    var searchViewControllerDelegate: SearchViewControllerDelegate?
 
     // MARK: - INIT
     init () {
@@ -48,6 +53,10 @@ extension CardCollectionView: UICollectionViewDelegate,UICollectionViewDataSourc
         let cell = dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseId, for: indexPath) as! CardCollectionViewCell
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
 }
 
 // MARK: - Layout
@@ -58,8 +67,9 @@ extension CardCollectionView: UICollectionViewDelegateFlowLayout {
                       height: CardCollectionConstants.itemHeight)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        searchViewControllerDelegate?.pushToDetailVC()
+        return true
     }
 }
 
