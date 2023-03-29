@@ -12,7 +12,7 @@ class BottomSheetView: UIView {
 
     // MARK: - Reqiered properties
     private var currentHeight: CGFloat = UIScreen.main.bounds.height * 0.6
-    private var maxHeight: CGFloat = (UIScreen.main.bounds.height * 0.9)
+    private var maxHeight: CGFloat = (UIScreen.main.bounds.height * 0.89)
     private let defaultHeight: CGFloat = UIScreen.main.bounds.height * 0.6
 
     var containerViewHeightConstraint: Constraint?
@@ -23,18 +23,8 @@ class BottomSheetView: UIView {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 16
-        view.layer.borderColor = UIColor.subtitleColor.cgColor
-        view.layer.borderWidth = 0.5
         view.clipsToBounds = true
         return view
-    }()
-
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Module settings"
-        label.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
-        label.textAlignment = .center
-        return label
     }()
 
     // MARK: - Inits
@@ -45,7 +35,11 @@ class BottomSheetView: UIView {
         setupPanGesture()
         configureView()
 
-        animatePresentContainer()
+        self.containerViewBottomConstraint?.deactivate()
+        self.containerView.snp.makeConstraints { make in
+            self.containerViewBottomConstraint = make.bottom.equalToSuperview().constraint
+        }
+        self.layoutIfNeeded()
     }
 
     required init?(coder: NSCoder) {
@@ -57,15 +51,9 @@ class BottomSheetView: UIView {
 extension BottomSheetView {
     func configureView(){
         addSubview(containerView)
-        containerView.addSubview(titleLabel)
 
         containerView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-        }
-
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(containerView.snp.top)
-            make.left.right.equalToSuperview().inset(20)
         }
 
         containerView.snp.makeConstraints { make in
@@ -117,16 +105,12 @@ extension BottomSheetView {
 
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer){
         let translation = gesture.translation(in: self)
-        print("Pan gesture Y offset: \(translation.y)")
-
         let isDraggingDown = translation.y > 0
-        print("Dragging direction: \(isDraggingDown ? "going down" : "going up")")
-
         let newHeight = currentHeight - translation.y
 
         switch gesture.state {
         case.changed:
-            if newHeight < maxHeight {
+            if newHeight < maxHeight && newHeight > defaultHeight {
                 self.containerViewHeightConstraint?.deactivate()
                 self.containerView.snp.makeConstraints { make in
                     self.containerViewHeightConstraint = make.height.equalTo(newHeight).constraint
@@ -134,12 +118,8 @@ extension BottomSheetView {
                 layoutIfNeeded()
             }
         case .ended:
-            // If new height < min height we dismiss controller
+            // If  new height < default animate back to default
             if newHeight < defaultHeight {
-                animateContainerHeight(defaultHeight)
-            }
-            // If  new height < defolt animate back to default
-            else if newHeight < defaultHeight {
                 animateContainerHeight(defaultHeight)
             }
             // If new height < max and going down -> set to default height
