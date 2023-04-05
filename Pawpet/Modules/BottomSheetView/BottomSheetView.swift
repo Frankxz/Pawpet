@@ -8,6 +8,11 @@
 import UIKit
 import SnapKit
 
+protocol MainViewControllerDelegate {
+    func subviewToFront()
+    func subviewToBack()
+}
+
 class BottomSheetView: UIView {
 
     // MARK: - Reqiered properties
@@ -17,6 +22,8 @@ class BottomSheetView: UIView {
 
     var containerViewHeightConstraint: Constraint?
     var containerViewBottomConstraint: Constraint?
+
+    var delegate: MainViewControllerDelegate?
 
     // MARK: - UI Properties
     let containerView: UIView = {
@@ -121,14 +128,17 @@ extension BottomSheetView {
             // If  new height < default animate back to default
             if newHeight < defaultHeight {
                 animateContainerHeight(defaultHeight)
+                delegate?.subviewToBack()
             }
             // If new height < max and going down -> set to default height
             else if newHeight < maxHeight && isDraggingDown {
                 animateContainerHeight(defaultHeight)
+                delegate?.subviewToBack()
             }
             // If new height < max and going up -> set to max height
             else if newHeight > defaultHeight && !isDraggingDown {
                 animateContainerHeight(maxHeight)
+                delegate?.subviewToFront()
             }
         default:
             break

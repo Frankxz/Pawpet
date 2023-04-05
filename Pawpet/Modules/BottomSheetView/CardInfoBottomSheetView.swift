@@ -47,6 +47,17 @@ class CardInfoBottomSheetView: BottomSheetView{
         return label
     }()
 
+    private lazy var aboutGreedButton: UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "info.circle", withConfiguration: imageConfig)
+        button.setImage(image, for: .normal)
+       // button.backgroundColor = .accentColor
+        button.layer.cornerRadius = 15
+        button.tintColor = .systemYellow.withAlphaComponent(0.95)
+        return button
+    }()
+
     // MARK: - Init
     override init() {
         super.init()
@@ -70,9 +81,16 @@ extension CardInfoBottomSheetView {
         containerView.addSubview(authorStackView)
         containerView.addSubview(authorGeoLabel)
         containerView.addSubview(descriptionLabel)
+        containerView.addSubview(aboutGreedButton)
 
         titleView.snp.makeConstraints { make in
             make.top.left.equalToSuperview().inset(20)
+        }
+
+        aboutGreedButton.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.top)
+            make.right.equalToSuperview().inset(20)
+            make.height.width.equalTo(30)
         }
 
         infoLabelsStackView.snp.makeConstraints { make in
@@ -94,6 +112,8 @@ extension CardInfoBottomSheetView {
             make.top.equalTo(authorStackView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
+
+
     }
 
     private func getInfoLabelStackView() -> UIStackView {

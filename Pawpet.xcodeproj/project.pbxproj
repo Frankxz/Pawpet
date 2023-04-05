@@ -36,6 +36,9 @@
 		C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC329D31DEC003F4A2F /* DetailViewController.swift */; };
 		C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC529D31F90003F4A2F /* BottomSheetView.swift */; };
 		C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */; };
+		C6490DCB29D5BA8B003F4A2F /* SadDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DCA29D5BA8B003F4A2F /* SadDog.json */; };
+		C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCC29DD5FC5003F4A2F /* PhotosPageViewController.swift */; };
+		C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -99,6 +102,9 @@
 		C6490DC329D31DEC003F4A2F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C6490DC529D31F90003F4A2F /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoBottomSheetView.swift; sourceTree = "<group>"; };
+		C6490DCA29D5BA8B003F4A2F /* SadDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SadDog.json; sourceTree = "<group>"; };
+		C6490DCC29DD5FC5003F4A2F /* PhotosPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPageViewController.swift; sourceTree = "<group>"; };
+		C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrameViewController.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 				C6490DA829D06407003F4A2F /* ReadyCoala.json */,
 				C6490DBE29D1DF02003F4A2F /* PersonalOption.json */,
 				C6490DC029D1DF12003F4A2F /* CompanyOption.json */,
+				C6490DCA29D5BA8B003F4A2F /* SadDog.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -313,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				C6490DC329D31DEC003F4A2F /* DetailViewController.swift */,
+				C6490DCE29DD6061003F4A2F /* PhotosController */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -324,6 +332,15 @@
 				C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */,
 			);
 			path = BottomSheetView;
+			sourceTree = "<group>";
+		};
+		C6490DCE29DD6061003F4A2F /* PhotosController */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DCC29DD5FC5003F4A2F /* PhotosPageViewController.swift */,
+				C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */,
+			);
+			path = PhotosController;
 			sourceTree = "<group>";
 		};
 		C6C450C0298FF2920094FF5A = {
@@ -544,6 +561,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6490DCB29D5BA8B003F4A2F /* SadDog.json in Resources */,
 				C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */,
 				C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */,
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
@@ -688,6 +706,7 @@
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
 				C6C45103298FF5E70094FF5A /* MessagerViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PostViewController.swift in Sources */,
+				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6490D8D29C384BC003F4A2F /* SignUpViewController_1.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
 				C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */,
@@ -705,6 +724,7 @@
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
+				C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

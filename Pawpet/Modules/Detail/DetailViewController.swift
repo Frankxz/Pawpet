@@ -12,8 +12,15 @@ class DetailViewController: UIViewController {
     private var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .random()
+       // imageView.backgroundColor = .random()
+        imageView.image = UIImage(named: "husky3")
         return imageView
+    }()
+
+    private lazy var checkPhotosButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(checkPhotosTapped(_:)), for: .touchUpInside)
+        return button
     }()
 
     // MARK: - InfoView
@@ -53,6 +60,7 @@ extension DetailViewController {
     private func configurateView() {
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        infoView.delegate = self
         view.backgroundColor = .white
         setupConstraints()
     }
@@ -63,6 +71,8 @@ extension DetailViewController {
         view.addSubview(mainImageView)
         view.addSubview(infoView)
         view.addSubview(buttonStackView)
+        view.addSubview(checkPhotosButton)
+
 
         mainImageView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -77,6 +87,10 @@ extension DetailViewController {
             make.left.right.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(40)
         }
+
+        checkPhotosButton.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalTo(mainImageView)
+        }
     }
 
     private func getButtonStackView() -> UIStackView {
@@ -85,6 +99,7 @@ extension DetailViewController {
         stackView.distribution = .fill
         stackView.spacing = 12
 
+        connectButton.snp.removeConstraints()
         saveButton.snp.makeConstraints{$0.height.width.equalTo(50)}
 
         stackView.addArrangedSubview(saveButton)
@@ -97,5 +112,23 @@ extension DetailViewController {
 extension DetailViewController {
     @objc private func connectButtonTapped(_ sender: UIButton) {
         print("Connect..")
+      
     }
+
+    @objc private func checkPhotosTapped(_ sender: UIButton) {
+        present(PhotosPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal), animated: true)
+    }
+}
+
+// MARK: - InfoView MainVCDelegate
+extension DetailViewController: MainViewControllerDelegate {
+    func subviewToFront() {
+        view.sendSubviewToBack(checkPhotosButton)
+    }
+
+    func subviewToBack() {
+        view.bringSubviewToFront(checkPhotosButton)
+    }
+
+
 }
