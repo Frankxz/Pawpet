@@ -20,13 +20,13 @@ class CardCollectionView: UICollectionView {
         layout.scrollDirection = .vertical
         super.init(frame: .zero, collectionViewLayout: layout)
 
-        layout.minimumLineSpacing = ChapterCollectionConstants.lineSpace
+        layout.minimumLineSpacing = CardCollectionConstants.lineSpace
 
         contentInset = UIEdgeInsets(
             top: -20,
-            left: ChapterCollectionConstants.left,
+            left: CardCollectionConstants.left,
             bottom: 0,
-            right: ChapterCollectionConstants.right)
+            right: CardCollectionConstants.right)
 
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
@@ -90,7 +90,7 @@ extension CardCollectionView {
 struct CardCollectionConstants {
     static let left: CGFloat = 20
     static let right: CGFloat = 20
-    static let lineSpace: CGFloat = 20
+    static let lineSpace: CGFloat = 12
     static let itemWidth: CGFloat = UIScreen.main.bounds.width - (left + right)
     static let itemHeight: CGFloat = 120
 }

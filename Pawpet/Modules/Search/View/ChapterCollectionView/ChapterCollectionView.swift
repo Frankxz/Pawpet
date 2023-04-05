@@ -86,7 +86,7 @@ extension ChapterCollectionView: UICollectionViewDelegateFlowLayout {
 
 
 struct ChapterCollectionConstants {
-    static let left: CGFloat = 20
+    static let left: CGFloat = 0
     static let right: CGFloat = 20
     static let lineSpace: CGFloat = 20
     static let itemWidth: CGFloat = 80

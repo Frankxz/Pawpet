@@ -11,7 +11,12 @@ class CardCollectionHeaderView: UICollectionReusableView {
     static let identifier = "CardHeaderView"
 
     // MARK: - Labels
-    private let welcomeLabel = PromptView(with: "Hello, Miller !", and: "")
+    private let welcomeLabel: UILabel = {
+        let label = UILabel()
+        label.setAttributedText(withString: "Hello, ", boldString: "Miller ✋🏼", font: .systemFont(ofSize: 32))
+        label.textColor = UIColor.accentColor.withAlphaComponent(0.8)
+        return label
+    }()
 
     // MARK: - Segmented control
     private let sectionControl: CustomSegmentedControl = {
@@ -27,6 +32,7 @@ class CardCollectionHeaderView: UICollectionReusableView {
         imageView.layer.borderColor = UIColor.subtitleColor.cgColor
         imageView.layer.borderWidth = 1
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .random()
         return imageView
     }()
 
@@ -58,6 +64,12 @@ extension CardCollectionHeaderView {
             make.left.right.equalToSuperview()
             make.top.equalTo(sectionControl.snp.bottom).offset(20)
             make.height.equalTo(140)
+        }
+
+        avatarImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(32)
+            make.top.equalTo(welcomeLabel.snp.top)
+            make.right.equalToSuperview()
         }
     }
 }
