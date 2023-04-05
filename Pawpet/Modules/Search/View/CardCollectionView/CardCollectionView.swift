@@ -23,7 +23,7 @@ class CardCollectionView: UICollectionView {
         layout.minimumLineSpacing = ChapterCollectionConstants.lineSpace
 
         contentInset = UIEdgeInsets(
-            top: 0,
+            top: -20,
             left: ChapterCollectionConstants.left,
             bottom: 0,
             right: ChapterCollectionConstants.right)
@@ -35,6 +35,7 @@ class CardCollectionView: UICollectionView {
 
         self.backgroundColor = .clear
         register(CardCollectionViewCell.self, forCellWithReuseIdentifier: CardCollectionViewCell.reuseId)
+        register(CardCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier)
 
     }
 
@@ -73,6 +74,18 @@ extension CardCollectionView: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - Header
+extension CardCollectionView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier, for: indexPath) as! CardCollectionHeaderView
+        header.configure()
+        return header
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 250)
+    }
+}
 
 struct CardCollectionConstants {
     static let left: CGFloat = 20

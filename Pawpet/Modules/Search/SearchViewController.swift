@@ -8,29 +8,8 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-    
-    // MARK: - Labels
-    private let welcomeLabel = PromptView(with: "Hello, Miller !", and: "")
-
-    // MARK: - Segmented control
-    private let sectionControl: CustomSegmentedControl = {
-        let items = ["Animals", "Accessories", "Feed"]
-        let control = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 320, height: 40), items: items)
-        return control
-    }()
-
-    // MARK: - ImageView
-    private var avatarImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 8
-        imageView.layer.borderColor = UIColor.subtitleColor.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
 
     // MARK: - CollectionView
-    private let chapterCollectionView = ChapterCollectionView()
     private let cardCollectionView = CardCollectionView()
 
     // MARK: - Ovvderiding properties
@@ -60,38 +39,9 @@ extension SearchViewController {
     }
 
     private func setupConstraints() {
-        view.addSubview(avatarImageView)
-        view.addSubview(sectionControl)
-        view.addSubview(welcomeLabel)
-        view.addSubview(chapterCollectionView)
         view.addSubview(cardCollectionView)
-
-        welcomeLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(80)
-            make.left.equalToSuperview().inset(20)
-        }
-
-        sectionControl.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(20)
-            make.height.equalTo(40)
-        }
-
-        chapterCollectionView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(sectionControl.snp.bottom).offset(20)
-            make.height.equalTo(140)
-        }
-
         cardCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(chapterCollectionView.snp.bottom).inset(20)
-            make.left.right.bottom.equalToSuperview()
-        }
-
-        avatarImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(38)
-            make.top.equalToSuperview().inset(80)
-            make.right.equalToSuperview().inset(20)
+            make.top.left.right.bottom.equalToSuperview()
         }
     }
 }
