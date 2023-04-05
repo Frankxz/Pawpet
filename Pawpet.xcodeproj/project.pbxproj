@@ -22,7 +22,7 @@
 		C6490D9E29C8CC14003F4A2F /* SignUpViewController_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */; };
 		C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA029C8D54C003F4A2F /* DroppedDog.json */; };
 		C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA229C8D7F9003F4A2F /* WatchingDog.json */; };
-		C6490DA529D04F8B003F4A2F /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DA429D04F8B003F4A2F /* SignUpViewController_4.swift */; };
+		C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */; };
 		C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA829D06407003F4A2F /* ReadyCoala.json */; };
 		C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DAA29D15B92003F4A2F /* LabelView.swift */; };
 		C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DAC29D184DC003F4A2F /* SectionButton.swift */; };
@@ -41,6 +41,7 @@
 		C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */; };
 		C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */; };
 		C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD529DDA96C003F4A2F /* Label + Extension.swift */; };
+		C6490DD829DDF307003F4A2F /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -90,7 +91,7 @@
 		C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_3.swift; sourceTree = "<group>"; };
 		C6490DA029C8D54C003F4A2F /* DroppedDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DroppedDog.json; sourceTree = "<group>"; };
 		C6490DA229C8D7F9003F4A2F /* WatchingDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WatchingDog.json; sourceTree = "<group>"; };
-		C6490DA429D04F8B003F4A2F /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
+		C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_final.swift; sourceTree = "<group>"; };
 		C6490DA829D06407003F4A2F /* ReadyCoala.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ReadyCoala.json; sourceTree = "<group>"; };
 		C6490DAA29D15B92003F4A2F /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		C6490DAC29D184DC003F4A2F /* SectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionButton.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrameViewController.swift; sourceTree = "<group>"; };
 		C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionHeaderView.swift; sourceTree = "<group>"; };
 		C6490DD529DDA96C003F4A2F /* Label + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label + Extension.swift"; sourceTree = "<group>"; };
+		C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -249,7 +251,8 @@
 				C6490D8C29C384BC003F4A2F /* SignUpViewController_1.swift */,
 				C6490D9629C8C428003F4A2F /* SignUpViewController_2.swift */,
 				C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */,
-				C6490DA429D04F8B003F4A2F /* SignUpViewController_4.swift */,
+				C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */,
+				C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -702,12 +705,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6490DD829DDF307003F4A2F /* SignUpViewController_4.swift in Sources */,
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
-				C6490DA529D04F8B003F4A2F /* SignUpViewController_4.swift in Sources */,
+				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,

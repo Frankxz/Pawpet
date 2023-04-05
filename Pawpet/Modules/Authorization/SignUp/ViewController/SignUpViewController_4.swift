@@ -1,8 +1,8 @@
 //
-//  SignUpViewController_4.swift
+//  SignUpViewController_5.swift
 //  Pawpet
 //
-//  Created by Robert Miller on 26.03.2023.
+//  Created by Robert Miller on 06.04.2023.
 //
 
 import UIKit
@@ -11,18 +11,11 @@ import Lottie
 class SignUpViewController_4: UIViewController {
 
     // MARK: - PromptView
-    private var promptView = PromptView(with: "Everything is ready !",
-                                        and: "You are signed up and can start exploring \nthe world of Pawpet",
-                                        aligment: .center)
-
-    // MARK: - Lottie View
-    private var animationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: "ReadyCoala")
-        view.loopMode = .autoReverse
-        view.layer.allowsEdgeAntialiasing = true
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
+    private var promptView = PromptView(with: "Enter your name",
+                                        and: "This information will be visible to all users.")
+    // MARK: - TextField
+    private var nameTextField = AuthTextField("Name", isSecure: true)
+    private var surnameTextField = AuthTextField("Surname", isSecure: true)
 
     // MARK: - Button
     private lazy var nextButton: AuthButton = {
@@ -31,12 +24,21 @@ class SignUpViewController_4: UIViewController {
         button.setupTitle(for: "Continue")
         return button
     }()
-    
+
+    // MARK: - Lottie View
+    private var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "WatchingDog")
+        view.loopMode = .loop
+        view.layer.allowsEdgeAntialiasing = true
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+
+    // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
         animationView.play()
-        
     }
 }
 
@@ -44,33 +46,33 @@ class SignUpViewController_4: UIViewController {
 extension SignUpViewController_4 {
     private func configurateView() {
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true
 
-        let stackView = getInfoStackView()
+        let stackView = getMainStackView()
         view.addSubview(stackView)
-        view.addSubview(nextButton)
+        view.addSubview(animationView)
 
         stackView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(100)
         }
 
-        nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(60)
+        animationView.snp.makeConstraints { make in
+            make.height.equalTo(140)
+            make.width.equalTo(260)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(stackView.snp.bottom)
         }
-
     }
 
-    private func getInfoStackView() -> UIStackView {
+    private func getMainStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 20
 
-        animationView.snp.makeConstraints { $0.height.equalTo(200)}
-
-        stackView.addArrangedSubview(animationView)
         stackView.addArrangedSubview(promptView)
+        stackView.addArrangedSubview(nameTextField)
+        stackView.addArrangedSubview(surnameTextField)
+        stackView.addArrangedSubview(nextButton)
 
         return stackView
     }
@@ -79,13 +81,9 @@ extension SignUpViewController_4 {
 // MARK: - Button logic
 extension SignUpViewController_4 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        print("Registered")
-        
-        let mainTabBarController = MainTabBarController()
-        mainTabBarController.modalPresentationStyle = .fullScreen
-
+        print("Full name entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.present(mainTabBarController, animated: true)
+            self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
         }
     }
 }

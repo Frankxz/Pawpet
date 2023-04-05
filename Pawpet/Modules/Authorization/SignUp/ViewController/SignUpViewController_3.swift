@@ -44,6 +44,8 @@ class SignUpViewController_3: UIViewController {
 extension SignUpViewController_3 {
     private func configurateView() {
         view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let stackView = getMainStackView()
         view.addSubview(stackView)
