@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     private let infoView = CardInfoBottomSheetView()
 
     // MARK: - Buttons
-    private lazy var connectButton: AuthButton = {
+    public lazy var connectButton: AuthButton = {
         let button = AuthButton()
         button.addTarget(self, action: #selector(connectButtonTapped(_:)), for: .touchUpInside)
         button.setupTitle(for: "Connect with seller")
@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         return button
     }()
 
-    private lazy var saveButton: UIButton = {
+    public lazy var saveButton: UIButton = {
         let button = UIButton()
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
         let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
