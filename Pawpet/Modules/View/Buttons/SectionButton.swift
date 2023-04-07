@@ -12,9 +12,9 @@ class SectionButton: UIButton {
     private lazy var icon: UIImageView = {
         let image = UIImageView()
         image.contentMode = .center
-        image.layer.cornerRadius = 8
+       // image.layer.cornerRadius = 8
         image.clipsToBounds = true
-        image.backgroundColor = .backgroundColor
+//        image.backgroundColor = .backgroundColor
         image.tintColor = .accentColor
 
 
@@ -28,14 +28,15 @@ class SectionButton: UIButton {
         let label = UILabel()
         label.textColor = UIColor.accentColor
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()
 
     // MARK: - Init
     init(image: UIImage, text: String = "", tintColor: UIColor = .accentColor) {
         super.init(frame: .zero)
-        backgroundColor = .clear
+        backgroundColor = .backgroundColor
+        layer.cornerRadius = 8
 
         icon.image = image
         mainLabel.text = text
@@ -63,7 +64,7 @@ extension SectionButton {
 
         mainLabel.snp.makeConstraints({ make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(icon.snp.right).offset(20)
+            make.left.equalTo(icon.snp.right)
         })
     }
 }
