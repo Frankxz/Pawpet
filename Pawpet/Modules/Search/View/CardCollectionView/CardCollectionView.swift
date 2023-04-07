@@ -61,6 +61,8 @@ extension CardCollectionView: UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
     }
+
+    
 }
 
 // MARK: - Layout
@@ -86,7 +88,7 @@ extension CardCollectionView {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 250) : CGSize(width: UIScreen.main.bounds.width, height: 40)
+        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 300) : CGSize(width: UIScreen.main.bounds.width, height: 40)
     }
 }
 
