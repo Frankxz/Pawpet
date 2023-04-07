@@ -12,10 +12,13 @@ import UIKit
 
 class CardCollectionView: UICollectionView {
 
-    var searchViewControllerDelegate: SearchViewControllerDelegate?
+    public var searchViewControllerDelegate: SearchViewControllerDelegate?
+    private var withHeader = true
+    public var cardsCount = 5
 
     // MARK: - INIT
-    init () {
+    init (isHeaderIn: Bool = true) {
+        withHeader = isHeaderIn
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         super.init(frame: .zero, collectionViewLayout: layout)
@@ -47,7 +50,7 @@ class CardCollectionView: UICollectionView {
 // MARK: - DataSource
 extension CardCollectionView: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        cardsCount
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,12 +81,12 @@ extension CardCollectionView: UICollectionViewDelegateFlowLayout {
 extension CardCollectionView {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier, for: indexPath) as! CardCollectionHeaderView
-        header.configure()
+        if withHeader { header.configure()}
         return header
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 250)
+        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 250) : CGSize(width: UIScreen.main.bounds.width, height: 40)
     }
 }
 

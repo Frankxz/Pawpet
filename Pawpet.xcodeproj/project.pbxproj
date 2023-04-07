@@ -42,6 +42,8 @@
 		C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */; };
 		C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD529DDA96C003F4A2F /* Label + Extension.swift */; };
 		C6490DD829DDF307003F4A2F /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */; };
+		C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD929E06596003F4A2F /* FavoritesViewController.swift */; };
+		C6490DDE29E07204003F4A2F /* OwnCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DDD29E07204003F4A2F /* OwnCardCollectionViewCell.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -111,6 +113,8 @@
 		C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionHeaderView.swift; sourceTree = "<group>"; };
 		C6490DD529DDA96C003F4A2F /* Label + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label + Extension.swift"; sourceTree = "<group>"; };
 		C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
+		C6490DD929E06596003F4A2F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		C6490DDD29E07204003F4A2F /* OwnCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -352,6 +356,22 @@
 			path = PhotosController;
 			sourceTree = "<group>";
 		};
+		C6490DDB29E0659B003F4A2F /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DD929E06596003F4A2F /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		C6490DDC29E071BD003F4A2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DDD29E07204003F4A2F /* OwnCardCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C6C450C0298FF2920094FF5A = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +444,7 @@
 				C6C4510B298FF6790094FF5A /* Profile */,
 				C6490D9029C3855D003F4A2F /* View */,
 				C6490D8729BA0BC0003F4A2F /* Authorization */,
+				C6490DDB29E0659B003F4A2F /* Favorites */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -431,6 +452,7 @@
 		C6C45108298FF6690094FF5A /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				C6490DDC29E071BD003F4A2F /* View */,
 				C6C45104298FF6070094FF5A /* PostViewController.swift */,
 			);
 			path = Post;
@@ -733,10 +755,12 @@
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C6490D9E29C8CC14003F4A2F /* SignUpViewController_3.swift in Sources */,
+				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
 				C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */,
+				C6490DDE29E07204003F4A2F /* OwnCardCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

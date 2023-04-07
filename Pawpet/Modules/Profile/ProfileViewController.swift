@@ -42,6 +42,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
     private func configurateView() {
         view.backgroundColor = .white
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         setupConstraints()
     }
 
@@ -114,9 +115,14 @@ extension ProfileViewController {
 extension ProfileViewController {
     private func addButtonsTarget() {
         exitButton.addTarget(self, action: #selector(exitButtonTapped(_:)), for: .touchUpInside)
+        favoritesButton.addTarget(self, action: #selector(favoriteButtonTapped(_:)), for: .touchUpInside)
     }
 
     @objc private func exitButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+
+    @objc private func favoriteButtonTapped(_ sender: UIButton) {
+        navigationController?.pushViewController(FavoritesViewController(), animated: true)
     }
 }

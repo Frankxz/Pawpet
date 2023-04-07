@@ -14,7 +14,7 @@ extension UIColor {
     static let titleColor = hexColor(hex: "")
     static let backgroundColor = hexColor(hex: "F3F3F3") // ok
     static let subtitleColor = hexColor(hex: "B4B4B4") // ok
-    static let errorColor = hexColor(hex: "")
+    static let errorColor = hexColor(hex: "e23f45")
 
     // MARK: - HEX INIT
     convenience init(hex: String, alpha: CGFloat? = nil) {
