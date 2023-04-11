@@ -10,7 +10,7 @@ import UIKit
 class PromptView: UIView {
 
     // MARK: - Labels
-    private var titleLabel: UILabel = {
+    public var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Please, choose"
         label.textColor = UIColor.accentColor.withAlphaComponent(0.8)
@@ -18,7 +18,7 @@ class PromptView: UIView {
         return label
     }()
 
-    private var subtitleLabel: UILabel = {
+    public var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "This is important for further registration."
         label.textColor = .subtitleColor

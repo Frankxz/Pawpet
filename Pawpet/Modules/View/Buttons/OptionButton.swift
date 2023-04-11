@@ -19,25 +19,23 @@ class OptionButton: UIButton {
     // MARK: - Lottie View
     private var animationView: LottieAnimationView?
 
-
-
     // MARK: - Init
-    init(systemImage imageName: String = "", size: CGFloat = 56, isLeftAligment: Bool = false, animationName: String = "") {
+    init(systemImage imageName: String = "", size: CGFloat = 56, isLeftAligment: Bool = false, animationName: String = "", withShadows: Bool = true) {
         super.init(frame: .zero)
 
         layer.cornerRadius = 16
 
         addTarget(self, action: #selector(animateTap(_:)), for: .touchUpInside)
 
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: size, weight: .bold, scale: .large)
-        let image = UIImage(systemName: imageName, withConfiguration: imageConfig)
-        setImage(image, for: .normal)
-
-
+        if !imageName.isEmpty {
+            let imageConfig = UIImage.SymbolConfiguration(pointSize: size, weight: .bold, scale: .large)
+            let image = UIImage(systemName: imageName, withConfiguration: imageConfig)
+            setImage(image, for: .normal)
+        }
         backgroundColor = .accentColor
         tintColor = .subtitleColor
-        makeShadows()
-        isLeftAligment ? configureInsets() : ()
+
+        if withShadows { makeShadows() }
 
         if animationName != "" {
             setupAnimationView(animationName: animationName)
@@ -52,8 +50,8 @@ class OptionButton: UIButton {
 // MARK: - Configuring Title
 extension OptionButton {
     public func setupTitle(for text: String,
-                           with font: UIFont = .systemFont(ofSize: 20, weight: .bold)) {
-        let color =  UIColor.subtitleColor 
+                           with font: UIFont = .systemFont(ofSize: 20, weight: .bold), color: UIColor = .subtitleColor) {
+        let color =  color
         let title = NSAttributedString(
             string: text,
             attributes: [
@@ -70,28 +68,40 @@ extension OptionButton {
 extension OptionButton {
     private func configureInsets() {
         var configuration = UIButton.Configuration.plain()
-        configuration.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+        configuration.contentInsets = .init(top: 0, leading: 0, bottom: 60, trailing: 0)
         configuration.imagePadding = 20
+        configuration.titlePadding = 80
         self.configuration = configuration
+    }
+
+    public func setupImage(imageName: String) {
+        let image = UIImage(named: imageName)
+        self.setImage(image, for: .normal)
+        imageView?.contentMode = .scaleAspectFit
+        contentMode = .scaleAspectFit
+     
+        contentHorizontalAlignment = .fill
+        contentVerticalAlignment = .fill
     }
 }
 // MARK: - Configuring SubTitle
 extension OptionButton {
-    public func setupSubtitle(for text: String, with size: CGFloat) {
+    public func setupSubtitle(for text: String, with size: CGFloat, color: UIColor = .subtitleColor) {
         customSubtitleLabel.font = .systemFont(ofSize: size, weight: .bold)
         customSubtitleLabel.text = text
         customSubtitleLabel.textAlignment = .center
-        customSubtitleLabel.textColor = .subtitleColor
+        customSubtitleLabel.textColor = color
 
         addSubview(customSubtitleLabel)
         customSubtitleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(20)
         }
+        configureInsets()
     }
 }
 
-// MARK: - Configuring shados
+// MARK: - Configuring shadows
 extension OptionButton {
     public func makeShadows() {
         layer.masksToBounds = false

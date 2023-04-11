@@ -9,6 +9,9 @@ import UIKit
 
 class LabelView: UIView {
 
+    private var currentIndex = 0
+    private var currentText: String = ""
+
     // MARK: - Label
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -62,6 +65,23 @@ class LabelView: UIView {
 
         stackView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview().inset(8)
+        }
+    }
+
+    func animate(newText: String, characterDelay: TimeInterval) {
+        currentText = newText
+        currentIndex = 0
+        mainLabel.text = ""
+
+        Timer.scheduledTimer(withTimeInterval: characterDelay, repeats: true) { timer in
+            if self.currentIndex < self.currentText.count {
+                let index = self.currentText.index(self.currentText.startIndex, offsetBy: self.currentIndex)
+                let letter = String(self.currentText[index])
+                self.mainLabel.text?.append(letter)
+                self.currentIndex += 1
+            } else {
+                timer.invalidate()
+            }
         }
     }
 }

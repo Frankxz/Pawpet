@@ -44,6 +44,13 @@
 		C6490DD829DDF307003F4A2F /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */; };
 		C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD929E06596003F4A2F /* FavoritesViewController.swift */; };
 		C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */; };
+		C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE229E1C228003F4A2F /* PostViewController_1.swift */; };
+		C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE729E5A438003F4A2F /* PostViewController_2.swift */; };
+		C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE929E5AFD1003F4A2F /* PostViewController_3.swift */; };
+		C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DEB29E5BE1B003F4A2F /* Breed.swift */; };
+		C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */; };
+		C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF429E5D830003F4A2F /* PostViewController_4.swift */; };
+		C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -53,8 +60,9 @@
 		C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450FC298FF5310094FF5A /* MainTabBarController.swift */; };
 		C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450FE298FF58E0094FF5A /* SearchViewController.swift */; };
 		C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45100298FF5990094FF5A /* ProfileViewController.swift */; };
-		C6C45103298FF5E70094FF5A /* MessagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45102298FF5E70094FF5A /* MessagerViewController.swift */; };
-		C6C45105298FF6070094FF5A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45104298FF6070094FF5A /* PostViewController.swift */; };
+		C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45104298FF6070094FF5A /* PublicationsViewController.swift */; };
+		C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B8F29E605F00070BC50 /* DynamicTextView.swift */; };
+		C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9229E606150070BC50 /* PostViewController_6.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +123,13 @@
 		C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
 		C6490DD929E06596003F4A2F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnDetailViewController.swift; sourceTree = "<group>"; };
+		C6490DE229E1C228003F4A2F /* PostViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_1.swift; sourceTree = "<group>"; };
+		C6490DE729E5A438003F4A2F /* PostViewController_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_2.swift; sourceTree = "<group>"; };
+		C6490DE929E5AFD1003F4A2F /* PostViewController_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_3.swift; sourceTree = "<group>"; };
+		C6490DEB29E5BE1B003F4A2F /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePickerView.swift; sourceTree = "<group>"; };
+		C6490DF429E5D830003F4A2F /* PostViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_4.swift; sourceTree = "<group>"; };
+		C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_5.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,8 +143,9 @@
 		C6C450FC298FF5310094FF5A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C6C450FE298FF58E0094FF5A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C6C45100298FF5990094FF5A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		C6C45102298FF5E70094FF5A /* MessagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerViewController.swift; sourceTree = "<group>"; };
-		C6C45104298FF6070094FF5A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		C6C45104298FF6070094FF5A /* PublicationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsViewController.swift; sourceTree = "<group>"; };
+		C6CC0B8F29E605F00070BC50 /* DynamicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextView.swift; sourceTree = "<group>"; };
+		C6CC0B9229E606150070BC50 /* PostViewController_6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_6.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,7 +236,9 @@
 				C6490DB029D1A74A003F4A2F /* TextField */,
 				C6490DAE29D1A73A003F4A2F /* Buttons */,
 				C6490DAF29D1A743003F4A2F /* Labels */,
-				C6490DB129D1A761003F4A2F /* CustomSegmentedControl.swift */,
+				C6490DF329E5D809003F4A2F /* SegmentedControl */,
+				C6490DF229E5D7FF003F4A2F /* PickerView */,
+				C6CC0B9129E605F30070BC50 /* TextView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -374,10 +392,64 @@
 		C6490DDF29E07A26003F4A2F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C6C45104298FF6070094FF5A /* PostViewController.swift */,
-				C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */,
+				C6490DE529E5A404003F4A2F /* Publications */,
+				C6490DE629E5A425003F4A2F /* Post */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C6490DE429E59E47003F4A2F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C6C450FE298FF58E0094FF5A /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C6490DE529E5A404003F4A2F /* Publications */ = {
+			isa = PBXGroup;
+			children = (
+				C6C45104298FF6070094FF5A /* PublicationsViewController.swift */,
+				C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */,
+			);
+			path = Publications;
+			sourceTree = "<group>";
+		};
+		C6490DE629E5A425003F4A2F /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DE229E1C228003F4A2F /* PostViewController_1.swift */,
+				C6490DE729E5A438003F4A2F /* PostViewController_2.swift */,
+				C6490DE929E5AFD1003F4A2F /* PostViewController_3.swift */,
+				C6490DF429E5D830003F4A2F /* PostViewController_4.swift */,
+				C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */,
+				C6CC0B9229E606150070BC50 /* PostViewController_6.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		C6490DED29E5BE27003F4A2F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C6490DF229E5D7FF003F4A2F /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		C6490DF329E5D809003F4A2F /* SegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DB129D1A761003F4A2F /* CustomSegmentedControl.swift */,
+			);
+			path = SegmentedControl;
 			sourceTree = "<group>";
 		};
 		C6C450C0298FF2920094FF5A = {
@@ -406,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				C6C45106298FF6160094FF5A /* Application */,
+				C6490DED29E5BE27003F4A2F /* Model */,
 				C6C45107298FF6580094FF5A /* Modules */,
 				C6490D8429BA05E1003F4A2F /* Resourses */,
 				C6490D8329BA05D7003F4A2F /* Extension */,
@@ -448,7 +521,6 @@
 				C6490DC229D31DD0003F4A2F /* Detail */,
 				C6C4510A298FF6740094FF5A /* Search */,
 				C6C45108298FF6690094FF5A /* Post */,
-				C6C45109298FF66E0094FF5A /* Messager */,
 				C6C4510B298FF6790094FF5A /* Profile */,
 				C6490D9029C3855D003F4A2F /* View */,
 				C6490D8729BA0BC0003F4A2F /* Authorization */,
@@ -466,18 +538,10 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
-		C6C45109298FF66E0094FF5A /* Messager */ = {
-			isa = PBXGroup;
-			children = (
-				C6C45102298FF5E70094FF5A /* MessagerViewController.swift */,
-			);
-			path = Messager;
-			sourceTree = "<group>";
-		};
 		C6C4510A298FF6740094FF5A /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				C6C450FE298FF58E0094FF5A /* SearchViewController.swift */,
+				C6490DE429E59E47003F4A2F /* ViewController */,
 				C6490DB729D1B29A003F4A2F /* View */,
 			);
 			path = Search;
@@ -489,6 +553,14 @@
 				C6C45100298FF5990094FF5A /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		C6CC0B9129E605F30070BC50 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				C6CC0B8F29E605F00070BC50 /* DynamicTextView.swift */,
+			);
+			path = TextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -743,12 +815,15 @@
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
+				C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
+				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
+				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
-				C6C45103298FF5E70094FF5A /* MessagerViewController.swift in Sources */,
-				C6C45105298FF6070094FF5A /* PostViewController.swift in Sources */,
+				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
+				C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */,
 				C6490D8D29C384BC003F4A2F /* SignUpViewController_1.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
 				C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */,
@@ -758,16 +833,21 @@
 				C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
 				C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */,
+				C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */,
 				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
+				C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */,
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */,
+				C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */,
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,
+				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C6490D9E29C8CC14003F4A2F /* SignUpViewController_3.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
+				C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */,
 				C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

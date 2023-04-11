@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class PostViewController: UIViewController {
+class PublicationsViewController: UIViewController {
 
     // MARK: - In case < 0 posts
 
@@ -44,15 +44,17 @@ class PostViewController: UIViewController {
     // MARK:  CollectionView
     private let cardCollectionView = CardCollectionView(isHeaderIn: false)
 
-    // MARK:  ImageView
-    private var avatarImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 8
-        imageView.layer.borderColor = UIColor.subtitleColor.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .random()
-        return imageView
+    // MARK:  Buttons
+    public lazy var addButton: UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
+        let image = UIImage(systemName: "plus", withConfiguration: imageConfig)
+        button.setImage(image, for: .normal)
+        button.backgroundColor = .accentColor
+        button.layer.cornerRadius = 16
+        button.tintColor = .subtitleColor
+        button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+        return button
     }()
 
     // MARK:  Ovvderiding properties
@@ -76,7 +78,7 @@ class PostViewController: UIViewController {
 }
 
 // MARK: - UI + Constraints in case posts = 0
-extension PostViewController {
+extension PublicationsViewController {
     private func setupConstraintsForPlugView() {
         let stackView = getPlugStackView()
 
@@ -110,7 +112,7 @@ extension PostViewController {
 }
 
 // MARK: - UI + Constraints in case posts > 0
-extension PostViewController {
+extension PublicationsViewController {
     private func configurateView() {
         cardCollectionView.cardsCount = 6
         view.backgroundColor = .white
@@ -122,7 +124,7 @@ extension PostViewController {
     private func setupConstraints() {
         view.addSubview(welcomeLabel)
         view.addSubview(cardCollectionView)
-        view.addSubview(avatarImageView)
+        view.addSubview(addButton)
 
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(90)
@@ -134,7 +136,7 @@ extension PostViewController {
             make.left.right.bottom.equalToSuperview()
         }
 
-        avatarImageView.snp.makeConstraints { make in
+        addButton.snp.makeConstraints { make in
             make.width.height.equalTo(32)
             make.top.equalTo(welcomeLabel.snp.top)
             make.right.equalToSuperview().inset(20)
@@ -143,9 +145,19 @@ extension PostViewController {
 }
 
 // MARK:  Delegate
-extension PostViewController: SearchViewControllerDelegate {
+extension PublicationsViewController: SearchViewControllerDelegate {
     func pushToDetailVC() {
         print("Push to DetailVC")
         navigationController?.pushViewController(OwnDetailViewController(), animated: true)
+    }
+}
+
+// MARK: - Button logic
+extension PublicationsViewController {
+    @objc private func addButtonTapped(_ sender: UIButton) {
+        let navigationVC = UINavigationController(rootViewController: PostViewController_1())
+        navigationVC.modalPresentationStyle = .pageSheet
+        present(navigationVC, animated: true)
+       // navigationController?.pushViewController(PostViewController_1(), animated: true)
     }
 }

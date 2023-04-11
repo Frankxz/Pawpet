@@ -15,7 +15,7 @@ class PhotosPageViewController: UIPageViewController, UIPageViewControllerDataSo
         super.viewDidLoad()
 
         dataSource = self
-        view.backgroundColor = .black.withAlphaComponent(0.8)
+        view.backgroundColor = .black
         setupView()
     }
 

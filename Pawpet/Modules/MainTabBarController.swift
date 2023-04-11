@@ -21,7 +21,7 @@ extension MainTabBarController {
     private func generateTabBarItems() {
         // VC for tesing only
         let searchVC = SearchViewController()
-        let postVC = PostViewController()
+        let postVC = PublicationsViewController()
         let profileVC = ProfileViewController()
 
         searchVC.view.backgroundColor = .white

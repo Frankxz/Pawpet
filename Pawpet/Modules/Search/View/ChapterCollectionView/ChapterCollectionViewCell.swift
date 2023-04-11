@@ -31,7 +31,6 @@ class ChapterCollectionViewCell: UICollectionViewCell {
     // MARK: - INITs
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         addSubview(mainImageView)
         addSubview(nameLabel)
 

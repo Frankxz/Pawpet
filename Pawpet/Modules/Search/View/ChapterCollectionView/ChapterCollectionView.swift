@@ -44,7 +44,7 @@ class ChapterCollectionView: UICollectionView {
 // MARK: - DataSource
 extension ChapterCollectionView: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        7
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,7 +88,7 @@ extension ChapterCollectionView: UICollectionViewDelegateFlowLayout {
 struct ChapterCollectionConstants {
     static let left: CGFloat = 0
     static let right: CGFloat = 20
-    static let lineSpace: CGFloat = 20
+    static let lineSpace: CGFloat = 10
     static let itemWidth: CGFloat = 80
-    static let itemHeight: CGFloat = 140
+    static let itemHeight: CGFloat = 120
 }
