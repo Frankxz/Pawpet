@@ -74,9 +74,7 @@ extension PostViewController_6 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.dismiss(animated: true) {
-                // TODO: -
-            }
+            self.navigationController?.pushViewController(PostViewController_7(), animated: true)
         }
     }
 }

@@ -63,6 +63,11 @@
 		C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C45104298FF6070094FF5A /* PublicationsViewController.swift */; };
 		C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B8F29E605F00070BC50 /* DynamicTextView.swift */; };
 		C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9229E606150070BC50 /* PostViewController_6.swift */; };
+		C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9429E727170070BC50 /* PostViewController_7.swift */; };
+		C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9629E729BB0070BC50 /* PhotoCollectionView.swift */; };
+		C6CC0B9929E72A820070BC50 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9829E72A820070BC50 /* PhotoCollectionViewCell.swift */; };
+		C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */; };
+		C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0B9C29E749DC0070BC50 /* Success.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +151,11 @@
 		C6C45104298FF6070094FF5A /* PublicationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationsViewController.swift; sourceTree = "<group>"; };
 		C6CC0B8F29E605F00070BC50 /* DynamicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextView.swift; sourceTree = "<group>"; };
 		C6CC0B9229E606150070BC50 /* PostViewController_6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_6.swift; sourceTree = "<group>"; };
+		C6CC0B9429E727170070BC50 /* PostViewController_7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_7.swift; sourceTree = "<group>"; };
+		C6CC0B9629E729BB0070BC50 /* PhotoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
+		C6CC0B9829E72A820070BC50 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_8.swift; sourceTree = "<group>"; };
+		C6CC0B9C29E749DC0070BC50 /* Success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Success.json; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +298,7 @@
 				C6490DBE29D1DF02003F4A2F /* PersonalOption.json */,
 				C6490DC029D1DF12003F4A2F /* CompanyOption.json */,
 				C6490DCA29D5BA8B003F4A2F /* SadDog.json */,
+				C6CC0B9C29E749DC0070BC50 /* Success.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -385,6 +396,8 @@
 		C6490DDC29E071BD003F4A2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C6CC0B9629E729BB0070BC50 /* PhotoCollectionView.swift */,
+				C6CC0B9829E72A820070BC50 /* PhotoCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +437,8 @@
 				C6490DF429E5D830003F4A2F /* PostViewController_4.swift */,
 				C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */,
 				C6CC0B9229E606150070BC50 /* PostViewController_6.swift */,
+				C6CC0B9429E727170070BC50 /* PostViewController_7.swift */,
+				C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -676,6 +691,7 @@
 				C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */,
 				C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */,
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
+				C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */,
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
 				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,
@@ -811,13 +827,16 @@
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
+				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
+				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
 				C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
+				C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
@@ -846,6 +865,7 @@
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */,
+				C6CC0B9929E72A820070BC50 /* PhotoCollectionViewCell.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
 				C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */,
 				C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */,
