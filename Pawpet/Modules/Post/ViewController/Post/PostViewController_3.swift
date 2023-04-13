@@ -56,6 +56,14 @@ class PostViewController_3: UIViewController, UITableViewDelegate, UITableViewDa
 
         setupViews()
         setupConstraints()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
     }
 }
 
@@ -211,5 +219,22 @@ extension PostViewController_3 {
             self.nextButton.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         print("Button showed")
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            nextButton.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(20)
+                make.bottom.equalToSuperview().inset(keyboardHeight + 10)
+                make.height.equalTo(70)
+            }
+
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 }

@@ -1,19 +1,19 @@
 //
-//  SignUpViewController_6.swift
+//  SignUpViewController_4.swift
 //  Pawpet
 //
 //  Created by Robert Miller on 13.04.2023.
 //
 
 import UIKit
+import SnapKit
 
-class SignUpViewController_6: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SignUpViewController_4: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private var filteredCities = [City]()
+    private let countries = Country.createCountries()
+    private var filteredCountries = [Country]()
     private var isSearching = false
-    private var selectedCity: City?
-
-    public var cities: [City] = []
+    private var selectedCountry: Country?
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -35,7 +35,7 @@ class SignUpViewController_6: UIViewController, UITableViewDelegate, UITableView
         return button
     }()
 
-    private var promptView = PromptView(with: "Select your city.",
+    private var promptView = PromptView(with: "Select your country.",
                                         and: "", titleSize: 28)
 
     override func viewDidLoad() {
@@ -44,17 +44,20 @@ class SignUpViewController_6: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
         setupViews()
         setupConstraints()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        print(cities.count)
     }
 }
 
 // MARK: - UI + Constraints
-extension SignUpViewController_6 {
+extension SignUpViewController_4 {
     func setupViews() {
         view.addSubview(promptView)
         view.addSubview(tableView)
@@ -99,23 +102,23 @@ extension SignUpViewController_6 {
         searchBar.setPositionAdjustment(imageOffset, for: .search)
         searchBar.searchTextPositionAdjustment = textOffset
 
-        searchBar.placeholder = "Search your city.."
+        searchBar.placeholder = "Search your country.."
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
     }
 }
 
 //MARK: - TableView DataSource
-extension SignUpViewController_6 {
+extension SignUpViewController_4 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredCities.count : cities.count
+        return isSearching ? filteredCountries.count : countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
+        let country = isSearching ? filteredCountries[indexPath.row] : countries[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = city.name
-        cell.accessoryType = city.isChecked ? .checkmark : .none
+        cell.textLabel?.text = "\(country.geoCode.geoCodeToEmoji()) \(country.name)"
+        cell.accessoryType = country.isChecked ? .checkmark : .none
         cell.tintColor = .systemGreen
         let selectionColorView = UIView()
         selectionColorView.backgroundColor = .clear
@@ -126,30 +129,30 @@ extension SignUpViewController_6 {
 }
 
 //MARK: - TableView Delegate
-extension SignUpViewController_6 {
+extension SignUpViewController_4 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
+        let country = isSearching ? filteredCountries[indexPath.row] : countries[indexPath.row]
 
-        if let selectedCity = selectedCity {
-            if city.name == selectedCity.name {
-                city.isChecked = !city.isChecked
-                selectedCity.isChecked = city.isChecked
+        if let selectedCountry = selectedCountry {
+            if country.name == selectedCountry.name {
+                country.isChecked = !country.isChecked
+                selectedCountry.isChecked = country.isChecked
                 if (nextButton.isHidden) {
                     showButtonWithAnimation()
                 } else {
                     hideButtonWithAnimation()
                 }
             } else {
-                selectedCity.isChecked = false
-                city.isChecked = true
-                self.selectedCity = city
+                selectedCountry.isChecked = false
+                country.isChecked = true
+                self.selectedCountry = country
                 showButtonWithAnimation()
             }
         } else {
-            city.isChecked = true
-            selectedCity = city
+            country.isChecked = true
+            selectedCountry = country
             showButtonWithAnimation()
         }
 
@@ -158,10 +161,10 @@ extension SignUpViewController_6 {
 }
 
 // MARK: - SearchBar Delegate
-extension SignUpViewController_6: UISearchBarDelegate {
+extension SignUpViewController_4: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredCities = cities.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
+        filteredCountries = countries.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
         isSearching = true
         tableView.reloadData()
     }
@@ -174,11 +177,17 @@ extension SignUpViewController_6: UISearchBarDelegate {
 }
 
 // MARK: - Button logic
-extension SignUpViewController_6 {
+extension SignUpViewController_4 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let signUpVC_6 = SignUpViewController_5()
+            let cities = signUpVC_6.findCities(for: self.selectedCountry!.name)
+            if cities.count != 0 {
+                self.navigationController?.pushViewController(signUpVC_6, animated: true)
+            } else {
                 self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
+            }
         }
         // TODO: - StorageManager
     }
@@ -199,29 +208,21 @@ extension SignUpViewController_6 {
         })
         print("Button showed")
     }
-}
 
-// MARK: - Cities fetching
-extension SignUpViewController_6 {
-    func findCities(for country: String) -> [String]{
-        guard let path = Bundle.main.path(forResource: "countries", ofType: "json") else {
-            return []
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            nextButton.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(20)
+                make.bottom.equalToSuperview().inset(keyboardHeight + 10)
+                make.height.equalTo(70)
+            }
+
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
         }
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-
-            if let citiesDict = jsonResult as? [String: [String]],
-               let fethcedCities = citiesDict[country] {
-                for item in fethcedCities {
-                    let city = City(name: item)
-                    self.cities.append(city)
-                    print("\(item) add")
-                }
-                print(self.cities.count)
-                tableView.reloadData()
-                return fethcedCities
-            } else { return []}
-        } catch { return []}
     }
 }

@@ -61,4 +61,9 @@ extension PromptView {
         }
         backgroundColor = .clear
     }
+
+    public func setupTitles(title: String, subtitle: String) {
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
+    }
 }

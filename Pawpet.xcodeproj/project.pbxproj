@@ -13,13 +13,12 @@
 		C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */; };
 		C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8529BA0BBC003F4A2F /* SignInViewController.swift */; };
 		C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8829C33E65003F4A2F /* UITextField + Extension.swift */; };
-		C6490D8D29C384BC003F4A2F /* SignUpViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8C29C384BC003F4A2F /* SignUpViewController_1.swift */; };
 		C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8E29C38556003F4A2F /* AuthTextField.swift */; };
 		C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9229C387F7003F4A2F /* AuthButton.swift */; };
 		C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9429C8AB97003F4A2F /* OptionButton.swift */; };
-		C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9629C8C428003F4A2F /* SignUpViewController_2.swift */; };
+		C6490D9729C8C428003F4A2F /* SignUpViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */; };
 		C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9B29C8C4B2003F4A2F /* PromptView.swift */; };
-		C6490D9E29C8CC14003F4A2F /* SignUpViewController_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */; };
+		C6490D9E29C8CC14003F4A2F /* SignUpViewController_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */; };
 		C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA029C8D54C003F4A2F /* DroppedDog.json */; };
 		C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA229C8D7F9003F4A2F /* WatchingDog.json */; };
 		C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */; };
@@ -41,7 +40,7 @@
 		C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */; };
 		C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */; };
 		C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD529DDA96C003F4A2F /* Label + Extension.swift */; };
-		C6490DD829DDF307003F4A2F /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */; };
+		C6490DD829DDF307003F4A2F /* SignUpViewController_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */; };
 		C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD929E06596003F4A2F /* FavoritesViewController.swift */; };
 		C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */; };
 		C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE229E1C228003F4A2F /* PostViewController_1.swift */; };
@@ -51,6 +50,7 @@
 		C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */; };
 		C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF429E5D830003F4A2F /* PostViewController_4.swift */; };
 		C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */; };
+		C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BC2E6B29E889F200205F1C /* BaseSignUpViewController.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
 		C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */; };
@@ -69,10 +69,11 @@
 		C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */; };
 		C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0B9C29E749DC0070BC50 /* Success.json */; };
 		C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9E29E8361F0070BC50 /* Country.swift */; };
-		C6CC0BA429E847940070BC50 /* SignUpViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA329E847940070BC50 /* SignUpViewController_5.swift */; };
+		C6CC0BA429E847940070BC50 /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */; };
 		C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */; };
 		C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0BAB29E8538C0070BC50 /* countries.json */; };
-		C6CC0BAF29E854BE0070BC50 /* SignUpViewController_6.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController_6.swift */; };
+		C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */; };
+		C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,13 +103,12 @@
 		C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		C6490D8529BA0BBC003F4A2F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		C6490D8829C33E65003F4A2F /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
-		C6490D8C29C384BC003F4A2F /* SignUpViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_1.swift; sourceTree = "<group>"; };
 		C6490D8E29C38556003F4A2F /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		C6490D9229C387F7003F4A2F /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		C6490D9429C8AB97003F4A2F /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
-		C6490D9629C8C428003F4A2F /* SignUpViewController_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_2.swift; sourceTree = "<group>"; };
+		C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_1.swift; sourceTree = "<group>"; };
 		C6490D9B29C8C4B2003F4A2F /* PromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
-		C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_3.swift; sourceTree = "<group>"; };
+		C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_2.swift; sourceTree = "<group>"; };
 		C6490DA029C8D54C003F4A2F /* DroppedDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DroppedDog.json; sourceTree = "<group>"; };
 		C6490DA229C8D7F9003F4A2F /* WatchingDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WatchingDog.json; sourceTree = "<group>"; };
 		C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_final.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrameViewController.swift; sourceTree = "<group>"; };
 		C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionHeaderView.swift; sourceTree = "<group>"; };
 		C6490DD529DDA96C003F4A2F /* Label + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label + Extension.swift"; sourceTree = "<group>"; };
-		C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
+		C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_3.swift; sourceTree = "<group>"; };
 		C6490DD929E06596003F4A2F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnDetailViewController.swift; sourceTree = "<group>"; };
 		C6490DE229E1C228003F4A2F /* PostViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_1.swift; sourceTree = "<group>"; };
@@ -140,6 +140,7 @@
 		C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePickerView.swift; sourceTree = "<group>"; };
 		C6490DF429E5D830003F4A2F /* PostViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_4.swift; sourceTree = "<group>"; };
 		C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_5.swift; sourceTree = "<group>"; };
+		C6BC2E6B29E889F200205F1C /* BaseSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSignUpViewController.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C450D5298FF2930094FF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,10 +163,11 @@
 		C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_8.swift; sourceTree = "<group>"; };
 		C6CC0B9C29E749DC0070BC50 /* Success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Success.json; sourceTree = "<group>"; };
 		C6CC0B9E29E8361F0070BC50 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
-		C6CC0BA329E847940070BC50 /* SignUpViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_5.swift; sourceTree = "<group>"; };
+		C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
 		C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		C6CC0BAB29E8538C0070BC50 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
-		C6CC0BAE29E854BE0070BC50 /* SignUpViewController_6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_6.swift; sourceTree = "<group>"; };
+		C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_5.swift; sourceTree = "<group>"; };
+		C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +231,7 @@
 				C6490D8829C33E65003F4A2F /* UITextField + Extension.swift */,
 				C6490DD529DDA96C003F4A2F /* Label + Extension.swift */,
 				C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */,
+				C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -276,7 +279,8 @@
 		C6490D9829C8C435003F4A2F /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				C6490D9A29C8C460003F4A2F /* ViewController */,
+				C6BC2E6D29E88A3400205F1C /* BaseSignUpViewController */,
+				C6490D9A29C8C460003F4A2F /* ViewControllers */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -289,18 +293,17 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
-		C6490D9A29C8C460003F4A2F /* ViewController */ = {
+		C6490D9A29C8C460003F4A2F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C6490D8C29C384BC003F4A2F /* SignUpViewController_1.swift */,
-				C6490D9629C8C428003F4A2F /* SignUpViewController_2.swift */,
-				C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */,
-				C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */,
-				C6CC0BA329E847940070BC50 /* SignUpViewController_5.swift */,
-				C6CC0BAE29E854BE0070BC50 /* SignUpViewController_6.swift */,
+				C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */,
+				C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */,
+				C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */,
+				C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */,
+				C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */,
 				C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */,
 			);
-			path = ViewController;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C6490D9F29C8D4FD003F4A2F /* Lottie Animations */ = {
@@ -480,6 +483,14 @@
 				C6490DB129D1A761003F4A2F /* CustomSegmentedControl.swift */,
 			);
 			path = SegmentedControl;
+			sourceTree = "<group>";
+		};
+		C6BC2E6D29E88A3400205F1C /* BaseSignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C6BC2E6B29E889F200205F1C /* BaseSignUpViewController.swift */,
+			);
+			path = BaseSignUpViewController;
 			sourceTree = "<group>";
 		};
 		C6C450C0298FF2920094FF5A = {
@@ -847,14 +858,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6490DD829DDF307003F4A2F /* SignUpViewController_4.swift in Sources */,
+				C6490DD829DDF307003F4A2F /* SignUpViewController_3.swift in Sources */,
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
+				C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
-				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_6.swift in Sources */,
+				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
@@ -864,20 +876,20 @@
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
-				C6CC0BA429E847940070BC50 /* SignUpViewController_5.swift in Sources */,
+				C6CC0BA429E847940070BC50 /* SignUpViewController_4.swift in Sources */,
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
 				C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */,
-				C6490D8D29C384BC003F4A2F /* SignUpViewController_1.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
 				C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */,
 				C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */,
 				C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */,
 				C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */,
 				C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */,
+				C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
 				C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */,
 				C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */,
@@ -889,10 +901,10 @@
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,
 				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
-				C6490D9E29C8CC14003F4A2F /* SignUpViewController_3.swift in Sources */,
+				C6490D9E29C8CC14003F4A2F /* SignUpViewController_2.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
-				C6490D9729C8C428003F4A2F /* SignUpViewController_2.swift in Sources */,
+				C6490D9729C8C428003F4A2F /* SignUpViewController_1.swift in Sources */,
 				C6CC0B9929E72A820070BC50 /* PhotoCollectionViewCell.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
 				C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */,
@@ -1073,6 +1085,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1101,6 +1114,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

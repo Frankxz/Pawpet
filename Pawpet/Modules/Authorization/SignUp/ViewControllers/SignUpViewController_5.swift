@@ -1,19 +1,19 @@
 //
-//  SignUpViewController_5.swift
+//  SignUpViewController_6.swift
 //  Pawpet
 //
 //  Created by Robert Miller on 13.04.2023.
 //
 
 import UIKit
-import SnapKit
 
 class SignUpViewController_5: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private let countries = Country.createCountries()
-    private var filteredCountries = [Country]()
+    private var filteredCities = [City]()
     private var isSearching = false
-    private var selectedCountry: Country?
+    private var selectedCity: City?
+
+    public var cities: [City] = []
 
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -35,7 +35,7 @@ class SignUpViewController_5: UIViewController, UITableViewDelegate, UITableView
         return button
     }()
 
-    private var promptView = PromptView(with: "Select your country.",
+    private var promptView = PromptView(with: "Select your city.",
                                         and: "", titleSize: 28)
 
     override func viewDidLoad() {
@@ -44,8 +44,19 @@ class SignUpViewController_5: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
         setupViews()
         setupConstraints()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        print(cities.count)
     }
 }
 
@@ -95,7 +106,7 @@ extension SignUpViewController_5 {
         searchBar.setPositionAdjustment(imageOffset, for: .search)
         searchBar.searchTextPositionAdjustment = textOffset
 
-        searchBar.placeholder = "Search your country.."
+        searchBar.placeholder = "Search your city.."
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
     }
 }
@@ -103,15 +114,15 @@ extension SignUpViewController_5 {
 //MARK: - TableView DataSource
 extension SignUpViewController_5 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredCountries.count : countries.count
+        return isSearching ? filteredCities.count : cities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let country = isSearching ? filteredCountries[indexPath.row] : countries[indexPath.row]
+        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(country.geoCode.geoCodeToEmoji()) \(country.name)"
-        cell.accessoryType = country.isChecked ? .checkmark : .none
+        cell.textLabel?.text = city.name
+        cell.accessoryType = city.isChecked ? .checkmark : .none
         cell.tintColor = .systemGreen
         let selectionColorView = UIView()
         selectionColorView.backgroundColor = .clear
@@ -126,26 +137,26 @@ extension SignUpViewController_5 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let country = isSearching ? filteredCountries[indexPath.row] : countries[indexPath.row]
+        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
 
-        if let selectedCountry = selectedCountry {
-            if country.name == selectedCountry.name {
-                country.isChecked = !country.isChecked
-                selectedCountry.isChecked = country.isChecked
+        if let selectedCity = selectedCity {
+            if city.name == selectedCity.name {
+                city.isChecked = !city.isChecked
+                selectedCity.isChecked = city.isChecked
                 if (nextButton.isHidden) {
                     showButtonWithAnimation()
                 } else {
                     hideButtonWithAnimation()
                 }
             } else {
-                selectedCountry.isChecked = false
-                country.isChecked = true
-                self.selectedCountry = country
+                selectedCity.isChecked = false
+                city.isChecked = true
+                self.selectedCity = city
                 showButtonWithAnimation()
             }
         } else {
-            country.isChecked = true
-            selectedCountry = country
+            city.isChecked = true
+            selectedCity = city
             showButtonWithAnimation()
         }
 
@@ -157,7 +168,7 @@ extension SignUpViewController_5 {
 extension SignUpViewController_5: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredCountries = countries.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
+        filteredCities = cities.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
         isSearching = true
         tableView.reloadData()
     }
@@ -174,13 +185,7 @@ extension SignUpViewController_5 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let signUpVC_6 = SignUpViewController_6()
-            let cities = signUpVC_6.findCities(for: self.selectedCountry!.name)
-            if cities.count != 0 {
-                self.navigationController?.pushViewController(signUpVC_6, animated: true)
-            } else {
                 self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
-            }
         }
         // TODO: - StorageManager
     }
@@ -200,5 +205,47 @@ extension SignUpViewController_5 {
             self.nextButton.transform = CGAffineTransform(translationX: 0, y: 0)
         })
         print("Button showed")
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            nextButton.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(20)
+                make.bottom.equalToSuperview().inset(keyboardHeight + 10)
+                make.height.equalTo(70)
+            }
+
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+}
+
+// MARK: - Cities fetching
+extension SignUpViewController_5 {
+    func findCities(for country: String) -> [String]{
+        guard let path = Bundle.main.path(forResource: "countries", ofType: "json") else {
+            return []
+        }
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+
+            if let citiesDict = jsonResult as? [String: [String]],
+               let fethcedCities = citiesDict[country] {
+                for item in fethcedCities {
+                    let city = City(name: item)
+                    self.cities.append(city)
+                    print("\(item) add")
+                }
+                print(self.cities.count)
+                tableView.reloadData()
+                return fethcedCities
+            } else { return []}
+        } catch { return []}
     }
 }

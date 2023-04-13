@@ -10,7 +10,7 @@ import UIKit
 class PostViewController_6: UIViewController {
     
     // MARK: - PromptView
-    private var promptView = PromptView(with: "You can enter a description for your pet ",
+    private var promptView = PromptView(with: "Enter a description",
                                         and: "If you do not want to specify anything in the description, you can skip this step.", titleSize: 32)
 
     // MARK: - Button
@@ -39,17 +39,32 @@ class PostViewController_6: UIViewController {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        textView.delegate = self
+
         setupConstraints()
+        hideKeyboardWhenTappedAround()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }
 
 // MARK: - UI + Constraints
 extension PostViewController_6 {
     private func setupConstraints() {
-        view.addSubview(nextButton)
         view.addSubview(promptView)
         view.addSubview(textView)
+        view.addSubview(nextButton)
 
         promptView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
@@ -59,7 +74,7 @@ extension PostViewController_6 {
         textView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(promptView.snp.bottom).offset(20)
-            make.height.equalTo(250)
+            make.height.equalTo(200)
         }
 
         nextButton.snp.makeConstraints { make in
@@ -77,17 +92,34 @@ extension PostViewController_6 {
             self.navigationController?.pushViewController(PostViewController_7(), animated: true)
         }
     }
-}
 
-// MARK: - TextView Logic
-extension PostViewController_6: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: view.frame.width - 20, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        if estimatedSize.height < 400 && estimatedSize.height > 250 {
-            textView.snp.updateConstraints { make in
-                make.height.equalTo(estimatedSize.height)
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            nextButton.snp.remakeConstraints { make in
+                make.leading.trailing.equalToSuperview().inset(20)
+                make.bottom.equalToSuperview().inset(keyboardHeight + 10)
+                make.height.equalTo(70)
+            }
+
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
             }
         }
     }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        nextButton.snp.remakeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(60)
+            make.height.equalTo(70)
+        }
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
+

@@ -27,7 +27,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         configurateView()
         cardCollectionView.searchViewControllerDelegate = self
-        
+        hideKeyboardWhenTappedAround()
     }
 }
 
