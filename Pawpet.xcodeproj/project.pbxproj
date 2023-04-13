@@ -68,6 +68,11 @@
 		C6CC0B9929E72A820070BC50 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9829E72A820070BC50 /* PhotoCollectionViewCell.swift */; };
 		C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */; };
 		C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0B9C29E749DC0070BC50 /* Success.json */; };
+		C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9E29E8361F0070BC50 /* Country.swift */; };
+		C6CC0BA429E847940070BC50 /* SignUpViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA329E847940070BC50 /* SignUpViewController_5.swift */; };
+		C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */; };
+		C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0BAB29E8538C0070BC50 /* countries.json */; };
+		C6CC0BAF29E854BE0070BC50 /* SignUpViewController_6.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController_6.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +161,11 @@
 		C6CC0B9829E72A820070BC50 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_8.swift; sourceTree = "<group>"; };
 		C6CC0B9C29E749DC0070BC50 /* Success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Success.json; sourceTree = "<group>"; };
+		C6CC0B9E29E8361F0070BC50 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		C6CC0BA329E847940070BC50 /* SignUpViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_5.swift; sourceTree = "<group>"; };
+		C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		C6CC0BAB29E8538C0070BC50 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		C6CC0BAE29E854BE0070BC50 /* SignUpViewController_6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_6.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +228,7 @@
 				C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */,
 				C6490D8829C33E65003F4A2F /* UITextField + Extension.swift */,
 				C6490DD529DDA96C003F4A2F /* Label + Extension.swift */,
+				C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 		C6490D8429BA05E1003F4A2F /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				C6CC0BAD29E853930070BC50 /* Geo */,
 				C6490D9F29C8D4FD003F4A2F /* Lottie Animations */,
 				C6C450D5298FF2930094FF5A /* Assets.xcassets */,
 			);
@@ -284,6 +296,8 @@
 				C6490D9629C8C428003F4A2F /* SignUpViewController_2.swift */,
 				C6490D9D29C8CC14003F4A2F /* SignUpViewController_3.swift */,
 				C6490DD729DDF307003F4A2F /* SignUpViewController_4.swift */,
+				C6CC0BA329E847940070BC50 /* SignUpViewController_5.swift */,
+				C6CC0BAE29E854BE0070BC50 /* SignUpViewController_6.swift */,
 				C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */,
 			);
 			path = ViewController;
@@ -447,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
+				C6CC0B9E29E8361F0070BC50 /* Country.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,6 +593,14 @@
 			path = TextView;
 			sourceTree = "<group>";
 		};
+		C6CC0BAD29E853930070BC50 /* Geo */ = {
+			isa = PBXGroup;
+			children = (
+				C6CC0BAB29E8538C0070BC50 /* countries.json */,
+			);
+			path = Geo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -695,6 +718,7 @@
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
 				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,
+				C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */,
 				C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -830,15 +854,19 @@
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
+				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_6.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
+				C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */,
 				C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
+				C6CC0BA429E847940070BC50 /* SignUpViewController_5.swift in Sources */,
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
+				C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,

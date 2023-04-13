@@ -39,6 +39,9 @@ class SignUpViewController_4: UIViewController {
         super.viewDidLoad()
         configurateView()
         animationView.play()
+
+        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
@@ -83,7 +86,7 @@ extension SignUpViewController_4 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Full name entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
+            self.navigationController?.pushViewController(SignUpViewController_5(), animated: true)
         }
     }
 }

@@ -178,10 +178,16 @@ extension SignInViewController {
 
     @objc private func signUpButtonTapped(_ sender: UIButton) {
         print("Sing up...")
-        navigationController?.pushViewController(SignUpViewController_1(), animated: true)
+        let navigationVC = UINavigationController(rootViewController: SignUpViewController_1())
+        navigationVC.modalPresentationStyle = .fullScreen
+        present(navigationVC, animated: true)
     }
 
     @objc private func forgotButtonTapped(_ sender: UIButton) {
 
+    }
+
+    public func loginAfterSignUp() {
+        print("loginAfterSignUp")
     }
 }

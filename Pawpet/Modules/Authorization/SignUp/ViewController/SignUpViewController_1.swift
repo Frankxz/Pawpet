@@ -14,6 +14,16 @@ class SignUpViewController_1: UIViewController {
     private var promptView = PromptView(with: "Please,choose", and: "This is important for further registration.")
 
     // MARK: - Buttons
+    public lazy var closeButton: UIButton = {
+        let button = UIButton()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
+        let image = UIImage(systemName: "xmark", withConfiguration: imageConfig)
+        button.setImage(image, for: .normal)
+        button.tintColor = .accentColor
+        button.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
+        return button
+    }()
+
     private lazy var personalButton: OptionButton = {
         let button = OptionButton(animationName: "PersonalOption")
         button.addTarget(self, action: #selector(personalButtonTapped(_:)), for: .touchUpInside)
@@ -34,6 +44,7 @@ class SignUpViewController_1: UIViewController {
         view.loopMode = .playOnce
         view.layer.allowsEdgeAntialiasing = true
         view.contentMode = .scaleAspectFill
+        view.isUserInteractionEnabled = false
         return view
     }()
 
@@ -57,6 +68,7 @@ extension SignUpViewController_1 {
     private func makeConstraints() {
         let mainStackView = getMainStackView()
 
+        view.addSubview(closeButton)
         view.addSubview(mainStackView)
         view.addSubview(animationView)
 
@@ -69,6 +81,12 @@ extension SignUpViewController_1 {
         mainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(animationView.snp.bottom).offset(50)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.width.height.equalTo(32)
+            make.top.equalToSuperview().inset(80)
+            make.left.equalToSuperview().inset(20)
         }
     }
 
@@ -101,6 +119,11 @@ extension SignUpViewController_1 {
 
 // MARK: - Button logic
 extension SignUpViewController_1 {
+    @objc private func closeButtonTapped(_ sender: UIButton) {
+        print("Dissmised")
+        dismiss(animated: true)
+    }
+
     @objc private func personalButtonTapped(_ sender: UIButton) {
         print("Personal chosen")
         companyButton.layer.shadowColor = UIColor.black.cgColor

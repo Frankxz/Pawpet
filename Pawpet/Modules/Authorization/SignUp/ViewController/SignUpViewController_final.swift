@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 
+
 class SignUpViewController_final: UIViewController {
 
     // MARK: - PromptView
@@ -31,12 +32,12 @@ class SignUpViewController_final: UIViewController {
         button.setupTitle(for: "Continue")
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
         animationView.play()
-        
+
     }
 }
 
@@ -85,7 +86,7 @@ extension SignUpViewController_final {
         mainTabBarController.modalPresentationStyle = .fullScreen
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.present(mainTabBarController, animated: true)
+            self.dismiss(animated: true) 
         }
     }
 }
