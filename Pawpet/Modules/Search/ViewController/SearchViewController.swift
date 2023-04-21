@@ -50,6 +50,10 @@ extension SearchViewController {
 
 // MARK: - Delegate
 extension SearchViewController: SearchViewControllerDelegate {
+    func pushToParams() {
+        navigationController?.pushViewController(ParametersViewController(), animated: true)
+    }
+
     func pushToDetailVC() {
         print("Push to DetailVC")
         //hidesBottomBarWhenPushed = true

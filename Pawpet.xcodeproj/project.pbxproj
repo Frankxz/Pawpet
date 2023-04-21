@@ -76,6 +76,9 @@
 		C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */; };
 		C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */; };
 		C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */; };
+		C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */; };
+		C6FA2EB629F3006100726A0A /* DoubleTFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */; };
+		C6FA2EB829F30B1500726A0A /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,9 @@
 		C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
+		C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTFTableViewCell.swift; sourceTree = "<group>"; };
+		C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,8 +378,8 @@
 		C6490DB929D1C4B6003F4A2F /* CardCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */,
 				C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */,
+				C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */,
 				C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */,
 			);
 			path = CardCollectionView;
@@ -436,6 +442,7 @@
 			isa = PBXGroup;
 			children = (
 				C6C450FE298FF58E0094FF5A /* SearchViewController.swift */,
+				C6FA2EB929F30B1D00726A0A /* Parameters Search */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -624,6 +631,16 @@
 				C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		C6FA2EB929F30B1D00726A0A /* Parameters Search */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */,
+				C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */,
+				C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */,
+			);
+			path = "Parameters Search";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -891,9 +908,11 @@
 				C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
 				C6CC0BA429E847940070BC50 /* SignUpViewController_4.swift in Sources */,
+				C6FA2EB829F30B1500726A0A /* ButtonTableViewCell.swift in Sources */,
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
 				C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
+				C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
@@ -905,6 +924,7 @@
 				C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */,
 				C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */,
 				C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */,
+				C6FA2EB629F3006100726A0A /* DoubleTFTableViewCell.swift in Sources */,
 				C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
 				C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */,

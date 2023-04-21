@@ -146,6 +146,8 @@ extension PublicationsViewController {
 
 // MARK:  Delegate
 extension PublicationsViewController: SearchViewControllerDelegate {
+    func pushToParams() { }
+
     func pushToDetailVC() {
         print("Push to DetailVC")
         navigationController?.pushViewController(OwnDetailViewController(), animated: true)

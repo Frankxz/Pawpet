@@ -64,6 +64,8 @@ extension FavoritesViewController {
 
 // MARK: - Delegate
 extension FavoritesViewController: SearchViewControllerDelegate {
+    func pushToParams() {}
+
     func pushToDetailVC() {
         print("Push to DetailVC")
         navigationController?.pushViewController(DetailViewController(), animated: true)

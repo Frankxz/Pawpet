@@ -10,19 +10,24 @@ import UIKit
 class CardCollectionHeaderView: UICollectionReusableView {
     static let identifier = "CardHeaderView"
 
+    
     // MARK: - SearchBar
     private let searchBar = UISearchBar(frame: .zero)
 
+    // MARK: - Button
     public lazy var paramsButton: UIButton = {
         let button = UIButton()
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
         let image = UIImage(systemName: "slider.horizontal.3", withConfiguration: imageConfig)
+        button.addTarget(self, action: #selector(paramsButtonTapped(_:)), for: .touchUpInside)
         button.setImage(image, for: .normal)
         button.backgroundColor = .accentColor
         button.layer.cornerRadius = 6
         button.tintColor = .subtitleColor
         return button
     }()
+
+    var buttonAction: (() -> Void)?
 
     // MARK: - Labels
     private let welcomeLabel: UILabel = {
@@ -126,5 +131,12 @@ extension CardCollectionHeaderView {
 
         searchBar.placeholder = "Search your dream pet"
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
+    }
+}
+
+// MARK: - Button
+extension CardCollectionHeaderView {
+    @objc func paramsButtonTapped(_ sender: UIButton) {
+        buttonAction?()
     }
 }
