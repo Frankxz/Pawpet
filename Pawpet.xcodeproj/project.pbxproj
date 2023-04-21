@@ -74,6 +74,8 @@
 		C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0BAB29E8538C0070BC50 /* countries.json */; };
 		C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */; };
 		C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */; };
+		C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */; };
+		C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		C6CC0BAB29E8538C0070BC50 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_5.swift; sourceTree = "<group>"; };
 		C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -592,6 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				C6C45100298FF5990094FF5A /* ProfileViewController.swift */,
+				C6FA2EB029F2ECC000726A0A /* Edit */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -610,6 +615,15 @@
 				C6CC0BAB29E8538C0070BC50 /* countries.json */,
 			);
 			path = Geo;
+			sourceTree = "<group>";
+		};
+		C6FA2EB029F2ECC000726A0A /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */,
+				C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -882,7 +896,9 @@
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
+				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
 				C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */,
+				C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
 				C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */,
 				C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */,
