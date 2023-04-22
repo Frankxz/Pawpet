@@ -26,6 +26,22 @@ class ProfileEditViewController: UITableViewController {
         return imageView
     }()
 
+    // MARK: PromptView
+    public var promptView = PromptView(with: "Profile settings", and: "To save the changed information, click on the save button in the upper right corner.")
+
+    // MARK: Buttons
+    private lazy var saveButton: UIBarButtonItem = {
+          let customAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 20, weight: .medium),
+              .foregroundColor: UIColor.accentColor]
+          let saveButtonTitle = NSAttributedString(string: "Save", attributes: customAttributes)
+          let saveButton = UIButton(type: .system)
+          saveButton.setAttributedTitle(saveButtonTitle, for: .normal)
+          saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+          let saveBarButton = UIBarButtonItem(customView: saveButton)
+        return saveBarButton
+    }()
+
     private lazy var changeAvatarButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.backgroundColor = .clear
@@ -44,6 +60,7 @@ class ProfileEditViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.accentColor
+        navigationItem.rightBarButtonItem = saveButton
         configureTableView()
     }
 }
@@ -54,7 +71,7 @@ extension ProfileEditViewController {
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(TextFieldTableViewCell.self, forCellReuseIdentifier: "textFieldCell")
-        tableView.backgroundColor = .backgroundColor
+        tableView.backgroundColor = .white
     }
 }
 
@@ -87,7 +104,7 @@ extension ProfileEditViewController {
 
         case .geo, .contactInfo, .password:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .white
+            cell.backgroundColor = .backgroundColor
             cell.accessoryType = .disclosureIndicator
 
             let leftLabel = UILabel()
@@ -132,7 +149,7 @@ extension ProfileEditViewController {
 
         case .logout:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .white
+            cell.backgroundColor = .backgroundColor
 
             let logoutLabel = UILabel()
             logoutLabel.text = "Logout"
@@ -153,13 +170,19 @@ extension ProfileEditViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         if section == 0 {
+            view.addSubview(promptView)
             view.addSubview(avatarImageView)
             view.addSubview(changeAvatarButton)
+
+            promptView.snp.makeConstraints { make in
+                make.left.right.equalToSuperview()
+                make.top.equalToSuperview()
+            }
 
             avatarImageView.snp.makeConstraints { make in
                 make.height.width.equalTo(120)
                 make.centerX.equalToSuperview()
-                make.top.equalToSuperview().inset(10)
+                make.top.equalTo(promptView.snp.bottom).offset(20)
             }
 
             changeAvatarButton.snp.makeConstraints { make in
@@ -172,7 +195,7 @@ extension ProfileEditViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 180 : 0
+        return section == 0 ? 270 : 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -193,4 +216,9 @@ extension ProfileEditViewController {
     @objc private func changeAvatarButtonTapped(_ sender: UIButton) {
 
     }
+
+    @objc func saveButtonTapped() {
+
+    }
 }
+

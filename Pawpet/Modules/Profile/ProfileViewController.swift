@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-
+    
     // MARK: - Labels
     private var infoView = PromptView(with: "Robert Miller", and:  "🇷🇺 Russia, Moscow")
     private var phoneLabel = LabelView(text: "📞 +7(913)386-77-00", viewColor: .backgroundColor, textColor: .accentColor.withAlphaComponent(0.8))
@@ -34,13 +34,29 @@ class ProfileViewController: UIViewController {
         return button
     }()
 
-    private var favoritesButton = SectionButton(image: UIImage(systemName: "heart.fill")!, text: "Favorites")
+    // MARK: - Labels
+    private let favoriteLabel = PromptView(with: "Favorite List", and: "All posts that you marked as liked are displayed here. ")
 
+    // MARK: - CollectionView
+    private let cardCollectionView = CardCollectionView(isHeaderIn: false)
+
+    // MARK: - Ovvderiding properties
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return navigationController?.topViewController != self
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
         addButtonsTarget()
+        cardCollectionView.searchViewControllerDelegate = self
+        cardCollectionView.cardsCount = 6
     }
 }
 
@@ -57,9 +73,11 @@ extension ProfileViewController {
     private func setupConstraints() {
         let infoStackView = getInfoStackView()
 
-        view.addSubview(favoritesButton)
         view.addSubview(infoStackView)
         view.addSubview(editButton)
+        view.addSubview(favoriteLabel)
+        view.addSubview(cardCollectionView)
+
 
         infoStackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
@@ -72,10 +90,14 @@ extension ProfileViewController {
             make.left.equalTo(infoStackView.snp.left).offset(80)
         }
 
-        favoritesButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(infoStackView.snp.bottom).offset(40)
+        favoriteLabel.snp.makeConstraints { make in
+            make.top.equalTo(infoStackView.snp.bottom).offset(20)
+            make.left.equalToSuperview().inset(20)
+        }
+
+        cardCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(favoriteLabel.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
         }
     }
 
@@ -113,7 +135,6 @@ extension ProfileViewController {
 // MARK: - Button logic
 extension ProfileViewController {
     private func addButtonsTarget() {
-        favoritesButton.addTarget(self, action: #selector(favoriteButtonTapped(_:)), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(editButtonTapped(_:)), for: .touchUpInside)
     }
 
@@ -126,5 +147,15 @@ extension ProfileViewController {
 
     @objc private func favoriteButtonTapped(_ sender: UIButton) {
         navigationController?.pushViewController(FavoritesViewController(), animated: true)
+    }
+}
+
+// MARK: - Delegate
+extension ProfileViewController: SearchViewControllerDelegate {
+    func pushToParams() {}
+
+    func pushToDetailVC() {
+        print("Push to DetailVC")
+        navigationController?.pushViewController(DetailViewController(), animated: true)
     }
 }

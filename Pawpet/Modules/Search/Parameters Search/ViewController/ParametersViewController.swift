@@ -21,7 +21,10 @@ class ParametersViewController: UITableViewController {
         super.viewDidLoad()
         configureTableView()
     }
+}
 
+// MARK: - Configurating TableView
+extension ParametersViewController {
     private func configureTableView() {
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
 
@@ -33,6 +36,8 @@ class ParametersViewController: UITableViewController {
         tableView.delegate = self
         tableView.backgroundColor = .white
         navigationController?.navigationBar.tintColor = UIColor.accentColor
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
     }
 }
 
@@ -99,7 +104,7 @@ extension ParametersViewController {
         case .price:
             let cell = tableView.dequeueReusableCell(withIdentifier: "DoubleTextFieldCell", for: indexPath) as! DoubleTFTableViewCell
 
-            cell.configure(leftPlaceholder: "от", rightPlaceholder: "до")
+            cell.configure(leftPlaceholder: "Цена от", rightPlaceholder: "Цена до")
             cell.backgroundColor = .backgroundColor
             return cell
 
@@ -134,8 +139,8 @@ extension ParametersViewController {
         if section == 0 {
             view.addSubview(promptView)
             promptView.snp.makeConstraints { make in
-                make.left.equalToSuperview().inset(20)
-                make.top.equalToSuperview().inset(10)
+                make.left.equalToSuperview()
+                make.top.equalToSuperview()
             }
         }
         return view
@@ -147,11 +152,30 @@ extension ParametersViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 6 {
-            return 70
+            return 100
         }
         return 44.0
     }
 }
+
+// MARK: - Row selection logic
+extension ParametersViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("section: \(indexPath.section), row: \(indexPath.row)")
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if indexPath.section == 0 {
+            let animalSelectionBottomSheetVC = AnimalSelectionBottomSheetViewController()
+            animalSelectionBottomSheetVC.modalPresentationStyle = .overCurrentContext
+            self.present(animalSelectionBottomSheetVC, animated: false)
+        }
+        else if indexPath.section == 1 {
+            let regionTableVC = RegionTableViewController()
+            navigationController?.pushViewController(regionTableVC, animated: true)
+        }
+    }
+}
+
 // MARK: - UITableViewDelegate
 extension ParametersViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

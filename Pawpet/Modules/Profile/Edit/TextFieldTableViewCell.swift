@@ -17,7 +17,7 @@ class TextFieldTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(textField)
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .backgroundColor
         setupConstraints()
     }
 

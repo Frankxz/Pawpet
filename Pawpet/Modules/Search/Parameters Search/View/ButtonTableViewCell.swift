@@ -30,6 +30,7 @@ class ButtonTableViewCell: UITableViewCell {
         nextButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 }

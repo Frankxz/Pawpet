@@ -39,6 +39,8 @@ class City {
         self.name = name
         self.isChecked = isChecked
     }
+
+    
 }
 
 

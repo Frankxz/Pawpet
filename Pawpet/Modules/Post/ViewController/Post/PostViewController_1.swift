@@ -9,17 +9,8 @@ import UIKit
 
 class PostViewController_1: UIViewController {
 
-    // MARK: - PromptView
-    private var promptView = PromptView(with: "Select the type of pet.",
-                                        and: "This will help users find your listing faster and will also help us provide you with a list of breeds.")
-
-    // MARK: - Button
-    private lazy var nextButton: AuthButton = {
-        let button = AuthButton()
-        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
-        button.setupTitle(for: "Continue")
-        return button
-    }()
+    // MARK: Animal selectionView
+    private let animalSelectionView = AnimalSelectionView()
 
     // MARK:  Buttons
     public lazy var closeButton: UIButton = {
@@ -31,43 +22,23 @@ class PostViewController_1: UIViewController {
         button.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
-
-    // MARK: - CollectionView
-    private let chapterCollectionView = ChapterCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupView()
         setupConstraints()
-
+        animalSelectionView.nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
     }
 }
 
 // MARK: - UI + Constraints
 extension PostViewController_1 {
     private func setupConstraints() {
-        view.addSubview(nextButton)
-        view.addSubview(promptView)
-        view.addSubview(chapterCollectionView)
-        view.addSubview(closeButton)
+        view.addSubview(animalSelectionView)
+        animalSelectionView.addSubview(closeButton)
 
-        promptView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(60)
-        }
-
-        chapterCollectionView.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.right.equalToSuperview()
-            make.top.equalTo(promptView.snp.bottom).offset(20)
-            make.height.equalTo(250)
-        }
-
-        nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(60)
+        animalSelectionView.snp.makeConstraints { make in
+            make.left.top.right.bottom.equalToSuperview()
         }
 
         closeButton.snp.makeConstraints { make in
@@ -75,6 +46,12 @@ extension PostViewController_1 {
             make.top.equalToSuperview().inset(20)
             make.left.equalToSuperview().inset(20)
         }
+    }
+
+    private func setupView() {
+        view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 

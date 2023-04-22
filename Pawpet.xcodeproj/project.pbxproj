@@ -79,6 +79,12 @@
 		C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */; };
 		C6FA2EB629F3006100726A0A /* DoubleTFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */; };
 		C6FA2EB829F30B1500726A0A /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */; };
+		C6FA2EBB29F4343F00726A0A /* BreedSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EBA29F4343F00726A0A /* BreedSelectionViewController.swift */; };
+		C6FA2EBE29F43D7C00726A0A /* AnimalSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EBD29F43D7C00726A0A /* AnimalSelectionView.swift */; };
+		C6FA2EC229F4428F00726A0A /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC129F4428F00726A0A /* BottomSheetViewController.swift */; };
+		C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */; };
+		C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */; };
+		C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +184,12 @@
 		C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
 		C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTFTableViewCell.swift; sourceTree = "<group>"; };
 		C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		C6FA2EBA29F4343F00726A0A /* BreedSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedSelectionViewController.swift; sourceTree = "<group>"; };
+		C6FA2EBD29F43D7C00726A0A /* AnimalSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionView.swift; sourceTree = "<group>"; };
+		C6FA2EC129F4428F00726A0A /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
+		C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTableViewController.swift; sourceTree = "<group>"; };
+		C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,17 +277,19 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		C6490D9029C3855D003F4A2F /* View */ = {
+		C6490D9029C3855D003F4A2F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C6490DC729D4A890003F4A2F /* BottomSheet */,
 				C6490DB029D1A74A003F4A2F /* TextField */,
 				C6490DAE29D1A73A003F4A2F /* Buttons */,
 				C6490DAF29D1A743003F4A2F /* Labels */,
 				C6490DF329E5D809003F4A2F /* SegmentedControl */,
 				C6490DF229E5D7FF003F4A2F /* PickerView */,
 				C6CC0B9129E605F30070BC50 /* TextView */,
+				C6FA2EBC29F4344200726A0A /* SelectionVC */,
 			);
-			path = View;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		C6490D9129C38565003F4A2F /* ViewController */ = {
@@ -394,13 +408,13 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		C6490DC729D4A890003F4A2F /* BottomSheetView */ = {
+		C6490DC729D4A890003F4A2F /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				C6490DC529D31F90003F4A2F /* BottomSheetView.swift */,
-				C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */,
+				C6FA2EC029F4426700726A0A /* BottomSheetViewController */,
+				C6FA2EBF29F4425A00726A0A /* BottomSheetView */,
 			);
-			path = BottomSheetView;
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		C6490DCE29DD6061003F4A2F /* PhotosController */ = {
@@ -442,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				C6C450FE298FF58E0094FF5A /* SearchViewController.swift */,
-				C6FA2EB929F30B1D00726A0A /* Parameters Search */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -569,14 +582,12 @@
 			isa = PBXGroup;
 			children = (
 				C6C450FC298FF5310094FF5A /* MainTabBarController.swift */,
-				C6490DC729D4A890003F4A2F /* BottomSheetView */,
 				C6490DC229D31DD0003F4A2F /* Detail */,
 				C6C4510A298FF6740094FF5A /* Search */,
 				C6C45108298FF6690094FF5A /* Post */,
 				C6C4510B298FF6790094FF5A /* Profile */,
-				C6490D9029C3855D003F4A2F /* View */,
+				C6490D9029C3855D003F4A2F /* Components */,
 				C6490D8729BA0BC0003F4A2F /* Authorization */,
-				C6490DDB29E0659B003F4A2F /* Favorites */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -593,8 +604,8 @@
 		C6C4510A298FF6740094FF5A /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				C6490DE429E59E47003F4A2F /* ViewController */,
-				C6490DB729D1B29A003F4A2F /* View */,
+				C6FA2EC629F4608300726A0A /* Main Search */,
+				C6FA2EB929F30B1D00726A0A /* Parameters Search */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -603,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				C6C45100298FF5990094FF5A /* ProfileViewController.swift */,
+				C6490DDB29E0659B003F4A2F /* Favorites */,
 				C6FA2EB029F2ECC000726A0A /* Edit */,
 			);
 			path = Profile;
@@ -636,11 +648,65 @@
 		C6FA2EB929F30B1D00726A0A /* Parameters Search */ = {
 			isa = PBXGroup;
 			children = (
-				C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */,
-				C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */,
-				C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */,
+				C6FA2EC729F4609E00726A0A /* ViewController */,
+				C6FA2EC529F4604600726A0A /* View */,
 			);
 			path = "Parameters Search";
+			sourceTree = "<group>";
+		};
+		C6FA2EBC29F4344200726A0A /* SelectionVC */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EBA29F4343F00726A0A /* BreedSelectionViewController.swift */,
+				C6FA2EBD29F43D7C00726A0A /* AnimalSelectionView.swift */,
+			);
+			path = SelectionVC;
+			sourceTree = "<group>";
+		};
+		C6FA2EBF29F4425A00726A0A /* BottomSheetView */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DC529D31F90003F4A2F /* BottomSheetView.swift */,
+				C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */,
+			);
+			path = BottomSheetView;
+			sourceTree = "<group>";
+		};
+		C6FA2EC029F4426700726A0A /* BottomSheetViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EC129F4428F00726A0A /* BottomSheetViewController.swift */,
+				C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */,
+			);
+			path = BottomSheetViewController;
+			sourceTree = "<group>";
+		};
+		C6FA2EC529F4604600726A0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EB529F3006100726A0A /* DoubleTFTableViewCell.swift */,
+				C6FA2EB729F30B1500726A0A /* ButtonTableViewCell.swift */,
+				C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C6FA2EC629F4608300726A0A /* Main Search */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DE429E59E47003F4A2F /* ViewController */,
+				C6490DB729D1B29A003F4A2F /* View */,
+			);
+			path = "Main Search";
+			sourceTree = "<group>";
+		};
+		C6FA2EC729F4609E00726A0A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */,
+				C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -894,14 +960,17 @@
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
+				C6FA2EC229F4428F00726A0A /* BottomSheetViewController.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */,
+				C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
 				C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */,
+				C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */,
 				C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
@@ -912,10 +981,12 @@
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
 				C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */,
 				C6490D8629BA0BBC003F4A2F /* SignInViewController.swift in Sources */,
+				C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */,
 				C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
+				C6FA2EBE29F43D7C00726A0A /* AnimalSelectionView.swift in Sources */,
 				C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */,
 				C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
@@ -924,6 +995,7 @@
 				C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */,
 				C6C450FF298FF58E0094FF5A /* SearchViewController.swift in Sources */,
 				C6490DAD29D184DC003F4A2F /* SectionButton.swift in Sources */,
+				C6FA2EBB29F4343F00726A0A /* BreedSelectionViewController.swift in Sources */,
 				C6FA2EB629F3006100726A0A /* DoubleTFTableViewCell.swift in Sources */,
 				C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,

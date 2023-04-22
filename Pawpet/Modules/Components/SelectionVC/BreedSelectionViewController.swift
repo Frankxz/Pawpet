@@ -1,72 +1,85 @@
 //
-//  SignUpViewController_6.swift
+//  BreedTableViewController.swift
 //  Pawpet
 //
-//  Created by Robert Miller on 13.04.2023.
+//  Created by Robert Miller on 22.04.2023.
 //
 
 import UIKit
 
-class SignUpViewController_5: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BreedSelectionViewController: UIViewController {
+    public var isCrossbreed = false
+    public var isFirstBreed = false
 
-    private var filteredCities = [City]()
+    private let breeds = Breed.generateBreeds()
+    private var filteredBreeds = [Breed]()
     private var isSearching = false
-    private var selectedCity: City?
+    private var selectedBreed: Breed?
 
-    public var cities: [City] = []
-
+    // MARK: TableView
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
 
-    let searchBar: UISearchBar = {
+    // MARK: SearchBar
+    private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
 
-    private lazy var nextButton: AuthButton = {
+    // MARK: Button
+    public lazy var nextButton: AuthButton = {
         let button = AuthButton()
-        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         button.setupTitle(for: "Continue")
         return button
     }()
 
-    private var promptView = PromptView(with: "Select your city.",
+    // MARK: PromptView
+    private var promptView = PromptView(with: "Select the breed of your pet.",
                                         and: "", titleSize: 28)
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if isCrossbreed && isFirstBreed {
+            promptView.titleLabel.text = "Select the first breed of the crossbreed"
+        }
+        else if isCrossbreed && !isFirstBreed {
+            promptView.titleLabel.text = "Select the second breed of the crossbreed"
+        }
+
+        setupView()
+        setupViews()
+        setupConstraints()
+        addKeyBoardObserver()
+    }
+
+    private func setupView() {
         view.backgroundColor = .white
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
 
+    private func addKeyBoardObserver() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
-        
-        setupViews()
-        setupConstraints()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        print(cities.count)
     }
 }
 
 // MARK: - UI + Constraints
-extension SignUpViewController_5 {
+extension BreedSelectionViewController: UITableViewDelegate {
     func setupViews() {
         view.addSubview(promptView)
-        view.addSubview(tableView)
         view.addSubview(searchBar)
+        view.addSubview(tableView)
         view.addSubview(nextButton)
+
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -74,13 +87,13 @@ extension SignUpViewController_5 {
         setSearchBar()
 
         nextButton.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
-        nextButton.isHidden = true
+        nextButton.isHidden = false
     }
 
     func setupConstraints() {
         promptView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(100)
+            make.top.equalToSuperview().inset(60)
         }
 
         searchBar.snp.makeConstraints { make in
@@ -106,23 +119,22 @@ extension SignUpViewController_5 {
         searchBar.setPositionAdjustment(imageOffset, for: .search)
         searchBar.searchTextPositionAdjustment = textOffset
 
-        searchBar.placeholder = "Search your city.."
+        searchBar.placeholder = "Search your pet's breed "
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
     }
 }
 
 //MARK: - TableView DataSource
-extension SignUpViewController_5 {
+extension BreedSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredCities.count : cities.count
+        return isSearching ? filteredBreeds.count : breeds.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = city.name
-        cell.accessoryType = city.isChecked ? .checkmark : .none
+        let breed = isSearching ? filteredBreeds[indexPath.row] : breeds[indexPath.row]
+        cell.textLabel?.text = breed.name
+        cell.accessoryType = breed.isChecked ? .checkmark : .none
         cell.tintColor = .systemGreen
         let selectionColorView = UIView()
         selectionColorView.backgroundColor = .clear
@@ -133,30 +145,30 @@ extension SignUpViewController_5 {
 }
 
 //MARK: - TableView Delegate
-extension SignUpViewController_5 {
+extension BreedSelectionViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let city = isSearching ? filteredCities[indexPath.row] : cities[indexPath.row]
+        let breed = isSearching ? filteredBreeds[indexPath.row] : breeds[indexPath.row]
 
-        if let selectedCity = selectedCity {
-            if city.name == selectedCity.name {
-                city.isChecked = !city.isChecked
-                selectedCity.isChecked = city.isChecked
+        if let selectedBreed = selectedBreed {
+            if breed.name == selectedBreed.name {
+                breed.isChecked = !breed.isChecked
+                selectedBreed.isChecked = breed.isChecked
                 if (nextButton.isHidden) {
                     showButtonWithAnimation()
                 } else {
                     hideButtonWithAnimation()
                 }
             } else {
-                selectedCity.isChecked = false
-                city.isChecked = true
-                self.selectedCity = city
+                selectedBreed.isChecked = false
+                breed.isChecked = true
+                self.selectedBreed = breed
                 showButtonWithAnimation()
             }
         } else {
-            city.isChecked = true
-            selectedCity = city
+            breed.isChecked = true
+            selectedBreed = breed
             showButtonWithAnimation()
         }
 
@@ -165,9 +177,9 @@ extension SignUpViewController_5 {
 }
 
 // MARK: - SearchBar Delegate
-extension SignUpViewController_5: UISearchBarDelegate {
+extension BreedSelectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredCities = cities.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
+        filteredBreeds = breeds.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
         isSearching = true
         tableView.reloadData()
     }
@@ -180,15 +192,7 @@ extension SignUpViewController_5: UISearchBarDelegate {
 }
 
 // MARK: - Button logic
-extension SignUpViewController_5 {
-    @objc private func nextButtonTapped(_ sender: UIButton) {
-        print("Email entered")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
-        }
-        // TODO: - StorageManager
-    }
-
+extension BreedSelectionViewController {
     private func hideButtonWithAnimation(duration: TimeInterval = 0.3) {
         UIView.animate(withDuration: duration, animations: {
             self.nextButton.transform = CGAffineTransform(translationX: self.nextButton.frame.width, y: 0)
@@ -221,30 +225,5 @@ extension SignUpViewController_5 {
                 self.view.layoutIfNeeded()
             }
         }
-    }
-}
-
-// MARK: - Cities fetching
-extension SignUpViewController_5 {
-    func findCities(for country: String) -> [String]{
-        guard let path = Bundle.main.path(forResource: "countries", ofType: "json") else {
-            return []
-        }
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-
-            if let citiesDict = jsonResult as? [String: [String]],
-               let fethcedCities = citiesDict[country] {
-                for item in fethcedCities {
-                    let city = City(name: item)
-                    self.cities.append(city)
-                    print("\(item) add")
-                }
-                print(self.cities.count)
-                tableView.reloadData()
-                return fethcedCities
-            } else { return []}
-        } catch { return []}
     }
 }
