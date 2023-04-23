@@ -89,6 +89,7 @@
 		C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */; };
 		C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */; };
 		C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */; };
+		C6FA2EDB29F555F100726A0A /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EDA29F555F100726A0A /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +199,7 @@
 		C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
+		C6FA2EDA29F555F100726A0A /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -497,6 +499,7 @@
 			children = (
 				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
 				C6CC0B9E29E8361F0070BC50 /* Country.swift */,
+				C6FA2EDA29F555F100726A0A /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */,
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,
 				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
+				C6FA2EDB29F555F100726A0A /* City.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C6490D9E29C8CC14003F4A2F /* SignUpViewController_2.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,

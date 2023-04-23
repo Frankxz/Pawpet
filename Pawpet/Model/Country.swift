@@ -31,19 +31,6 @@ class Country {
     }
 }
 
-class City {
-    let name: String
-    var isChecked: Bool
-
-    init(name: String, isChecked: Bool = false) {
-        self.name = name
-        self.isChecked = isChecked
-    }
-
-    
-}
-
-
 extension Country {
     static let countries = ([
         ["Afghanistan", "AF"],
