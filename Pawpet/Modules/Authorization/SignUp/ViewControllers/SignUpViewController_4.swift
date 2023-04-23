@@ -44,6 +44,17 @@ class SignUpViewController_4: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
+
+        setupViews()
+        setupConstraints()
+        addKeyBoardObservers()
+        hideKeyboardWhenTappedAround()
+    }
+}
+
+// MARK: - Observers
+extension SignUpViewController_4 {
+    private func addKeyBoardObservers() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
@@ -51,8 +62,12 @@ class SignUpViewController_4: UIViewController, UITableViewDelegate, UITableView
             object: nil
         )
 
-        setupViews()
-        setupConstraints()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }
 
@@ -223,6 +238,18 @@ extension SignUpViewController_4 {
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        nextButton.snp.remakeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(60)
+            make.height.equalTo(70)
+        }
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
 }

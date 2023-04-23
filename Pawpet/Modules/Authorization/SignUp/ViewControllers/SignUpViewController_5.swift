@@ -43,20 +43,35 @@ class SignUpViewController_5: UIViewController, UITableViewDelegate, UITableView
         view.backgroundColor = .white
         self.navigationController?.navigationBar.tintColor = UIColor.accentColor
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        setupViews()
+        setupConstraints()
+        addKeyBoardObservers()
+        hideKeyboardWhenTappedAround()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        print(cities.count)
+    }
+}
+
+// MARK: - Observers
+extension SignUpViewController_5 {
+    private func addKeyBoardObservers() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
-        
-        setupViews()
-        setupConstraints()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        print(cities.count)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }
 
@@ -220,6 +235,18 @@ extension SignUpViewController_5 {
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        nextButton.snp.remakeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(60)
+            make.height.equalTo(70)
+        }
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
 }

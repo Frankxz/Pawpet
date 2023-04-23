@@ -37,7 +37,7 @@ class BreedSelectionViewController: UIViewController {
     }()
 
     // MARK: PromptView
-    private var promptView = PromptView(with: "Select the breed of your pet.",
+    public var promptView = PromptView(with: "Select the breed of your pet.",
                                         and: "", titleSize: 28)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -226,4 +226,6 @@ extension BreedSelectionViewController {
             }
         }
     }
+
+    
 }

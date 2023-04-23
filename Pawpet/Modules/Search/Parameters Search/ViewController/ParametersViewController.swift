@@ -14,6 +14,8 @@ class ParametersViewController: UITableViewController {
         case animalType, region, breed, ageAndGender, price, additionalInfo, button
     }
 
+    private var isCrossbreed = false
+
     // MARK: PromptView
     public var promptView = PromptView(with: "Detailed search", and: "Please select the desired options")
 
@@ -81,6 +83,7 @@ extension ParametersViewController {
                 if indexPath.row == 0 {
                     cell.textLabel?.text = "Является ли помесью"
                     let toggle = UISwitch()
+                    toggle.addTarget(self, action: #selector(breedTogglerTapped(_:)), for: .touchUpInside)
                     cell.accessoryView = toggle
                     cell.accessoryType = .none
                 } else {
@@ -173,6 +176,13 @@ extension ParametersViewController {
             let regionTableVC = RegionTableViewController()
             navigationController?.pushViewController(regionTableVC, animated: true)
         }
+        else if indexPath.section == 2 && indexPath.row == 1 {
+            let firstBreedVC = BreedViewController()
+            firstBreedVC.isCrossbreed = isCrossbreed
+            firstBreedVC.isFirstBreed = isCrossbreed
+
+            self.navigationController?.pushViewController(firstBreedVC, animated: true)
+        }
     }
 }
 
@@ -192,5 +202,10 @@ extension ParametersViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(PostViewController_2(), animated: true)
         }
+    }
+
+    @objc private func breedTogglerTapped(_ sender: UISwitch) {
+        print("Toggler tapped")
+        isCrossbreed.toggle()
     }
 }

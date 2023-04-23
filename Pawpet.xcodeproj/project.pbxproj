@@ -85,6 +85,7 @@
 		C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */; };
 		C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */; };
 		C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */; };
+		C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,7 @@
 		C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTableViewController.swift; sourceTree = "<group>"; };
 		C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedViewController.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -705,6 +707,7 @@
 			children = (
 				C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */,
 				C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */,
+				C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				C6FA2EC229F4428F00726A0A /* BottomSheetViewController.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */,
+				C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */,
 				C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */,
