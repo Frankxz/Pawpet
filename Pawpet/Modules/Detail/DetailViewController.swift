@@ -58,8 +58,7 @@ class DetailViewController: UIViewController {
 // MARK: - UI + Constraints
 extension DetailViewController {
     private func configurateView() {
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupNavigationAppearence()
         infoView.delegate = self
         view.backgroundColor = .white
         setupConstraints()

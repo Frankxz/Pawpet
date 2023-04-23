@@ -64,9 +64,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
     private func configurateView() {
         view.backgroundColor = .white
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-
+        setupNavigationAppearence()
         setupConstraints()
     }
 

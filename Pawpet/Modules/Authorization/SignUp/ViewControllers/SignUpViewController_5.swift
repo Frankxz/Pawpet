@@ -41,13 +41,12 @@ class SignUpViewController_5: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
+
         setupViews()
         setupConstraints()
         addKeyBoardObservers()
         hideKeyboardWhenTappedAround()
+        setupNavigationAppearence()
     }
 
     override func viewWillAppear(_ animated: Bool) {

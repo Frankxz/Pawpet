@@ -22,6 +22,7 @@ class ParametersViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        
     }
 }
 
@@ -37,8 +38,7 @@ extension ParametersViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupNavigationAppearence()
 
     }
 }
@@ -182,6 +182,16 @@ extension ParametersViewController {
             firstBreedVC.isFirstBreed = isCrossbreed
 
             self.navigationController?.pushViewController(firstBreedVC, animated: true)
+        }
+        else if indexPath.section == 3 && indexPath.row == 0 {
+            let ageSelectionBottomSheetVC = AgeSelectionBottomSheetViewController()
+            ageSelectionBottomSheetVC.modalPresentationStyle = .overCurrentContext
+            self.present(ageSelectionBottomSheetVC, animated: false)
+        }
+        else if indexPath.section == 3 && indexPath.row == 1 {
+            let genderSelectionBottomSheetVC = GenderSelectionBottomSheetViewController()
+            genderSelectionBottomSheetVC.modalPresentationStyle = .overCurrentContext
+            self.present(genderSelectionBottomSheetVC, animated: false)
         }
     }
 }

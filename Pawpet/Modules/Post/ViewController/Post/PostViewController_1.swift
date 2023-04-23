@@ -50,8 +50,7 @@ extension PostViewController_1 {
 
     private func setupView() {
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupNavigationAppearence()
     }
 }
 

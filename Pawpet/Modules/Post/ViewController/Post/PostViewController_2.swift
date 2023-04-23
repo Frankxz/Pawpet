@@ -30,8 +30,7 @@ class PostViewController_2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupNavigationAppearence()
         setupConstraints()
     }
     override func viewWillAppear(_ animated: Bool) {

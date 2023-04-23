@@ -8,6 +8,11 @@
 import UIKit
 
 extension UIViewController {
+    func setupNavigationAppearence() {
+        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

@@ -12,7 +12,7 @@ class ButtonTableViewCell: UITableViewCell {
     private lazy var nextButton: AuthButton = {
         let button = AuthButton()
 //        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
-        button.setupTitle(for: "Continue")
+        button.setupTitle(for: "Search")
         return button
     }()
 

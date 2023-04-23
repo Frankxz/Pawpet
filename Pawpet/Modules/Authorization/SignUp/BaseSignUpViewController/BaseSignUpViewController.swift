@@ -34,18 +34,13 @@ class BaseSignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
 
-        setupNavigationBar()
+        setupNavigationAppearence()
         configurateView()
     }
 }
 
 // MARK: - UI + Constraints
 extension BaseSignUpViewController {
-    private func setupNavigationBar() {
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
-
     private func configurateView() {
         view.addSubview(promptView)
         view.addSubview(textField)

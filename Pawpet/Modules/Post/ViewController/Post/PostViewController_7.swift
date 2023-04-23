@@ -28,8 +28,7 @@ class PostViewController_7: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupNavigationAppearence()
         photosCollectionView.addButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         setupConstraints()
         photosCollectionView.images = selectedImages

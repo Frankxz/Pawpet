@@ -59,7 +59,7 @@ class ProfileEditViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = UIColor.accentColor
+        setupNavigationAppearence()
         navigationItem.rightBarButtonItem = saveButton
         configureTableView()
     }

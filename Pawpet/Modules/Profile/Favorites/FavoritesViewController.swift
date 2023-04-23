@@ -41,8 +41,7 @@ extension FavoritesViewController {
     private func configurateView() {
         cardCollectionView.cardsCount = 6
         view.backgroundColor = .white
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
+        setupNavigationAppearence()
         setupConstraints()
     }
 

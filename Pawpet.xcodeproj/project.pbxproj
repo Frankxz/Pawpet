@@ -86,6 +86,9 @@
 		C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */; };
 		C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */; };
 		C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */; };
+		C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */; };
+		C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */; };
+		C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +195,9 @@
 		C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTableViewController.swift; sourceTree = "<group>"; };
 		C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedViewController.swift; sourceTree = "<group>"; };
+		C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
+		C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
+		C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -661,6 +667,7 @@
 			children = (
 				C6FA2EBA29F4343F00726A0A /* BreedSelectionViewController.swift */,
 				C6FA2EBD29F43D7C00726A0A /* AnimalSelectionView.swift */,
+				C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */,
 			);
 			path = SelectionVC;
 			sourceTree = "<group>";
@@ -679,6 +686,8 @@
 			children = (
 				C6FA2EC129F4428F00726A0A /* BottomSheetViewController.swift */,
 				C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */,
+				C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */,
+				C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */,
 			);
 			path = BottomSheetViewController;
 			sourceTree = "<group>";
@@ -963,13 +972,16 @@
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
+				C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */,
 				C6FA2EC229F4428F00726A0A /* BottomSheetViewController.swift in Sources */,
+				C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */,
 				C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */,
 				C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */,
+				C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,

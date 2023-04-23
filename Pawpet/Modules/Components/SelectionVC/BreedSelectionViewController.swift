@@ -37,7 +37,7 @@ class BreedSelectionViewController: UIViewController {
     }()
 
     // MARK: PromptView
-    public var promptView = PromptView(with: "Select the breed of your pet.",
+    public var promptView = PromptView(with: "Select the breed of pet.",
                                         and: "", titleSize: 28)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,21 +52,30 @@ class BreedSelectionViewController: UIViewController {
         setupView()
         setupViews()
         setupConstraints()
-        addKeyBoardObserver()
+        addKeyBoardObservers()
     }
 
     private func setupView() {
         view.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setupNavigationAppearence()
     }
+}
 
-    private func addKeyBoardObserver() {
+// MARK: - Observers
+extension BreedSelectionViewController {
+    private func addKeyBoardObservers() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
     }
@@ -141,6 +150,10 @@ extension BreedSelectionViewController: UITableViewDataSource {
         cell.selectedBackgroundView = selectionColorView
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        44.0
     }
 }
 
@@ -227,5 +240,15 @@ extension BreedSelectionViewController {
         }
     }
 
-    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        nextButton.snp.remakeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(60)
+            make.height.equalTo(70)
+        }
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }

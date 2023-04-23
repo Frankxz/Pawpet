@@ -28,6 +28,12 @@ extension AnimalSelectionBottomSheetViewController {
 
     private func setupConstraints() {
         containerView.addSubview(animalSelectionView)
+
+        animalSelectionView.nextButton.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview().inset(20)
+            make.top.equalToSuperview().offset(430)
+            make.height.equalTo(70)
+        }
         animalSelectionView.snp.makeConstraints { make in
             make.left.top.right.bottom.equalToSuperview()
         }
@@ -42,5 +48,4 @@ extension AnimalSelectionBottomSheetViewController {
             self.animateDismissView()
         }
     }
-
 }

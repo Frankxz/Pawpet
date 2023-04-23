@@ -15,10 +15,11 @@ class BreedViewController: BreedSelectionViewController {
     }
 
     private func updateConstraints() {
-        promptView.snp.updateConstraints { make in
+        promptView.snp.remakeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(60)
+            make.top.equalToSuperview().inset(100)
         }
+        nextButton.setupTitle(for: "Select")
         view.layoutIfNeeded()
     }
 }

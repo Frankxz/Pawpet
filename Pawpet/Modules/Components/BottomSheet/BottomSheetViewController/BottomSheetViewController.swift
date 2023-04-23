@@ -11,10 +11,10 @@ import SnapKit
 class BottomSheetViewController: UIViewController {
 
     // MARK: - Reqiered properties
-    private var currentHeight: CGFloat = UIScreen.main.bounds.height * 0.6
-    private var maxHeight: CGFloat = (UIScreen.main.bounds.height * 0.89)
-    private let defaultHeight: CGFloat = UIScreen.main.bounds.height * 0.6
-    private let dismissibleHeight: CGFloat = UIScreen.main.bounds.height * 0.6
+    private var currentHeight: CGFloat = 560
+    private var maxHeight: CGFloat = 560
+    private var defaultHeight: CGFloat = 560
+    private var dismissibleHeight: CGFloat = 560
     private let maxDimmedAlpha: CGFloat = 0.6
 
     var containerViewHeightConstraint: Constraint?
@@ -77,6 +77,13 @@ extension BottomSheetViewController {
 
         containerViewHeightConstraint?.activate()
         containerViewBottomConstraint?.activate()
+    }
+
+    public func changeHeight(defaultHeight: CGFloat, maxHeight: CGFloat) {
+        self.defaultHeight = defaultHeight
+        self.dismissibleHeight = defaultHeight
+        self.currentHeight = defaultHeight
+        self.maxHeight = maxHeight
     }
 }
 
