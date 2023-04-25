@@ -90,6 +90,8 @@
 		C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */; };
 		C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */; };
 		C6FA2EDB29F555F100726A0A /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EDA29F555F100726A0A /* City.swift */; };
+		C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */; };
+		C6FA2EDF29F5710300726A0A /* SignUpViewController_1_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EDE29F5710300726A0A /* SignUpViewController_1_1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +202,8 @@
 		C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
 		C6FA2EDA29F555F100726A0A /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C6FA2EDE29F5710300726A0A /* SignUpViewController_1_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_1_1.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,7 +301,7 @@
 				C6490DF329E5D809003F4A2F /* SegmentedControl */,
 				C6490DF229E5D7FF003F4A2F /* PickerView */,
 				C6CC0B9129E605F30070BC50 /* TextView */,
-				C6FA2EBC29F4344200726A0A /* SelectionVC */,
+				C6FA2EBC29F4344200726A0A /* SelectionView */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -331,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */,
+				C6FA2EDE29F5710300726A0A /* SignUpViewController_1_1.swift */,
 				C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */,
 				C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */,
 				C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */,
@@ -583,8 +588,9 @@
 			isa = PBXGroup;
 			children = (
 				C6C450CC298FF2920094FF5A /* AppDelegate.swift */,
-				C6C450DA298FF2930094FF5A /* Info.plist */,
 				C6C450D7298FF2930094FF5A /* LaunchScreen.storyboard */,
+				C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */,
+				C6C450DA298FF2930094FF5A /* Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -593,12 +599,12 @@
 			isa = PBXGroup;
 			children = (
 				C6C450FC298FF5310094FF5A /* MainTabBarController.swift */,
+				C6490D8729BA0BC0003F4A2F /* Authorization */,
 				C6490DC229D31DD0003F4A2F /* Detail */,
 				C6C4510A298FF6740094FF5A /* Search */,
 				C6C45108298FF6690094FF5A /* Post */,
 				C6C4510B298FF6790094FF5A /* Profile */,
 				C6490D9029C3855D003F4A2F /* Components */,
-				C6490D8729BA0BC0003F4A2F /* Authorization */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -665,14 +671,14 @@
 			path = "Parameters Search";
 			sourceTree = "<group>";
 		};
-		C6FA2EBC29F4344200726A0A /* SelectionVC */ = {
+		C6FA2EBC29F4344200726A0A /* SelectionView */ = {
 			isa = PBXGroup;
 			children = (
 				C6FA2EBA29F4343F00726A0A /* BreedSelectionViewController.swift */,
 				C6FA2EBD29F43D7C00726A0A /* AnimalSelectionView.swift */,
 				C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */,
 			);
-			path = SelectionVC;
+			path = SelectionView;
 			sourceTree = "<group>";
 		};
 		C6FA2EBF29F4425A00726A0A /* BottomSheetView */ = {
@@ -841,6 +847,7 @@
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
 				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,
+				C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */,
 				C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */,
 				C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */,
 			);
@@ -972,6 +979,7 @@
 			files = (
 				C6490DD829DDF307003F4A2F /* SignUpViewController_3.swift in Sources */,
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
+				C6FA2EDF29F5710300726A0A /* SignUpViewController_1_1.swift in Sources */,
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,

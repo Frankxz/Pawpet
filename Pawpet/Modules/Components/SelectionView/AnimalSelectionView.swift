@@ -11,7 +11,7 @@ class AnimalSelectionView: UIView {
 
     // MARK: - PromptView
     public var promptView = PromptView(with: "Select the type of pet.",
-                                        and: "This will help users find your listing faster and will also help us provide you with a list of breeds.")
+                                       and: "This will help users find your listing faster and will also help us provide you with a list of breeds.")
 
     // MARK: - Button
     public lazy var nextButton: AuthButton = {

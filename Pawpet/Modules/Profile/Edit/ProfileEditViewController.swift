@@ -206,8 +206,11 @@ extension ProfileEditViewController {
 extension ProfileEditViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        print("section: \(indexPath.section), row: \(indexPath.row)")
 
-        // Выполните соответствующие действия для выбранной ячейки
+        if indexPath.section == 4 {
+            logout()
+        }
     }
 }
 
@@ -219,6 +222,10 @@ extension ProfileEditViewController {
 
     @objc func saveButtonTapped() {
 
+    }
+
+    private func logout() {
+        dismiss(animated: true)
     }
 }
 

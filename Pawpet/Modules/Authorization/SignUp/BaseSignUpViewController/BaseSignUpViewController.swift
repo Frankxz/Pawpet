@@ -79,11 +79,17 @@ extension BaseSignUpViewController {
             }
         }
     }
+
+    public func removeTextField() {
+        textField.removeFromSuperview()
+        textField.snp.removeConstraints()
+
+    }
 }
 
 // MARK: - Button logic
 extension BaseSignUpViewController {
-    @objc private func nextButtonTapped(_ sender: UIButton) {
+    @objc func nextButtonTapped(_ sender: UIButton) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(self.nextVC!, animated: true)
         }
