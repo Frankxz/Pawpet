@@ -21,7 +21,6 @@ class SignUpViewController3: BaseSignUpViewController {
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        nextVC = SignUpViewController_1_1()
         promptView.setupTitles(title: "Enter your phone number", subtitle: "This will help us verify that you are a real human and avoid malicious attacks. Also, the phone number will help you restore access to your account.")
         setupAnimationView(with: "WatchingDog")
         configurePhoneTF()

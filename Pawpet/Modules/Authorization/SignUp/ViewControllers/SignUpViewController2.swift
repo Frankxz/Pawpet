@@ -18,7 +18,8 @@ class SignUpViewController2: BaseSignUpViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        promptView.setupTitles(title: "Create your password", subtitle: "This will help you to enter the application.")
+        promptView.setupTitles(title: "Create your password", subtitle:
+                                "This will help you to enter the application. \n\n Password requirements:\n  1. Minimum length - 8 characters\n  2. Contains at least one capital letter\n  3. Contains at least one lowercase letter\n  4. Contains at least one number")
         setupAnimationView(with: "WatchingDog")
         textField.setupPlaceholder(placeholder: "••••••")
         textField.isSecureTextEntry = true
