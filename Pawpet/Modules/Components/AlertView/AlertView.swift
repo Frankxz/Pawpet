@@ -27,7 +27,7 @@ class AlertView: UIView {
     private var targetView: UIView?
 
     // MARK: UI components
-    private let promptView = PromptView(with: "", and: "", titleSize: 25, aligment: .center)
+    private let promptView = PromptView(with: "", and: "", titleSize: 26, aligment: .center)
 
     // MARK: Lottie View
     private var animationView: LottieAnimationView = {
@@ -80,7 +80,7 @@ extension AlertView {
     private func getStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = -20
+        stackView.spacing = -40
 
         animationView.snp.makeConstraints { $0.height.equalTo(260) }
         stackView.addArrangedSubview(promptView)

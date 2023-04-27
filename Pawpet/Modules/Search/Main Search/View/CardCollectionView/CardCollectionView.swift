@@ -29,7 +29,7 @@ class CardCollectionView: UICollectionView {
         contentInset = UIEdgeInsets(
             top: -20,
             left: CardCollectionConstants.left,
-            bottom: 0,
+            bottom: 60,
             right: CardCollectionConstants.right)
 
         showsHorizontalScrollIndicator = false
@@ -68,7 +68,6 @@ extension CardCollectionView: UICollectionViewDelegate,UICollectionViewDataSourc
 
 // MARK: - Layout
 extension CardCollectionView: UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: CardCollectionConstants.itemWidth,
                       height: CardCollectionConstants.itemHeight)

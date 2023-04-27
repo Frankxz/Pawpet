@@ -62,6 +62,10 @@ class CardCollectionHeaderView: UICollectionReusableView {
 // MARK: - UI + Constraints
 extension CardCollectionHeaderView {
     public func configure() {
+        FireStoreManager.shared.fetchUserData(completion: {
+            self.welcomeLabel.setAttributedText(withString: "Hello, ", boldString: "\(FireStoreManager.shared.user.name ?? "" ) ✋🏼", font: .systemFont(ofSize: 32))
+        })
+        
         let searchStackView = getSearchStackView()
 
         addSubview(searchStackView)

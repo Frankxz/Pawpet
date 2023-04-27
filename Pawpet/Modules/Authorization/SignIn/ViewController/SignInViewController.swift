@@ -81,10 +81,11 @@ class SignInViewController: UIViewController {
 
     // MARK: AlertView
 
-   private let alertView = AlertView()
+    private let alertView = AlertView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkUserAuthentication()
         configurateView()
         hideKeyboardWhenTappedAround()
     }
@@ -192,11 +193,7 @@ extension SignInViewController {
             }
 
             // Успешная авторизация, переходим на следующий экран
-            let mainTabBarController = MainTabBarController()
-            mainTabBarController.modalPresentationStyle = .fullScreen
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.present(mainTabBarController, animated: true)
-            }
+            pushToMainTabBarVC()
         }
     }
 
@@ -217,5 +214,28 @@ extension SignInViewController {
     
     public func loginAfterSignUp() {
         print("loginAfterSignUp")
+    }
+}
+
+// MARK: Checking auth
+extension SignInViewController {
+    func checkUserAuthentication() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                // Пользователь авторизован, показать основной экран приложения
+                print("User is signed in with ID: \(user.uid)")
+                self.pushToMainTabBarVC()
+            } else {
+                // Пользователь не авторизован, показать экран входа
+                print("User is not signed in.")
+
+            }
+        }
+    }
+
+    func pushToMainTabBarVC() {
+        let mainTabBarController = MainTabBarController()
+        mainTabBarController.modalPresentationStyle = .fullScreen
+        self.present(mainTabBarController, animated: true)
     }
 }

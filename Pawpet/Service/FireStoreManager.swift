@@ -10,10 +10,15 @@ import Firebase
 
 class FireStoreManager {
     static let shared = FireStoreManager()
+    let user = PawpetUser()
+
     var ref: DatabaseReference = Database.database().reference()
 
     private init() {}
+}
 
+// MARK: - Save USER DATA
+extension FireStoreManager {
     func saveUserData(name: String, lastName: String, country: String, city: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
@@ -59,6 +64,41 @@ class FireStoreManager {
             print("User data saved successfully")
         }
     }
+}
 
+// MARK: - Fetch USER DATA
+extension FireStoreManager {
+    func fetchUserData(completion: @escaping ()->()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        ref.child("users").child(uid).observeSingleEvent(of: .value) { (snapshot, _)  in
+            if let userData = snapshot.value as? [String: Any] {
+                if let name = userData["name"] as? String,
+                   let surname = userData["surname"] as? String,
+                   let country = userData["country"] as? String,
+                   let city = userData["city"] as? String {
+                    print("\(name) \(surname), from \(country) \(city)")
+                    FireStoreManager.shared.user.name = name
+                    FireStoreManager.shared.user.surname = surname
+                    FireStoreManager.shared.user.country = country
+                    FireStoreManager.shared.user.city = city
+                    completion()
+                } else {
+                    print("Error parsing user data")
+                }
+            } else {
+                print("User data not found")
+            }
+        }
+    }
+
+    func getUserPhoneNumber() -> String {
+        guard let user = Auth.auth().currentUser else { return "" }
+        if let phoneNumber = user.phoneNumber {
+            return phoneNumber
+        } else {
+            return ""
+        }
+    }
 
 }

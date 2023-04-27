@@ -95,6 +95,7 @@
 		C6FA2EE729F8396000726A0A /* SignUpViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */; };
 		C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */; };
 		C6FA2EED29FA8F7F00726A0A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */; };
+		C6FA2EF029FAA9F600726A0A /* PawpetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController4.swift; sourceTree = "<group>"; };
 		C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetUser.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,6 +515,7 @@
 				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
 				C6CC0B9E29E8361F0070BC50 /* Country.swift */,
 				C6FA2EDA29F555F100726A0A /* City.swift */,
+				C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
+				C6FA2EF029FAA9F600726A0A /* PawpetUser.swift in Sources */,
 				C6CC0BA429E847940070BC50 /* SignUpViewController6.swift in Sources */,
 				C6FA2EB829F30B1500726A0A /* ButtonTableViewCell.swift in Sources */,
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,

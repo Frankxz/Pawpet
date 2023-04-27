@@ -19,8 +19,8 @@ class ProfileViewController: UIViewController {
     }()
     
     // MARK: - Labels
-    private var infoView = PromptView(with: "Robert Miller", and:  "🇷🇺 Russia, Moscow")
-    private var phoneLabel = LabelView(text: "📞 +7(913)386-77-00", viewColor: .backgroundColor, textColor: .accentColor.withAlphaComponent(0.8))
+    private var infoView = PromptView(with: "Unknown user", and:  "Unknown place")
+    private var phoneLabel = LabelView(text: "")
 
     // MARK: - Buttons
     public lazy var editButton: UIButton = {
@@ -64,8 +64,16 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
     private func configurateView() {
         view.backgroundColor = .white
+        FireStoreManager.shared.fetchUserData {
+            self.infoView.setupTitles(
+                title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
+                subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
+            self.phoneLabel = LabelView(text: "📞 \(FireStoreManager.shared.getUserPhoneNumber())", viewColor: .backgroundColor, textColor: .accentColor.withAlphaComponent(0.8))
+        }
+
         setupNavigationAppearence()
         setupConstraints()
+
     }
 
     private func setupConstraints() {

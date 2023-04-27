@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileEditViewController: UITableViewController {
 
@@ -225,7 +226,12 @@ extension ProfileEditViewController {
     }
 
     private func logout() {
-        dismiss(animated: true)
+        do {
+            try Auth.auth().signOut()
+            dismiss(animated: true)
+        } catch let error {
+            print("Error signing out: \(error.localizedDescription)")
+        }
     }
 }
 
