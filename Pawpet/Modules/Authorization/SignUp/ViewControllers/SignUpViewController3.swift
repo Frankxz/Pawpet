@@ -1,29 +1,17 @@
 //
-//  SignUpViewController_1.swift
+//  SignUpViewController3.swift
 //  Pawpet
 //
-//  Created by Robert Miller on 20.03.2023.
+//  Created by Robert Miller on 25.04.2023.
 //
 
 import UIKit
 import Lottie
 import FlagPhoneNumber
 import FirebaseAuth
+import Firebase
 
-class SignUpViewController_1: BaseSignUpViewController {
-
-    // MARK: - Button
-    public lazy var closeButton: UIButton = {
-        let button = UIButton()
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 12, weight: .medium, scale: .large)
-        let image = UIImage(systemName: "xmark", withConfiguration: imageConfig)
-        button.setImage(image, for: .normal)
-        button.tintColor = .accentColor
-        button.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
-        button.backgroundColor = .backgroundColor
-        button.layer.cornerRadius = 16
-        return button
-    }()
+class SignUpViewController3: BaseSignUpViewController {
 
     // MARK: Phone TF
     private let phoneTextField = FPNTextField()
@@ -36,7 +24,6 @@ class SignUpViewController_1: BaseSignUpViewController {
         nextVC = SignUpViewController_1_1()
         promptView.setupTitles(title: "Enter your phone number", subtitle: "This will help us verify that you are a real human and avoid malicious attacks. Also, the phone number will help you restore access to your account.")
         setupAnimationView(with: "WatchingDog")
-        setupCloseButton()
         configurePhoneTF()
 
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
@@ -59,6 +46,7 @@ class SignUpViewController_1: BaseSignUpViewController {
     }
 
     private func setupConstraints() {
+        
         view.addSubview(phoneTextField)
         phoneTextField.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
@@ -73,30 +61,11 @@ class SignUpViewController_1: BaseSignUpViewController {
         }
 
     }
-
-    private func setupCloseButton() {
-        view.addSubview(closeButton)
-        closeButton.snp.makeConstraints { make in
-            make.width.height.equalTo(32)
-            make.top.equalToSuperview().inset(80)
-            make.right.equalToSuperview().inset(20)
-        }
-    }
-}
-
-// MARK: - Button logic
-extension SignUpViewController_1 {
-    @objc private func closeButtonTapped(_ sender: UIButton) {
-        print("Dissmised")
-        dismiss(animated: true)
-    }
 }
 
 // MARK: FPN delegate
-extension SignUpViewController_1: FPNTextFieldDelegate {
-    func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
-
-    }
+extension SignUpViewController3: FPNTextFieldDelegate {
+    func fpnDidSelectCountry(name: String, dialCode: String, code: String) { }
 
     func fpnDidValidatePhoneNumber(textField: FlagPhoneNumber.FPNTextField, isValid: Bool) {
         if isValid {
@@ -127,24 +96,23 @@ extension SignUpViewController_1: FPNTextFieldDelegate {
 }
 
 // MARK: - AUTH Logic
-extension SignUpViewController_1 {
+extension SignUpViewController3 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
         guard phoneNumber != nil else { return }
 
         self.pushToVerificationVC(with: "verificationID!")
 
-//        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber!, uiDelegate: nil) { (verificationID, error) in
-//            if error != nil {
-//                print(error?.localizedDescription ?? "unknown error")
-//            } else {
-//                print("verificationID: \(verificationID)")
-//                self.pushToVerificationVC(with: verificationID!)
-//            }
-//        }
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber!, uiDelegate: nil) { (verificationID, error) in
+            if error != nil {
+                print(error?.localizedDescription ?? "unknown error")
+            } else {
+                self.pushToVerificationVC(with: verificationID!)
+            }
+        }
     }
 
     private func pushToVerificationVC(with verificationID: String) {
-        let verificationVC = SignUpViewController_1_1()
+        let verificationVC = SignUpViewController4()
         verificationVC.verificationID = verificationID
         self.navigationController?.pushViewController(verificationVC, animated: true)
     }

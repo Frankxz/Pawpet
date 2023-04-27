@@ -16,9 +16,7 @@
 		C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D8E29C38556003F4A2F /* AuthTextField.swift */; };
 		C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9229C387F7003F4A2F /* AuthButton.swift */; };
 		C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9429C8AB97003F4A2F /* OptionButton.swift */; };
-		C6490D9729C8C428003F4A2F /* SignUpViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */; };
 		C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9B29C8C4B2003F4A2F /* PromptView.swift */; };
-		C6490D9E29C8CC14003F4A2F /* SignUpViewController_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */; };
 		C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA029C8D54C003F4A2F /* DroppedDog.json */; };
 		C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DA229C8D7F9003F4A2F /* WatchingDog.json */; };
 		C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */; };
@@ -40,7 +38,7 @@
 		C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */; };
 		C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */; };
 		C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD529DDA96C003F4A2F /* Label + Extension.swift */; };
-		C6490DD829DDF307003F4A2F /* SignUpViewController_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */; };
+		C6490DD829DDF307003F4A2F /* SignUpViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController5.swift */; };
 		C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD929E06596003F4A2F /* FavoritesViewController.swift */; };
 		C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */; };
 		C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE229E1C228003F4A2F /* PostViewController_1.swift */; };
@@ -69,10 +67,10 @@
 		C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */; };
 		C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0B9C29E749DC0070BC50 /* Success.json */; };
 		C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9E29E8361F0070BC50 /* Country.swift */; };
-		C6CC0BA429E847940070BC50 /* SignUpViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */; };
+		C6CC0BA429E847940070BC50 /* SignUpViewController6.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA329E847940070BC50 /* SignUpViewController6.swift */; };
 		C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */; };
 		C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0BAB29E8538C0070BC50 /* countries.json */; };
-		C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */; };
+		C6CC0BAF29E854BE0070BC50 /* SignUpViewController7.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController7.swift */; };
 		C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */; };
 		C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */; };
 		C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */; };
@@ -91,7 +89,11 @@
 		C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */; };
 		C6FA2EDB29F555F100726A0A /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EDA29F555F100726A0A /* City.swift */; };
 		C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */; };
-		C6FA2EDF29F5710300726A0A /* SignUpViewController_1_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EDE29F5710300726A0A /* SignUpViewController_1_1.swift */; };
+		C6FA2EE129F8379500726A0A /* SignUpViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */; };
+		C6FA2EE329F837FD00726A0A /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE229F837FD00726A0A /* SignUpViewController2.swift */; };
+		C6FA2EE529F838BD00726A0A /* SignUpViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE429F838BD00726A0A /* SignUpViewController3.swift */; };
+		C6FA2EE729F8396000726A0A /* SignUpViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */; };
+		C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,9 +126,7 @@
 		C6490D8E29C38556003F4A2F /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		C6490D9229C387F7003F4A2F /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		C6490D9429C8AB97003F4A2F /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
-		C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_1.swift; sourceTree = "<group>"; };
 		C6490D9B29C8C4B2003F4A2F /* PromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptView.swift; sourceTree = "<group>"; };
-		C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_2.swift; sourceTree = "<group>"; };
 		C6490DA029C8D54C003F4A2F /* DroppedDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DroppedDog.json; sourceTree = "<group>"; };
 		C6490DA229C8D7F9003F4A2F /* WatchingDog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WatchingDog.json; sourceTree = "<group>"; };
 		C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_final.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrameViewController.swift; sourceTree = "<group>"; };
 		C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionHeaderView.swift; sourceTree = "<group>"; };
 		C6490DD529DDA96C003F4A2F /* Label + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label + Extension.swift"; sourceTree = "<group>"; };
-		C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_3.swift; sourceTree = "<group>"; };
+		C6490DD729DDF307003F4A2F /* SignUpViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController5.swift; sourceTree = "<group>"; };
 		C6490DD929E06596003F4A2F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnDetailViewController.swift; sourceTree = "<group>"; };
 		C6490DE229E1C228003F4A2F /* PostViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_1.swift; sourceTree = "<group>"; };
@@ -181,10 +181,10 @@
 		C6CC0B9A29E748320070BC50 /* PostViewController_8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_8.swift; sourceTree = "<group>"; };
 		C6CC0B9C29E749DC0070BC50 /* Success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Success.json; sourceTree = "<group>"; };
 		C6CC0B9E29E8361F0070BC50 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
-		C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_4.swift; sourceTree = "<group>"; };
+		C6CC0BA329E847940070BC50 /* SignUpViewController6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController6.swift; sourceTree = "<group>"; };
 		C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		C6CC0BAB29E8538C0070BC50 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
-		C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_5.swift; sourceTree = "<group>"; };
+		C6CC0BAE29E854BE0070BC50 /* SignUpViewController7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController7.swift; sourceTree = "<group>"; };
 		C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
@@ -203,7 +203,11 @@
 		C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
 		C6FA2EDA29F555F100726A0A /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C6FA2EDE29F5710300726A0A /* SignUpViewController_1_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController_1_1.swift; sourceTree = "<group>"; };
+		C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController1.swift; sourceTree = "<group>"; };
+		C6FA2EE229F837FD00726A0A /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
+		C6FA2EE429F838BD00726A0A /* SignUpViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController3.swift; sourceTree = "<group>"; };
+		C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController4.swift; sourceTree = "<group>"; };
+		C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,12 +338,13 @@
 		C6490D9A29C8C460003F4A2F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C6490D9629C8C428003F4A2F /* SignUpViewController_1.swift */,
-				C6FA2EDE29F5710300726A0A /* SignUpViewController_1_1.swift */,
-				C6490D9D29C8CC14003F4A2F /* SignUpViewController_2.swift */,
-				C6490DD729DDF307003F4A2F /* SignUpViewController_3.swift */,
-				C6CC0BA329E847940070BC50 /* SignUpViewController_4.swift */,
-				C6CC0BAE29E854BE0070BC50 /* SignUpViewController_5.swift */,
+				C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */,
+				C6FA2EE229F837FD00726A0A /* SignUpViewController2.swift */,
+				C6FA2EE429F838BD00726A0A /* SignUpViewController3.swift */,
+				C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */,
+				C6490DD729DDF307003F4A2F /* SignUpViewController5.swift */,
+				C6CC0BA329E847940070BC50 /* SignUpViewController6.swift */,
+				C6CC0BAE29E854BE0070BC50 /* SignUpViewController7.swift */,
 				C6490DA429D04F8B003F4A2F /* SignUpViewController_final.swift */,
 			);
 			path = ViewControllers;
@@ -563,6 +568,7 @@
 				C6C45107298FF6580094FF5A /* Modules */,
 				C6490D8429BA05E1003F4A2F /* Resourses */,
 				C6490D8329BA05D7003F4A2F /* Extension */,
+				C6FA2EEB29F850CA00726A0A /* Service */,
 			);
 			path = Pawpet;
 			sourceTree = "<group>";
@@ -728,6 +734,14 @@
 				C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C6FA2EEB29F850CA00726A0A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -977,9 +991,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6490DD829DDF307003F4A2F /* SignUpViewController_3.swift in Sources */,
+				C6490DD829DDF307003F4A2F /* SignUpViewController5.swift in Sources */,
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
-				C6FA2EDF29F5710300726A0A /* SignUpViewController_1_1.swift in Sources */,
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
@@ -990,20 +1003,22 @@
 				C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */,
 				C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
-				C6CC0BAF29E854BE0070BC50 /* SignUpViewController_5.swift in Sources */,
+				C6CC0BAF29E854BE0070BC50 /* SignUpViewController7.swift in Sources */,
 				C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */,
 				C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
+				C6FA2EE129F8379500726A0A /* SignUpViewController1.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
 				C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */,
+				C6FA2EE329F837FD00726A0A /* SignUpViewController2.swift in Sources */,
 				C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */,
 				C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6CC0B9B29E748320070BC50 /* PostViewController_8.swift in Sources */,
 				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
-				C6CC0BA429E847940070BC50 /* SignUpViewController_4.swift in Sources */,
+				C6CC0BA429E847940070BC50 /* SignUpViewController6.swift in Sources */,
 				C6FA2EB829F30B1500726A0A /* ButtonTableViewCell.swift in Sources */,
 				C6490DEC29E5BE1B003F4A2F /* Breed.swift in Sources */,
 				C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */,
@@ -1030,17 +1045,18 @@
 				C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */,
 				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
 				C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */,
+				C6FA2EE729F8396000726A0A /* SignUpViewController4.swift in Sources */,
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */,
+				C6FA2EE529F838BD00726A0A /* SignUpViewController3.swift in Sources */,
 				C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */,
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,
 				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
 				C6FA2EDB29F555F100726A0A /* City.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
-				C6490D9E29C8CC14003F4A2F /* SignUpViewController_2.swift in Sources */,
+				C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
-				C6490D9729C8C428003F4A2F /* SignUpViewController_1.swift in Sources */,
 				C6CC0B9929E72A820070BC50 /* PhotoCollectionViewCell.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
 				C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */,

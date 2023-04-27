@@ -1,5 +1,5 @@
 //
-//  SignUpViewController_4.swift
+//  SignUpViewController6.swift
 //  Pawpet
 //
 //  Created by Robert Miller on 13.04.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SignUpViewController_4: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SignUpViewController6: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private let countries = Country.createCountries()
     private var filteredCountries = [Country]()
@@ -51,7 +51,7 @@ class SignUpViewController_4: UIViewController, UITableViewDelegate, UITableView
 }
 
 // MARK: - Observers
-extension SignUpViewController_4 {
+extension SignUpViewController6 {
     private func addKeyBoardObservers() {
         NotificationCenter.default.addObserver(
             self,
@@ -70,7 +70,7 @@ extension SignUpViewController_4 {
 }
 
 // MARK: - UI + Constraints
-extension SignUpViewController_4 {
+extension SignUpViewController6 {
     func setupViews() {
         view.addSubview(promptView)
         view.addSubview(tableView)
@@ -121,7 +121,7 @@ extension SignUpViewController_4 {
 }
 
 //MARK: - TableView DataSource
-extension SignUpViewController_4 {
+extension SignUpViewController6 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching ? filteredCountries.count : countries.count
     }
@@ -142,7 +142,7 @@ extension SignUpViewController_4 {
 }
 
 //MARK: - TableView Delegate
-extension SignUpViewController_4 {
+extension SignUpViewController6 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -174,7 +174,7 @@ extension SignUpViewController_4 {
 }
 
 // MARK: - SearchBar Delegate
-extension SignUpViewController_4: UISearchBarDelegate {
+extension SignUpViewController6: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredCountries = countries.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
@@ -190,15 +190,19 @@ extension SignUpViewController_4: UISearchBarDelegate {
 }
 
 // MARK: - Button logic
-extension SignUpViewController_4 {
+extension SignUpViewController6 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let signUpVC_6 = SignUpViewController_5()
-            let cities = signUpVC_6.findCities(for: self.selectedCountry!.name)
+            let signUpVC7 = SignUpViewController7()
+            let cities = signUpVC7.findCities(for: self.selectedCountry!.name)
             if cities.count != 0 {
-                self.navigationController?.pushViewController(signUpVC_6, animated: true)
+                self.navigationController?.pushViewController(signUpVC7, animated: true)
+                UserDefaults.standard.set(self.selectedCountry!.name, forKey: "COUNTRY")
             } else {
+                UserDefaults.standard.set(self.selectedCountry!.name, forKey: "COUNTRY")
+                UserDefaults.standard.set("", forKey: "CITY")
+                FireStoreManager.shared.saveUserDataFromUD()
                 self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
             }
         }

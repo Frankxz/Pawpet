@@ -34,6 +34,7 @@ class BaseSignUpViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
 
+        hideKeyboardWhenTappedAround()
         setupNavigationAppearence()
         configurateView()
     }

@@ -1,5 +1,5 @@
 //
-//  SignUpViewController_3.swift
+//  SignUpViewController5.swift
 //  Pawpet
 //
 //  Created by Robert Miller on 06.04.2023.
@@ -8,9 +8,9 @@
 import UIKit
 import Lottie
 
-class SignUpViewController_3: BaseSignUpViewController {
+class SignUpViewController5: BaseSignUpViewController {
     // MARK: - UI components
-    private var surnameTextField = AuthTextField("Surname", isSecure: true)
+    private var surnameTextField = AuthTextField("Surname", isSecure: false)
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
@@ -20,12 +20,14 @@ class SignUpViewController_3: BaseSignUpViewController {
         setupAnimationView(with: "WatchingDog")
         setupSurnameTF()
 
-        nextVC = SignUpViewController_4()
+        nextVC = SignUpViewController6()
+        nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
+
     }
 }
 
 // MARK: - UI + Constraints
-extension SignUpViewController_3 {
+extension SignUpViewController5 {
     private func setupSurnameTF() {
         view.addSubview(surnameTextField)
 
@@ -44,4 +46,12 @@ extension SignUpViewController_3 {
     }
 }
 
+// MARK: NextButton tapped
+extension SignUpViewController5 {
+    @objc internal override func nextButtonTapped(_ sender: UIButton) {
+        UserDefaults.standard.set(textField.text, forKey: "NAME")
+        UserDefaults.standard.set(surnameTextField.text, forKey: "SURNAME")
+        navigationController?.pushViewController(SignUpViewController6(), animated: true)
+    }
+}
 

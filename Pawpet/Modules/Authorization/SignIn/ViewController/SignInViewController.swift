@@ -179,7 +179,7 @@ extension SignInViewController {
 
     @objc private func signUpButtonTapped(_ sender: UIButton) {
         print("Sing up...")
-        let navigationVC = UINavigationController(rootViewController: SignUpViewController_1())
+        let navigationVC = UINavigationController(rootViewController: SignUpViewController1())
         navigationVC.modalPresentationStyle = .fullScreen
         present(navigationVC, animated: true)
     }
