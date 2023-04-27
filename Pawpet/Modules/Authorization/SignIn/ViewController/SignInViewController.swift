@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 class SignInViewController: UIViewController {
 
@@ -77,6 +78,10 @@ class SignInViewController: UIViewController {
         button.setAttributedTitle(title, for: .normal)
         return button
     }()
+
+    // MARK: AlertView
+
+   private let alertView = AlertView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,10 +175,28 @@ extension SignInViewController {
 extension SignInViewController {
     @objc private func signInButtonTapped(_ sender: UIButton) {
         print("Sign in..")
-        let mainTabBarController = MainTabBarController()
-        mainTabBarController.modalPresentationStyle = .fullScreen
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.present(mainTabBarController, animated: true)
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            alertView.showAlert(with: "Please fill in all fields", message: "Please enter your email and password to following fields.", on: self)
+            return
+        }
+
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard let self = self else { return }
+
+            if let error = error {
+                // Обработать ошибку авторизации
+                print(error.localizedDescription)
+                alertView.showAlert(with: "Ooops... error!", message: "Invalid email address or password. Please try again.", on: self)
+                return
+            }
+
+            // Успешная авторизация, переходим на следующий экран
+            let mainTabBarController = MainTabBarController()
+            mainTabBarController.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.present(mainTabBarController, animated: true)
+            }
         }
     }
 
@@ -188,6 +211,10 @@ extension SignInViewController {
 
     }
 
+    @objc private func dismissAlertView() {
+        alertView.dismissAlertView()
+    }
+    
     public func loginAfterSignUp() {
         print("loginAfterSignUp")
     }
