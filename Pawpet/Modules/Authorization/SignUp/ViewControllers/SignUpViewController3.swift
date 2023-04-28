@@ -18,6 +18,9 @@ class SignUpViewController3: BaseSignUpViewController {
     private var listController: FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
     private var phoneNumber: String?
 
+    // MARK: AlertView
+    private let alertView = AlertView()
+
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class SignUpViewController3: BaseSignUpViewController {
         phoneTextField.displayMode = .list
         phoneTextField.layer.cornerRadius = 12
         phoneTextField.backgroundColor = .backgroundColor
-        phoneTextField.font = .systemFont(ofSize: 24, weight: .semibold)
+        phoneTextField.font = .systemFont(ofSize: 18, weight: .semibold)
         phoneTextField.setFlag(countryCode: .RU)
 
         nextButton.alpha = 0.9
@@ -103,7 +106,7 @@ extension SignUpViewController3 {
 
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber!, uiDelegate: nil) { (verificationID, error) in
             if error != nil {
-                print(error?.localizedDescription ?? "unknown error")
+                self.alertView.showAlert(with: "Ooops... error!", message: error!.localizedDescription, on: self)
             } else {
                 self.pushToVerificationVC(with: verificationID!)
             }
@@ -114,5 +117,9 @@ extension SignUpViewController3 {
         let verificationVC = SignUpViewController4()
         verificationVC.verificationID = verificationID
         self.navigationController?.pushViewController(verificationVC, animated: true)
+    }
+
+    @objc private func dismissAlertView() {
+        alertView.dismissAlertView()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FlagPhoneNumber
 
 class ProfileViewController: UIViewController {
 
@@ -20,7 +21,16 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Labels
     private var infoView = PromptView(with: "Unknown user", and:  "Unknown place")
-    private var phoneLabel = LabelView(text: "")
+    private var phoneLabel = LabelView(text: "", viewColor: .accentColor, textColor: .subtitleColor)
+
+    private let phoneTF: FPNTextField = {
+        let textField = FPNTextField()
+        textField.layer.cornerRadius = 6
+        textField.backgroundColor = .accentColor
+        textField.textColor = .subtitleColor
+        textField.isUserInteractionEnabled = false
+        return textField
+    }()
 
     // MARK: - Buttons
     public lazy var editButton: UIButton = {
@@ -68,12 +78,13 @@ extension ProfileViewController {
             self.infoView.setupTitles(
                 title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
                 subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
-            self.phoneLabel = LabelView(text: "📞 \(FireStoreManager.shared.getUserPhoneNumber())", viewColor: .backgroundColor, textColor: .accentColor.withAlphaComponent(0.8))
+            self.phoneLabel.setupTitle(with: "📞 \(FireStoreManager.shared.getUserPhoneNumber())")
         }
 
         setupNavigationAppearence()
         setupConstraints()
 
+        phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
     }
 
     private func setupConstraints() {
@@ -102,7 +113,7 @@ extension ProfileViewController {
         }
 
         cardCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(favoriteLabel.snp.bottom)
+            make.top.equalTo(favoriteLabel.snp.bottom).offset(20)
             make.left.right.bottom.equalToSuperview()
         }
     }
@@ -114,8 +125,9 @@ extension ProfileViewController {
         stackView.spacing = 12
         stackView.distribution = .fill
 
+        phoneTF.snp.makeConstraints{$0.height.equalTo(30)}
         stackView.addArrangedSubview(infoView)
-        stackView.addArrangedSubview(phoneLabel)
+        stackView.addArrangedSubview(phoneTF)
 
         return stackView
     }
@@ -148,6 +160,7 @@ extension ProfileViewController {
     @objc private func editButtonTapped(_ sender: UIButton) {
         print("tik")
         let profileEditVC = ProfileEditViewController()
+        profileEditVC.phoneNumber = phoneTF.getFormattedPhoneNumber(format: .National)
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
 

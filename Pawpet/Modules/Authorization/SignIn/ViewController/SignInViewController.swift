@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Firebase
+import Lottie
 
 class SignInViewController: UIViewController {
 
@@ -36,6 +37,15 @@ class SignInViewController: UIViewController {
         return label
     }()
 
+    // MARK: - Animation view
+    private var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "Loading")
+        view.loopMode = .autoReverse
+        view.layer.allowsEdgeAntialiasing = true
+        view.contentMode = .scaleAspectFit
+        view.animationSpeed = 1.2
+        return view
+    }()
 
     // MARK: - TextFields
     private var emailTextField = AuthTextField("email@mail.com")
@@ -80,7 +90,6 @@ class SignInViewController: UIViewController {
     }()
 
     // MARK: AlertView
-
     private let alertView = AlertView()
 
     override func viewDidLoad() {
@@ -109,6 +118,7 @@ extension SignInViewController {
         view.addSubview(signUpStackView)
         view.addSubview(forgotButton)
         view.addSubview(signInButton)
+        view.addSubview(animationView)
 
         labelStackView.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(24)
@@ -134,6 +144,12 @@ extension SignInViewController {
             make.top.equalTo(signInButton.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
             make.height.equalTo(24)
+        }
+
+        animationView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(signUpStackView.snp.bottom).offset(20)
+            make.height.width.equalTo(260)
         }
     }
 
@@ -234,8 +250,12 @@ extension SignInViewController {
     }
 
     func pushToMainTabBarVC() {
-        let mainTabBarController = MainTabBarController()
-        mainTabBarController.modalPresentationStyle = .fullScreen
-        self.present(mainTabBarController, animated: true)
+        animationView.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+            let mainTabBarController = MainTabBarController()
+            mainTabBarController.modalPresentationStyle = .fullScreen
+            self.present(mainTabBarController, animated: true)
+            self.animationView.stop()
+        }
     }
 }

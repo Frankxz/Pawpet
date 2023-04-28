@@ -53,7 +53,10 @@ class LabelView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
+// MARK: - UI
+extension LabelView {
     private func setupConstraints(withSubtitle: Bool = false) {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -68,6 +71,13 @@ class LabelView: UIView {
         }
     }
 
+    func setupTitle(with text: String) {
+        mainLabel.text = text
+    }
+}
+
+// MARK: - Animate
+extension LabelView {
     func animate(newText: String, characterDelay: TimeInterval) {
         currentText = newText
         currentIndex = 0

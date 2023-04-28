@@ -14,6 +14,9 @@ class SignUpViewController4: BaseSignUpViewController {
     private let textView = UITextView()
     public var verificationID: String!
 
+    // MARK: AlertView
+    private let alertView = AlertView()
+
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +90,7 @@ extension SignUpViewController4: UITextViewDelegate {
     }
 
     func makeSymbolSpacing(text: String) {
-        let letterSpacing: CGFloat = 5
+        let letterSpacing: CGFloat = 1.5
         let text = textView.text ?? ""
 
         let attributes: [NSAttributedString.Key: Any] = [
@@ -110,15 +113,16 @@ extension SignUpViewController4 {
         if let currentUser = Auth.auth().currentUser {
             currentUser.link(with: credential) { (result, error) in
                 if let error = error {
-                    let alertActionController = UIAlertController(title: error.localizedDescription , message: nil, preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    alertActionController.addAction(cancelAction)
-                    self.present(alertActionController, animated: true)
+                    self.alertView.showAlert(with: "Ooops... error!", message: error.localizedDescription, on: self)
                 } else {
                     print("Accounts linked")
                     self.navigationController?.pushViewController(SignUpViewController5(), animated: true)
                 }
             }
         }
+    }
+
+    @objc private func dismissAlertView() {
+        alertView.dismissAlertView()
     }
 }

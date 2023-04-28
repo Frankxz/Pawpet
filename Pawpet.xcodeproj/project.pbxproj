@@ -96,6 +96,7 @@
 		C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */; };
 		C6FA2EED29FA8F7F00726A0A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */; };
 		C6FA2EF029FAA9F600726A0A /* PawpetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */; };
+		C6FA2EF229FAE87800726A0A /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EF129FAE87800726A0A /* Loading.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,7 @@
 		C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetUser.swift; sourceTree = "<group>"; };
+		C6FA2EF129FAE87800726A0A /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,6 +367,7 @@
 				C6490DC029D1DF12003F4A2F /* CompanyOption.json */,
 				C6490DCA29D5BA8B003F4A2F /* SadDog.json */,
 				C6CC0B9C29E749DC0070BC50 /* Success.json */,
+				C6FA2EF129FAE87800726A0A /* Loading.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */,
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
 				C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */,
+				C6FA2EF229FAE87800726A0A /* Loading.json in Resources */,
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
 				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,

@@ -27,7 +27,7 @@ class CardCollectionView: UICollectionView {
         layout.minimumLineSpacing = CardCollectionConstants.lineSpace
 
         contentInset = UIEdgeInsets(
-            top: -20,
+            top: -40,
             left: CardCollectionConstants.left,
             bottom: 60,
             right: CardCollectionConstants.right)

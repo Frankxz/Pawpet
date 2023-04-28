@@ -7,23 +7,27 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class ProfileEditViewController: UITableViewController {
 
     enum Section: Int, CaseIterable {
-           case nameAndSurname = 0
-           case geo
-           case contactInfo
-           case password
-           case logout
-       }
+        case nameAndSurname = 0
+        case geo
+        case contactInfo
+        case password
+        case logout
+    }
 
+    var phoneNumber: String?
+    
     // MARK: - ImageView
     private var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 16
         imageView.backgroundColor = .random()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -32,14 +36,14 @@ class ProfileEditViewController: UITableViewController {
 
     // MARK: Buttons
     private lazy var saveButton: UIBarButtonItem = {
-          let customAttributes: [NSAttributedString.Key: Any] = [
+        let customAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 20, weight: .medium),
-              .foregroundColor: UIColor.accentColor]
-          let saveButtonTitle = NSAttributedString(string: "Save", attributes: customAttributes)
-          let saveButton = UIButton(type: .system)
-          saveButton.setAttributedTitle(saveButtonTitle, for: .normal)
-          saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-          let saveBarButton = UIBarButtonItem(customView: saveButton)
+            .foregroundColor: UIColor.accentColor]
+        let saveButtonTitle = NSAttributedString(string: "Save", attributes: customAttributes)
+        let saveButton = UIButton(type: .system)
+        saveButton.setAttributedTitle(saveButtonTitle, for: .normal)
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        let saveBarButton = UIBarButtonItem(customView: saveButton)
         return saveBarButton
     }()
 
@@ -100,6 +104,7 @@ extension ProfileEditViewController {
         case .nameAndSurname:
             let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as! TextFieldTableViewCell
             cell.textField.placeholder = indexPath.row == 0 ? "Имя" : "Фамилия"
+            cell.textField.text = indexPath.row == 0 ? FireStoreManager.shared.user.name : FireStoreManager.shared.user.surname
             cell.backgroundColor = .backgroundColor
             return cell
 
@@ -113,6 +118,7 @@ extension ProfileEditViewController {
 
             leftLabel.textColor = .accentColor
             rightLabel.textColor = .subtitleColor
+            rightLabel.textAlignment = .right
 
             cell.contentView.addSubview(leftLabel)
             cell.contentView.addSubview(rightLabel)
@@ -123,21 +129,22 @@ extension ProfileEditViewController {
             }
 
             rightLabel.snp.makeConstraints { make in
-                make.trailing.equalToSuperview().offset(-16)
+                make.trailing.equalToSuperview().offset(-8)
+                make.width.equalTo(cell.contentView.bounds.width / 2 - 30)
                 make.centerY.equalToSuperview()
             }
 
             switch section {
             case .geo:
                 leftLabel.text = "Change location"
-                rightLabel.text = "Russia, Moscow"
+                rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
             case .contactInfo:
                 if indexPath.row == 0 {
                     leftLabel.text = "Change email"
-                    rightLabel.text = "email@mail.com"
+                    rightLabel.text = FireStoreManager.shared.getUserEmail()
                 } else {
                     leftLabel.text = "Change phone number"
-                    rightLabel.text = "+7 913 333 33 33"
+                    rightLabel.text = phoneNumber
                 }
             case .password:
                 leftLabel.text = "Change password"
@@ -216,9 +223,23 @@ extension ProfileEditViewController {
 }
 
 // MARK: - Button Logic
-extension ProfileEditViewController {
+extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc private func changeAvatarButtonTapped(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        avatarImageView.image = selectedImage
+        FireStoreManager.shared.saveImage(image: selectedImage)
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 
     @objc func saveButtonTapped() {

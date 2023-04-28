@@ -9,12 +9,15 @@ import UIKit
 import FirebaseAuth
 
 class SignUpViewController2: BaseSignUpViewController {
-
+    
     public var email: String!
     private var password: String?
 
     private let nextViewController = SignUpViewController3()
-    
+
+    // MARK: AlertView
+    private let alertView = AlertView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,15 +38,19 @@ class SignUpViewController2: BaseSignUpViewController {
 // MARK: - AUTH
 extension SignUpViewController2 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
-        print(email)
         Auth.auth().createUser(withEmail: email, password: textField.text!) { (result, error) in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
+                self.alertView.showAlert(with: "Ooops... error!", message: error.localizedDescription, on: self)
             } else {
                 print("User created: \(result?.user.uid ?? "")")
                 self.navigationController?.pushViewController(SignUpViewController3(), animated: true)
             }
         }
+    }
+
+    @objc private func dismissAlertView() {
+        alertView.dismissAlertView()
     }
 }
 

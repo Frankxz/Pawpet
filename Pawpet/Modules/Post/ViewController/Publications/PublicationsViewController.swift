@@ -131,7 +131,7 @@ extension PublicationsViewController {
         }
 
         cardCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(welcomeLabel.snp.bottom)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(20)
             make.left.right.bottom.equalToSuperview()
         }
 
