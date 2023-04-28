@@ -44,17 +44,6 @@ class CardCollectionHeaderView: UICollectionReusableView {
         return control
     }()
 
-    // MARK: - ImageView
-    private var avatarImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 8
-        imageView.layer.borderColor = UIColor.subtitleColor.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .random()
-        return imageView
-    }()
-
     // MARK: - CollectionView
     private let chapterCollectionView = ChapterCollectionView()
 }
@@ -69,7 +58,6 @@ extension CardCollectionHeaderView {
         let searchStackView = getSearchStackView()
 
         addSubview(searchStackView)
-        addSubview(avatarImageView)
         addSubview(sectionControl)
         addSubview(welcomeLabel)
         addSubview(chapterCollectionView)
@@ -78,7 +66,7 @@ extension CardCollectionHeaderView {
 
         welcomeLabel.snp.makeConstraints { make in
             make.left.equalToSuperview()
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
         }
 
         searchStackView.snp.makeConstraints { make in
@@ -97,12 +85,6 @@ extension CardCollectionHeaderView {
             make.left.right.equalToSuperview()
             make.top.equalTo(sectionControl.snp.bottom).offset(10)
             make.height.equalTo(140)
-        }
-
-        avatarImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(32)
-            make.top.equalTo(welcomeLabel.snp.top)
-            make.right.equalToSuperview()
         }
     }
 

@@ -87,7 +87,6 @@
 		C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */; };
 		C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */; };
 		C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */; };
-		C6FA2EDB29F555F100726A0A /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EDA29F555F100726A0A /* City.swift */; };
 		C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */; };
 		C6FA2EE129F8379500726A0A /* SignUpViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */; };
 		C6FA2EE329F837FD00726A0A /* SignUpViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE229F837FD00726A0A /* SignUpViewController2.swift */; };
@@ -97,6 +96,12 @@
 		C6FA2EED29FA8F7F00726A0A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */; };
 		C6FA2EF029FAA9F600726A0A /* PawpetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */; };
 		C6FA2EF229FAE87800726A0A /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EF129FAE87800726A0A /* Loading.json */; };
+		C6FA2EF429FC035A00726A0A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EF329FC035A00726A0A /* LoadingViewController.swift */; };
+		C6FA2EF729FC169100726A0A /* GeoSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EF629FC169100726A0A /* GeoSelectionViewController.swift */; };
+		C6FA2EFA29FC182A00726A0A /* GeoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EF929FC182A00726A0A /* GeoObject.swift */; };
+		C6FA2EFC29FC2C6700726A0A /* CountryChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EFB29FC2C6700726A0A /* CountryChangeViewController.swift */; };
+		C6FA2EFE29FC2CAF00726A0A /* CityChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EFD29FC2CAF00726A0A /* CityChangeViewController.swift */; };
+		C6FA2F0129FC375000726A0A /* EditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,7 +209,6 @@
 		C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
-		C6FA2EDA29F555F100726A0A /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController1.swift; sourceTree = "<group>"; };
 		C6FA2EE229F837FD00726A0A /* SignUpViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController2.swift; sourceTree = "<group>"; };
@@ -214,6 +218,12 @@
 		C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetUser.swift; sourceTree = "<group>"; };
 		C6FA2EF129FAE87800726A0A /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		C6FA2EF329FC035A00726A0A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C6FA2EF629FC169100726A0A /* GeoSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoSelectionViewController.swift; sourceTree = "<group>"; };
+		C6FA2EF929FC182A00726A0A /* GeoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoObject.swift; sourceTree = "<group>"; };
+		C6FA2EFB29FC2C6700726A0A /* CountryChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryChangeViewController.swift; sourceTree = "<group>"; };
+		C6FA2EFD29FC2CAF00726A0A /* CityChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityChangeViewController.swift; sourceTree = "<group>"; };
+		C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTableViewCell.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +307,7 @@
 			children = (
 				C6490D9829C8C435003F4A2F /* SignUp */,
 				C6490D9929C8C444003F4A2F /* SignIn */,
+				C6FA2EF529FC036300726A0A /* Loading */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -515,9 +526,8 @@
 		C6490DED29E5BE27003F4A2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C6FA2EF829FC181900726A0A /* Geo */,
 				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
-				C6CC0B9E29E8361F0070BC50 /* Country.swift */,
-				C6FA2EDA29F555F100726A0A /* City.swift */,
 				C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */,
 			);
 			path = Model;
@@ -543,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				C6BC2E6B29E889F200205F1C /* BaseSignUpViewController.swift */,
+				C6FA2EF629FC169100726A0A /* GeoSelectionViewController.swift */,
 			);
 			path = BaseSignUpViewController;
 			sourceTree = "<group>";
@@ -673,6 +684,8 @@
 			children = (
 				C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */,
 				C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */,
+				C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */,
+				C6FA2EFF29FC2CC300726A0A /* Geo */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -759,6 +772,32 @@
 				C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */,
 			);
 			path = AlertView;
+			sourceTree = "<group>";
+		};
+		C6FA2EF529FC036300726A0A /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EF329FC035A00726A0A /* LoadingViewController.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		C6FA2EF829FC181900726A0A /* Geo */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EF929FC182A00726A0A /* GeoObject.swift */,
+				C6CC0B9E29E8361F0070BC50 /* Country.swift */,
+			);
+			path = Geo;
+			sourceTree = "<group>";
+		};
+		C6FA2EFF29FC2CC300726A0A /* Geo */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EFB29FC2C6700726A0A /* CountryChangeViewController.swift */,
+				C6FA2EFD29FC2CAF00726A0A /* CityChangeViewController.swift */,
+			);
+			path = Geo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1015,6 +1054,7 @@
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
 				C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */,
+				C6FA2EF729FC169100726A0A /* GeoSelectionViewController.swift in Sources */,
 				C6FA2EC229F4428F00726A0A /* BottomSheetViewController.swift in Sources */,
 				C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
@@ -1028,6 +1068,7 @@
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
 				C6FA2EE129F8379500726A0A /* SignUpViewController1.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
+				C6FA2EF429FC035A00726A0A /* LoadingViewController.swift in Sources */,
 				C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */,
 				C6FA2EE329F837FD00726A0A /* SignUpViewController2.swift in Sources */,
 				C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */,
@@ -1045,6 +1086,7 @@
 				C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */,
 				C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
+				C6FA2EFA29FC182A00726A0A /* GeoObject.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
 				C6FA2EBE29F43D7C00726A0A /* AnimalSelectionView.swift in Sources */,
@@ -1064,15 +1106,17 @@
 				C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */,
 				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
 				C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */,
+				C6FA2F0129FC375000726A0A /* EditableTableViewCell.swift in Sources */,
 				C6FA2EE729F8396000726A0A /* SignUpViewController4.swift in Sources */,
+				C6FA2EFE29FC2CAF00726A0A /* CityChangeViewController.swift in Sources */,
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */,
 				C6FA2EED29FA8F7F00726A0A /* AlertView.swift in Sources */,
 				C6FA2EE529F838BD00726A0A /* SignUpViewController3.swift in Sources */,
+				C6FA2EFC29FC2C6700726A0A /* CountryChangeViewController.swift in Sources */,
 				C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */,
 				C6490D9529C8AB97003F4A2F /* OptionButton.swift in Sources */,
 				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
-				C6FA2EDB29F555F100726A0A /* City.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,

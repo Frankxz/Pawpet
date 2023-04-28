@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import SDWebImage
 
 class FireStoreManager {
     static let shared = FireStoreManager()
@@ -20,14 +21,14 @@ class FireStoreManager {
 
 // MARK: - Save USER DATA
 extension FireStoreManager {
-    func saveUserData(name: String, lastName: String, country: String, city: String) {
+    func saveUserData(for user: PawpetUser) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let userData: [String: Any] = [
-            "name": name,
-            "lastName": lastName,
-            "country": country,
-            "city": city
+            "name": user.name ?? "",
+            "surname": user.surname ?? "",
+            "country": user.country ?? "",
+            "city": user.city ?? ""
         ]
         
         ref.child("users").child(uid).setValue(userData) { error, _ in
@@ -83,6 +84,7 @@ extension FireStoreManager {
                     FireStoreManager.shared.user.surname = surname
                     FireStoreManager.shared.user.country = country
                     FireStoreManager.shared.user.city = city
+                    self.fetchAvatarImage()
                     completion()
                 } else {
                     print("Error parsing user data")
@@ -118,16 +120,49 @@ extension FireStoreManager {
 
 // MARK: Images FETCHING AND SAVING
 extension FireStoreManager {
-    func saveImage(image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.5), let userId = Auth.auth().currentUser?.uid else { return }
-        
-        let storageRef = Storage.storage().reference().child("images/\(userId).jpg")
-        storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+    func saveAvatarImage(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        let imagePath = "images/\(uid)/avatar.jpg"
+
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to convert image to JPEG data"])))
+            return
+        }
+
+        let storageRef = Storage.storage().reference().child(imagePath)
+        storageRef.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
-                print("Error saving image to Firebase Storage: \(error.localizedDescription)")
-                return
+                completion(.failure(error))
+            } else {
+                completion(.success(imagePath))
             }
-            print("Image saved successfully to Firebase Storage")
         }
     }
+
+    func fetchAvatarImage(imageView: UIImageView? = nil) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let imagePath = "images/\(uid)/avatar.jpg"
+
+        let storageRef = Storage.storage().reference().child(imagePath)
+        storageRef.downloadURL { (url, error) in
+            if let error = error {
+                print("Error getting download URL: \(error.localizedDescription)")
+                return
+            }
+
+            if let url = url {
+                if let imageView = imageView {
+                    imageView.sd_setImage(with: url, placeholderImage: nil, options: .retryFailed) { (image, error, _, _) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            FireStoreManager.shared.user.image = image
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

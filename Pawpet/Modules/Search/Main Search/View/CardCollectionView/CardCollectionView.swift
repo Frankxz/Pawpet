@@ -92,7 +92,7 @@ extension CardCollectionView {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 310) : CGSize(width: UIScreen.main.bounds.width, height: 40)
+        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 330) : CGSize(width: UIScreen.main.bounds.width, height: 40)
     }
 }
 

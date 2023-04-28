@@ -36,7 +36,7 @@ class CityTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    func configure(city: City) {
+    func configure(city: GeoObject) {
         textLabel?.text = city.name
         UIView.animate(withDuration: 0.3) {
             self.checkboxImageView.image = city.isChecked ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle")

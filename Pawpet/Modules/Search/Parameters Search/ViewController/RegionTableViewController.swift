@@ -9,13 +9,13 @@ import UIKit
 
 class RegionTableViewController: UIViewController {
 
-    private var filteredCities = [City]()
+    private var filteredCities = [GeoObject]()
     private var isSearching = false
-    private var selectedCity: City?
+    private var selectedCity: GeoObject?
 
-    public var cities: [City] = []
+    public var cities: [GeoObject] = []
 
-    let userRegionCity = City(name: "Moscow")
+    let userRegionCity = GeoObject(name: "Moscow", isChecked: true)
 
     let tableView = UITableView()
 
@@ -159,7 +159,7 @@ extension RegionTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var city: City!
+        var city: GeoObject!
         if isSearching {
             city = filteredCities[indexPath.row]
         } else {
@@ -228,7 +228,7 @@ extension RegionTableViewController {
             if let citiesDict = jsonResult as? [String: [String]],
                let fethcedCities = citiesDict[country] {
                 for item in fethcedCities {
-                    let city = City(name: item)
+                    let city = GeoObject(name: item, isChecked: false)
                     self.cities.append(city)
                     print("\(item) add")
                 }
@@ -239,8 +239,8 @@ extension RegionTableViewController {
         } catch { return }
     }
 
-    func getCheckedCities() -> [City] {
-        var checkedCities = [City]()
+    func getCheckedCities() -> [GeoObject] {
+        var checkedCities = [GeoObject]()
 
         if userRegionCity.isChecked {
             checkedCities.append(userRegionCity)

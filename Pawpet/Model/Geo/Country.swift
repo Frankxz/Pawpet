@@ -7,16 +7,13 @@
 
 import Foundation
 
-class Country {
-    let name: String
-    let geoCode: String
-    var cities: [City] = []
-    var isChecked: Bool
+class Country: GeoObject {
+    var geoCode: String = ""
+    var cities: [GeoObject] = []
 
     init(name: String, geoCode: String, isChecked: Bool = false) {
-        self.name = name
+        super.init(name: name, isChecked: isChecked)
         self.geoCode = geoCode
-        self.isChecked = isChecked
     }
 
     static func createCountries() -> [Country] {

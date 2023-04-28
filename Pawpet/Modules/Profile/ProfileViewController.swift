@@ -14,8 +14,9 @@ class ProfileViewController: UIViewController {
     private var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 16
-        imageView.backgroundColor = .random()
+        imageView.backgroundColor = .backgroundColor
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -68,22 +69,24 @@ class ProfileViewController: UIViewController {
         cardCollectionView.searchViewControllerDelegate = self
         cardCollectionView.cardsCount = 6
     }
-}
 
-// MARK: - UI + Constraints
-extension ProfileViewController {
-    private func configurateView() {
-        view.backgroundColor = .white
+    override func viewWillAppear(_ animated: Bool) {
+        FireStoreManager.shared.fetchAvatarImage(imageView: avatarImageView)
         FireStoreManager.shared.fetchUserData {
             self.infoView.setupTitles(
                 title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
                 subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
             self.phoneLabel.setupTitle(with: "📞 \(FireStoreManager.shared.getUserPhoneNumber())")
         }
+    }
+}
 
+// MARK: - UI + Constraints
+extension ProfileViewController {
+    private func configurateView() {
+        view.backgroundColor = .white
         setupNavigationAppearence()
         setupConstraints()
-
         phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
     }
 
@@ -160,6 +163,7 @@ extension ProfileViewController {
     @objc private func editButtonTapped(_ sender: UIButton) {
         print("tik")
         let profileEditVC = ProfileEditViewController()
+        profileEditVC.avatarImageView.image = avatarImageView.image
         profileEditVC.phoneNumber = phoneTF.getFormattedPhoneNumber(format: .National)
         navigationController?.pushViewController(profileEditVC, animated: true)
     }

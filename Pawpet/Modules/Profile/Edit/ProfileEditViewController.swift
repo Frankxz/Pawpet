@@ -20,9 +20,10 @@ class ProfileEditViewController: UITableViewController {
     }
 
     var phoneNumber: String?
-    
+    var sectionCount = Section.allCases.count
+
     // MARK: - ImageView
-    private var avatarImageView: UIImageView = {
+    public var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 16
         imageView.backgroundColor = .random()
@@ -62,11 +63,16 @@ class ProfileEditViewController: UITableViewController {
         return button
     }()
 
+    // MARK: user properties
+    private var user = PawpetUser()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        user = FireStoreManager.shared.user
         setupNavigationAppearence()
         navigationItem.rightBarButtonItem = saveButton
         configureTableView()
+        hideKeyboardWhenTappedAround()
     }
 }
 
@@ -76,6 +82,8 @@ extension ProfileEditViewController {
         tableView = UITableView(frame: view.bounds, style: .insetGrouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(TextFieldTableViewCell.self, forCellReuseIdentifier: "textFieldCell")
+        tableView.register(EditableTableViewCell.self, forCellReuseIdentifier: "editableCell")
+
         tableView.backgroundColor = .white
     }
 }
@@ -83,7 +91,7 @@ extension ProfileEditViewController {
 // MARK: - TableView DataSource
 extension ProfileEditViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        return sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,55 +112,33 @@ extension ProfileEditViewController {
         case .nameAndSurname:
             let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as! TextFieldTableViewCell
             cell.textField.placeholder = indexPath.row == 0 ? "Имя" : "Фамилия"
+            cell.textField.tag = indexPath.row == 0 ? 0 : 1
             cell.textField.text = indexPath.row == 0 ? FireStoreManager.shared.user.name : FireStoreManager.shared.user.surname
             cell.backgroundColor = .backgroundColor
+            cell.textField.delegate = self
             return cell
 
         case .geo, .contactInfo, .password:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.backgroundColor = .backgroundColor
-            cell.accessoryType = .disclosureIndicator
-
-            let leftLabel = UILabel()
-            let rightLabel = UILabel()
-
-            leftLabel.textColor = .accentColor
-            rightLabel.textColor = .subtitleColor
-            rightLabel.textAlignment = .right
-
-            cell.contentView.addSubview(leftLabel)
-            cell.contentView.addSubview(rightLabel)
-
-            leftLabel.snp.makeConstraints { make in
-                make.leading.equalToSuperview().offset(16)
-                make.centerY.equalToSuperview()
-            }
-
-            rightLabel.snp.makeConstraints { make in
-                make.trailing.equalToSuperview().offset(-8)
-                make.width.equalTo(cell.contentView.bounds.width / 2 - 30)
-                make.centerY.equalToSuperview()
-            }
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: "editableCell", for: indexPath) as! EditableTableViewCell
+            
             switch section {
             case .geo:
-                leftLabel.text = "Change location"
-                rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
+                cell.leftLabel.text = "Change location"
+                cell.rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
             case .contactInfo:
                 if indexPath.row == 0 {
-                    leftLabel.text = "Change email"
-                    rightLabel.text = FireStoreManager.shared.getUserEmail()
+                    cell.leftLabel.text = "Change email"
+                    cell.rightLabel.text = FireStoreManager.shared.getUserEmail()
                 } else {
-                    leftLabel.text = "Change phone number"
-                    rightLabel.text = phoneNumber
+                    cell.leftLabel.text = "Change phone number"
+                    cell.rightLabel.text = phoneNumber
                 }
             case .password:
-                leftLabel.text = "Change password"
-                rightLabel.text = "••••••"
+                cell.leftLabel.text = "Change password"
+                cell.rightLabel.text = "••••••"
             default:
                 break
             }
-
             return cell
 
         case .logout:
@@ -216,7 +202,18 @@ extension ProfileEditViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         print("section: \(indexPath.section), row: \(indexPath.row)")
 
-        if indexPath.section == 4 {
+        if indexPath.section == 1 {
+            let countryChangeVC = CountryChangeViewController(geoObjects: Country.createCountries(), geoVCType: .country)
+            countryChangeVC.callback = {
+                self.user = FireStoreManager.shared.user
+                tableView.reloadData()
+                self.saveButtonTapped()
+            }
+            let navigationVC = UINavigationController(rootViewController: countryChangeVC)
+            navigationVC.modalPresentationStyle = .fullScreen
+            present(navigationVC, animated: true)
+        }
+        else if indexPath.section == 4 {
             logout()
         }
     }
@@ -234,7 +231,14 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         avatarImageView.image = selectedImage
-        FireStoreManager.shared.saveImage(image: selectedImage)
+        FireStoreManager.shared.saveAvatarImage(image: selectedImage) { result in
+            switch result {
+            case .success(let imagePath):
+                print("Image saved to Firebase Storage with path: \(imagePath)")
+            case .failure(let error):
+                print("Error saving image to Firebase Storage: \(error.localizedDescription)")
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
 
@@ -243,7 +247,8 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     }
 
     @objc func saveButtonTapped() {
-
+        FireStoreManager.shared.saveUserData(for: user)
+        print("\(user.name ?? "") \(user.surname ?? "")")
     }
 
     private func logout() {
@@ -256,3 +261,10 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     }
 }
 
+// MARK: UITextFieldDelegate
+extension ProfileEditViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.tag == 0 ? (user.name = textField.text) : (user.surname = textField.text)
+    }
+
+}
