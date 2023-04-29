@@ -10,7 +10,7 @@ import Lottie
 
 class SignUpViewController5: BaseSignUpViewController {
     // MARK: - UI components
-    private var surnameTextField = AuthTextField("Surname", isSecure: false)
+    var secondTextField = AuthTextField("Surname", isSecure: false)
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
@@ -27,9 +27,9 @@ class SignUpViewController5: BaseSignUpViewController {
 // MARK: - UI + Constraints
 extension SignUpViewController5 {
     private func setupSurnameTF() {
-        view.addSubview(surnameTextField)
+        view.addSubview(secondTextField)
 
-        surnameTextField.snp.makeConstraints { make in
+        secondTextField.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(textField.snp.bottom).offset(10)
         }
@@ -38,7 +38,7 @@ extension SignUpViewController5 {
 
         nextButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalTo(surnameTextField.snp.bottom).offset(20)
+            make.top.equalTo(secondTextField.snp.bottom).offset(20)
             make.height.equalTo(70)
         }
     }
@@ -48,7 +48,7 @@ extension SignUpViewController5 {
 extension SignUpViewController5 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
         UserDefaults.standard.set(textField.text, forKey: "NAME")
-        UserDefaults.standard.set(surnameTextField.text, forKey: "SURNAME")
+        UserDefaults.standard.set(secondTextField.text, forKey: "SURNAME")
         navigationController?.pushViewController(SignUpViewController6(geoObjects: Country.createCountries(), geoVCType: .country), animated: true)
     }
 }

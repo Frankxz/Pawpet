@@ -51,6 +51,7 @@ extension SignUpViewController1: UITextFieldDelegate {
         nextViewController.email = textField.text
         self.nextVC = nextViewController
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if isValidEmail(textField.text ?? "") {
             nextButton.alpha = 1

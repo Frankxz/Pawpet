@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class AlertView: UIView {
+class ErrorAlertView: UIView {
 
     private let dimmedView: UIView = {
         let view = UIView()
@@ -57,7 +57,7 @@ class AlertView: UIView {
 }
 
 // MARK: - UI + Constraints
-extension AlertView {
+extension ErrorAlertView {
     private func setupContainerView() {
         let stackView = getStackView()
 
@@ -90,7 +90,7 @@ extension AlertView {
     }
 }
 // MARK: - Appearing & Disappering logic
-extension AlertView {
+extension ErrorAlertView {
     func showAlert(with title: String, message: String, on viewController: UIViewController) {
         guard let targetView = viewController.view else { return }
         self.targetView = targetView

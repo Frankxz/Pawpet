@@ -93,7 +93,7 @@
 		C6FA2EE529F838BD00726A0A /* SignUpViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE429F838BD00726A0A /* SignUpViewController3.swift */; };
 		C6FA2EE729F8396000726A0A /* SignUpViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */; };
 		C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */; };
-		C6FA2EED29FA8F7F00726A0A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */; };
+		C6FA2EED29FA8F7F00726A0A /* ErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEC29FA8F7F00726A0A /* ErrorAlertView.swift */; };
 		C6FA2EF029FAA9F600726A0A /* PawpetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */; };
 		C6FA2EF229FAE87800726A0A /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EF129FAE87800726A0A /* Loading.json */; };
 		C6FA2EF429FC035A00726A0A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EF329FC035A00726A0A /* LoadingViewController.swift */; };
@@ -102,6 +102,11 @@
 		C6FA2EFC29FC2C6700726A0A /* CountryChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EFB29FC2C6700726A0A /* CountryChangeViewController.swift */; };
 		C6FA2EFE29FC2CAF00726A0A /* CityChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EFD29FC2CAF00726A0A /* CityChangeViewController.swift */; };
 		C6FA2F0129FC375000726A0A /* EditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */; };
+		C6FA2F0729FD2B4E00726A0A /* EmailChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0629FD2B4E00726A0A /* EmailChangeViewController.swift */; };
+		C6FA2F0929FD2F2500726A0A /* SuccessAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0829FD2F2500726A0A /* SuccessAlertView.swift */; };
+		C6FA2F0B29FD625700726A0A /* PNChangeViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0A29FD625700726A0A /* PNChangeViewController1.swift */; };
+		C6FA2F0D29FD678700726A0A /* PNChangeViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0C29FD678700726A0A /* PNChangeViewController2.swift */; };
+		C6FA2F0F29FD798600726A0A /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F0E29FD798500726A0A /* PasswordChangeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +220,7 @@
 		C6FA2EE429F838BD00726A0A /* SignUpViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController3.swift; sourceTree = "<group>"; };
 		C6FA2EE629F8396000726A0A /* SignUpViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController4.swift; sourceTree = "<group>"; };
 		C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
-		C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		C6FA2EEC29FA8F7F00726A0A /* ErrorAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertView.swift; sourceTree = "<group>"; };
 		C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetUser.swift; sourceTree = "<group>"; };
 		C6FA2EF129FAE87800726A0A /* Loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		C6FA2EF329FC035A00726A0A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +229,11 @@
 		C6FA2EFB29FC2C6700726A0A /* CountryChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryChangeViewController.swift; sourceTree = "<group>"; };
 		C6FA2EFD29FC2CAF00726A0A /* CityChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityChangeViewController.swift; sourceTree = "<group>"; };
 		C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTableViewCell.swift; sourceTree = "<group>"; };
+		C6FA2F0629FD2B4E00726A0A /* EmailChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailChangeViewController.swift; sourceTree = "<group>"; };
+		C6FA2F0829FD2F2500726A0A /* SuccessAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAlertView.swift; sourceTree = "<group>"; };
+		C6FA2F0A29FD625700726A0A /* PNChangeViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNChangeViewController1.swift; sourceTree = "<group>"; };
+		C6FA2F0C29FD678700726A0A /* PNChangeViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNChangeViewController2.swift; sourceTree = "<group>"; };
+		C6FA2F0E29FD798500726A0A /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -682,10 +692,8 @@
 		C6FA2EB029F2ECC000726A0A /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */,
-				C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */,
-				C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */,
-				C6FA2EFF29FC2CC300726A0A /* Geo */,
+				C6FA2F0229FD2AE100726A0A /* ViewController */,
+				C6FA2F0329FD2AF300726A0A /* View */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -769,7 +777,8 @@
 		C6FA2EEE29FA8F8400726A0A /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
-				C6FA2EEC29FA8F7F00726A0A /* AlertView.swift */,
+				C6FA2EEC29FA8F7F00726A0A /* ErrorAlertView.swift */,
+				C6FA2F0829FD2F2500726A0A /* SuccessAlertView.swift */,
 			);
 			path = AlertView;
 			sourceTree = "<group>";
@@ -798,6 +807,68 @@
 				C6FA2EFD29FC2CAF00726A0A /* CityChangeViewController.swift */,
 			);
 			path = Geo;
+			sourceTree = "<group>";
+		};
+		C6FA2F0229FD2AE100726A0A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F0429FD2B0D00726A0A /* Main */,
+				C6FA2EFF29FC2CC300726A0A /* Geo */,
+				C6FA2F0529FD2B1F00726A0A /* Creditonals */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C6FA2F0329FD2AF300726A0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EB129F2ECE500726A0A /* TextFieldTableViewCell.swift */,
+				C6FA2F0029FC375000726A0A /* EditableTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C6FA2F0429FD2B0D00726A0A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C6FA2F0529FD2B1F00726A0A /* Creditonals */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F1029FD798D00726A0A /* Email */,
+				C6FA2F1129FD799300726A0A /* Phone */,
+				C6FA2F1229FD79A300726A0A /* Password */,
+			);
+			path = Creditonals;
+			sourceTree = "<group>";
+		};
+		C6FA2F1029FD798D00726A0A /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F0629FD2B4E00726A0A /* EmailChangeViewController.swift */,
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		C6FA2F1129FD799300726A0A /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F0A29FD625700726A0A /* PNChangeViewController1.swift */,
+				C6FA2F0C29FD678700726A0A /* PNChangeViewController2.swift */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		C6FA2F1229FD79A300726A0A /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F0E29FD798500726A0A /* PasswordChangeViewController.swift */,
+			);
+			path = Password;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1054,6 +1125,7 @@
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
 				C6CC0B9529E727170070BC50 /* PostViewController_7.swift in Sources */,
 				C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */,
+				C6FA2F0D29FD678700726A0A /* PNChangeViewController2.swift in Sources */,
 				C6FA2EF729FC169100726A0A /* GeoSelectionViewController.swift in Sources */,
 				C6FA2EC229F4428F00726A0A /* BottomSheetViewController.swift in Sources */,
 				C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */,
@@ -1086,10 +1158,12 @@
 				C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */,
 				C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
+				C6FA2F0F29FD798600726A0A /* PasswordChangeViewController.swift in Sources */,
 				C6FA2EFA29FC182A00726A0A /* GeoObject.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
 				C6FA2EBE29F43D7C00726A0A /* AnimalSelectionView.swift in Sources */,
+				C6FA2F0B29FD625700726A0A /* PNChangeViewController1.swift in Sources */,
 				C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */,
 				C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
@@ -1111,7 +1185,7 @@
 				C6FA2EFE29FC2CAF00726A0A /* CityChangeViewController.swift in Sources */,
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* AuthTextField.swift in Sources */,
-				C6FA2EED29FA8F7F00726A0A /* AlertView.swift in Sources */,
+				C6FA2EED29FA8F7F00726A0A /* ErrorAlertView.swift in Sources */,
 				C6FA2EE529F838BD00726A0A /* SignUpViewController3.swift in Sources */,
 				C6FA2EFC29FC2C6700726A0A /* CountryChangeViewController.swift in Sources */,
 				C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */,
@@ -1119,9 +1193,11 @@
 				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */,
+				C6FA2F0729FD2B4E00726A0A /* EmailChangeViewController.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C6CC0B9929E72A820070BC50 /* PhotoCollectionViewCell.swift in Sources */,
+				C6FA2F0929FD2F2500726A0A /* SuccessAlertView.swift in Sources */,
 				C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */,
 				C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */,
 				C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */,

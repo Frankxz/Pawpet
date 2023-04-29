@@ -16,7 +16,7 @@ class SignUpViewController2: BaseSignUpViewController {
     private let nextViewController = SignUpViewController3()
 
     // MARK: AlertView
-    private let alertView = AlertView()
+    private let alertView = ErrorAlertView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,8 @@ extension SignUpViewController2: UITextFieldDelegate {
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if isValidPassword(textField.text ?? "") {
+        guard let text = textField.text else { return true }
+        if isValidPassword("\(text)\(string)") {
             nextButton.alpha = 1
             nextButton.isEnabled = true
         } else {

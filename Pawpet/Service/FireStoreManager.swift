@@ -166,3 +166,59 @@ extension FireStoreManager {
     }
 
 }
+
+// MARK: - EMAIL & PHONE & PASSWORD UPDATING
+extension FireStoreManager {
+    func updateEmail(to newEmail: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    func updatePhoneNumber(verificationID: String, verificationCode: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let credential = PhoneAuthProvider.provider().credential(
+            withVerificationID: verificationID,
+            verificationCode: verificationCode
+        )
+
+        Auth.auth().currentUser?.updatePhoneNumber(credential) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    func updatePassword(to newPassword: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+}
+
+// MARK: - reauthenticateUser
+extension FireStoreManager {
+    func reauthenticateUser(password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        if let currentUser = Auth.auth().currentUser {
+            let credential = EmailAuthProvider.credential(withEmail: currentUser.email!, password: password)
+            currentUser.reauthenticate(with: credential) { authResult, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            }
+        } else {
+            completion(.failure(NSError(domain: "FirebaseAuth", code: -1, userInfo: [NSLocalizedDescriptionKey: "Current user not found"])))
+        }
+    }
+}

@@ -63,20 +63,22 @@ extension BaseSignUpViewController {
         }
     }
 
-    public func setupAnimationView(with animationName: String) {
+    public func setupAnimationView(with animationName: String, topOffset: CGFloat = 10, loopMode: LottieLoopMode = .loop, beginPlay: Bool = true, siteSize: CGFloat = 140 ) {
         animationView = LottieAnimationView(name: animationName)
         if let animationView = animationView {
-            animationView.loopMode = .loop
+            animationView.loopMode = loopMode
             animationView.layer.allowsEdgeAntialiasing = true
             animationView.contentMode = .scaleAspectFill
-            animationView.play()
+            if beginPlay {
+                animationView.play()
+            }
 
             view.addSubview(animationView)
             animationView.snp.makeConstraints { make in
-                make.height.equalTo(140)
+                make.height.equalTo(siteSize)
                 make.width.equalTo(260)
                 make.centerX.equalToSuperview()
-                make.top.equalTo(nextButton.snp.bottom).offset(10)
+                make.top.equalTo(nextButton.snp.bottom).offset(topOffset)
             }
         }
     }

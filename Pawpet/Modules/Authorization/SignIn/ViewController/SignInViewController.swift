@@ -90,7 +90,7 @@ class SignInViewController: UIViewController {
     }()
 
     // MARK: AlertView
-    private let alertView = AlertView()
+    private let alertView = ErrorAlertView()
 
     override func viewDidLoad() {
         super.viewDidLoad()

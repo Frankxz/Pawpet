@@ -11,11 +11,13 @@ import FirebaseAuth
 
 class SignUpViewController4: BaseSignUpViewController {
 
-    private let textView = UITextView()
+    public let textView = UITextView()
     public var verificationID: String!
-
+    
+    var callback: ()->() = {}
+    
     // MARK: AlertView
-    private let alertView = AlertView()
+    public let alertView = ErrorAlertView()
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {

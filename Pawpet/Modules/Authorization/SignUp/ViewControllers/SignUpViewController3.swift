@@ -14,12 +14,14 @@ import Firebase
 class SignUpViewController3: BaseSignUpViewController {
 
     // MARK: Phone TF
-    private let phoneTextField = FPNTextField()
+    public let phoneTextField = FPNTextField()
     private var listController: FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
-    private var phoneNumber: String?
+    public var phoneNumber: String?
 
     // MARK: AlertView
-    private let alertView = AlertView()
+    public let alertView = ErrorAlertView()
+
+    public var confirmationVC = SignUpViewController4()
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
@@ -27,7 +29,6 @@ class SignUpViewController3: BaseSignUpViewController {
         promptView.setupTitles(title: "Enter your phone number", subtitle: "This will help us verify that you are a real human and avoid malicious attacks. Also, the phone number will help you restore access to your account.")
         setupAnimationView(with: "WatchingDog")
         configurePhoneTF()
-
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
     }
 
@@ -101,9 +102,6 @@ extension SignUpViewController3: FPNTextFieldDelegate {
 extension SignUpViewController3 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
         guard phoneNumber != nil else { return }
-
-        self.pushToVerificationVC(with: "verificationID!")
-
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber!, uiDelegate: nil) { (verificationID, error) in
             if error != nil {
                 self.alertView.showAlert(with: "Ooops... error!", message: error!.localizedDescription, on: self)
@@ -114,9 +112,8 @@ extension SignUpViewController3 {
     }
 
     private func pushToVerificationVC(with verificationID: String) {
-        let verificationVC = SignUpViewController4()
-        verificationVC.verificationID = verificationID
-        self.navigationController?.pushViewController(verificationVC, animated: true)
+        confirmationVC.verificationID = verificationID
+        self.navigationController?.pushViewController(confirmationVC, animated: true)
     }
 
     @objc private func dismissAlertView() {

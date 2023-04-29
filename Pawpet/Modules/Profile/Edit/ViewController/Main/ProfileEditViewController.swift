@@ -6,21 +6,11 @@
 //
 
 import UIKit
+import Lottie
 import Firebase
 import FirebaseStorage
 
 class ProfileEditViewController: UITableViewController {
-
-    enum Section: Int, CaseIterable {
-        case nameAndSurname = 0
-        case geo
-        case contactInfo
-        case password
-        case logout
-    }
-
-    var phoneNumber: String?
-    var sectionCount = Section.allCases.count
 
     // MARK: - ImageView
     public var avatarImageView: UIImageView = {
@@ -34,6 +24,16 @@ class ProfileEditViewController: UITableViewController {
 
     // MARK: PromptView
     public var promptView = PromptView(with: "Profile settings", and: "To save the changed information, click on the save button in the upper right corner.")
+
+    // MARK: - Lottie View
+    public var animationView: LottieAnimationView = {
+        let view = LottieAnimationView(name: "Loading")
+        view.loopMode = .autoReverse
+        view.layer.allowsEdgeAntialiasing = true
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
 
     // MARK: Buttons
     private lazy var saveButton: UIBarButtonItem = {
@@ -66,13 +66,22 @@ class ProfileEditViewController: UITableViewController {
     // MARK: user properties
     private var user = PawpetUser()
 
+    // MARK: AlertView
+    private let alertView = SuccessAlertView()
+
+    var phoneNumber: String?
+    var sectionCount = Section.allCases.count
+    var callBack: ()->() = {}
+
     override func viewDidLoad() {
         super.viewDidLoad()
         user = FireStoreManager.shared.user
-        setupNavigationAppearence()
-        navigationItem.rightBarButtonItem = saveButton
+
         configureTableView()
         hideKeyboardWhenTappedAround()
+        setupNavigationAppearence()
+
+        navigationItem.rightBarButtonItem = saveButton
     }
 }
 
@@ -167,6 +176,13 @@ extension ProfileEditViewController {
             view.addSubview(promptView)
             view.addSubview(avatarImageView)
             view.addSubview(changeAvatarButton)
+            view.addSubview(animationView)
+
+            animationView.snp.makeConstraints { make in
+                make.top.equalTo(avatarImageView.snp.top).inset(-30)
+                make.height.width.equalTo(160)
+                make.centerX.equalToSuperview()
+            }
 
             promptView.snp.makeConstraints { make in
                 make.left.right.equalToSuperview()
@@ -184,6 +200,8 @@ extension ProfileEditViewController {
                 make.centerX.equalToSuperview()
                 make.top.equalTo(avatarImageView.snp.bottom)
             }
+
+            hideAnimationView()
         }
         return view
     }
@@ -196,30 +214,72 @@ extension ProfileEditViewController {
         return 44.0
     }
 }
+
 // MARK: - UITableViewDelegate
 extension ProfileEditViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print("section: \(indexPath.section), row: \(indexPath.row)")
 
-        if indexPath.section == 1 {
-            let countryChangeVC = CountryChangeViewController(geoObjects: Country.createCountries(), geoVCType: .country)
-            countryChangeVC.callback = {
-                self.user = FireStoreManager.shared.user
-                tableView.reloadData()
-                self.saveButtonTapped()
-            }
-            let navigationVC = UINavigationController(rootViewController: countryChangeVC)
-            navigationVC.modalPresentationStyle = .fullScreen
-            present(navigationVC, animated: true)
+        if indexPath.section == 1 { locationRowSelected() }
+        else if indexPath.section == 2 {
+            if indexPath.row == 0 { emailRowSelected() }
+            else if indexPath.row == 1 { phoneRowSelected() }
         }
-        else if indexPath.section == 4 {
-            logout()
-        }
+        else if indexPath.section == 3 { passwordRowSelected() }
+        else if indexPath.section == 4 { logout() }
     }
 }
 
-// MARK: - Button Logic
+// MARK: - ROW Selection LOGIC
+extension ProfileEditViewController {
+    private func emailRowSelected() {
+        let emailChangeVC = EmailChangeViewController()
+        emailChangeVC.editVCDelegate = self
+        navigationController?.pushViewController(emailChangeVC, animated: true)
+    }
+
+    private func passwordRowSelected() {
+        let changePasswordVC = PasswordChangeViewController()
+        changePasswordVC.editVCDelegate = self
+        navigationController?.pushViewController(changePasswordVC, animated: true)
+    }
+
+    private func locationRowSelected() {
+        let countryEditVC = CountryChangeViewController(geoObjects: Country.createCountries(), geoVCType: .country)
+
+        countryEditVC.callback = { [self] in
+            self.user = FireStoreManager.shared.user
+            tableView.reloadData()
+            self.saveButtonTapped()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.alertView.showAlert(with: "Location successfully changed.", message: "Current location: \(self.user.country ?? ""), \(self.user.city ?? "")", on: self)
+            }
+        }
+
+        let navigationVC = UINavigationController(rootViewController: countryEditVC)
+        navigationVC.modalPresentationStyle = .fullScreen
+        present(navigationVC, animated: true)
+    }
+
+    private func phoneRowSelected() {
+        let phoneNumberChangeVC = PNChangeViewController1()
+
+        phoneNumberChangeVC.callback = { [self] in
+            tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.alertView.showAlert(with: "Ph. No. successfully changed.", message: "Current number: \(FireStoreManager.shared.getUserPhoneNumber())", on: self)
+            }
+        }
+
+        let navigationVC = UINavigationController(rootViewController: phoneNumberChangeVC)
+        navigationVC.modalPresentationStyle = .fullScreen
+        present(navigationVC, animated: true)
+    }
+}
+
+// MARK: - Avatar changing
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc private func changeAvatarButtonTapped(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
@@ -230,12 +290,18 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
-        avatarImageView.image = selectedImage
+        showAnimationView()
+
         FireStoreManager.shared.saveAvatarImage(image: selectedImage) { result in
             switch result {
             case .success(let imagePath):
                 print("Image saved to Firebase Storage with path: \(imagePath)")
+                let alertView = SuccessAlertView()
+                self.avatarImageView.image = selectedImage
+                self.hideAnimationView()
+                alertView.showAlert(with: "Avatar successfully changed.", message: "", on: self)
             case .failure(let error):
+                self.hideAnimationView()
                 print("Error saving image to Firebase Storage: \(error.localizedDescription)")
             }
         }
@@ -245,7 +311,10 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
 
+// MARK: - Save & Logout buttons logic
+extension ProfileEditViewController {
     @objc func saveButtonTapped() {
         FireStoreManager.shared.saveUserData(for: user)
         print("\(user.name ?? "") \(user.surname ?? "")")
@@ -263,8 +332,58 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
 
 // MARK: UITextFieldDelegate
 extension ProfileEditViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.tag == 0 ? (user.name = textField.text) : (user.surname = textField.text)
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let textWithNewChar = text + string
+        print(textWithNewChar)
+        textField.tag == 0 ? (user.name = textWithNewChar) : (user.surname = textWithNewChar)
+        return true
+    }
+}
+
+// MARK: - EmailChangeDelegate realization
+extension ProfileEditViewController: EmailChangeDelegate {
+    func showSuccessAlert(with newEmail: String) {
+        let alertView = SuccessAlertView()
+        alertView.showAlert(with: "Email successfully changed.", message: "Current email: \(newEmail)", on: self)
+        tableView.reloadData()
+    }
+}
+
+// MARK: - PasswordChangeDelegate realization
+extension ProfileEditViewController: PasswordChangeDelegate {
+    func showSuccesAlert() {
+        let alertView = SuccessAlertView()
+        alertView.showAlert(with: "Password successfully changed.", message: "", on: self)
+    }
+}
+
+// MARK: - Section ENUM
+extension ProfileEditViewController {
+    enum Section: Int, CaseIterable {
+        case nameAndSurname = 0
+        case geo
+        case contactInfo
+        case password
+        case logout
+    }
+}
+
+// MARK: Animation View
+extension ProfileEditViewController {
+    func showAnimationView() {
+        UIView.animate(withDuration: 0.15) {
+            self.avatarImageView.isHidden = true
+            self.animationView.isHidden = false
+            self.animationView.play()
+        }
     }
 
+    func hideAnimationView() {
+        UIView.animate(withDuration: 0.15) {
+            self.avatarImageView.isHidden = false
+            self.animationView.isHidden = true
+            self.animationView.stop()
+        }
+    }
 }
