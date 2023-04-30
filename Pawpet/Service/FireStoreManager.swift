@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
 
@@ -221,4 +222,18 @@ extension FireStoreManager {
             completion(.failure(NSError(domain: "FirebaseAuth", code: -1, userInfo: [NSLocalizedDescriptionKey: "Current user not found"])))
         }
     }
+}
+
+// MARK: - Password reset
+extension FireStoreManager {
+    func sendPasswordResetToEmail(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
 }

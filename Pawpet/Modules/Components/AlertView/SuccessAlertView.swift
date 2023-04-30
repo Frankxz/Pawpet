@@ -58,7 +58,7 @@ extension SuccessAlertView {
 
 // MARK: - Appearing & Disappering logic
 extension SuccessAlertView {
-    func showAlert(with title: String, message: String, on viewController: UIViewController) {
+    func showAlert(with title: String, message: String, on viewController: UIViewController, topOffset: CGFloat = 0) {
         guard let targetView = viewController.view else { return }
         self.targetView = targetView
 
@@ -68,7 +68,7 @@ extension SuccessAlertView {
         self.frame = getFrame(for: .hide)
 
         UIView.animate(withDuration: 0.25, animations: {
-            self.frame = self.getFrame(for: .show)
+            self.frame = self.getFrame(for: .show, topOffset: topOffset)
             self.animationView.play()
         }) { ended in
             if ended {
@@ -88,13 +88,13 @@ extension SuccessAlertView {
 
 // MARK: - Frame computing
 extension SuccessAlertView {
-    private func getFrame(for type: AlertFrameType) -> CGRect {
+    private func getFrame(for type: AlertFrameType, topOffset: CGFloat = 0) -> CGRect {
         if type == .hide {
-           return CGRect(x: 20, y: -170,
-                   width: UIScreen.main.bounds.width - 40, height: 70)
+           return CGRect(x: 10, y: -170,
+                   width: UIScreen.main.bounds.width - 20, height: 70)
         } else {
-           return CGRect(x: 20, y: 0,
-                   width: UIScreen.main.bounds.width - 40, height: 70)
+           return CGRect(x: 10, y: topOffset,
+                   width: UIScreen.main.bounds.width - 20, height: 70)
         }
     }
 

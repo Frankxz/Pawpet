@@ -221,7 +221,12 @@ extension SignInViewController {
     }
 
     @objc private func forgotButtonTapped(_ sender: UIButton) {
-
+        let passwordResetVC = PasswordResetViewController()
+        navigationController?.pushViewController(passwordResetVC, animated: true)
+        passwordResetVC.callBack = {
+            let alertView = SuccessAlertView()
+            alertView.showAlert(with: "Password reset email sent.", message: "Follow the instructions in the email.", on: self, topOffset: 60)
+        }
     }
 
     @objc private func dismissAlertView() {
