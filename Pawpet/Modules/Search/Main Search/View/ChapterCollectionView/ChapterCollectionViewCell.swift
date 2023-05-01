@@ -10,6 +10,7 @@ import UIKit
 class ChapterCollectionViewCell: UICollectionViewCell {
 
     static let reuseId = "ChapterCell"
+    var petType: PetType?
 
     // MARK: - UI components
     let mainImageView: UIImageView = {
@@ -48,5 +49,10 @@ class ChapterCollectionViewCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func configure(type: PetType) {
+        self.petType = type
+        nameLabel.text = type.getName()
     }
 }

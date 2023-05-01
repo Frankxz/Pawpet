@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import Firebase
 
 class PublicationsViewController: UIViewController {
 
@@ -71,9 +72,20 @@ class PublicationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
-        cardCollectionView.cardsCount = 2
         cardCollectionView.searchViewControllerDelegate = self
         //setupConstraintsForPlugView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        FireStoreManager.shared.fetchPublicationsForUser(userID: Auth.auth().currentUser!.uid) { fetchedPublications in
+            if fetchedPublications.count == self.cardCollectionView.publications.count {
+                self.cardCollectionView.isNeedAnimate = false
+            } else {
+                self.cardCollectionView.isNeedAnimate = true
+            }
+            self.cardCollectionView.publications = fetchedPublications
+            self.cardCollectionView.reloadData()
+        }
     }
 }
 
@@ -114,7 +126,6 @@ extension PublicationsViewController {
 // MARK: - UI + Constraints in case posts > 0
 extension PublicationsViewController {
     private func configurateView() {
-        cardCollectionView.cardsCount = 6
         view.backgroundColor = .white
         setupNavigationAppearence()
         setupConstraints()
@@ -145,12 +156,14 @@ extension PublicationsViewController {
 
 // MARK:  Delegate
 extension PublicationsViewController: SearchViewControllerDelegate {
-    func pushToParams() { }
-
-    func pushToDetailVC() {
+    func pushToDetailVC(of publication: Publication) {
         print("Push to DetailVC")
-        navigationController?.pushViewController(OwnDetailViewController(), animated: true)
+        let detailVC = OwnDetailViewController()
+        detailVC.configure(with: publication)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
+
+    func pushToParams() { }
 }
 
 // MARK: - Button logic

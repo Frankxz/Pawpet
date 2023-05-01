@@ -12,8 +12,7 @@ class DetailViewController: UIViewController {
     private var mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-       // imageView.backgroundColor = .random()
-        imageView.image = UIImage(named: "husky3")
+        imageView.backgroundColor = .backgroundColor
         return imageView
     }()
 
@@ -46,6 +45,11 @@ class DetailViewController: UIViewController {
         return button
     }()
 
+    // MARK: PhotosPageVC
+    var photosPageVC: PhotosPageViewController?
+
+    var publication: Publication?
+
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +61,14 @@ class DetailViewController: UIViewController {
 
 // MARK: - UI + Constraints
 extension DetailViewController {
+    public func configure(with publication: Publication) {
+        if publication.pictures.count != 0 {
+            mainImageView.image = publication.pictures.first
+            photosPageVC = PhotosPageViewController(images: publication.pictures)
+        }
+        infoView.configure(with: publication)
+    }
+
     private func configurateView() {
         setupNavigationAppearence()
         infoView.delegate = self
@@ -111,11 +123,11 @@ extension DetailViewController {
 extension DetailViewController {
     @objc private func connectButtonTapped(_ sender: UIButton) {
         print("Connect..")
-      
     }
 
     @objc private func checkPhotosTapped(_ sender: UIButton) {
-        present(PhotosPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal), animated: true)
+        photosPageVC?.modalPresentationStyle = .fullScreen
+        present(photosPageVC!, animated: true)
     }
 }
 
@@ -128,6 +140,4 @@ extension DetailViewController: MainViewControllerDelegate {
     func subviewToBack() {
         view.bringSubviewToFront(checkPhotosButton)
     }
-
-
 }

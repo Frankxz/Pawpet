@@ -14,7 +14,7 @@ class BreedSelectionViewController: UIViewController {
     private let breeds = Breed.generateBreeds()
     private var filteredBreeds = [Breed]()
     private var isSearching = false
-    private var selectedBreed: Breed?
+    public var selectedBreed: Breed?
 
     // MARK: TableView
     let tableView: UITableView = {

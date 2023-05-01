@@ -146,6 +146,14 @@ extension PostViewController_5 {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(PostViewController_6(), animated: true)
         }
+        // TODO: - StorageManager
+        let isVaccinated = (segmentedControls[0].selectedItem == "Yes") ? true : false
+        let isCupping = (segmentedControls[1].selectedItem == "Yes") ? true : false
+        let isSterilized = (segmentedControls[2].selectedItem == "Yes") ? true : false
+
+        FireStoreManager.shared.currentPublication.isVaccinated = isVaccinated
+        FireStoreManager.shared.currentPublication.isCupping = isCupping
+        FireStoreManager.shared.currentPublication.isSterilized = isSterilized
     }
 }
 
@@ -164,7 +172,7 @@ extension PostViewController_5 {
             
         }
         // TODO: - StorageManager
-        
+        FireStoreManager.shared.currentPublication.isMale = true
     }
     
     @objc private func femaleButtonTapped(_ sender: UIButton) {
@@ -174,10 +182,11 @@ extension PostViewController_5 {
             
             self.maleButton.setupSubtitle(for: "Male", with: 20, color: .subtitleColor)
             self.maleButton.setupTitle(for: "♂", with: .systemFont(ofSize: 82), color: .subtitleColor)
-            
+
             self.showNextButon()
         }
         // TODO: - StorageManager
+        FireStoreManager.shared.currentPublication.isMale = false
     }
     
     private func showNextButon() {

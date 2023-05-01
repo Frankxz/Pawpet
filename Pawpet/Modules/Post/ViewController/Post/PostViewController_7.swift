@@ -97,6 +97,9 @@ extension PostViewController_7 {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(PostViewController_8(), animated: true)
         }
+
+        // TODO: StorageManager
+        FireStoreManager.shared.currentPublication.pictures = photosCollectionView.images
     }
     
     @objc private func addButtonTapped(_ sender: UIButton) {

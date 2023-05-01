@@ -47,15 +47,14 @@ extension SignUpViewController1: UITextFieldDelegate {
         return emailPredicate.evaluate(with: email)
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        nextViewController.email = textField.text
-        self.nextVC = nextViewController
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if isValidEmail(textField.text ?? "") {
+        guard let text = textField.text else {return true}
+
+        if isValidEmail(text + string) {
             nextButton.alpha = 1
             nextButton.isEnabled = true
+            nextViewController.email = text + string
+            self.nextVC = nextViewController
         } else {
             nextButton.alpha = 0.95
             nextButton.isEnabled = false

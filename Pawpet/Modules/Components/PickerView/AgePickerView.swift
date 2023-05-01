@@ -69,4 +69,8 @@ class PetAgePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
             selectedMonths = monthsArray[row]
         }
     }
+
+    func getAgeInMonth() -> Int {
+        selectedMonths + (selectedYears * 12)
+    }
 }

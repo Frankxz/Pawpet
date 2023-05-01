@@ -89,6 +89,9 @@ extension PostViewController_6 {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(PostViewController_7(), animated: true)
         }
+        
+        // TODO: StorageManager
+        FireStoreManager.shared.currentPublication.description = textView.text ?? ""
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {

@@ -16,6 +16,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = .random()
         imageView.layer.cornerRadius = 6
+        imageView.clipsToBounds = true
         imageView.layer.borderWidth = 0.5
         imageView.layer.borderColor = UIColor.subtitleColor.cgColor
         return imageView
@@ -49,6 +50,8 @@ class CardCollectionViewCell: UICollectionViewCell {
         button.tintColor = .subtitleColor
         return button
     }()
+
+    var publication: Publication?
 
     // MARK: - INITs
     override init(frame: CGRect) {
@@ -99,6 +102,15 @@ extension CardCollectionViewCell {
             make.height.equalTo(36)
             make.width.equalTo(36)
         }
+    }
+
+    func configure(with publication: Publication) {
+        self.publication = publication
+        infoLabel.subtitleLabel.numberOfLines = 2
+        infoLabel.setupTitles(title: publication.breed,
+                              subtitle: publication.description)
+        priceLabel.text = "\(publication.price) $"
+        mainImageView.image = publication.pictures.first ?? UIImage(named: "pawpet")
     }
 }
 

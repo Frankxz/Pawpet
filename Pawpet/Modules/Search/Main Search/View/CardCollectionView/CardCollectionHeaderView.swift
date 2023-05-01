@@ -10,6 +10,14 @@ import UIKit
 class CardCollectionHeaderView: UICollectionReusableView {
     static let identifier = "CardHeaderView"
 
+    // MARK: - ImageView
+    private var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "pawpet_square_logo")
+        return imageView
+    }()
     
     // MARK: - SearchBar
     private let searchBar = UISearchBar(frame: .zero)
@@ -28,11 +36,11 @@ class CardCollectionHeaderView: UICollectionReusableView {
     }()
 
     var buttonAction: (() -> Void)?
-
+    
     // MARK: - Labels
-    private let welcomeLabel: UILabel = {
+    public let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.setAttributedText(withString: "Hello, ", boldString: "Miller ✋🏼", font: .systemFont(ofSize: 32))
+        label.setAttributedText(withString: "Hello, ", boldString: "", font: .systemFont(ofSize: 32))
         label.textColor = UIColor.accentColor.withAlphaComponent(0.8)
         return label
     }()
@@ -46,27 +54,43 @@ class CardCollectionHeaderView: UICollectionReusableView {
 
     // MARK: - CollectionView
     private let chapterCollectionView = ChapterCollectionView()
+
+    // MARK: - Skeleton
+    private let skeletonView = SkeletonView()
+
+    public var isHeaderAnimated: Bool = false
 }
 
 // MARK: - UI + Constraints
 extension CardCollectionHeaderView {
     public func configure() {
-        FireStoreManager.shared.fetchUserData(completion: {
-            self.welcomeLabel.setAttributedText(withString: "Hello, ", boldString: "\(FireStoreManager.shared.user.name ?? "" ) ✋🏼", font: .systemFont(ofSize: 32))
-        })
-        
         let searchStackView = getSearchStackView()
 
         addSubview(searchStackView)
         addSubview(sectionControl)
         addSubview(welcomeLabel)
         addSubview(chapterCollectionView)
+        addSubview(skeletonView)
+        addSubview(logoImageView)
 
         chapterCollectionView.clipsToBounds = false
 
         welcomeLabel.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(20)
+        }
+
+        logoImageView.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.height.width.equalTo(60)
+        }
+
+        skeletonView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.height.equalTo(30)
+            make.width.equalTo(220)
         }
 
         searchStackView.snp.makeConstraints { make in
@@ -86,6 +110,22 @@ extension CardCollectionHeaderView {
             make.top.equalTo(sectionControl.snp.bottom).offset(10)
             make.height.equalTo(140)
         }
+
+        if !isHeaderAnimated {
+            welcomeLabel.alpha = 0
+            skeletonView.startAnimating()
+        }
+        FireStoreManager.shared.fetchUserData(completion: { _ in
+            self.welcomeLabel.setAttributedText(withString: "Hello, ", boldString: "\(FireStoreManager.shared.user.name ?? "" ) ✋🏼", font: .systemFont(ofSize: 32))
+            if !self.isHeaderAnimated {
+                UIView.animate(withDuration: 0.25) {
+                    self.welcomeLabel.alpha = 1
+                    self.skeletonView.stopAnimating()
+                    self.isHeaderAnimated = true
+                }
+            }
+        })
+
     }
 
     private func getSearchStackView() -> UIStackView {

@@ -28,13 +28,27 @@ class SearchViewController: UIViewController {
         configurateView()
         cardCollectionView.searchViewControllerDelegate = self
         hideKeyboardWhenTappedAround()
+        let petType = PetType.cat
+        print(petType.getName())
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        cardCollectionView.updateHeaderView()
+        FireStoreManager.shared.fetchAllPublications { publications in
+            if publications.count == self.cardCollectionView.publications.count {
+                self.cardCollectionView.isNeedAnimate = false
+            } else {
+                self.cardCollectionView.isNeedAnimate = true
+            }
+            self.cardCollectionView.publications = publications
+            self.cardCollectionView.reloadData()
+        }
     }
 }
 
 // MARK: - UI + Constraints
 extension SearchViewController {
     private func configurateView() {
-        cardCollectionView.cardsCount = 15
         view.backgroundColor = .white
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         setupConstraints()
@@ -50,13 +64,14 @@ extension SearchViewController {
 
 // MARK: - Delegate
 extension SearchViewController: SearchViewControllerDelegate {
-    func pushToParams() {
-        navigationController?.pushViewController(ParametersViewController(), animated: true)
+    func pushToDetailVC(of publication: Publication) {
+        print("Push to DetailVC")
+        let detailVC = DetailViewController()
+        detailVC.configure(with: publication)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 
-    func pushToDetailVC() {
-        print("Push to DetailVC")
-        //hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+    func pushToParams() {
+        navigationController?.pushViewController(ParametersViewController(), animated: true)
     }
 }

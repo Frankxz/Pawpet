@@ -87,7 +87,7 @@ extension PostViewController_2 {
             self.pushToNext(isCrossBreed: true)
         }
         // TODO: - StorageManager
-
+        FireStoreManager.shared.currentPublication.isCrossbreed = true
     }
 
     @objc private func  noButtonTapped(_ sender: UIButton) {
@@ -98,6 +98,7 @@ extension PostViewController_2 {
             self.pushToNext(isCrossBreed: false)
         }
         // TODO: - StorageManager
+        FireStoreManager.shared.currentPublication.isCrossbreed = false
     }
 
     private func pushToNext(isCrossBreed: Bool) {

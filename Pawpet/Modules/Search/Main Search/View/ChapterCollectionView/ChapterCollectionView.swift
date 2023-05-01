@@ -10,6 +10,8 @@ import UIKit
 class ChapterCollectionView: UICollectionView {
 
     var lastIndexActive: IndexPath = [0, 0]
+    let petTypes = PetType.allCases
+    var selectedType = PetType.cat
 
     // MARK: - INIT
     init () {
@@ -44,7 +46,7 @@ class ChapterCollectionView: UICollectionView {
 // MARK: - DataSource
 extension ChapterCollectionView: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        7
+        PetType.allCases.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -53,6 +55,7 @@ extension ChapterCollectionView: UICollectionViewDelegate,UICollectionViewDataSo
             cell.mainImageView.backgroundColor = .accentColor
             cell.nameLabel.textColor = .accentColor
         }
+        cell.configure(type: petTypes[indexPath.row])
         return cell
     }
 }
@@ -72,6 +75,7 @@ extension ChapterCollectionView: UICollectionViewDelegateFlowLayout {
             UIView.animate(withDuration: 0.3) {
                 cell.mainImageView.backgroundColor = .accentColor
                 cell.nameLabel.textColor = .accentColor
+                self.selectedType = cell.petType ?? .cat
             }
 
             guard let lastSelectedCell = collectionView.cellForItem(at: lastIndexActive) as? ChapterCollectionViewCell else { return }

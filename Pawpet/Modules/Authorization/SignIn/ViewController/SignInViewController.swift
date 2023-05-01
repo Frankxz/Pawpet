@@ -97,6 +97,7 @@ class SignInViewController: UIViewController {
         checkUserAuthentication()
         configurateView()
         hideKeyboardWhenTappedAround()
+
     }
 }
 

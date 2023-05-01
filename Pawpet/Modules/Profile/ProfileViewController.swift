@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FlagPhoneNumber
 
 class ProfileViewController: UIViewController {
@@ -22,8 +23,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Labels
     private var infoView = PromptView(with: "Unknown user", and:  "Unknown place")
-    private var phoneLabel = LabelView(text: "", viewColor: .accentColor, textColor: .subtitleColor)
-
+    
     private let phoneTF: FPNTextField = {
         let textField = FPNTextField()
         textField.layer.cornerRadius = 6
@@ -51,6 +51,10 @@ class ProfileViewController: UIViewController {
     // MARK: - CollectionView
     private let cardCollectionView = CardCollectionView(isHeaderIn: false)
 
+    // MARK: - StackView
+    private var infoStackView = UIStackView()
+    private var infoSkeletonView = ProfileSkeletonView()
+
     // MARK: - Ovvderiding properties
     override var hidesBottomBarWhenPushed: Bool {
         get {
@@ -67,16 +71,28 @@ class ProfileViewController: UIViewController {
         configurateView()
         addButtonsTarget()
         cardCollectionView.searchViewControllerDelegate = self
-        cardCollectionView.cardsCount = 6
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        FireStoreManager.shared.fetchAvatarImage(imageView: avatarImageView)
-        FireStoreManager.shared.fetchUserData {
+
+        self.infoStackView.alpha = 0
+        self.editButton.alpha = 0
+        infoSkeletonView.show(on: view)
+
+        FireStoreManager.shared.fetchAvatarImage(imageView: avatarImageView) {}
+        FireStoreManager.shared.fetchUserData { _ in
             self.infoView.setupTitles(
                 title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
                 subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
-            self.phoneLabel.setupTitle(with: "📞 \(FireStoreManager.shared.getUserPhoneNumber())")
+            self.phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                UIView.animate(withDuration: 0.25) {
+                    self.infoStackView.alpha = 1
+                    self.editButton.alpha = 1
+                    self.infoSkeletonView.hide()
+                }
+            }
         }
     }
 }
@@ -87,17 +103,15 @@ extension ProfileViewController {
         view.backgroundColor = .white
         setupNavigationAppearence()
         setupConstraints()
-        phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
     }
 
     private func setupConstraints() {
-        let infoStackView = getInfoStackView()
+        infoStackView = getInfoStackView()
 
         view.addSubview(infoStackView)
         view.addSubview(editButton)
         view.addSubview(favoriteLabel)
         view.addSubview(cardCollectionView)
-
 
         infoStackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
@@ -120,7 +134,6 @@ extension ProfileViewController {
             make.left.right.bottom.equalToSuperview()
         }
     }
-
 
     private func getLabelStackView() -> UIStackView {
         let stackView = UIStackView()
@@ -159,7 +172,6 @@ extension ProfileViewController {
         editButton.addTarget(self, action: #selector(editButtonTapped(_:)), for: .touchUpInside)
     }
 
-
     @objc private func editButtonTapped(_ sender: UIButton) {
         print("tik")
         let profileEditVC = ProfileEditViewController()
@@ -167,18 +179,16 @@ extension ProfileViewController {
         profileEditVC.phoneNumber = phoneTF.getFormattedPhoneNumber(format: .National)
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
-
-    @objc private func favoriteButtonTapped(_ sender: UIButton) {
-        navigationController?.pushViewController(FavoritesViewController(), animated: true)
-    }
 }
 
 // MARK: - Delegate
 extension ProfileViewController: SearchViewControllerDelegate {
-    func pushToParams() {}
-
-    func pushToDetailVC() {
+    func pushToDetailVC(of publication: Publication) {
         print("Push to DetailVC")
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        let detailVC = DetailViewController()
+        detailVC.configure(with: publication)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
+
+    func pushToParams() {}
 }

@@ -19,7 +19,7 @@ class CustomSegmentedControl: UIView {
     // MARK: - Color logic
     private let selectedItemTextColor = UIColor.white
     private let unselectedItemTextColor = UIColor.subtitleColor
-    private let selectedItemViewColor = UIColor.accentColor
+    private var selectedItemViewColor = UIColor.accentColor
 
     // MARK: - INITS
     init(frame: CGRect, items: [String]) {
@@ -36,6 +36,11 @@ class CustomSegmentedControl: UIView {
 
 // MARK: - UI + Logic
 extension CustomSegmentedControl {
+    public func setupSelectorView(with color: UIColor) {
+        selectedItemViewColor = color
+        selectorView.backgroundColor = color
+    }
+
     private func setupView() {
         backgroundColor = .backgroundColor
         layer.cornerRadius = 6

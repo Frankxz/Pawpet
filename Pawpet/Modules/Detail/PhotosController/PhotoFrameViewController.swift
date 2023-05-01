@@ -8,27 +8,27 @@
 import UIKit
 
 class PhotoFrameViewController: UIViewController {
-
-    var imageName: String? {
+    
+    var image: UIImage? {
         didSet {
-            imageView.image = UIImage(named: imageName ?? "")
+            imageView.image = image
         }
     }
-
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }
         imageView.backgroundColor = .clear
     }
-
+    
 }

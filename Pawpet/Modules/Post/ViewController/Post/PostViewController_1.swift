@@ -22,6 +22,8 @@ class PostViewController_1: UIViewController {
         button.addTarget(self, action: #selector(closeButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
+
+    var publication = Publication()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,8 @@ extension PostViewController_1 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let type = self.animalSelectionView.chapterCollectionView.selectedType
+            FireStoreManager.shared.currentPublication.petType = type
             self.navigationController?.pushViewController(PostViewController_2(), animated: true)
         }
     }

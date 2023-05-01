@@ -13,7 +13,8 @@ import SDWebImage
 
 class FireStoreManager {
     static let shared = FireStoreManager()
-    let user = PawpetUser()
+    var user = PawpetUser()
+    let currentPublication = Publication()
     
     var ref: DatabaseReference = Database.database().reference()
     
@@ -24,12 +25,14 @@ class FireStoreManager {
 extension FireStoreManager {
     func saveUserData(for user: PawpetUser) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
+        user.currency = getCurrencyForUser(for: user)
+
         let userData: [String: Any] = [
             "name": user.name ?? "",
             "surname": user.surname ?? "",
             "country": user.country ?? "",
-            "city": user.city ?? ""
+            "city": user.city ?? "",
+            "currency": user.currency ?? ""
         ]
         
         ref.child("users").child(uid).setValue(userData) { error, _ in
@@ -49,13 +52,15 @@ extension FireStoreManager {
         let surname = UserDefaults.standard.string(forKey: "SURNAME") ?? ""
         let country = UserDefaults.standard.string(forKey: "COUNTRY") ?? ""
         let city = UserDefaults.standard.string(forKey: "CITY") ?? ""
-        
+        let currency = getCurrencyForUser(for: user)
+
         print("\(name) \(surname) from \(country) \(city)")
         let userData: [String: Any] = [
             "name": name,
             "surname": surname,
             "country": country,
-            "city": city
+            "city": city,
+            "currency": currency
         ]
         
         ref.child("users").child(uid).setValue(userData) { error, _ in
@@ -67,26 +72,40 @@ extension FireStoreManager {
             print("User data saved successfully")
         }
     }
+
+    private func getCurrencyForUser(for user: PawpetUser) -> String {
+        if user.country == "Russia" || user.country == "Belarus" {
+            return "RUB"
+        } else if user.country == "Kazakhstan" {
+            return "KZT"
+        } else {
+            return "USD"
+        }
+    }
 }
 
 // MARK: - Fetch USER DATA
 extension FireStoreManager {
-    func fetchUserData(completion: @escaping ()->()) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+    func fetchUserData(for id: String = "", completion: @escaping (PawpetUser)->()) {
+        var uid  = ""
+        if id.isEmpty {
+            uid = Auth.auth().currentUser!.uid
+        } else { uid = id }
         
         ref.child("users").child(uid).observeSingleEvent(of: .value) { (snapshot, _)  in
             if let userData = snapshot.value as? [String: Any] {
                 if let name = userData["name"] as? String,
                    let surname = userData["surname"] as? String,
                    let country = userData["country"] as? String,
-                   let city = userData["city"] as? String {
+                   let city = userData["city"] as? String,
+                   let currency = userData["currency"] as? String {
                     print("\(name) \(surname), from \(country) \(city)")
-                    FireStoreManager.shared.user.name = name
-                    FireStoreManager.shared.user.surname = surname
-                    FireStoreManager.shared.user.country = country
-                    FireStoreManager.shared.user.city = city
-                    self.fetchAvatarImage()
-                    completion()
+                    let user = PawpetUser(name: name, surname: surname, country: country, city: city, currency: currency)
+                    if id.isEmpty {
+                        FireStoreManager.shared.user = user
+                        self.fetchAvatarImage {}
+                    }
+                    completion(user)
                 } else {
                     print("Error parsing user data")
                 }
@@ -141,7 +160,7 @@ extension FireStoreManager {
         }
     }
 
-    func fetchAvatarImage(imageView: UIImageView? = nil) {
+    func fetchAvatarImage(imageView: UIImageView? = nil, completion: @escaping ()->()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let imagePath = "images/\(uid)/avatar.jpg"
 
@@ -158,6 +177,7 @@ extension FireStoreManager {
                         if let error = error {
                             print(error.localizedDescription)
                         } else {
+                            completion()
                             FireStoreManager.shared.user.image = image
                         }
                     }
@@ -233,6 +253,191 @@ extension FireStoreManager {
             } else {
                 completion(.success(()))
             }
+        }
+    }
+}
+
+// MARK: - Publication saving
+extension FireStoreManager {
+    func savePublication(completion: @escaping (Result<String, Error>) -> Void) {
+        let publication = FireStoreManager.shared.currentPublication
+        publication.location = [user.country ?? "" : user.city ?? ""]
+        publication.currency = user.currency ?? "USD"
+        publication.userID = Auth.auth().currentUser!.uid
+
+        let databaseRef = Database.database().reference()
+        let storageRef = Storage.storage().reference()
+
+        let publicationsRef = databaseRef.child("publications").childByAutoId()
+        let imagesFolderRef = storageRef.child("images/\(publicationsRef.key!)")
+
+        var imageURLs: [String] = []
+
+        let group = DispatchGroup()
+
+        for (index, image) in publication.pictures.enumerated() {
+            group.enter()
+
+            if let imageData = image.jpegData(compressionQuality: 0.8) {
+                let imageRef = imagesFolderRef.child("image_\(index).jpg")
+                imageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                    if let error = error {
+                        print("Error uploading image: \(error)")
+                        group.leave()
+                    } else {
+                        imageRef.downloadURL { (url, error) in
+                            if let error = error {
+                                print("Error getting download URL: \(error)")
+                            } else if let url = url {
+                                imageURLs.append(url.absoluteString)
+                            }
+                            group.leave()
+                        }
+                    }
+                }
+            } else {
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            let publicationData: [String: Any] = [
+                "petType": publication.petType.rawValue,
+                "isCrossbreed": publication.isCrossbreed ?? false,
+                "breed": publication.breed,
+                "secondBreed": publication.secondBreed ?? "",
+                "age": publication.age,
+                "isMale": publication.isMale,
+                "description": publication.description,
+                "price": publication.price,
+                "currency": publication.currency,
+                "isCupping": publication.isCupping ?? false,
+                "isSterilized": publication.isSterilized ?? false,
+                "isVaccinated": publication.isVaccinated ?? false,
+                "picturesURLs": imageURLs,
+                "location": publication.location,
+                "userID": publication.userID
+            ]
+
+            publicationsRef.setValue(publicationData) { (error, _) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(publicationsRef.key!))
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Fetching publications
+extension FireStoreManager {
+    func fetchPublicationsForUser(userID: String, completion: @escaping ([Publication]) -> Void) {
+        let databaseRef = Database.database().reference()
+        let publicationsRef = databaseRef.child("publications")
+
+
+        publicationsRef.queryOrdered(byChild: "userID").queryEqual(toValue: userID).observeSingleEvent(of: .value) { (snapshot, _) in
+            guard let value = snapshot.value as? [String: [String: Any]] else {
+                print("NO DATA")
+                completion([])
+                return
+            }
+
+            var publications: [Publication] = []
+            let dispatchGroup = DispatchGroup()
+
+            for (key, publicationData) in value {
+                dispatchGroup.enter()
+                self.publicationFromDictionary(id: key, data: publicationData) { (publication) in
+                    if let publication = publication {
+                        print(publication)
+                        publications.append(publication)
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+
+            dispatchGroup.notify(queue: .main) {
+                completion(publications)
+            }
+        }
+    }
+
+    func fetchAllPublications(completion: @escaping ([Publication]) -> Void) {
+        let databaseRef = Database.database().reference()
+        let publicationsRef = databaseRef.child("publications")
+
+        publicationsRef.observeSingleEvent(of: .value) { (snapshot) in
+            guard let value = snapshot.value as? [String: [String: Any]] else {
+                print("NO DATA")
+                completion([])
+                return
+            }
+
+            var publications: [Publication] = []
+            let dispatchGroup = DispatchGroup()
+
+            for (key, publicationData) in value {
+                dispatchGroup.enter()
+                self.publicationFromDictionary(id: key, data: publicationData) { (publication) in
+                    if let publication = publication {
+                        print(publication)
+                        publications.append(publication)
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+
+            dispatchGroup.notify(queue: .main) {
+                completion(publications)
+            }
+        }
+    }
+
+
+    // ADDITIONAL METHOD to simplify user fetching
+    func publicationFromDictionary(id: String, data: [String: Any], completion: @escaping (Publication?) -> Void) {
+        guard let petTypeName = data["petType"] as? String,
+              let petType = PetType(rawValue: petTypeName.lowercased()),
+              let breed = data["breed"] as? String,
+              let age = data["age"] as? Int,
+              let isMale = data["isMale"] as? Bool,
+              let description = data["description"] as? String,
+              let price = data["price"] as? Int,
+              let currency = data["currency"] as? String,
+              let picturesURLs = data["picturesURLs"] as? [String],
+              let location = data["location"] as? [String: String],
+              let userID = data["userID"] as? String
+        else {
+            print("INCORRECTED DATA")
+            completion(nil)
+            return
+        }
+
+        let isCrossbreed = data["isCrossbreed"] as? Bool
+        let secondBreed = data["secondBreed"] as? String
+        let isCupping = data["isCupping"] as? Bool
+        let isSterilized = data["isSterilized"] as? Bool
+        let isVaccinated = data["isVaccinated"] as? Bool
+
+        let dispatchGroup = DispatchGroup()
+        var pictures: [UIImage] = []
+
+        for url in picturesURLs {
+            guard let imageURL = URL(string: url) else { continue }
+            dispatchGroup.enter()
+            URLSession.shared.dataTask(with: imageURL) { (data, _, _) in
+                if let data = data, let image = UIImage(data: data) {
+                    pictures.append(image)
+                }
+                dispatchGroup.leave()
+            }.resume()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            let publication = Publication(petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, description: description, price: price, currency: currency, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, pictures: pictures, location: location, userID: userID)
+            completion(publication)
         }
     }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CardInfoBottomSheetView: BottomSheetView{
     // MARK: - Properties
@@ -20,9 +21,8 @@ class CardInfoBottomSheetView: BottomSheetView{
 
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Lorem ipsum bla bla bla ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum"
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textAlignment = .justified
         return label
     }()
@@ -33,6 +33,8 @@ class CardInfoBottomSheetView: BottomSheetView{
         imageView.layer.borderColor = UIColor.subtitleColor.cgColor
         imageView.layer.borderWidth = 1
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .white
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -72,6 +74,29 @@ class CardInfoBottomSheetView: BottomSheetView{
 
 // MARK: - UI + Constraints
 extension CardInfoBottomSheetView {
+    public func configure(with publication: Publication) {
+        titleView.setupTitles(title: publication.breed, subtitle: publication.petType.getName())
+        descriptionLabel.text = publication.description
+        FireStoreManager.shared.fetchUserData(for: publication.userID) { author in
+            self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Author")
+        }
+        if publication.userID == Auth.auth().currentUser?.uid {
+            FireStoreManager.shared.fetchAvatarImage(imageView: authorImageView) {}
+        }
+
+        let sex = publication.isMale ? "Male" : "Female"
+        let coupping = publication.isCupping! ? "Yes" : "No" // REMOVE FORCE UNWRAP
+        let vaccinated = publication.isVaccinated! ? "Yes" : "No"
+
+        vaccinated == "Yes" ? (infoLabels[3].mainLabel.textColor = .systemGreen) : (infoLabels[3].mainLabel.textColor = .accentColor)
+
+        infoLabels[0].setupTitle(with: "\(publication.age) m.")
+        infoLabels[1].setupTitle(with: sex)
+        infoLabels[2].setupTitle(with: coupping, and: "Coupping")
+        infoLabels[3].setupTitle(with: vaccinated)
+
+    }
+
     private func setupInfoView() {
         let infoLabelsStackView = getInfoLabelStackView()
         let authorStackView = getAuthorStackView()
@@ -112,8 +137,6 @@ extension CardInfoBottomSheetView {
             make.top.equalTo(authorStackView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
         }
-
-
     }
 
     private func getInfoLabelStackView() -> UIStackView {

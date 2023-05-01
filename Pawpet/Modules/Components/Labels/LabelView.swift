@@ -13,14 +13,14 @@ class LabelView: UIView {
     private var currentText: String = ""
 
     // MARK: - Label
-    private let mainLabel: UILabel = {
+    let mainLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.subtitleColor
         label.numberOfLines = 0
         return label
     }()
 
-    private let subtitleLabel = UILabel()
+    let subtitleLabel = UILabel()
 
     // MARK: - Init
     init(
@@ -71,8 +71,11 @@ extension LabelView {
         }
     }
 
-    func setupTitle(with text: String) {
+    func setupTitle(with text: String, and subtitle: String = "") {
         mainLabel.text = text
+        if !subtitle.isEmpty {
+            subtitleLabel.text = subtitle
+        }
     }
 }
 

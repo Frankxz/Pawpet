@@ -6,8 +6,8 @@
 //
 
 import UIKit
- protocol SearchViewControllerDelegate: AnyObject {
-    func pushToDetailVC()
+protocol SearchViewControllerDelegate: AnyObject {
+    func pushToDetailVC(of publication: Publication)
     func pushToParams()
 }
 
@@ -15,7 +15,8 @@ class CardCollectionView: UICollectionView {
 
     public var searchViewControllerDelegate: SearchViewControllerDelegate?
     private var withHeader = true
-    public var cardsCount = 5
+    public var publications: [Publication] = []
+    public var isNeedAnimate = true
 
     // MARK: - INIT
     init (isHeaderIn: Bool = true) {
@@ -51,19 +52,19 @@ class CardCollectionView: UICollectionView {
 // MARK: - DataSource
 extension CardCollectionView: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        cardsCount
+        publications.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseId, for: indexPath) as! CardCollectionViewCell
+        let publication = publications[indexPath.row]
+        cell.configure(with: publication)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
     }
-
-    
 }
 
 // MARK: - Layout
@@ -74,7 +75,8 @@ extension CardCollectionView: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        searchViewControllerDelegate?.pushToDetailVC()
+        let cell = cellForItem(at: indexPath) as! CardCollectionViewCell
+        searchViewControllerDelegate?.pushToDetailVC(of: cell.publication!)
         return true
     }
 }
@@ -85,14 +87,43 @@ extension CardCollectionView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier, for: indexPath) as! CardCollectionHeaderView
         header.buttonAction = {
             self.searchViewControllerDelegate?.pushToParams()
-              print("Push to params")
-          }
+            print("Push to params")
+        }
         if withHeader { header.configure()}
         return header
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 330) : CGSize(width: UIScreen.main.bounds.width, height: 40)
+    }
+
+    func updateHeaderView() {
+        if let headerView = self.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) as? CardCollectionHeaderView {
+            guard let name = FireStoreManager.shared.user.name else { return }
+            headerView.welcomeLabel.setAttributedText(withString: "Hello, ", boldString: "\(name) ✋🏼", font: .systemFont(ofSize: 32))
+        }
+
+    }
+}
+
+// MARK: - Animation
+extension CardCollectionView {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if !isNeedAnimate { return }
+
+        if indexPath.row > 9 {
+            isNeedAnimate = false
+            return
+        }
+
+        cell.alpha = 0
+        UIView.animate(withDuration: 0.4, delay: 0.05 * Double(indexPath.row),
+                       animations: { cell.alpha = 1 })
+
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isNeedAnimate = false
     }
 }
 
