@@ -107,9 +107,9 @@ extension ProfileEditViewController {
         guard let section = Section(rawValue: section) else { return 0 }
 
         switch section {
-        case .nameAndSurname, .contactInfo:
+        case .nameAndSurname, .contactInfo, .geo:
             return 2
-        case .geo, .logout, .password:
+        case .logout, .password:
             return 1
         }
     }
@@ -132,8 +132,13 @@ extension ProfileEditViewController {
             
             switch section {
             case .geo:
-                cell.leftLabel.text = "Change location"
-                cell.rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
+                if indexPath.row == 0 {
+                    cell.leftLabel.text = "Change location"
+                    cell.rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
+                } else if indexPath.row == 1 {
+                    cell.leftLabel.text = "Change currency"
+                    cell.rightLabel.text = FireStoreManager.shared.user.currency ?? "?"
+                }
             case .contactInfo:
                 if indexPath.row == 0 {
                     cell.leftLabel.text = "Change email"
@@ -221,7 +226,10 @@ extension ProfileEditViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         print("section: \(indexPath.section), row: \(indexPath.row)")
 
-        if indexPath.section == 1 { locationRowSelected() }
+        if indexPath.section == 1 {
+            if indexPath.row == 0 { locationRowSelected() }
+            else if indexPath.row == 1 { currencyRowSelected() }
+        }
         else if indexPath.section == 2 {
             if indexPath.row == 0 { emailRowSelected() }
             else if indexPath.row == 1 { phoneRowSelected() }
@@ -243,6 +251,13 @@ extension ProfileEditViewController {
         let changePasswordVC = PasswordChangeViewController()
         changePasswordVC.editVCDelegate = self
         navigationController?.pushViewController(changePasswordVC, animated: true)
+    }
+
+    private func currencyRowSelected() {
+        let currencyChangeVC = CurrencySelectionBottomSheetViewController()
+        currencyChangeVC.modalPresentationStyle = .overCurrentContext
+        currencyChangeVC.currencyDelegate = self
+        self.present(currencyChangeVC, animated: false)
     }
 
     private func locationRowSelected() {
@@ -356,6 +371,15 @@ extension ProfileEditViewController: PasswordChangeDelegate {
     func showSuccesAlert() {
         let alertView = SuccessAlertView()
         alertView.showAlert(with: "Password successfully changed.", message: "", on: self)
+    }
+}
+
+// MARK: - CurrencyChangeDelegate realization
+extension ProfileEditViewController: CurrencyChangeDelegate {
+    func currencySelected(currency: String) {
+        FireStoreManager.shared.user.currency = currency
+        FireStoreManager.shared.saveUserData(for: FireStoreManager.shared.user)
+        tableView.reloadData()
     }
 }
 

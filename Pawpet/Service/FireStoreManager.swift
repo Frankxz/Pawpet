@@ -25,7 +25,6 @@ class FireStoreManager {
 extension FireStoreManager {
     func saveUserData(for user: PawpetUser) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        user.currency = getCurrencyForUser(for: user)
 
         let userData: [String: Any] = [
             "name": user.name ?? "",

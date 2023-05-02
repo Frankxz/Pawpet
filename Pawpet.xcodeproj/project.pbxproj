@@ -113,6 +113,7 @@
 		C6FA2F1B29FFBC7C00726A0A /* Publication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F1A29FFBC7C00726A0A /* Publication.swift */; };
 		C6FA2F1D29FFDE1600726A0A /* PostViewController_8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F1C29FFDE1600726A0A /* PostViewController_8.swift */; };
 		C6FA2F1F29FFEBB700726A0A /* PriceTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F1E29FFEBB700726A0A /* PriceTextField.swift */; };
+		C6FA2F232A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F222A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +247,7 @@
 		C6FA2F1A29FFBC7C00726A0A /* Publication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publication.swift; sourceTree = "<group>"; };
 		C6FA2F1C29FFDE1600726A0A /* PostViewController_8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_8.swift; sourceTree = "<group>"; };
 		C6FA2F1E29FFEBB700726A0A /* PriceTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTextField.swift; sourceTree = "<group>"; };
+		C6FA2F222A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -750,6 +752,7 @@
 				C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */,
 				C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */,
 				C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */,
+				C6FA2F222A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift */,
 			);
 			path = BottomSheetViewController;
 			sourceTree = "<group>";
@@ -1189,6 +1192,7 @@
 				C6FA2F0F29FD798600726A0A /* PasswordChangeViewController.swift in Sources */,
 				C6FA2F1929FE874100726A0A /* ProfileSkeletonView.swift in Sources */,
 				C6FA2EFA29FC182A00726A0A /* GeoObject.swift in Sources */,
+				C6FA2F232A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
 				C6FA2EBE29F43D7C00726A0A /* AnimalSelectionView.swift in Sources */,
