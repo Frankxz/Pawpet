@@ -12,6 +12,10 @@ class PostViewController_3: BreedSelectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
+        promptView.snp.remakeConstraints() { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(100)
+        }
     }
 }
 

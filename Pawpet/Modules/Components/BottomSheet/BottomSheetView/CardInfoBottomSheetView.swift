@@ -45,6 +45,7 @@ class CardInfoBottomSheetView: BottomSheetView{
         label.text = "850 m."
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .subtitleColor
         label.textAlignment = .right
         return label
     }()
@@ -77,11 +78,15 @@ extension CardInfoBottomSheetView {
     public func configure(with publication: Publication) {
         titleView.setupTitles(title: publication.breed, subtitle: publication.petType.getName())
         descriptionLabel.text = publication.description
+
         FireStoreManager.shared.fetchUserData(for: publication.userID) { author in
             self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Author")
+            self.authorGeoLabel.text = "\(author.country ?? "")\n\(author.city ?? "")"
         }
         if publication.userID == Auth.auth().currentUser?.uid {
             FireStoreManager.shared.fetchAvatarImage(imageView: authorImageView) {}
+        } else {
+            FireStoreManager.shared.fetchAvatarImage(id: publication.userID, imageView: authorImageView) {}
         }
 
         let sex = publication.isMale ? "Male" : "Female"

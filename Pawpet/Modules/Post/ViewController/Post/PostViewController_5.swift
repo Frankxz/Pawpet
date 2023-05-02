@@ -75,7 +75,7 @@ extension PostViewController_5 {
         
         promptView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(60)
+            make.top.equalToSuperview().inset(100)
         }
         
         buttonStackView.snp.makeConstraints { make in

@@ -161,9 +161,13 @@ extension FireStoreManager {
         }
     }
 
-    func fetchAvatarImage(imageView: UIImageView? = nil, completion: @escaping ()->()) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let imagePath = "images/\(uid)/avatar.jpg"
+    func fetchAvatarImage(id: String = "",imageView: UIImageView? = nil, completion: @escaping ()->()) {
+        var userID = id
+        if id.isEmpty {
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            userID = uid
+        }
+        let imagePath = "images/\(userID)/avatar.jpg"
 
         let storageRef = Storage.storage().reference().child(imagePath)
         storageRef.downloadURL { (url, error) in
@@ -328,12 +332,53 @@ extension FireStoreManager {
                 if let error = error {
                     completion(.failure(error))
                 } else {
+                    FireStoreManager.shared.user.isChanged = true
                     completion(.success(publicationsRef.key!))
                 }
             }
         }
     }
+    
+    // MARK: - REMOVE Publication
+    func deletePublication(withId id: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let databaseRef = Database.database().reference()
+        let storageRef = Storage.storage().reference()
 
+        let publicationsRef = databaseRef.child("publications").child(id)
+        let imagesFolderRef = storageRef.child("images/\(id)")
+
+        // Удаляем изображения публикации из хранилища
+        imagesFolderRef.listAll { (result, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let result = result {
+                    let group = DispatchGroup()
+
+                    for item in result.items {
+                        group.enter()
+                        item.delete { (error) in
+                            if let error = error {
+                                print("Error deleting image: \(error)")
+                            }
+                            group.leave()
+                        }
+                    }
+
+                    group.notify(queue: .main) {
+                        // Удаляем запись публикации из базы данных
+                        publicationsRef.removeValue { (error, _) in
+                            if let error = error {
+                                completion(.failure(error))
+                            } else {
+                                completion(.success(()))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Fetching publications
@@ -442,6 +487,7 @@ extension FireStoreManager {
                 dispatchGroup.leave()
             }.resume()
         }
+
         dispatchGroup.notify(queue: .main) {
             let publication = Publication(id: id, petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, description: description, price: price, currency: currency, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, pictures: pictures, location: location, userID: userID)
             completion(publication)

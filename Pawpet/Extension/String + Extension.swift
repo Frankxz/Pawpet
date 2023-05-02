@@ -16,4 +16,10 @@ extension String {
         }
         return s
     }
+
+    func capitilizeFirstChar() -> String {
+        let inputString = self
+        let capitalizedString = inputString.prefix(1).uppercased() + inputString.dropFirst()
+        return capitalizedString
+    }
 }

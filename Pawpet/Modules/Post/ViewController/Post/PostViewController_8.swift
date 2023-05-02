@@ -67,7 +67,7 @@ extension PostViewController_8 {
         
         promptView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(60)
+            make.top.equalToSuperview().inset(100)
         }
 
         priceTF.snp.makeConstraints { make in

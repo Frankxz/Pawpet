@@ -26,6 +26,7 @@ class Publication {
     var isVaccinated: Bool?
 
     var pictures: [UIImage] = []
+
     var location: [String: String] = [:]
 
     var userID: String = ""

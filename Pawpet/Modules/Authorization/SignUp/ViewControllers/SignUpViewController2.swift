@@ -43,6 +43,8 @@ extension SignUpViewController2 {
                 print("Error: \(error.localizedDescription)")
                 self.alertView.showAlert(with: "Ooops... error!", message: error.localizedDescription, on: self)
             } else {
+                UserDefaults.standard.set(self.textField.text!, forKey: "EMAIL")
+                UserDefaults.standard.set(self.password, forKey: "PASSWORD")
                 print("User created: \(result?.user.uid ?? "")")
                 self.navigationController?.pushViewController(SignUpViewController3(), animated: true)
             }

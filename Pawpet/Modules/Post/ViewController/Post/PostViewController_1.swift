@@ -30,6 +30,7 @@ class PostViewController_1: UIViewController {
         setupView()
         setupConstraints()
         animalSelectionView.nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
     }
 }
 
@@ -37,16 +38,13 @@ class PostViewController_1: UIViewController {
 extension PostViewController_1 {
     private func setupConstraints() {
         view.addSubview(animalSelectionView)
-        animalSelectionView.addSubview(closeButton)
-
         animalSelectionView.snp.makeConstraints { make in
-            make.left.top.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().inset(40)
+            make.left.right.bottom.equalToSuperview()
         }
 
         closeButton.snp.makeConstraints { make in
             make.width.height.equalTo(32)
-            make.top.equalToSuperview().inset(20)
-            make.left.equalToSuperview().inset(20)
         }
     }
 

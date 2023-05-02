@@ -16,7 +16,7 @@ class ProfileEditViewController: UITableViewController {
     public var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 16
-        imageView.backgroundColor = .random()
+        imageView.backgroundColor = .backgroundColor
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -299,6 +299,7 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
                 let alertView = SuccessAlertView()
                 self.avatarImageView.image = selectedImage
                 self.hideAnimationView()
+                FireStoreManager.shared.user.isChanged = true
                 alertView.showAlert(with: "Avatar successfully changed.", message: "", on: self)
             case .failure(let error):
                 self.hideAnimationView()

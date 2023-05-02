@@ -22,9 +22,11 @@ class PostViewController_4: UIViewController {
 // MARK: - UI + Cosntraints
 extension PostViewController_4 {
     private func setupConstraints() {
+        view.backgroundColor = .white
         view.addSubview(ageSelectionView)
         ageSelectionView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().inset(40)
         }
     }
 }

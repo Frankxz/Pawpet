@@ -26,11 +26,14 @@ class PublicationsViewController: UIViewController {
     private let noPostsLabel = PromptView(with: "Oops, here is no posts yet... ", and: "It's time to add, try it, it's very easy!", aligment: .center)
 
     // MARK: Buttons
-    private let postButton: AuthButton = {
+    private lazy var postButton: AuthButton = {
         let button = AuthButton()
+        button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         button.setupTitle(for: "Post")
         return button
     }()
+
+    private var plugStackView = UIStackView()
 
     // MARK: - In case > 0 posts
     
@@ -81,7 +84,10 @@ class PublicationsViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-
+        print("PublicationsViewController viewWillAppear")
+        if FireStoreManager.shared.user.isChanged {
+            fetchData()
+        }
     }
 
     @objc private func refreshData(_ sender: Any) {
@@ -101,18 +107,40 @@ extension PublicationsViewController {
                 self.cardCollectionView.reloadData()
             }
             self.refreshControl.endRefreshing()
+            self.setupViewAccordingToPosts(publications: fetchedPublications)
         }
     }
 }
 // MARK: - UI + Constraints in case posts = 0
 extension PublicationsViewController {
+    private func setupViewAccordingToPosts(publications: [Publication]) {
+        removeAllFromSupperView()
+        if publications.isEmpty {
+            setupConstraintsForPlugView()
+        } else {
+            setupConstraints()
+        }
+    }
+
+    private func removeAllFromSupperView() {
+        plugStackView.snp.removeConstraints()
+        plugStackView.removeFromSuperview()
+        plugStackView = getPlugStackView()
+        postButton.snp.removeConstraints()
+        postButton.removeFromSuperview()
+        welcomeLabel.snp.removeConstraints()
+        welcomeLabel.removeFromSuperview()
+        cardCollectionView.snp.removeConstraints()
+        cardCollectionView.removeFromSuperview()
+        addButton.snp.removeConstraints()
+        addButton.removeFromSuperview()
+    }
+
     private func setupConstraintsForPlugView() {
-        let stackView = getPlugStackView()
-
         view.addSubview(postButton)
-        view.addSubview(stackView)
+        view.addSubview(plugStackView)
 
-        stackView.snp.makeConstraints { make in
+        plugStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(120)
             make.left.right.equalToSuperview().inset(20)
         }
@@ -120,6 +148,7 @@ extension PublicationsViewController {
         postButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(120)
+            make.height.equalTo(70)
         }
 
         animationView.play()
@@ -143,7 +172,6 @@ extension PublicationsViewController {
     private func configurateView() {
         view.backgroundColor = .white
         setupNavigationAppearence()
-        setupConstraints()
     }
 
     private func setupConstraints() {
@@ -185,8 +213,8 @@ extension PublicationsViewController: SearchViewControllerDelegate {
 extension PublicationsViewController {
     @objc private func addButtonTapped(_ sender: UIButton) {
         let navigationVC = UINavigationController(rootViewController: PostViewController_1())
-        navigationVC.modalPresentationStyle = .pageSheet
+        navigationVC.modalPresentationStyle = .fullScreen
         present(navigationVC, animated: true)
-       // navigationController?.pushViewController(PostViewController_1(), animated: true)
+        //navigationController?.pushViewController(PostViewController_1(), animated: true)
     }
 }

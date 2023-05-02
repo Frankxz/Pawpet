@@ -94,10 +94,12 @@ class SignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkUserAuthentication()
         configurateView()
         hideKeyboardWhenTappedAround()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        checkUserAuthentication()
     }
 }
 

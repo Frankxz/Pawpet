@@ -7,7 +7,7 @@
 
 import UIKit
 import Lottie
-
+import Firebase
 
 class SignUpViewController_final: UIViewController {
 
@@ -81,11 +81,16 @@ extension SignUpViewController_final {
 extension SignUpViewController_final {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Registered")
-        
-        let mainTabBarController = MainTabBarController()
-        mainTabBarController.modalPresentationStyle = .fullScreen
 
+        let email = UserDefaults.standard.string(forKey: "EMAIL") ?? ""
+        let password = UserDefaults.standard.string(forKey: "PASSWORD") ?? ""
+
+        UserDefaults.standard.removeObject(forKey: "EMAIL")
+        UserDefaults.standard.removeObject(forKey: "PASSWORD")
+
+        Auth.auth().signIn(withEmail: email, password: password)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+
             self.dismiss(animated: true) 
         }
     }
