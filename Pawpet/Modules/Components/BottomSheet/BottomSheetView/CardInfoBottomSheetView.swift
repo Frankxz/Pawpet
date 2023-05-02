@@ -110,6 +110,7 @@ extension CardInfoBottomSheetView {
 
         titleView.snp.makeConstraints { make in
             make.top.left.equalToSuperview().inset(20)
+            make.right.equalTo(aboutGreedButton.snp.left).inset(20)
         }
 
         aboutGreedButton.snp.makeConstraints { make in

@@ -22,7 +22,7 @@ class ChapterCollectionViewCell: UICollectionViewCell {
 
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .subtitleColor
         label.textAlignment = .center
         label.text = "Test"
@@ -53,6 +53,6 @@ class ChapterCollectionViewCell: UICollectionViewCell {
 
     func configure(type: PetType) {
         self.petType = type
-        nameLabel.text = type.getName()
+        nameLabel.text = type.getName().uppercased()
     }
 }

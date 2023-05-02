@@ -44,7 +44,8 @@ class PublicationsViewController: UIViewController {
 
     // MARK:  CollectionView
     private let cardCollectionView = CardCollectionView(isHeaderIn: false)
-
+    private let refreshControl = UIRefreshControl()
+    
     // MARK:  Buttons
     public lazy var addButton: UIButton = {
         let button = UIButton()
@@ -73,22 +74,36 @@ class PublicationsViewController: UIViewController {
         super.viewDidLoad()
         configurateView()
         cardCollectionView.searchViewControllerDelegate = self
-        //setupConstraintsForPlugView()
+        cardCollectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+
+        fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+
+    }
+
+    @objc private func refreshData(_ sender: Any) {
+        fetchData()
+    }
+}
+
+// MARK: - Fetching data
+extension PublicationsViewController {
+    func fetchData() {
         FireStoreManager.shared.fetchPublicationsForUser(userID: Auth.auth().currentUser!.uid) { fetchedPublications in
             if fetchedPublications.count == self.cardCollectionView.publications.count {
                 self.cardCollectionView.isNeedAnimate = false
             } else {
                 self.cardCollectionView.isNeedAnimate = true
+                self.cardCollectionView.publications = fetchedPublications
+                self.cardCollectionView.reloadData()
             }
-            self.cardCollectionView.publications = fetchedPublications
-            self.cardCollectionView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 }
-
 // MARK: - UI + Constraints in case posts = 0
 extension PublicationsViewController {
     private func setupConstraintsForPlugView() {

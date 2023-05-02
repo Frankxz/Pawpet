@@ -52,7 +52,6 @@ class PostViewController_8: UIViewController {
         setupConstraints()
         hideKeyboardWhenTappedAround()
         addKeyBoardObservers()
-        isFreeControl.setupSelectorView(with: .systemYellow)
     }
 }
 

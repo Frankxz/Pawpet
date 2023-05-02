@@ -11,6 +11,7 @@ class SearchViewController: UIViewController {
 
     // MARK: - CollectionView
     private let cardCollectionView = CardCollectionView()
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Ovvderiding properties
     override var hidesBottomBarWhenPushed: Bool {
@@ -27,22 +28,20 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         configurateView()
         cardCollectionView.searchViewControllerDelegate = self
+        cardCollectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+
         hideKeyboardWhenTappedAround()
-        let petType = PetType.cat
-        print(petType.getName())
+        fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         cardCollectionView.updateHeaderView()
-        FireStoreManager.shared.fetchAllPublications { publications in
-            if publications.count == self.cardCollectionView.publications.count {
-                self.cardCollectionView.isNeedAnimate = false
-            } else {
-                self.cardCollectionView.isNeedAnimate = true
-            }
-            self.cardCollectionView.publications = publications
-            self.cardCollectionView.reloadData()
-        }
+
+    }
+
+    @objc private func refreshData(_ sender: Any) {
+        fetchData()
     }
 }
 
@@ -58,6 +57,22 @@ extension SearchViewController {
         view.addSubview(cardCollectionView)
         cardCollectionView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - Fetching data
+extension SearchViewController {
+    func fetchData() {
+        FireStoreManager.shared.fetchAllPublications { publications in
+            if publications.count == self.cardCollectionView.publications.count {
+                self.cardCollectionView.isNeedAnimate = false
+            } else {
+                self.cardCollectionView.isNeedAnimate = true
+                self.cardCollectionView.publications = publications
+                self.cardCollectionView.reloadData()
+            }
+            self.refreshControl.endRefreshing()
         }
     }
 }
