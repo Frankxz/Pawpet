@@ -36,8 +36,12 @@ class SearchViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        cardCollectionView.updateHeaderView()
-
+        if FireStoreManager.shared.user.isChanged {
+            cardCollectionView.updateHeaderView()
+            cardCollectionView.reloadData()
+            FireStoreManager.shared.user.isChanged = false
+            print("Reloading data")
+        }
     }
 
     @objc private func refreshData(_ sender: Any) {

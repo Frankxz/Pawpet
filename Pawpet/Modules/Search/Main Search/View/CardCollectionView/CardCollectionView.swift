@@ -18,9 +18,15 @@ class CardCollectionView: UICollectionView {
     public var publications: [Publication] = []
     public var isNeedAnimate = true
 
+    private var withHeart: Bool = true
+    private var isFavoriteVC: Bool = false
+
     // MARK: - INIT
-    init (isHeaderIn: Bool = true) {
-        withHeader = isHeaderIn
+    init (isHeaderIn: Bool = true, withHeart: Bool = true, isFavoriteVC: Bool = false) {
+        self.withHeader = isHeaderIn
+        self.withHeart = withHeart
+        self.isFavoriteVC = isFavoriteVC
+
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         super.init(frame: .zero, collectionViewLayout: layout)
@@ -58,7 +64,12 @@ extension CardCollectionView: UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseId, for: indexPath) as! CardCollectionViewCell
         let publication = publications[indexPath.row]
-        cell.configure(with: publication)
+        cell.configure(with: publication, withHeart: withHeart)
+        cell.deleteCellFromFavorites = { [weak self] in
+            if self?.isFavoriteVC ?? false {
+                self?.deleteItem(at: indexPath)
+            }
+        }
         return cell
     }
 
@@ -124,6 +135,18 @@ extension CardCollectionView {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isNeedAnimate = false
+    }
+}
+
+// MARK: - If In Favorites
+extension CardCollectionView {
+    func deleteItem(at indexPath: IndexPath) {
+        print("DELETE FROM COLLECTIONVIEW")
+        publications.remove(at: indexPath.item)
+        FireStoreManager.shared.user.isChanged = true
+        performBatchUpdates({
+            deleteItems(at: [indexPath])
+        }, completion: nil)
     }
 }
 

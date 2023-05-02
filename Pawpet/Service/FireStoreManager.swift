@@ -32,7 +32,8 @@ extension FireStoreManager {
             "surname": user.surname ?? "",
             "country": user.country ?? "",
             "city": user.city ?? "",
-            "currency": user.currency ?? ""
+            "currency": user.currency ?? "",
+            "favorites": user.favorites ?? [] //
         ]
         
         ref.child("users").child(uid).setValue(userData) { error, _ in
@@ -53,14 +54,15 @@ extension FireStoreManager {
         let country = UserDefaults.standard.string(forKey: "COUNTRY") ?? ""
         let city = UserDefaults.standard.string(forKey: "CITY") ?? ""
         let currency = getCurrencyForUser(for: user)
+        let favorites: [String] = []
 
-        print("\(name) \(surname) from \(country) \(city)")
         let userData: [String: Any] = [
             "name": name,
             "surname": surname,
             "country": country,
             "city": city,
-            "currency": currency
+            "currency": currency,
+            "favorites": favorites
         ]
         
         ref.child("users").child(uid).setValue(userData) { error, _ in
@@ -98,9 +100,9 @@ extension FireStoreManager {
                    let surname = userData["surname"] as? String,
                    let country = userData["country"] as? String,
                    let city = userData["city"] as? String,
-                   let currency = userData["currency"] as? String {
-                    print("\(name) \(surname), from \(country) \(city)")
-                    let user = PawpetUser(name: name, surname: surname, country: country, city: city, currency: currency)
+                   let currency = userData["currency"] as? String,
+                   let favorites = userData["favorites"] as? [String]? { //
+                    let user = PawpetUser(name: name, surname: surname, country: country, city: city, currency: currency, favorites: favorites)
                     if id.isEmpty {
                         FireStoreManager.shared.user = user
                         self.fetchAvatarImage {}
@@ -130,7 +132,6 @@ extension FireStoreManager {
     func getUserEmail() -> String {
         guard let user = Auth.auth().currentUser else { return "NO AUTH" }
         if let email = user.email {
-            print("EMAIL: \(email)")
             return email
         } else {
             return "NO EMAIL"
@@ -271,6 +272,9 @@ extension FireStoreManager {
         let publicationsRef = databaseRef.child("publications").childByAutoId()
         let imagesFolderRef = storageRef.child("images/\(publicationsRef.key!)")
 
+        // Установите id для текущей публикации
+        publication.id = publicationsRef.key!
+
         var imageURLs: [String] = []
 
         let group = DispatchGroup()
@@ -302,6 +306,7 @@ extension FireStoreManager {
 
         group.notify(queue: .main) {
             let publicationData: [String: Any] = [
+                "id": publication.id, // добавьте id в словарь
                 "petType": publication.petType.rawValue,
                 "isCrossbreed": publication.isCrossbreed ?? false,
                 "breed": publication.breed,
@@ -328,10 +333,12 @@ extension FireStoreManager {
             }
         }
     }
+
 }
 
 // MARK: - Fetching publications
 extension FireStoreManager {
+    // MARK:  Fetch User's Publications
     func fetchPublicationsForUser(userID: String, completion: @escaping ([Publication]) -> Void) {
         let databaseRef = Database.database().reference()
         let publicationsRef = databaseRef.child("publications")
@@ -351,7 +358,6 @@ extension FireStoreManager {
                 dispatchGroup.enter()
                 self.publicationFromDictionary(id: key, data: publicationData) { (publication) in
                     if let publication = publication {
-                        print(publication)
                         publications.append(publication)
                     }
                     dispatchGroup.leave()
@@ -364,6 +370,7 @@ extension FireStoreManager {
         }
     }
 
+    // MARK:  Fetch ALL Publications
     func fetchAllPublications(completion: @escaping ([Publication]) -> Void) {
         let databaseRef = Database.database().reference()
         let publicationsRef = databaseRef.child("publications")
@@ -382,8 +389,8 @@ extension FireStoreManager {
                 dispatchGroup.enter()
                 self.publicationFromDictionary(id: key, data: publicationData) { (publication) in
                     if let publication = publication {
-                        print(publication)
                         publications.append(publication)
+                        print("Posts count: \(publications.count) | ID: \(publications[0].id)")
                     }
                     dispatchGroup.leave()
                 }
@@ -391,14 +398,15 @@ extension FireStoreManager {
 
             dispatchGroup.notify(queue: .main) {
                 completion(publications)
+
             }
         }
     }
 
-
     // ADDITIONAL METHOD to simplify user fetching
     func publicationFromDictionary(id: String, data: [String: Any], completion: @escaping (Publication?) -> Void) {
         guard let petTypeName = data["petType"] as? String,
+              let id = data["id"] as? String,
               let petType = PetType(rawValue: petTypeName.lowercased()),
               let breed = data["breed"] as? String,
               let age = data["age"] as? Int,
@@ -434,11 +442,104 @@ extension FireStoreManager {
                 dispatchGroup.leave()
             }.resume()
         }
-
         dispatchGroup.notify(queue: .main) {
-            let publication = Publication(petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, description: description, price: price, currency: currency, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, pictures: pictures, location: location, userID: userID)
+            let publication = Publication(id: id, petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, description: description, price: price, currency: currency, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, pictures: pictures, location: location, userID: userID)
             completion(publication)
         }
     }
+}
 
+// MARK: - Favorites
+extension FireStoreManager {
+    func addToFavorites(publicationID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Current user not found"])))
+            return
+        }
+
+        let databaseRef = Database.database().reference()
+        let userRef = databaseRef.child("users").child(currentUserID)
+        
+        // Добавить ID публикации в массив `favorites`
+        if  FireStoreManager.shared.user.favorites == nil {
+            FireStoreManager.shared.user.favorites = []
+        }
+        FireStoreManager.shared.user.favorites?.append(publicationID)
+
+        // Сохранить обновленный массив `favorites` в Realtime Database
+        userRef.updateChildValues(["favorites":  FireStoreManager.shared.user.favorites!]) { (error, _) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                FireStoreManager.shared.user.isChanged = true
+                completion(.success(()))
+            }
+        }
+    }
+
+    func removeFromFavorites(publicationID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        // Удалить ID публикации из массива favorites
+        if let index = FireStoreManager.shared.user.favorites?.firstIndex(of: publicationID) {
+            user.favorites?.remove(at: index)
+        } else {
+            completion(.failure(NSError(domain: "Publication not found in favorites", code: 404, userInfo: nil)))
+            return
+        }
+
+        // Получить ссылку на Realtime Database
+        let databaseRef = Database.database().reference()
+
+        // Получить ссылку на текущего пользователя
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            completion(.failure(NSError(domain: "No current user", code: 401, userInfo: nil)))
+            return
+        }
+
+        // Получить ссылку на пользователя в Realtime Database
+        let userRef = databaseRef.child("users").child(currentUserID)
+
+        // Обновить данные пользователя в Realtime Database
+        userRef.updateChildValues(["favorites": FireStoreManager.shared.user.favorites ?? []]) { (error, _) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                FireStoreManager.shared.user.isChanged = true
+                completion(.success(()))
+            }
+        }
+    }
+
+    func fetchFavoritePublications(completion: @escaping ([Publication]) -> Void) {
+        print("FireStoreManager.shared.user.favorites = \(FireStoreManager.shared.user.favorites?.count)")
+        guard let favorites =  FireStoreManager.shared.user.favorites else {
+            completion([])
+            return
+        }
+
+        let databaseRef = Database.database().reference()
+        let publicationsRef = databaseRef.child("publications")
+
+        var favoritePublications: [Publication] = []
+        let dispatchGroup = DispatchGroup()
+
+        for publicationID in favorites {
+            dispatchGroup.enter()
+            publicationsRef.child(publicationID).observeSingleEvent(of: .value) { (snapshot) in
+                if let publicationData = snapshot.value as? [String: Any] {
+                    self.publicationFromDictionary(id: publicationID, data: publicationData) { (publication) in
+                        if let publication = publication {
+                            favoritePublications.append(publication)
+                        }
+                        dispatchGroup.leave()
+                    }
+                } else {
+                    dispatchGroup.leave()
+                }
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            completion(favoritePublications)
+        }
+    }
 }

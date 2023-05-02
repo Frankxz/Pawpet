@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .backgroundColor
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -38,6 +39,7 @@ class DetailViewController: UIViewController {
         let button = UIButton()
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
         let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.setImage(image, for: .normal)
         button.backgroundColor = .accentColor
         button.layer.cornerRadius = 25
@@ -49,6 +51,8 @@ class DetailViewController: UIViewController {
     var photosPageVC: PhotosPageViewController?
 
     var publication: Publication?
+
+    var isInFavorite: Bool = false
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
@@ -62,11 +66,25 @@ class DetailViewController: UIViewController {
 // MARK: - UI + Constraints
 extension DetailViewController {
     public func configure(with publication: Publication) {
+        self.publication = publication
         if publication.pictures.count != 0 {
             mainImageView.image = publication.pictures.first
             photosPageVC = PhotosPageViewController(images: publication.pictures)
         }
         infoView.configure(with: publication)
+
+        if let favorites = FireStoreManager.shared.user.favorites, favorites.contains(publication.id) {
+            print("IN Favorites \(isInFavorite)")
+            updateSaveButtonAppearence { _ in }
+            print("IN Favorites \(isInFavorite)")
+        } else {
+            let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
+            let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
+            saveButton.setImage(image, for: .normal)
+            saveButton.tintColor = .subtitleColor
+            isInFavorite = false
+            print("IN Favorites \(isInFavorite)")
+        }
     }
 
     private func configurateView() {
@@ -139,5 +157,50 @@ extension DetailViewController: MainViewControllerDelegate {
 
     func subviewToBack() {
         view.bringSubviewToFront(checkPhotosButton)
+    }
+}
+
+// MARK: Favorite work
+extension DetailViewController {
+    @objc private func saveButtonTapped() {
+        print("saveButtonTapped")
+        updateSaveButtonAppearence() { isInFavoriteNow in
+            guard let publicationID = self.publication?.id else { return }
+
+            if isInFavoriteNow {
+                FireStoreManager.shared.addToFavorites(publicationID: publicationID) { result in
+                    switch result {
+                    case .success:
+                        print("Succesufuly saved to favorites")
+                    case .failure(let failure):
+                        print(failure.localizedDescription)
+                    }
+                }
+            } else {
+                FireStoreManager.shared.removeFromFavorites(publicationID: publicationID) { result in
+                    switch result {
+                    case .success:
+                        print("Succesufuly deleted from favorites")
+                    case .failure(let failure):
+                        print(failure.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+
+    func updateSaveButtonAppearence(completion: @escaping (Bool)->()) {
+        let color: UIColor = isInFavorite ? .subtitleColor : .systemRed
+        let imageName = isInFavorite ? "heart" : "heart.fill"
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
+        let image = UIImage(systemName: imageName, withConfiguration: imageConfig)
+
+        UIView.animate(withDuration: 0.2) {
+            self.saveButton.setImage(image, for: .normal)
+            self.saveButton.tintColor = color
+        }
+
+        isInFavorite.toggle()
+        completion(isInFavorite)
     }
 }

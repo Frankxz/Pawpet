@@ -8,6 +8,7 @@
 import UIKit
 
 class Publication {
+    var id: String = ""
     var petType: PetType = .dog
     var isCrossbreed: Bool?
     var breed: String = ""
@@ -29,7 +30,8 @@ class Publication {
 
     var userID: String = ""
 
-    init(petType: PetType, isCrossbreed: Bool?, breed: String, secondBreed: String?, age: Int, isMale: Bool, description: String, price: Int, currency: String, isCupping: Bool?, isSterilized: Bool?, isVaccinated: Bool?, pictures: [UIImage], location: [String : String], userID: String) {
+    init(id: String, petType: PetType, isCrossbreed: Bool?, breed: String, secondBreed: String?, age: Int, isMale: Bool, description: String, price: Int, currency: String, isCupping: Bool?, isSterilized: Bool?, isVaccinated: Bool?, pictures: [UIImage], location: [String : String], userID: String) {
+        self.id = id
         self.petType = petType
         self.isCrossbreed = isCrossbreed
         self.breed = breed

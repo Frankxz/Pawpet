@@ -49,7 +49,7 @@ class ProfileViewController: UIViewController {
     private let favoriteLabel = PromptView(with: "Favorite List", and: "All posts that you marked as liked are displayed here. ")
 
     // MARK: - CollectionView
-    private let cardCollectionView = CardCollectionView(isHeaderIn: false)
+    private let cardCollectionView = CardCollectionView(isHeaderIn: false, isFavoriteVC: true)
 
     // MARK: - StackView
     private var infoStackView = UIStackView()
@@ -71,27 +71,35 @@ class ProfileViewController: UIViewController {
         configurateView()
         addButtonsTarget()
         cardCollectionView.searchViewControllerDelegate = self
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        if  FireStoreManager.shared.user.isChanged {
+            self.infoStackView.alpha = 0
+            self.editButton.alpha = 0
+            infoSkeletonView.show(on: view)
 
-        self.infoStackView.alpha = 0
-        self.editButton.alpha = 0
-        infoSkeletonView.show(on: view)
+            FireStoreManager.shared.fetchAvatarImage(imageView: avatarImageView) {}
 
-        FireStoreManager.shared.fetchAvatarImage(imageView: avatarImageView) {}
-        FireStoreManager.shared.fetchUserData { _ in
-            self.infoView.setupTitles(
-                title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
-                subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
-            self.phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                UIView.animate(withDuration: 0.25) {
-                    self.infoStackView.alpha = 1
-                    self.editButton.alpha = 1
-                    self.infoSkeletonView.hide()
+            FireStoreManager.shared.fetchUserData { _ in
+                self.infoView.setupTitles(
+                    title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
+                    subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
+                self.phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    UIView.animate(withDuration: 0.25) {
+                        self.infoStackView.alpha = 1
+                        self.editButton.alpha = 1
+                        self.infoSkeletonView.hide()
+                        FireStoreManager.shared.user.isChanged = false
+                    }
                 }
+            }
+
+            FireStoreManager.shared.fetchFavoritePublications { favoritePublications in
+                print("FAVORITE POSTS COUNT: \(favoritePublications.count)")
+                self.cardCollectionView.publications = favoritePublications
+                self.cardCollectionView.reloadData()
             }
         }
     }

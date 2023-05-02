@@ -43,7 +43,7 @@ class PublicationsViewController: UIViewController {
     }()
 
     // MARK:  CollectionView
-    private let cardCollectionView = CardCollectionView(isHeaderIn: false)
+    private let cardCollectionView = CardCollectionView(isHeaderIn: false, withHeart: false)
     private let refreshControl = UIRefreshControl()
     
     // MARK:  Buttons

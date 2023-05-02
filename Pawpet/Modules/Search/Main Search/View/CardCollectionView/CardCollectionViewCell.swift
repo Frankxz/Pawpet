@@ -41,11 +41,11 @@ class CardCollectionViewCell: UICollectionViewCell {
     }()
 
     // MARK: - Buttons
-    let saveButton: UIButton = {
+    lazy var saveButton: UIButton = {
         let button = UIButton()
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
         let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
-
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         button.setImage(image, for: .normal)
         button.backgroundColor = .clear
         button.tintColor = .subtitleColor
@@ -53,11 +53,13 @@ class CardCollectionViewCell: UICollectionViewCell {
     }()
 
     var publication: Publication?
+    var isInFavorite: Bool = false
+
+    var deleteCellFromFavorites: (() -> Void)?
 
     // MARK: - INITs
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configurateView()
     }
 
     required init?(coder: NSCoder) {
@@ -67,18 +69,17 @@ class CardCollectionViewCell: UICollectionViewCell {
 
 // MARK: - UI + Constraints
 extension CardCollectionViewCell {
-    private func configurateView() {
+    private func configurateView(withHeart: Bool) {
         backgroundColor = .backgroundColor
         layer.cornerRadius = 6
         
-        setupConstraints()
+        setupConstraints(withHeart: withHeart)
     }
 
-    private func setupConstraints() {
+    private func setupConstraints(withHeart: Bool) {
         addSubview(mainImageView)
         addSubview(infoLabel)
         addSubview(priceLabel)
-        addSubview(saveButton)
 
         mainImageView.snp.makeConstraints { make in
             make.width.height.equalTo(100)
@@ -97,15 +98,34 @@ extension CardCollectionViewCell {
             make.left.equalTo(mainImageView.snp.right).offset(20)
         }
 
-        saveButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview()
-            make.height.equalTo(36)
-            make.width.equalTo(36)
+        if withHeart {
+            addSubview(saveButton)
+            saveButton.snp.makeConstraints { make in
+                make.right.equalToSuperview().inset(10)
+                make.bottom.equalToSuperview()
+                make.height.equalTo(36)
+                make.width.equalTo(36)
+            }
         }
     }
 
-    func configure(with publication: Publication) {
+    func configure(with publication: Publication, withHeart: Bool = true) {
+        configurateView(withHeart: withHeart)
+       
+        if let favorites = FireStoreManager.shared.user.favorites, favorites.contains(publication.id) {
+            if !isInFavorite  {
+                print("\nIN Favorites \(isInFavorite)")
+                updateSaveButtonAppearence { _ in }
+                print("IN Favorites \(isInFavorite)")
+            }
+        } else {
+            let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
+            let image = UIImage(systemName: "heart", withConfiguration: imageConfig)
+            saveButton.setImage(image, for: .normal)
+            saveButton.tintColor = .subtitleColor
+            isInFavorite = false
+        }
+
         self.publication = publication
         infoLabel.subtitleLabel.numberOfLines = 2
         infoLabel.setupTitles(title: publication.breed,
@@ -115,3 +135,46 @@ extension CardCollectionViewCell {
     }
 }
 
+// MARK: - SaveButton
+extension CardCollectionViewCell {
+    @objc private func saveButtonTapped() {
+        updateSaveButtonAppearence() { isInFavoriteNow in
+            guard let publicationID = self.publication?.id else { return }
+            if isInFavoriteNow {
+                FireStoreManager.shared.addToFavorites(publicationID: publicationID) { result in
+                    switch result {
+                    case .success:
+                        print("Succesufuly saved to favorites")
+                    case .failure(let failure):
+                        print(failure.localizedDescription)
+                    }
+                }
+            } else {
+                FireStoreManager.shared.removeFromFavorites(publicationID: publicationID) { result in
+                    switch result {
+                    case .success:
+                        print("Succesufuly deleted from favorites")
+                        (self.deleteCellFromFavorites ?? {})()
+                    case .failure(let failure):
+                        print(failure.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+
+    func updateSaveButtonAppearence(completion: @escaping (Bool)->()) {
+        let color: UIColor = isInFavorite ? .subtitleColor : .systemRed
+        let imageName = isInFavorite ? "heart" : "heart.fill"
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 16, weight: .medium, scale: .large)
+        let image = UIImage(systemName: imageName, withConfiguration: imageConfig)
+
+        UIView.animate(withDuration: 0.2) {
+            self.saveButton.setImage(image, for: .normal)
+            self.saveButton.tintColor = color
+        }
+
+        isInFavorite.toggle()
+        completion(isInFavorite)
+    }
+}
