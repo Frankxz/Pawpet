@@ -14,7 +14,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     // MARK: - ImageView
     let mainImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .random()
+        imageView.backgroundColor = .backgroundColor
         imageView.layer.cornerRadius = 6
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 0.5
@@ -31,14 +31,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         subtitleSize: 14,
         spacing: 8)
 
-    let priceLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.textColor = .systemRed
-        label.textAlignment = .left
-        label.text = "120$"
-        return label
-    }()
+    let priceLabel = LabelView(text: "", weight: .heavy, viewColor: .clear, textColor: .systemRed, edgeOffset: 4)
 
     // MARK: - Buttons
     lazy var saveButton: UIButton = {
@@ -93,7 +86,8 @@ extension CardCollectionViewCell {
             make.right.equalToSuperview().inset(10)
         }
 
-        priceLabel.snp.makeConstraints { make in
+        priceLabel.snp.removeConstraints()
+        priceLabel.snp.makeConstraints() { make in
             make.bottom.equalToSuperview().inset(10)
             make.left.equalTo(mainImageView.snp.right).offset(20)
         }
@@ -130,8 +124,16 @@ extension CardCollectionViewCell {
         infoLabel.subtitleLabel.numberOfLines = 2
         infoLabel.setupTitles(title: publication.breed,
                               subtitle: publication.description)
-        priceLabel.text = "\(publication.price) $"
-        mainImageView.image = publication.pictures.first ?? UIImage(named: "pawpet")
+        print("PICTURES COUNT \(publication.pictures.count)")
+        mainImageView.image = publication.pictures.first ?? UIImage(named: "pawpet_black_logo")
+
+        if publication.price > 0 {
+            priceLabel.setupTitle(with: "  \(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())  ")
+            priceLabel.setupColors(viewColor: .subtitleColor.withAlphaComponent(0.3), textColor: .accentColor.withAlphaComponent(0.8))
+        } else {
+            priceLabel.setupTitle(with: "  FREE  ")
+            priceLabel.setupColors(viewColor: .systemGreen, textColor: .white)
+        }
     }
 }
 

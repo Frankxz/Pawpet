@@ -266,7 +266,6 @@ extension FireStoreManager {
     func savePublication(completion: @escaping (Result<String, Error>) -> Void) {
         let publication = FireStoreManager.shared.currentPublication
         publication.location = [user.country ?? "" : user.city ?? ""]
-        publication.currency = user.currency ?? "USD"
         publication.userID = Auth.auth().currentUser!.uid
 
         let databaseRef = Database.database().reference()
@@ -458,7 +457,7 @@ extension FireStoreManager {
               let description = data["description"] as? String,
               let price = data["price"] as? Int,
               let currency = data["currency"] as? String,
-              let picturesURLs = data["picturesURLs"] as? [String],
+              let picturesURLs = data["picturesURLs"] as? [String]?,
               let location = data["location"] as? [String: String],
               let userID = data["userID"] as? String
         else {
@@ -476,16 +475,19 @@ extension FireStoreManager {
         let dispatchGroup = DispatchGroup()
         var pictures: [UIImage] = []
 
-        for url in picturesURLs {
-            guard let imageURL = URL(string: url) else { continue }
-            dispatchGroup.enter()
-            URLSession.shared.dataTask(with: imageURL) { (data, _, _) in
-                if let data = data, let image = UIImage(data: data) {
-                    pictures.append(image)
-                }
-                dispatchGroup.leave()
-            }.resume()
+        if picturesURLs != nil {
+            for url in picturesURLs!{
+                guard let imageURL = URL(string: url) else { continue }
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: imageURL) { (data, _, _) in
+                    if let data = data, let image = UIImage(data: data) {
+                        pictures.append(image)
+                    }
+                    dispatchGroup.leave()
+                }.resume()
+            }
         }
+
 
         dispatchGroup.notify(queue: .main) {
             let publication = Publication(id: id, petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, description: description, price: price, currency: currency, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, pictures: pictures, location: location, userID: userID)

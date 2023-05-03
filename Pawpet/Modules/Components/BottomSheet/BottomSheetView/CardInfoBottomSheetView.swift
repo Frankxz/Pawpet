@@ -11,7 +11,8 @@ import Firebase
 class CardInfoBottomSheetView: BottomSheetView{
     // MARK: - Properties
     private let titleView = PromptView(with: "Husky", and: "Dog")
-    
+    private let priceLabel = LabelView(text: "", size: 22, viewColor: .clear, textColor: .systemRed, edgeOffset: 4)
+
     private let infoLabels = [
         LabelView(text: "2 y.", subtitle: "Age", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
         LabelView(text: "Male", subtitle: "Gender", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
@@ -50,17 +51,6 @@ class CardInfoBottomSheetView: BottomSheetView{
         return label
     }()
 
-    private lazy var aboutGreedButton: UIButton = {
-        let button = UIButton()
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "info.circle", withConfiguration: imageConfig)
-        button.setImage(image, for: .normal)
-       // button.backgroundColor = .accentColor
-        button.layer.cornerRadius = 15
-        button.tintColor = .systemYellow.withAlphaComponent(0.95)
-        return button
-    }()
-
     // MARK: - Init
     override init() {
         super.init()
@@ -79,10 +69,24 @@ extension CardInfoBottomSheetView {
         titleView.setupTitles(title: publication.breed, subtitle: publication.petType.getName())
         descriptionLabel.text = publication.description
 
+        if publication.price > 0 {
+            priceLabel.setupTitle(with: "   \(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())   ")
+            priceLabel.setupColors(viewColor: .systemYellow, textColor: .accentColor.withAlphaComponent(0.8))
+        } else {
+            priceLabel.setupTitle(with: "  FREE  ")
+            priceLabel.snp.removeConstraints()
+            priceLabel.snp.makeConstraints { make in
+                make.top.equalTo(titleView.snp.top)
+                make.right.equalToSuperview().inset(20)
+            }
+            priceLabel.setupColors(viewColor: .systemGreen, textColor: .white)
+        }
+
         FireStoreManager.shared.fetchUserData(for: publication.userID) { author in
             self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Author")
             self.authorGeoLabel.text = "\(author.country ?? "")\n\(author.city ?? "")"
         }
+
         if publication.userID == Auth.auth().currentUser?.uid {
             FireStoreManager.shared.fetchAvatarImage(imageView: authorImageView) {}
         } else {
@@ -107,21 +111,20 @@ extension CardInfoBottomSheetView {
         let authorStackView = getAuthorStackView()
 
         containerView.addSubview(titleView)
+        containerView.addSubview(priceLabel)
         containerView.addSubview(infoLabelsStackView)
         containerView.addSubview(authorStackView)
         containerView.addSubview(authorGeoLabel)
         containerView.addSubview(descriptionLabel)
-        containerView.addSubview(aboutGreedButton)
 
         titleView.snp.makeConstraints { make in
             make.top.left.equalToSuperview().inset(20)
-            make.right.equalTo(aboutGreedButton.snp.left).inset(20)
+            make.right.equalTo(priceLabel.snp.left).inset(-20)
         }
 
-        aboutGreedButton.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.top)
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.top).inset(4)
             make.right.equalToSuperview().inset(20)
-            make.height.width.equalTo(30)
         }
 
         infoLabelsStackView.snp.makeConstraints { make in

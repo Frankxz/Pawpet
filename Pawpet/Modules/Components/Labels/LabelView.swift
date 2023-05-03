@@ -30,7 +30,8 @@ class LabelView: UIView {
         weight: UIFont.Weight = .bold,
         aligment: NSTextAlignment = .left,
         viewColor: UIColor = .accentColor,
-        textColor: UIColor = .subtitleColor
+        textColor: UIColor = .subtitleColor,
+        edgeOffset: CGFloat = 8
     ) {
         super.init(frame: .zero)
 
@@ -47,7 +48,7 @@ class LabelView: UIView {
         backgroundColor = viewColor
         layer.cornerRadius = 6
 
-        setupConstraints(withSubtitle: !subtitle.isEmpty)
+        setupConstraints(withSubtitle: !subtitle.isEmpty, edgeOffset: edgeOffset)
     }
 
     required init?(coder: NSCoder) {
@@ -57,7 +58,7 @@ class LabelView: UIView {
 
 // MARK: - UI
 extension LabelView {
-    private func setupConstraints(withSubtitle: Bool = false) {
+    private func setupConstraints(withSubtitle: Bool = false, edgeOffset: CGFloat) {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 5
@@ -67,15 +68,21 @@ extension LabelView {
         addSubview(stackView)
 
         stackView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview().inset(8)
+            make.left.right.top.bottom.equalToSuperview().inset(edgeOffset)
         }
     }
 
-    func setupTitle(with text: String, and subtitle: String = "") {
+    func setupTitle(with text: String,
+                    and subtitle: String = "") {
         mainLabel.text = text
         if !subtitle.isEmpty {
             subtitleLabel.text = subtitle
         }
+    }
+
+    func setupColors(viewColor: UIColor, textColor: UIColor) {
+        backgroundColor = viewColor
+        mainLabel.textColor = textColor
     }
 }
 

@@ -52,11 +52,23 @@ class PostViewController_8: UIViewController {
         setupConstraints()
         hideKeyboardWhenTappedAround()
         addKeyBoardObservers()
+        setupCurrencySymbol()
     }
 }
 
 // MARK: - UI + Constraints
 extension PostViewController_8 {
+    private func setupCurrencySymbol() {
+        let currency =  FireStoreManager.shared.user.currency ?? "RUB"
+        switch currency {
+        case "RUB": priceTF.setupButtonTitle(with: "₽")
+        case "USD": priceTF.setupButtonTitle(with: "$")
+        case "KZT": priceTF.setupButtonTitle(with: "₸")
+        default:
+            break
+        }
+    }
+
     private func setupConstraints() {
         view.addSubview(promptView)
         view.addSubview(priceTF)
@@ -110,7 +122,7 @@ extension PostViewController_8 {
         var price = Int(priceTF.text ?? "0") ?? 0
         if isFreeControl.selectedItem == "FREE" { price = 0 }
         FireStoreManager.shared.currentPublication.price = price
-
+        FireStoreManager.shared.currentPublication.currency = priceTF.currency
         FireStoreManager.shared.savePublication { result in
 
             switch result {

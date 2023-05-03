@@ -52,7 +52,6 @@ extension SuccessAlertView {
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(30)
         }
-
     }
 }
 

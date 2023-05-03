@@ -21,5 +21,16 @@ extension String {
         let inputString = self
         let capitalizedString = inputString.prefix(1).uppercased() + inputString.dropFirst()
         return capitalizedString
+        
+    }
+
+    func inCurrencySymbol() -> String {
+        switch self {
+        case "USD": return "$"
+        case "RUB": return "₽"
+        case "KZT": return "₸"
+        default: return "$"
+        }
     }
 }
+

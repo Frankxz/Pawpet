@@ -70,6 +70,8 @@ extension DetailViewController {
         if publication.pictures.count != 0 {
             mainImageView.image = publication.pictures.first
             photosPageVC = PhotosPageViewController(images: publication.pictures)
+        } else {
+            mainImageView.image = UIImage(named: "pawpet_black_logo")
         }
         infoView.configure(with: publication)
 
@@ -145,7 +147,8 @@ extension DetailViewController {
 
     @objc private func checkPhotosTapped(_ sender: UIButton) {
         photosPageVC?.modalPresentationStyle = .fullScreen
-        present(photosPageVC!, animated: true)
+        guard let photosPageVC = photosPageVC else {return}
+        present(photosPageVC, animated: true)
     }
 }
 
