@@ -42,7 +42,7 @@ extension AnimalSelectionView {
 
         promptView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().inset(60)
+            make.top.equalToSuperview()
         }
 
         chapterCollectionView.snp.makeConstraints { make in

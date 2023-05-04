@@ -98,7 +98,13 @@ class PublicationsViewController: UIViewController {
 // MARK: - Fetching data
 extension PublicationsViewController {
     func fetchData() {
-        FireStoreManager.shared.fetchPublicationsForUser(userID: Auth.auth().currentUser!.uid) { fetchedPublications in
+        PublicationManager.shared.fetchPublications() { fetchedPublications, error  in
+            if let error = error {
+                self.setupViewAccordingToPosts(publications: [])
+            }
+
+            guard let fetchedPublications = fetchedPublications  else { return }
+
             if fetchedPublications.count == self.cardCollectionView.publications.count {
                 self.cardCollectionView.isNeedAnimate = false
             } else {
@@ -202,6 +208,7 @@ extension PublicationsViewController: SearchViewControllerDelegate {
     func pushToDetailVC(of publication: Publication) {
         print("Push to DetailVC")
         let detailVC = OwnDetailViewController()
+        detailVC.publicationsDelegate = self
         detailVC.configure(with: publication)
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -216,5 +223,15 @@ extension PublicationsViewController {
         navigationVC.modalPresentationStyle = .fullScreen
         present(navigationVC, animated: true)
         //navigationController?.pushViewController(PostViewController_1(), animated: true)
+    }
+}
+
+// MARK: - Detail VC Delegate
+extension PublicationsViewController: EditOwnPostDelegate {
+    func didChangedPost(isChanged: Bool) {
+        if isChanged {
+            cardCollectionView.reloadData()
+            print("data reloaded")
+        }
     }
 }

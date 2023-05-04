@@ -14,10 +14,15 @@ class CardInfoBottomSheetView: BottomSheetView{
     private let priceLabel = LabelView(text: "", size: 22, viewColor: .clear, textColor: .systemRed, edgeOffset: 4)
 
     private let infoLabels = [
-        LabelView(text: "2 y.", subtitle: "Age", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
         LabelView(text: "Male", subtitle: "Gender", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
-        LabelView(text: "3.5 kg", subtitle: "Weight", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
-        LabelView(text: "Yes", subtitle: "Vacine", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
+        LabelView(text: "2 y.", subtitle: "Age", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
+        LabelView(text: "Yes", subtitle: "Sterilize", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
+        LabelView(text: "Yes", subtitle: "Cupping", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor)
+    ]
+
+    private let additionInfoLabels = [
+        LabelView(text: "Yes", subtitle: "Documents", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor),
+        LabelView(text: "Yes", subtitle: "Vacine", aligment: .center, viewColor: .backgroundColor, textColor: .accentColor)
     ]
 
     private let descriptionLabel: UILabel = {
@@ -66,8 +71,8 @@ class CardInfoBottomSheetView: BottomSheetView{
 // MARK: - UI + Constraints
 extension CardInfoBottomSheetView {
     public func configure(with publication: Publication) {
-        titleView.setupTitles(title: publication.breed, subtitle: publication.petType.getName())
-        descriptionLabel.text = publication.description
+        titleView.setupTitles(title: publication.petInfo.breed, subtitle: publication.petInfo.petType.getName())
+        descriptionLabel.text = publication.petInfo.description
 
         if publication.price > 0 {
             priceLabel.setupTitle(with: "   \(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())   ")
@@ -82,37 +87,44 @@ extension CardInfoBottomSheetView {
             priceLabel.setupColors(viewColor: .systemGreen, textColor: .white)
         }
 
-        FireStoreManager.shared.fetchUserData(for: publication.userID) { author in
+        FireStoreManager.shared.fetchUserData(for: publication.authorID) { author in
             self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Author")
             self.authorGeoLabel.text = "\(author.country ?? "")\n\(author.city ?? "")"
         }
 
-        if publication.userID == Auth.auth().currentUser?.uid {
+        if publication.authorID == Auth.auth().currentUser?.uid {
             FireStoreManager.shared.fetchAvatarImage(imageView: authorImageView) {}
         } else {
-            FireStoreManager.shared.fetchAvatarImage(id: publication.userID, imageView: authorImageView) {}
+            FireStoreManager.shared.fetchAvatarImage(id: publication.authorID, imageView: authorImageView) {}
         }
 
-        let sex = publication.isMale ? "Male" : "Female"
-        let coupping = publication.isCupping! ? "Yes" : "No" // REMOVE FORCE UNWRAP
-        let vaccinated = publication.isVaccinated! ? "Yes" : "No"
+        let sex = publication.petInfo.isMale ? "Male" : "Female"
+        let coupping = publication.petInfo.isCupping! ? "Yes" : "No" // REMOVE FORCE UNWRAP
+        let vaccinated = publication.petInfo.isVaccinated! ? "Yes" : "No"
+        let sterilized = publication.petInfo.isSterilized! ? "Yes" : "No"
+        let isWithDocuments = publication.petInfo.isWithDocuments! ? "Yes" : "No"
 
-        vaccinated == "Yes" ? (infoLabels[3].mainLabel.textColor = .systemGreen) : (infoLabels[3].mainLabel.textColor = .accentColor)
+        vaccinated == "Yes" ? (additionInfoLabels[1].mainLabel.textColor = .systemGreen) : (infoLabels[3].mainLabel.textColor = .accentColor)
+        isWithDocuments == "Yes" ? (additionInfoLabels[0].mainLabel.textColor = .systemGreen) : (infoLabels[2].mainLabel.textColor = .accentColor)
 
-        infoLabels[0].setupTitle(with: "\(publication.age) m.")
-        infoLabels[1].setupTitle(with: sex)
-        infoLabels[2].setupTitle(with: coupping, and: "Coupping")
-        infoLabels[3].setupTitle(with: vaccinated)
+        infoLabels[0].setupTitle(with: sex, and: "Gender")
+        infoLabels[1].setupTitle(with: "\(publication.petInfo.age) m.", and: "Age")
+        infoLabels[2].setupTitle(with: coupping, and: "Couping")
+        infoLabels[3].setupTitle(with: sterilized, and: "Sterilized")
 
+        additionInfoLabels[0].setupTitle(with: isWithDocuments, and: "Documents")
+        additionInfoLabels[1].setupTitle(with: vaccinated)
     }
 
     private func setupInfoView() {
         let infoLabelsStackView = getInfoLabelStackView()
+        let additionInfoLabelsStackView = getAditionInfoLabelStackView()
         let authorStackView = getAuthorStackView()
 
         containerView.addSubview(titleView)
         containerView.addSubview(priceLabel)
         containerView.addSubview(infoLabelsStackView)
+        containerView.addSubview(additionInfoLabelsStackView)
         containerView.addSubview(authorStackView)
         containerView.addSubview(authorGeoLabel)
         containerView.addSubview(descriptionLabel)
@@ -129,11 +141,18 @@ extension CardInfoBottomSheetView {
 
         infoLabelsStackView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(20)
+            make.width.equalTo(UIScreen.main.bounds.width - 40)
+            make.centerX.equalToSuperview()
+        }
+
+        additionInfoLabelsStackView.snp.makeConstraints { make in
+            make.top.equalTo(infoLabelsStackView.snp.bottom).offset(10)
+            make.left.equalToSuperview().inset(20)
+            make.width.equalTo(infoLabelsStackView.snp.width)
         }
 
         authorStackView.snp.makeConstraints { make in
-            make.top.equalTo(infoLabelsStackView.snp.bottom).offset(20)
+            make.top.equalTo(additionInfoLabelsStackView.snp.bottom).offset(20)
             make.left.equalToSuperview().inset(20)
         }
 
@@ -148,13 +167,25 @@ extension CardInfoBottomSheetView {
         }
     }
 
+    private func getAditionInfoLabelStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 20
+        additionInfoLabels.forEach { infoLabel in
+            infoLabel.snp.makeConstraints {$0.height.equalTo(53)}
+            stackView.addArrangedSubview(infoLabel)
+        }
+        return stackView
+    }
+
     private func getInfoLabelStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 20
         infoLabels.forEach { infoLabel in
-            infoLabel.snp.makeConstraints {$0.height.equalTo(50)}
+            infoLabel.snp.makeConstraints {$0.height.equalTo(53)}
             stackView.addArrangedSubview(infoLabel)
         }
         return stackView

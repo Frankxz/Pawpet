@@ -68,8 +68,13 @@ extension SearchViewController {
 // MARK: - Fetching data
 extension SearchViewController {
     func fetchData() {
-        FireStoreManager.shared.fetchAllPublications { publications in
-            if publications.count == self.cardCollectionView.publications.count {
+        PublicationManager.shared.fetchAllPublications { publications, error  in
+            if error != nil {
+                print(error?.localizedDescription ?? "")
+            }
+            guard let publications = publications else { return }
+
+            if publications.count == self.cardCollectionView.publications.count && FireStoreManager.shared.user.isChanged == false {
                 self.cardCollectionView.isNeedAnimate = false
             } else {
                 self.cardCollectionView.isNeedAnimate = true

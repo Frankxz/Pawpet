@@ -22,7 +22,6 @@ class PostViewController_3: BreedSelectionViewController {
 // MARK: - Button logic
 extension PostViewController_3 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             // Eсли является помесью -> Выбрана 1-ая порода
             if self.isCrossbreed && self.isFirstBreed {
@@ -30,22 +29,21 @@ extension PostViewController_3 {
                 secondBreedVC.isCrossbreed = true
                 secondBreedVC.isFirstBreed = false
 
-                // TODO: FireStoreManager
-                FireStoreManager.shared.currentPublication.breed = self.selectedBreed?.name ?? ""
+                // TODO: PublicationManager
+                PublicationManager.shared.currentPublication.petInfo.breed = self.selectedBreed?.name ?? ""
                 self.navigationController?.pushViewController(secondBreedVC, animated: true)
             } else {
                 // Eсли является помесью -> Выбрана 2-ая порода
                 if self.isCrossbreed  && !self.isFirstBreed{
                     // TODO: FireStoreManager
-                    FireStoreManager.shared.currentPublication.secondBreed = self.selectedBreed?.name ?? ""
+                    PublicationManager.shared.currentPublication.petInfo.secondBreed = self.selectedBreed?.name ?? ""
                 }
                 // Eсли не является помесью -> Выбрана порода
                 if !self.isCrossbreed {
-                    FireStoreManager.shared.currentPublication.breed = self.selectedBreed?.name ?? ""
+                    PublicationManager.shared.currentPublication.petInfo.breed = self.selectedBreed?.name ?? ""
                 }
                 self.navigationController?.pushViewController(PostViewController_4(), animated: true)
             }
         }
-
     }
 }

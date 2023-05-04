@@ -14,7 +14,7 @@ class PawpetUser {
     var city: String?
     var image: UIImage?
     var currency: String?
-    var favorites: [String]?
+    var favorites: [String]? // Содержит id публикаций
 
     var isChanged: Bool = true
 

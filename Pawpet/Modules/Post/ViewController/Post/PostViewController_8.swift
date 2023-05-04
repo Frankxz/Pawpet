@@ -9,31 +9,8 @@ import UIKit
 import Lottie
 
 class PostViewController_8: UIViewController {
-    // MARK: - PromptView
-    private var promptView = PromptView(with: "Enter the price",
-                                        and: "If you do not want to specify anything in the description, you can skip this step.", titleSize: 32)
 
-    // MARK: - Button
-    private lazy var nextButton: AuthButton = {
-        let button = AuthButton()
-        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
-        button.setupTitle(for: "Continue")
-        return button
-    }()
-
-    // MARK: - TextField
-    private var priceTF = PriceTextField(frame: .zero)
-
-    // MARK: - Control
-    private let isFreeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Set no price and make free: "
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = .accentColor
-        return label
-    }()
-
-    private var isFreeControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 120, height: 40), items: [" ", "FREE"])
+    private var priceSelectionView = PriceSelectionView()
 
     // MARK: - Animation view
     private var animationView: LottieAnimationView = {
@@ -49,65 +26,27 @@ class PostViewController_8: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavigationAppearence()
-        setupConstraints()
         hideKeyboardWhenTappedAround()
-        addKeyBoardObservers()
-        setupCurrencySymbol()
+        setupConstraints()
+        priceSelectionView.setupCurrencySymbol()
+        priceSelectionView.nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
     }
 }
 
 // MARK: - UI + Constraints
 extension PostViewController_8 {
-    private func setupCurrencySymbol() {
-        let currency =  FireStoreManager.shared.user.currency ?? "RUB"
-        switch currency {
-        case "RUB": priceTF.setupButtonTitle(with: "₽")
-        case "USD": priceTF.setupButtonTitle(with: "$")
-        case "KZT": priceTF.setupButtonTitle(with: "₸")
-        default:
-            break
-        }
-    }
-
     private func setupConstraints() {
-        view.addSubview(promptView)
-        view.addSubview(priceTF)
-        view.addSubview(isFreeControl)
-        view.addSubview(isFreeLabel)
-        view.addSubview(nextButton)
-        view.addSubview(animationView)
+        view.addSubview(priceSelectionView)
+        priceSelectionView.addSubview(animationView)
         
-        promptView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+        priceSelectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
-        }
-
-        priceTF.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(isFreeControl.snp.bottom).offset(20)
-            make.height.equalTo(70)
-        }
-
-        isFreeLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.top.equalTo(promptView.snp.bottom).offset(20)
-            make.height.equalTo(40)
-        }
-
-        isFreeControl.snp.makeConstraints { make in
-            make.left.equalTo(isFreeLabel.snp.right).offset(20)
-            make.top.equalTo(promptView.snp.bottom).offset(20)
-            make.height.equalTo(40)
-        }
-
-        nextButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(60)
+            make.left.right.bottom.equalToSuperview()
         }
 
         animationView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(priceTF.snp.bottom).offset(20)
+            make.top.equalTo(priceSelectionView.priceTF.snp.bottom).offset(20)
             make.height.width.equalTo(260)
         }
     }
@@ -118,12 +57,12 @@ extension PostViewController_8 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         animationView.play()
 
-        // TODO: StorageManager
-        var price = Int(priceTF.text ?? "0") ?? 0
-        if isFreeControl.selectedItem == "FREE" { price = 0 }
-        FireStoreManager.shared.currentPublication.price = price
-        FireStoreManager.shared.currentPublication.currency = priceTF.currency
-        FireStoreManager.shared.savePublication { result in
+        // TODO: PublicationManager
+        var price = Int(priceSelectionView.priceTF.text ?? "0") ?? 0
+        if priceSelectionView.isFreeControl.selectedItem == "FREE" { price = 0 }
+        PublicationManager.shared.currentPublication.price = price
+        PublicationManager.shared.currentPublication.currency = priceSelectionView.priceTF.currency
+        PublicationManager.shared.savePublication { result in
 
             switch result {
             case .success:
@@ -140,50 +79,3 @@ extension PostViewController_8 {
     }
 }
 
-// MARK: - KeyBoard logic
-extension PostViewController_8 {
-    private func addKeyBoardObservers() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-
-            nextButton.snp.remakeConstraints { make in
-                make.leading.trailing.equalToSuperview().inset(20)
-                make.bottom.equalToSuperview().inset(keyboardHeight + 10)
-                make.height.equalTo(70)
-            }
-
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        nextButton.snp.remakeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(60)
-            make.height.equalTo(70)
-        }
-
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-    }
-}

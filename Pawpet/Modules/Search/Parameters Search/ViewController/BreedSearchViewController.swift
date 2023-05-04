@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BreedViewController: BreedSelectionViewController {
+class BreedSearchViewController: BreedSelectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateConstraints()
@@ -25,12 +25,12 @@ class BreedViewController: BreedSelectionViewController {
 }
 
 // MARK: - Button logic
-extension BreedViewController {
+extension BreedSearchViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             if self.isCrossbreed && self.isFirstBreed {
-                let secondBreedVC = BreedViewController()
+                let secondBreedVC = BreedSearchViewController()
                 secondBreedVC.isCrossbreed = true
                 secondBreedVC.isFirstBreed = false
 

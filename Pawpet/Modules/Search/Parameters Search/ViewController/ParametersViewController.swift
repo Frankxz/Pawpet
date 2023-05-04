@@ -177,7 +177,7 @@ extension ParametersViewController {
             navigationController?.pushViewController(regionTableVC, animated: true)
         }
         else if indexPath.section == 2 && indexPath.row == 1 {
-            let firstBreedVC = BreedViewController()
+            let firstBreedVC = BreedSearchViewController()
             firstBreedVC.isCrossbreed = isCrossbreed
             firstBreedVC.isFirstBreed = isCrossbreed
 
@@ -189,7 +189,7 @@ extension ParametersViewController {
             self.present(ageSelectionBottomSheetVC, animated: false)
         }
         else if indexPath.section == 3 && indexPath.row == 1 {
-            let genderSelectionBottomSheetVC = GenderSelectionBottomSheetViewController()
+            let genderSelectionBottomSheetVC = PetInfoSelectionBottomSheetViewController()
             genderSelectionBottomSheetVC.modalPresentationStyle = .overCurrentContext
             self.present(genderSelectionBottomSheetVC, animated: false)
         }

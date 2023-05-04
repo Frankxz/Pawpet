@@ -58,18 +58,18 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateView()
+        navigationItem.leftBarButtonItem = createCustomBackButton()
     }
-
-    
 }
 
 // MARK: - UI + Constraints
 extension DetailViewController {
     public func configure(with publication: Publication) {
         self.publication = publication
-        if publication.pictures.count != 0 {
-            mainImageView.image = publication.pictures.first
-            photosPageVC = PhotosPageViewController(images: publication.pictures)
+        if publication.pictures.images?.count != 0 {
+            publication.pictures.mainImage.loadMainImage(into: mainImageView)
+
+            photosPageVC = PhotosPageViewController(publication: publication)
         } else {
             mainImageView.image = UIImage(named: "pawpet_black_logo")
         }
@@ -138,6 +138,25 @@ extension DetailViewController {
         return stackView
     }
 }
+// MARK: - Custom BackButton
+extension DetailViewController {
+    func createCustomBackButton() -> UIBarButtonItem {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        backButton.backgroundColor = .backgroundColor.withAlphaComponent(0.2)
+        backButton.tintColor = .accentColor
+        backButton.layer.cornerRadius = 16
+        backButton.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+
+        let customBackButton = UIBarButtonItem(customView: backButton)
+        return customBackButton
+    }
+
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+}
 
 // MARK: - Buttons logic
 extension DetailViewController {
@@ -171,7 +190,7 @@ extension DetailViewController {
             guard let publicationID = self.publication?.id else { return }
 
             if isInFavoriteNow {
-                FireStoreManager.shared.addToFavorites(publicationID: publicationID) { result in
+                PublicationManager.shared.addToFavorites(publicationID: publicationID) { result  in
                     switch result {
                     case .success:
                         print("Succesufuly saved to favorites")
@@ -180,7 +199,7 @@ extension DetailViewController {
                     }
                 }
             } else {
-                FireStoreManager.shared.removeFromFavorites(publicationID: publicationID) { result in
+                PublicationManager.shared.removeFromFavorites(publicationID: publicationID) { result in
                     switch result {
                     case .success:
                         print("Succesufuly deleted from favorites")

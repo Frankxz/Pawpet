@@ -122,10 +122,9 @@ extension CardCollectionViewCell {
 
         self.publication = publication
         infoLabel.subtitleLabel.numberOfLines = 2
-        infoLabel.setupTitles(title: publication.breed,
-                              subtitle: publication.description)
-        print("PICTURES COUNT \(publication.pictures.count)")
-        mainImageView.image = publication.pictures.first ?? UIImage(named: "pawpet_black_logo")
+        infoLabel.setupTitles(title: publication.petInfo.breed,
+                              subtitle: publication.petInfo.description)
+        publication.pictures.mainImage.loadMainImage(into: mainImageView)
 
         if publication.price > 0 {
             priceLabel.setupTitle(with: "  \(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())  ")
@@ -143,7 +142,7 @@ extension CardCollectionViewCell {
         updateSaveButtonAppearence() { isInFavoriteNow in
             guard let publicationID = self.publication?.id else { return }
             if isInFavoriteNow {
-                FireStoreManager.shared.addToFavorites(publicationID: publicationID) { result in
+                PublicationManager.shared.addToFavorites(publicationID: publicationID) { result in
                     switch result {
                     case .success:
                         print("Succesufuly saved to favorites")
@@ -152,7 +151,7 @@ extension CardCollectionViewCell {
                     }
                 }
             } else {
-                FireStoreManager.shared.removeFromFavorites(publicationID: publicationID) { result in
+                PublicationManager.shared.removeFromFavorites(publicationID: publicationID) { result in
                     switch result {
                     case .success:
                         print("Succesufuly deleted from favorites")

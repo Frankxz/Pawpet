@@ -87,7 +87,7 @@ extension PostViewController_2 {
             self.pushToNext(isCrossBreed: true)
         }
         // TODO: - StorageManager
-        FireStoreManager.shared.currentPublication.isCrossbreed = true
+        PublicationManager.shared.currentPublication.petInfo.isCrossbreed = true
     }
 
     @objc private func  noButtonTapped(_ sender: UIButton) {
@@ -97,8 +97,8 @@ extension PostViewController_2 {
             self.yesButton.imageView?.tintColor = .subtitleColor
             self.pushToNext(isCrossBreed: false)
         }
-        // TODO: - StorageManager
-        FireStoreManager.shared.currentPublication.isCrossbreed = false
+        // TODO: - PublicationManager
+        PublicationManager.shared.currentPublication.petInfo.isCrossbreed = false
     }
 
     private func pushToNext(isCrossBreed: Bool) {

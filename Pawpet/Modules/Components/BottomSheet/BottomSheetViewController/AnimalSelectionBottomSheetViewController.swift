@@ -9,7 +9,8 @@ import UIKit
 
 class AnimalSelectionBottomSheetViewController: BottomSheetViewController {
 
-    private let animalSelectionView = AnimalSelectionView()
+    let animalSelectionView = AnimalSelectionView()
+    var callback: ()->() = { }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,6 @@ class AnimalSelectionBottomSheetViewController: BottomSheetViewController {
 // MARK: - UI + Constraints
 extension AnimalSelectionBottomSheetViewController {
     private func setupView() {
-        animalSelectionView.promptView.subtitleLabel.text = "This will help you find the correct listing and also help us provide you with a list of breeds."
         animalSelectionView.nextButton.setupTitle(for: "Select")
         animalSelectionView.nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
     }
@@ -35,7 +35,8 @@ extension AnimalSelectionBottomSheetViewController {
             make.height.equalTo(70)
         }
         animalSelectionView.snp.makeConstraints { make in
-            make.left.top.right.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
         }
     }
 }
@@ -43,7 +44,8 @@ extension AnimalSelectionBottomSheetViewController {
 // MARK: - Button logic
 extension AnimalSelectionBottomSheetViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        print("Email entered")
+        let selectedType = animalSelectionView.chapterCollectionView.selectedType
+        callback()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.animateDismissView()
         }

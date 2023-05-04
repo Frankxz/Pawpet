@@ -84,6 +84,8 @@ extension BottomSheetViewController {
         self.dismissibleHeight = defaultHeight
         self.currentHeight = defaultHeight
         self.maxHeight = maxHeight
+
+        animateContainerHeight(currentHeight)
     }
 }
 

@@ -83,9 +83,9 @@
 		C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */; };
 		C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */; };
 		C6FA2ECB29F460FC00726A0A /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */; };
-		C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */; };
+		C6FA2ECD29F52D2000726A0A /* BreedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ECC29F52D2000726A0A /* BreedSearchViewController.swift */; };
 		C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */; };
-		C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */; };
+		C6FA2ED329F53E6C00726A0A /* PetInfoSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED229F53E6C00726A0A /* PetInfoSelectionBottomSheetViewController.swift */; };
 		C6FA2ED929F54E0B00726A0A /* AgeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */; };
 		C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */; };
 		C6FA2EE129F8379500726A0A /* SignUpViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */; };
@@ -115,6 +115,17 @@
 		C6FA2F1F29FFEBB700726A0A /* PriceTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F1E29FFEBB700726A0A /* PriceTextField.swift */; };
 		C6FA2F232A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F222A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift */; };
 		C6FA2F272A0286C300726A0A /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F262A0286C300726A0A /* Int + Extension.swift */; };
+		C6FA2F292A0293D900726A0A /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F282A0293D900726A0A /* EditPostViewController.swift */; };
+		C6FA2F2D2A02BC2400726A0A /* PriceSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F2C2A02BC2400726A0A /* PriceSelectionBottomSheetViewController.swift */; };
+		C6FA2F2F2A02BD4000726A0A /* PriceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F2E2A02BD4000726A0A /* PriceSelectionView.swift */; };
+		C6FA2F312A02DE2E00726A0A /* BreedEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F302A02DE2E00726A0A /* BreedEditViewController.swift */; };
+		C6FA2F332A02F73100726A0A /* EditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F322A02F73100726A0A /* EditDescriptionViewController.swift */; };
+		C6FA2F372A03CE8400726A0A /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F362A03CE8400726A0A /* PetInfo.swift */; };
+		C6FA2F392A03CF9E00726A0A /* PetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F382A03CF9E00726A0A /* PetType.swift */; };
+		C6FA2F3B2A03D03900726A0A /* PublicationPictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F3A2A03D03900726A0A /* PublicationPictures.swift */; };
+		C6FA2F402A03D19E00726A0A /* PublicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */; };
+		C6FA2F422A03F14600726A0A /* PawpetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F412A03F14600726A0A /* PawpetImage.swift */; };
+		C6FA2F442A043A1D00726A0A /* PetInfoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,9 +229,9 @@
 		C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTableViewController.swift; sourceTree = "<group>"; };
 		C6FA2ECA29F460FC00726A0A /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
-		C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedViewController.swift; sourceTree = "<group>"; };
+		C6FA2ECC29F52D2000726A0A /* BreedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedSearchViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
-		C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
+		C6FA2ED229F53E6C00726A0A /* PetInfoSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeSelectionView.swift; sourceTree = "<group>"; };
 		C6FA2EDC29F557E300726A0A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6FA2EE029F8379500726A0A /* SignUpViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController1.swift; sourceTree = "<group>"; };
@@ -250,6 +261,17 @@
 		C6FA2F1E29FFEBB700726A0A /* PriceTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTextField.swift; sourceTree = "<group>"; };
 		C6FA2F222A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C6FA2F262A0286C300726A0A /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
+		C6FA2F282A0293D900726A0A /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
+		C6FA2F2C2A02BC2400726A0A /* PriceSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
+		C6FA2F2E2A02BD4000726A0A /* PriceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSelectionView.swift; sourceTree = "<group>"; };
+		C6FA2F302A02DE2E00726A0A /* BreedEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedEditViewController.swift; sourceTree = "<group>"; };
+		C6FA2F322A02F73100726A0A /* EditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionViewController.swift; sourceTree = "<group>"; };
+		C6FA2F362A03CE8400726A0A /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
+		C6FA2F382A03CF9E00726A0A /* PetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetType.swift; sourceTree = "<group>"; };
+		C6FA2F3A2A03D03900726A0A /* PublicationPictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationPictures.swift; sourceTree = "<group>"; };
+		C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationManager.swift; sourceTree = "<group>"; };
+		C6FA2F412A03F14600726A0A /* PawpetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetImage.swift; sourceTree = "<group>"; };
+		C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoSelectionView.swift; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -517,6 +539,7 @@
 			children = (
 				C6490DE529E5A404003F4A2F /* Publications */,
 				C6490DE629E5A425003F4A2F /* Post */,
+				C6FA2F2A2A0293E300726A0A /* Edit */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -559,8 +582,9 @@
 			children = (
 				C6FA2EF829FC181900726A0A /* Geo */,
 				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
-				C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */,
-				C6FA2F1A29FFBC7C00726A0A /* Publication.swift */,
+				C6FA2F3C2A03D0D700726A0A /* User */,
+				C6FA2F3D2A03D0E000726A0A /* Publication */,
+				C6FA2F3E2A03D0E700726A0A /* Pet */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -735,6 +759,8 @@
 				C6FA2EBA29F4343F00726A0A /* BreedSelectionViewController.swift */,
 				C6FA2EBD29F43D7C00726A0A /* AnimalSelectionView.swift */,
 				C6FA2ED829F54E0B00726A0A /* AgeSelectionView.swift */,
+				C6FA2F2E2A02BD4000726A0A /* PriceSelectionView.swift */,
+				C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */,
 			);
 			path = SelectionView;
 			sourceTree = "<group>";
@@ -742,7 +768,7 @@
 		C6FA2EBF29F4425A00726A0A /* BottomSheetView */ = {
 			isa = PBXGroup;
 			children = (
-				C6490DC529D31F90003F4A2F /* BottomSheetView.swift */,
+				C6FA2F452A04437400726A0A /* Base */,
 				C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */,
 			);
 			path = BottomSheetView;
@@ -751,10 +777,11 @@
 		C6FA2EC029F4426700726A0A /* BottomSheetViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C6FA2EC129F4428F00726A0A /* BottomSheetViewController.swift */,
+				C6FA2F2B2A02BBE300726A0A /* Base */,
+				C6FA2F2C2A02BC2400726A0A /* PriceSelectionBottomSheetViewController.swift */,
 				C6FA2EC329F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift */,
 				C6FA2ED029F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift */,
-				C6FA2ED229F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift */,
+				C6FA2ED229F53E6C00726A0A /* PetInfoSelectionBottomSheetViewController.swift */,
 				C6FA2F222A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift */,
 			);
 			path = BottomSheetViewController;
@@ -784,7 +811,7 @@
 			children = (
 				C6FA2EB329F2F8DA00726A0A /* ParametersViewController.swift */,
 				C6FA2EC829F460C000726A0A /* RegionTableViewController.swift */,
-				C6FA2ECC29F52D2000726A0A /* BreedViewController.swift */,
+				C6FA2ECC29F52D2000726A0A /* BreedSearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -793,6 +820,7 @@
 			isa = PBXGroup;
 			children = (
 				C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */,
+				C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -901,6 +929,59 @@
 				C6FA2F1829FE874100726A0A /* ProfileSkeletonView.swift */,
 			);
 			path = SkeletonVIew;
+			sourceTree = "<group>";
+		};
+		C6FA2F2A2A0293E300726A0A /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F282A0293D900726A0A /* EditPostViewController.swift */,
+				C6FA2F302A02DE2E00726A0A /* BreedEditViewController.swift */,
+				C6FA2F322A02F73100726A0A /* EditDescriptionViewController.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		C6FA2F2B2A02BBE300726A0A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EC129F4428F00726A0A /* BottomSheetViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C6FA2F3C2A03D0D700726A0A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EEF29FAA9F600726A0A /* PawpetUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		C6FA2F3D2A03D0E000726A0A /* Publication */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F1A29FFBC7C00726A0A /* Publication.swift */,
+			);
+			path = Publication;
+			sourceTree = "<group>";
+		};
+		C6FA2F3E2A03D0E700726A0A /* Pet */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F362A03CE8400726A0A /* PetInfo.swift */,
+				C6FA2F382A03CF9E00726A0A /* PetType.swift */,
+				C6FA2F3A2A03D03900726A0A /* PublicationPictures.swift */,
+				C6FA2F412A03F14600726A0A /* PawpetImage.swift */,
+			);
+			path = Pet;
+			sourceTree = "<group>";
+		};
+		C6FA2F452A04437400726A0A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DC529D31F90003F4A2F /* BottomSheetView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1152,6 +1233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6490DD829DDF307003F4A2F /* SignUpViewController5.swift in Sources */,
+				C6FA2F392A03CF9E00726A0A /* PetType.swift in Sources */,
 				C6490DB429D1B284003F4A2F /* ChapterCollectionViewCell.swift in Sources */,
 				C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */,
 				C6490D8229BA0452003F4A2F /* UIColor + Extension.swift in Sources */,
@@ -1163,13 +1245,14 @@
 				C6FA2ED129F53C8400726A0A /* AgeSelectionBottomSheetViewController.swift in Sources */,
 				C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */,
 				C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */,
-				C6FA2ECD29F52D2000726A0A /* BreedViewController.swift in Sources */,
+				C6FA2ECD29F52D2000726A0A /* BreedSearchViewController.swift in Sources */,
 				C6490D9329C387F7003F4A2F /* AuthButton.swift in Sources */,
 				C6CC0BAF29E854BE0070BC50 /* SignUpViewController7.swift in Sources */,
 				C6FA2EC929F460C000726A0A /* RegionTableViewController.swift in Sources */,
-				C6FA2ED329F53E6C00726A0A /* GenderSelectionBottomSheetViewController.swift in Sources */,
+				C6FA2ED329F53E6C00726A0A /* PetInfoSelectionBottomSheetViewController.swift in Sources */,
 				C6490DA529D04F8B003F4A2F /* SignUpViewController_final.swift in Sources */,
 				C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */,
+				C6FA2F372A03CE8400726A0A /* PetInfo.swift in Sources */,
 				C6FA2EE129F8379500726A0A /* SignUpViewController1.swift in Sources */,
 				C6CC0B9729E729BB0070BC50 /* PhotoCollectionView.swift in Sources */,
 				C6FA2EF429FC035A00726A0A /* LoadingViewController.swift in Sources */,
@@ -1177,7 +1260,9 @@
 				C6FA2EE329F837FD00726A0A /* SignUpViewController2.swift in Sources */,
 				C6FA2EC429F4535E00726A0A /* AnimalSelectionBottomSheetViewController.swift in Sources */,
 				C6490DEA29E5AFD1003F4A2F /* PostViewController_3.swift in Sources */,
+				C6FA2F402A03D19E00726A0A /* PublicationManager.swift in Sources */,
 				C6490DB229D1A761003F4A2F /* CustomSegmentedControl.swift in Sources */,
+				C6FA2F312A02DE2E00726A0A /* BreedEditViewController.swift in Sources */,
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6CC0B9B29E748320070BC50 /* PostViewController_Final.swift in Sources */,
 				C6FA2F1629FE6F9F00726A0A /* SkeletonView.swift in Sources */,
@@ -1193,16 +1278,21 @@
 				C6FA2EB429F2F8DA00726A0A /* ParametersViewController.swift in Sources */,
 				C6C45105298FF6070094FF5A /* PublicationsViewController.swift in Sources */,
 				C6FA2F0F29FD798600726A0A /* PasswordChangeViewController.swift in Sources */,
+				C6FA2F2D2A02BC2400726A0A /* PriceSelectionBottomSheetViewController.swift in Sources */,
 				C6FA2F1929FE874100726A0A /* ProfileSkeletonView.swift in Sources */,
+				C6FA2F442A043A1D00726A0A /* PetInfoSelectionView.swift in Sources */,
 				C6FA2EFA29FC182A00726A0A /* GeoObject.swift in Sources */,
 				C6FA2F232A01951700726A0A /* CurrencySelectionBottomSheetViewController.swift in Sources */,
 				C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */,
 				C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */,
 				C6FA2EBE29F43D7C00726A0A /* AnimalSelectionView.swift in Sources */,
 				C6FA2F0B29FD625700726A0A /* PNChangeViewController1.swift in Sources */,
+				C6FA2F422A03F14600726A0A /* PawpetImage.swift in Sources */,
 				C6CC0B9029E605F00070BC50 /* DynamicTextView.swift in Sources */,
+				C6FA2F3B2A03D03900726A0A /* PublicationPictures.swift in Sources */,
 				C6FA2EB229F2ECE500726A0A /* TextFieldTableViewCell.swift in Sources */,
 				C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */,
+				C6FA2F2F2A02BD4000726A0A /* PriceSelectionView.swift in Sources */,
 				C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */,
 				C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */,
 				C6C45101298FF5990094FF5A /* ProfileViewController.swift in Sources */,
@@ -1215,7 +1305,9 @@
 				C6FA2F1D29FFDE1600726A0A /* PostViewController_8.swift in Sources */,
 				C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
+				C6FA2F292A0293D900726A0A /* EditPostViewController.swift in Sources */,
 				C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */,
+				C6FA2F332A02F73100726A0A /* EditDescriptionViewController.swift in Sources */,
 				C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */,
 				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
 				C6FA2F272A0286C300726A0A /* Int + Extension.swift in Sources */,

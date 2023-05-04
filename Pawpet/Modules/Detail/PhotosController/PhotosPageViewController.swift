@@ -22,10 +22,19 @@ class PhotosPageViewController: UIPageViewController, UIPageViewControllerDataSo
         return button
     }()
 
-    var images: [UIImage]
+    var imageViews: [UIImageView] = []
 
-    init(images: [UIImage]) {
-        self.images = images
+    init(publication: Publication) {
+        guard let pawpetImages = publication.pictures.images else {
+            super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+            return
+        }
+
+        for (index, pawpetImage) in pawpetImages.enumerated() {
+            imageViews.append(UIImageView())
+            pawpetImage.loadMainImage(into: imageViews[index])
+        }
+
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
 
@@ -44,19 +53,19 @@ class PhotosPageViewController: UIPageViewController, UIPageViewControllerDataSo
 
     private func setupView() {
         let frameVC = PhotoFrameViewController()
-        frameVC.image = images.first
+        frameVC.imageView = imageViews.first!
         let viewControllers = [frameVC]
         setViewControllers(viewControllers, direction: .forward, animated: true)
     }
 
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let currentImage = (viewController as! PhotoFrameViewController).image
-        let currentIndex = images.firstIndex(of: currentImage!)
+        let currentImageView = (viewController as! PhotoFrameViewController).imageView
+        let currentIndex = imageViews.firstIndex(of: currentImageView)
 
-        if currentIndex! < images.count - 1 {
+        if currentIndex! < imageViews.count - 1 {
             let frameVC = PhotoFrameViewController()
-            frameVC.image = images[currentIndex! + 1]
+            frameVC.imageView = imageViews[currentIndex! + 1]
             return frameVC
         }
 
@@ -64,12 +73,12 @@ class PhotosPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let currentImage = (viewController as! PhotoFrameViewController).image
-        let currentIndex = images.firstIndex(of: currentImage!)
+        let currentImageView = (viewController as! PhotoFrameViewController).imageView
+        let currentIndex = imageViews.firstIndex(of: currentImageView)
 
         if currentIndex! > 0 {
             let frameVC = PhotoFrameViewController()
-            frameVC.image = images[currentIndex! - 1]
+            frameVC.imageView = imageViews[currentIndex! - 1]
             return frameVC
         }
 

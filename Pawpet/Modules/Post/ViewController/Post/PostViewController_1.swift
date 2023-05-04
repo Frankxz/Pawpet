@@ -39,7 +39,7 @@ extension PostViewController_1 {
     private func setupConstraints() {
         view.addSubview(animalSelectionView)
         animalSelectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(100)
             make.left.right.bottom.equalToSuperview()
         }
 
@@ -60,7 +60,7 @@ extension PostViewController_1 {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             let type = self.animalSelectionView.chapterCollectionView.selectedType
-            FireStoreManager.shared.currentPublication.petType = type
+            PublicationManager.shared.currentPublication.petInfo.petType = type
             self.navigationController?.pushViewController(PostViewController_2(), animated: true)
         }
     }

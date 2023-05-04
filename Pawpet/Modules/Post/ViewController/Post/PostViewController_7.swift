@@ -14,7 +14,7 @@ class PostViewController_7: UIViewController {
                                         and: "Please select a photo of the published pet, it will help other users to be fascinated by it", titleSize: 32)
     
     // MARK: - Button
-    private lazy var nextButton: AuthButton = {
+    lazy var nextButton: AuthButton = {
         let button = AuthButton()
         button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         button.setupTitle(for: "Continue")
@@ -22,8 +22,8 @@ class PostViewController_7: UIViewController {
     }()
     
     // MARK: - CollectionView
-    private lazy var photosCollectionView = PhotoCollectionView()
-    private var selectedImages: [UIImage] = []
+    lazy var photosCollectionView = PhotoCollectionView()
+    var selectedImages: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,14 +92,22 @@ extension PostViewController_7: PHPickerViewControllerDelegate {
 
 // MARK: - Button logic
 extension PostViewController_7 {
-    @objc private func nextButtonTapped(_ sender: UIButton) {
+    @objc func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(PostViewController_8(), animated: true)
         }
 
-        // TODO: StorageManager
-        FireStoreManager.shared.currentPublication.pictures = photosCollectionView.images
+        // TODO: PublicationManager
+        if !photosCollectionView.images.isEmpty {
+            var pawpetImages: [PawpetImage] = []
+            for image in photosCollectionView.images {
+                pawpetImages.append(PawpetImage(image: image))
+            }
+
+            PublicationManager.shared.currentPublication.pictures.mainImage = PawpetImage(image: photosCollectionView.images.first!)
+            PublicationManager.shared.currentPublication.pictures.images = pawpetImages
+        }
     }
     
     @objc private func addButtonTapped(_ sender: UIButton) {

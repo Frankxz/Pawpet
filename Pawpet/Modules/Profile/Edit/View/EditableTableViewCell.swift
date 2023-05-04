@@ -14,7 +14,6 @@ class EditableTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .backgroundColor
-        self.accessoryType = .disclosureIndicator
         leftLabel.textColor = .accentColor
         rightLabel.textColor = .subtitleColor
         rightLabel.textAlignment = .right
@@ -32,6 +31,13 @@ class EditableTableViewCell: UITableViewCell {
             make.width.equalTo(contentView.bounds.width / 2 - 30)
             make.centerY.equalToSuperview()
         }
+    }
+
+    override func prepareForReuse() {
+        rightLabel.text = ""
+        leftLabel.text = ""
+        self.accessoryView = nil
+        super.prepareForReuse()
     }
 
     required init?(coder: NSCoder) {

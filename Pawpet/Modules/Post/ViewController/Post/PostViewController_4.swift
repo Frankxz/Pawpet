@@ -26,7 +26,7 @@ extension PostViewController_4 {
         view.addSubview(ageSelectionView)
         ageSelectionView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(100)
         }
     }
 }
@@ -36,7 +36,7 @@ extension PostViewController_4 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             let ageInMonth = self.ageSelectionView.agePickerView.getAgeInMonth()
-            FireStoreManager.shared.currentPublication.age = ageInMonth
+            PublicationManager.shared.currentPublication.petInfo.age = ageInMonth
             self.navigationController?.pushViewController(PostViewController_5(), animated: true)
         }
     }

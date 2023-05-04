@@ -81,6 +81,11 @@ extension PriceTextField {
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
         return updatedText.count <= maxLength
     }
+
+    func setupPrice(price: Int) {
+        text = "\(price)"
+        textDidChange()
+    }
 }
 
 // MARK: - Currency button

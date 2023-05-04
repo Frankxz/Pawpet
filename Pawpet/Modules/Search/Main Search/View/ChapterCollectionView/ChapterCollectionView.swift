@@ -62,14 +62,13 @@ extension ChapterCollectionView: UICollectionViewDelegate,UICollectionViewDataSo
 
 // MARK: - Layout
 extension ChapterCollectionView: UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: ChapterCollectionConstants.itemWidth,
                       height: ChapterCollectionConstants.itemHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        print("SECTION: \(indexPath.section) | ROW: \(indexPath.row)")
         if lastIndexActive != indexPath {
             let cell = collectionView.cellForItem(at: indexPath) as! ChapterCollectionViewCell
             UIView.animate(withDuration: 0.3) {
@@ -86,8 +85,16 @@ extension ChapterCollectionView: UICollectionViewDelegateFlowLayout {
             lastIndexActive = indexPath
         }
     }
-}
 
+    func selectItem(withPetType petType: PetType) {
+        if let index = petTypes.firstIndex(of: petType) {
+            let indexPath = IndexPath(row: index, section: 0)
+            lastIndexActive = indexPath
+            selectedType = petType
+            reloadData()
+        }
+    }
+}
 
 struct ChapterCollectionConstants {
     static let left: CGFloat = 0

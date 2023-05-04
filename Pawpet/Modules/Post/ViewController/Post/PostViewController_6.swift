@@ -29,31 +29,20 @@ class PostViewController_6: UIViewController {
         textView.backgroundColor = .backgroundColor
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
         textView.isScrollEnabled = true
         return textView
     }()
 
+    var maxTextViewHeight: CGFloat = 260
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        textView.delegate = self
         setupNavigationAppearence()
         setupConstraints()
         hideKeyboardWhenTappedAround()
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
+        addKeyBoardObserbers()
     }
 }
 
@@ -72,7 +61,7 @@ extension PostViewController_6 {
         textView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(promptView.snp.bottom).offset(20)
-            make.height.equalTo(200)
+            make.height.equalTo(260)
         }
 
         nextButton.snp.makeConstraints { make in
@@ -84,14 +73,14 @@ extension PostViewController_6 {
 
 // MARK: - Button logic
 extension PostViewController_6 {
-    @objc private func nextButtonTapped(_ sender: UIButton) {
+    @objc func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(PostViewController_7(), animated: true)
         }
         
-        // TODO: StorageManager
-        FireStoreManager.shared.currentPublication.description = textView.text ?? ""
+        // TODO: PublicationManager
+        PublicationManager.shared.currentPublication.petInfo.description = textView.text ?? ""
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -104,6 +93,9 @@ extension PostViewController_6 {
                 make.bottom.equalToSuperview().inset(keyboardHeight + 10)
                 make.height.equalTo(70)
             }
+
+            self.maxTextViewHeight = 260
+            self.updateTextViewHeight()
 
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
@@ -118,9 +110,54 @@ extension PostViewController_6 {
             make.height.equalTo(70)
         }
 
+        self.maxTextViewHeight = 560
+        self.updateTextViewHeight()
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
 }
 
+// MARK: - UITextViewDelegate
+extension PostViewController_6: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        updateTextViewHeight()
+     }
+
+    func updateTextViewHeight() {
+        textView.snp.removeConstraints()
+        textView.snp.makeConstraints { make in
+            print(textView.frame.width)
+            let estimatedSize = textView.sizeThatFits(CGSize(width: textView.frame.width, height: .greatestFiniteMagnitude))
+            print(estimatedSize.width)
+            print(estimatedSize.height)
+            let newHeight = min(estimatedSize.height, maxTextViewHeight)
+
+            make.left.right.equalToSuperview().inset(20)
+            make.top.equalTo(promptView.snp.bottom).offset(20)
+            make.height.equalTo(newHeight)
+        }
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+// MARK: KB Observers
+extension PostViewController_6 {
+    private func addKeyBoardObserbers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+}

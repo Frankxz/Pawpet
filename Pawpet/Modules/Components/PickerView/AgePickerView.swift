@@ -73,4 +73,22 @@ class PetAgePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
     func getAgeInMonth() -> Int {
         selectedMonths + (selectedYears * 12)
     }
+
+    func setupAge(age: Int) {
+        // Найти количество лет и оставшиеся месяцы
+        let years = age / 12
+        let months = age % 12
+
+        // Убедится, что значения в пределах допустимого диапазона
+        if years >= 0 && years < yearsArray.count && months >= 0 && months < monthsArray.count {
+            // Установить года и месяцы в пикере
+            selectRow(years, inComponent: 0, animated: false)
+            selectRow(months, inComponent: 1, animated: false)
+
+            // Обновить значения selectedYears и selectedMonths
+            selectedYears = years
+            selectedMonths = months
+        }
+    }
+
 }

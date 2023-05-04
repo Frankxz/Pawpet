@@ -16,6 +16,8 @@ class BreedSelectionViewController: UIViewController {
     private var isSearching = false
     public var selectedBreed: Breed?
 
+    var callBack: () -> () = {}
+
     // MARK: TableView
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -33,6 +35,7 @@ class BreedSelectionViewController: UIViewController {
     public lazy var nextButton: AuthButton = {
         let button = AuthButton()
         button.setupTitle(for: "Continue")
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -250,5 +253,12 @@ extension BreedSelectionViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
+    }
+}
+
+// MARK: - Next Button
+extension BreedSelectionViewController {
+    @objc private func nextButtonTapped() {
+        callBack()
     }
 }

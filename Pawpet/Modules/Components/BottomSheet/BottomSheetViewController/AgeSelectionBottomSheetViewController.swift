@@ -9,13 +9,15 @@ import UIKit
 
 class AgeSelectionBottomSheetViewController: BottomSheetViewController {
 
-    private let ageSelectionView = AgeSelectionView()
+    let ageSelectionView = AgeSelectionView()
+    var callback: ()->() = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupConstraints()
         setupNavigationAppearence()
+        changeHeight(defaultHeight: 450, maxHeight: 450)
     }
 }
 
@@ -31,11 +33,12 @@ extension AgeSelectionBottomSheetViewController {
         containerView.addSubview(ageSelectionView)
         ageSelectionView.nextButton.snp.remakeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
-            make.top.equalToSuperview().offset(430)
+            make.top.equalToSuperview().offset(320)
             make.height.equalTo(70)
         }
         ageSelectionView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().inset(20)
         }
     }
 }
@@ -43,6 +46,7 @@ extension AgeSelectionBottomSheetViewController {
 // MARK: - Button logic
 extension AgeSelectionBottomSheetViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
+        callback()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.animateDismissView()
         }

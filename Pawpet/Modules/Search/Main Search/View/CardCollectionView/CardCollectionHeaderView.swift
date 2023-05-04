@@ -45,13 +45,6 @@ class CardCollectionHeaderView: UICollectionReusableView {
         return label
     }()
 
-    // MARK: - Segmented control
-    private let sectionControl: CustomSegmentedControl = {
-        let items = ["Animals", "Accessories", "Feed"]
-        let control = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: (UIScreen.main.bounds.size.width - (48 + 54)), height: 40), items: items)
-        return control
-    }()
-
     // MARK: - CollectionView
     private let chapterCollectionView = ChapterCollectionView()
 
@@ -67,7 +60,6 @@ extension CardCollectionHeaderView {
         let searchStackView = getSearchStackView()
 
         addSubview(searchStackView)
-        addSubview(sectionControl)
         addSubview(welcomeLabel)
         addSubview(chapterCollectionView)
         addSubview(skeletonView)
@@ -99,15 +91,9 @@ extension CardCollectionHeaderView {
             make.top.equalTo(welcomeLabel.snp.bottom).offset(20)
         }
 
-        sectionControl.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.top.equalTo(searchStackView.snp.bottom).offset(20)
-            make.height.equalTo(40)
-        }
-
         chapterCollectionView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(sectionControl.snp.bottom).offset(10)
+            make.top.equalTo(searchStackView.snp.bottom).offset(10)
             make.height.equalTo(140)
         }
 

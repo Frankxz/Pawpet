@@ -96,10 +96,15 @@ class ProfileViewController: UIViewController {
                 }
             }
 
-            FireStoreManager.shared.fetchFavoritePublications { favoritePublications in
-                print("FAVORITE POSTS COUNT: \(favoritePublications.count)")
-                self.cardCollectionView.publications = favoritePublications
-                self.cardCollectionView.reloadData()
+            PublicationManager.shared.fetchFavoritePublications { result in
+                switch result {
+                case .success(let favorites):
+                    print("FAVORITE POSTS COUNT: \(favorites.count)")
+                    self.cardCollectionView.publications = favorites
+                    self.cardCollectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
