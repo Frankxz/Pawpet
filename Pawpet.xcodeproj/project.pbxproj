@@ -69,7 +69,7 @@
 		C6CC0B9F29E8361F0070BC50 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0B9E29E8361F0070BC50 /* Country.swift */; };
 		C6CC0BA429E847940070BC50 /* SignUpViewController6.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA329E847940070BC50 /* SignUpViewController6.swift */; };
 		C6CC0BA629E84C6F0070BC50 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */; };
-		C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0BAB29E8538C0070BC50 /* countries.json */; };
+		C6CC0BAC29E8538C0070BC50 /* countries_en.json in Resources */ = {isa = PBXBuildFile; fileRef = C6CC0BAB29E8538C0070BC50 /* countries_en.json */; };
 		C6CC0BAF29E854BE0070BC50 /* SignUpViewController7.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BAE29E854BE0070BC50 /* SignUpViewController7.swift */; };
 		C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */; };
 		C6FA2EAF29F2B76200726A0A /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */; };
@@ -126,6 +126,8 @@
 		C6FA2F402A03D19E00726A0A /* PublicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */; };
 		C6FA2F422A03F14600726A0A /* PawpetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F412A03F14600726A0A /* PawpetImage.swift */; };
 		C6FA2F442A043A1D00726A0A /* PetInfoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */; };
+		C6FA2F492A05226500726A0A /* GeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F482A05226500726A0A /* GeoManager.swift */; };
+		C6FA2F4B2A056D5700726A0A /* countries_ru.json in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2F4A2A056D5700726A0A /* countries_ru.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +217,7 @@
 		C6CC0B9E29E8361F0070BC50 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		C6CC0BA329E847940070BC50 /* SignUpViewController6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController6.swift; sourceTree = "<group>"; };
 		C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
-		C6CC0BAB29E8538C0070BC50 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		C6CC0BAB29E8538C0070BC50 /* countries_en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_en.json; sourceTree = "<group>"; };
 		C6CC0BAE29E854BE0070BC50 /* SignUpViewController7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController7.swift; sourceTree = "<group>"; };
 		C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		C6FA2EAE29F2B76200726A0A /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,8 @@
 		C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationManager.swift; sourceTree = "<group>"; };
 		C6FA2F412A03F14600726A0A /* PawpetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetImage.swift; sourceTree = "<group>"; };
 		C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoSelectionView.swift; sourceTree = "<group>"; };
+		C6FA2F482A05226500726A0A /* GeoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoManager.swift; sourceTree = "<group>"; };
+		C6FA2F4A2A056D5700726A0A /* countries_ru.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_ru.json; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -730,7 +734,8 @@
 		C6CC0BAD29E853930070BC50 /* Geo */ = {
 			isa = PBXGroup;
 			children = (
-				C6CC0BAB29E8538C0070BC50 /* countries.json */,
+				C6FA2F4A2A056D5700726A0A /* countries_ru.json */,
+				C6CC0BAB29E8538C0070BC50 /* countries_en.json */,
 			);
 			path = Geo;
 			sourceTree = "<group>";
@@ -821,6 +826,7 @@
 			children = (
 				C6FA2EE929F850BA00726A0A /* FireStoreManager.swift */,
 				C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */,
+				C6FA2F482A05226500726A0A /* GeoManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1101,9 +1107,10 @@
 				C6FA2EF229FAE87800726A0A /* Loading.json in Resources */,
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
+				C6FA2F4B2A056D5700726A0A /* countries_ru.json in Resources */,
 				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,
 				C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */,
-				C6CC0BAC29E8538C0070BC50 /* countries.json in Resources */,
+				C6CC0BAC29E8538C0070BC50 /* countries_en.json in Resources */,
 				C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1325,6 +1332,7 @@
 				C6490DE829E5A438003F4A2F /* PostViewController_2.swift in Sources */,
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C6FA2EEA29F850BA00726A0A /* FireStoreManager.swift in Sources */,
+				C6FA2F492A05226500726A0A /* GeoManager.swift in Sources */,
 				C6FA2F0729FD2B4E00726A0A /* EmailChangeViewController.swift in Sources */,
 				C6490DDA29E06596003F4A2F /* FavoritesViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,

@@ -18,19 +18,18 @@ class SignUpViewController6: GeoSelectionViewController {
 // MARK: - Button logic
 extension SignUpViewController6 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let cities = self.findCities(for: self.selectedGeoObject!.name)
-            let signUpVC7 = SignUpViewController7(geoObjects: cities, geoVCType: .city)
 
-            if cities.count != 0 {
-                self.navigationController?.pushViewController(signUpVC7, animated: true)
-                UserDefaults.standard.set(self.selectedGeoObject!.name, forKey: "COUNTRY")
-            } else {
-                UserDefaults.standard.set(self.selectedGeoObject!.name, forKey: "COUNTRY")
-                UserDefaults.standard.set("", forKey: "CITY")
-                FireStoreManager.shared.saveUserDataFromUD()
-                self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
-            }
+        guard let country = selectedGeoObject as? Country else { return }
+
+        if country.cities.count != 0 {
+            let signUpVC7 = SignUpViewController7(geoObjects: country.cities, geoVCType: .city)
+            self.navigationController?.pushViewController(signUpVC7, animated: true)
+            UserDefaults.standard.set(self.selectedGeoObject!.name, forKey: "COUNTRY")
+        } else {
+            UserDefaults.standard.set(self.selectedGeoObject!.name, forKey: "COUNTRY")
+            UserDefaults.standard.set("", forKey: "CITY")
+            FireStoreManager.shared.saveUserDataFromUD()
+            self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
         }
     }
 }

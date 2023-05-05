@@ -49,7 +49,11 @@ extension SignUpViewController5 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
         UserDefaults.standard.set(textField.text, forKey: "NAME")
         UserDefaults.standard.set(secondTextField.text, forKey: "SURNAME")
-        navigationController?.pushViewController(SignUpViewController6(geoObjects: Country.createCountries(), geoVCType: .country), animated: true)
+
+        let countries = GeoManager.shared.getAllCountries(localize: .ru)
+        self.navigationController?.pushViewController(SignUpViewController6(geoObjects: countries, geoVCType: .country), animated: true)
+
+
     }
 }
 

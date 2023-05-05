@@ -7,7 +7,7 @@
 
 import Foundation
 
-class GeoObject {
+class GeoObject: Codable {
     let name: String
     var isChecked: Bool
 

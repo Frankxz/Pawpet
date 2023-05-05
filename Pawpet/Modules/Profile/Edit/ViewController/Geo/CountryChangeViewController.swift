@@ -32,7 +32,9 @@ class CountryChangeViewController: GeoSelectionViewController {
 
     @objc private func nextButtonTapped() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            let cities = self.findCities(for: self.selectedGeoObject!.name)
+            guard let country = self.selectedGeoObject as? Country else { return }
+            let cities = country.cities
+
             let changeCityVC = CityChangeViewController(geoObjects: cities, geoVCType: .city)
             changeCityVC.callback = self.callback
             if cities.count != 0 {
@@ -44,6 +46,8 @@ class CountryChangeViewController: GeoSelectionViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
+
+        
     }
 
     @objc func cancelButtonTapped() {

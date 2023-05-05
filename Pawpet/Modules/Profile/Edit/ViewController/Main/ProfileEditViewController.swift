@@ -261,7 +261,7 @@ extension ProfileEditViewController {
     }
 
     private func locationRowSelected() {
-        let countryEditVC = CountryChangeViewController(geoObjects: Country.createCountries(), geoVCType: .country)
+        let countryEditVC = CountryChangeViewController(geoObjects: GeoManager.shared.getAllCountries(localize: .ru), geoVCType: .country)
 
         countryEditVC.callback = { [self] in
             self.user = FireStoreManager.shared.user
