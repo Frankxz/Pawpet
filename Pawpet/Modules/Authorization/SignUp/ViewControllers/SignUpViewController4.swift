@@ -23,7 +23,7 @@ class SignUpViewController4: BaseSignUpViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextVC = SignUpViewController5()
-        promptView.setupTitles(title: "Enter the verification code.", subtitle: "The verification code has been sent to your phone number. It should come within 5 minutes. If you don't receive a verification code, please try again later.")
+        promptView.setupTitles(title: "Enter the verification code", subtitle: "The verification code has been sent to your phone number. It should come within 5 minutes. If you don't receive a verification code, please try again later.")
         setupAnimationView(with: "WatchingDog")
         setupView()
 
@@ -114,8 +114,15 @@ extension SignUpViewController4 {
 
         if let currentUser = Auth.auth().currentUser {
             currentUser.link(with: credential) { (result, error) in
+                print(error?.localizedDescription)
                 if let error = error {
-                    self.alertView.showAlert(with: "Ooops... error!", message: error.localizedDescription, on: self)
+                    var message = "Unknown error. Please try again."
+                    if error.localizedDescription == "This credential is already associated with a different user account." {
+                        message = "The phone number is already in use by another account."
+                    } else if error.localizedDescription == "The SMS verification code used to create the phone auth credential is invalid. Please resend the verification code SMS and be sure to use the verification code provided by the user." {
+                        message = "Incorrected verification code. Try again."
+                    }
+                    self.alertView.showAlert(with: "Oops... Error!", message: message, on: self)
                 } else {
                     print("Accounts linked")
                     self.navigationController?.pushViewController(SignUpViewController5(), animated: true)

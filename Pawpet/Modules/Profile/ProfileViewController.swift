@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController {
     }()
 
     // MARK: - Labels
-    private let favoriteLabel = PromptView(with: "Favorite List", and: "All posts that you marked as liked are displayed here. ")
+    private let favoriteLabel = PromptView(with: "Favorite List", and: "All posts that you marked as liked are displayed here.")
 
     // MARK: - CollectionView
     private let cardCollectionView = CardCollectionView(isHeaderIn: false, isFavoriteVC: true)
@@ -71,6 +71,8 @@ class ProfileViewController: UIViewController {
         configurateView()
         addButtonsTarget()
         cardCollectionView.searchViewControllerDelegate = self
+        infoView.titleLabel.minimumScaleFactor = 0.7
+        infoView.titleLabel.adjustsFontSizeToFitWidth = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +141,7 @@ extension ProfileViewController {
 
         favoriteLabel.snp.makeConstraints { make in
             make.top.equalTo(infoStackView.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview().inset(20)
         }
 
         cardCollectionView.snp.makeConstraints { make in

@@ -128,6 +128,7 @@
 		C6FA2F442A043A1D00726A0A /* PetInfoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */; };
 		C6FA2F492A05226500726A0A /* GeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F482A05226500726A0A /* GeoManager.swift */; };
 		C6FA2F4B2A056D5700726A0A /* countries_ru.json in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2F4A2A056D5700726A0A /* countries_ru.json */; };
+		C6FA2F4F2A057B0D00726A0A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2F512A057B0D00726A0A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -276,6 +277,8 @@
 		C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoSelectionView.swift; sourceTree = "<group>"; };
 		C6FA2F482A05226500726A0A /* GeoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoManager.swift; sourceTree = "<group>"; };
 		C6FA2F4A2A056D5700726A0A /* countries_ru.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_ru.json; sourceTree = "<group>"; };
+		C6FA2F502A057B0D00726A0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C6FA2F522A057B4100726A0A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CAE1321DF715B8D0C58360EE /* Pods-Pawpet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet/Pods-Pawpet.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6C03E76F5F4D825989EBFD /* Pods-Pawpet-PawpetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pawpet-PawpetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F074DCCF72E69C9D145C6292 /* Pods_Pawpet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pawpet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +351,7 @@
 		C6490D8429BA05E1003F4A2F /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				C6FA2F4C2A057ADC00726A0A /* Localize */,
 				C6CC0BAD29E853930070BC50 /* Geo */,
 				C6490D9F29C8D4FD003F4A2F /* Lottie Animations */,
 				C6C450D5298FF2930094FF5A /* Assets.xcassets */,
@@ -990,6 +994,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		C6FA2F4C2A057ADC00726A0A /* Localize */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F512A057B0D00726A0A /* Localizable.strings */,
+			);
+			path = Localize;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1081,6 +1093,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = C6C450C0298FF2920094FF5A;
 			productRefGroup = C6C450CA298FF2920094FF5A /* Products */;
@@ -1102,6 +1115,7 @@
 				C6490DCB29D5BA8B003F4A2F /* SadDog.json in Resources */,
 				C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */,
 				C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */,
+				C6FA2F4F2A057B0D00726A0A /* Localizable.strings in Resources */,
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
 				C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */,
 				C6FA2EF229FAE87800726A0A /* Loading.json in Resources */,
@@ -1385,6 +1399,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		C6FA2F512A057B0D00726A0A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6FA2F502A057B0D00726A0A /* en */,
+				C6FA2F522A057B4100726A0A /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1392,6 +1415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1452,6 +1476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

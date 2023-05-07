@@ -11,12 +11,12 @@ class PriceSelectionView: UIView {
 
     // MARK: - PromptView
     private var promptView = PromptView(with: "Enter the price",
-                                        and: "If you don't want to set a price, and want to make it free, click on the toggler to set the position to \("free"). Keep in mind, you can change the displayed currency by clicking on the emblem of the current currency", titleSize: 32)
+                                        and: "If you don't want to set a price, and want to make it free, click on the toggler to set the position to free. Keep in mind, you can change the displayed currency by clicking on the emblem of the current currency", titleSize: 32)
 
     // MARK: - Control
     private let isFreeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Set no price and make free: "
+        label.text = "Set no price and make free:".localize()
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         label.textColor = .accentColor
         return label
@@ -32,7 +32,7 @@ class PriceSelectionView: UIView {
     // MARK: - TextField
     var priceTF = PriceTextField(frame: .zero)
 
-    var isFreeControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 120, height: 40), items: [" ", "FREE"])
+    var isFreeControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 120, height: 40), items: [" ", "FREE".localize()])
 
     init() {
         super.init(frame: .zero)

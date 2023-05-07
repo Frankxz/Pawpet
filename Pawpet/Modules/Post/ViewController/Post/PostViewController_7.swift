@@ -11,7 +11,7 @@ class PostViewController_7: UIViewController {
     
     // MARK: - PromptView
     private var promptView = PromptView(with: "Select photos of your pet",
-                                        and: "Please select a photo of the published pet, it will help other users to be fascinated by it", titleSize: 32)
+                                        and: "Please choose actual photos of the pet. Please note that the first photo will be the main one.", titleSize: 32)
     
     // MARK: - Button
     lazy var nextButton: AuthButton = {

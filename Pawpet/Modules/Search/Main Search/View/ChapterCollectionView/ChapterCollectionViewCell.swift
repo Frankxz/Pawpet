@@ -53,6 +53,6 @@ class ChapterCollectionViewCell: UICollectionViewCell {
 
     func configure(type: PetType) {
         self.petType = type
-        nameLabel.text = type.getName().capitilizeFirstChar()
+        nameLabel.text = type.getNamePlural()
     }
 }

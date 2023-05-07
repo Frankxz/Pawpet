@@ -42,7 +42,7 @@ class AuthButton: UIButton {
                            with font: UIFont = .systemFont(ofSize: 18, weight: .medium),
                            of color: UIColor = .subtitleColor) {
         let title = NSAttributedString(
-            string: text,
+            string: text.localize(),
             attributes: [
                 NSAttributedString.Key.font: font,
                 NSAttributedString.Key.foregroundColor: color

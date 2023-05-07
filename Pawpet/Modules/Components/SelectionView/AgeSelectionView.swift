@@ -10,7 +10,7 @@ import UIKit
 class AgeSelectionView: UIView {
     // MARK: - PromptView
     public var promptView = PromptView(with: "Select your pet's age",
-                                       and: "Please, if your pet is a puppy, set the year and month values to be zero.")
+                                       and: "Please, if your pet is a newborn, set the year and month values to be zero.")
 
     // MARK: - Button
     public lazy var nextButton: AuthButton = {

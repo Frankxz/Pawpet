@@ -96,7 +96,7 @@ extension ErrorAlertView {
         self.targetView = targetView
 
         dimmedView.frame = targetView.bounds
-        promptView.setupTitles(title: title, subtitle: message)
+        promptView.setupTitles(title: "Oops... Error!", subtitle: message)
 
         closeButton.addTarget(self, action: #selector(dismissAlertView), for: .touchUpInside)
 

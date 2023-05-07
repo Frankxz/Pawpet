@@ -39,7 +39,7 @@ class GeoSelectionViewController: UIViewController, UITableViewDelegate, UITable
     }()
 
     // MARK: PromptView
-    private var promptView = PromptView(with: "Select your country:",
+    private var promptView = PromptView(with: "Select your country",
                                         and: "", titleSize: 28)
 
     // MARK: - INITS
@@ -47,7 +47,7 @@ class GeoSelectionViewController: UIViewController, UITableViewDelegate, UITable
         self.type = geoVCType
         self.geoObjects = geoObjects
         if type == .city {
-            promptView.setupTitles(title: "Select your city:", subtitle: "")
+            promptView.setupTitles(title: "Select your city", subtitle: "")
         }
         super.init(nibName: nil, bundle: nil)
         
@@ -275,31 +275,6 @@ extension GeoSelectionViewController {
         )
     }
 }
-
-// MARK: - Cities fetching
-//extension GeoSelectionViewController {
-//    func findCities(for country: String) -> [GeoObject]{
-//        guard let path = Bundle.main.path(forResource: "countries", ofType: "json") else {
-//            return []
-//        }
-//        do {
-//            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-//
-//            if let citiesDict = jsonResult as? [String: [String]],
-//               let fethcedCities = citiesDict[country] {
-//                var cities: [GeoObject] = []
-//                for item in fethcedCities {
-//                    let city = GeoObject(name: item, isChecked: false)
-//                    cities.append(city)
-//                    print("\(item) add")
-//                }
-//                print(cities.count)
-//                return cities
-//            } else { return []}
-//        } catch { return []}
-//    }
-//}
 
 // MARK: Type
 extension GeoSelectionViewController {

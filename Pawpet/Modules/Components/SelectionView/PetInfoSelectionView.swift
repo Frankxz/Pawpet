@@ -10,7 +10,7 @@ import UIKit
 class PetInfoSelectionView: UIView {
 
     // MARK: - PromptView
-    var promptView = PromptView(with: "Please provide more info",
+    var promptView = PromptView(with: "Please, provide more info",
                                         and: "Please provide up-to-date information about your pet.", titleSize: 32)
 
     // MARK: - Button
@@ -142,16 +142,16 @@ extension PetInfoSelectionView {
             label.font = .systemFont(ofSize: 18, weight: .regular)
             switch index {
             case 0:
-                label.text = "Vaccined"
+                label.text = "Vaccinated".localize()
                 control.addTarget(self, action: #selector(isVaccinatedTapped), for: .valueChanged)
             case 1:
-                label.text = "Was cupping"
+                label.text = "Was cupping".localize()
                 control.addTarget(self, action: #selector(isCuppingTapped), for: .valueChanged)
             case 2:
-                label.text = "Sterilizated"
+                label.text = "Sterilized".localize()
                 control.addTarget(self, action: #selector(isSterilizedTapped), for: .valueChanged)
             case 3:
-                label.text = "With documents"
+                label.text = "With documents".localize()
                 control.addTarget(self, action: #selector(isWithDocumentsTapped), for: .valueChanged)
 
             default: break

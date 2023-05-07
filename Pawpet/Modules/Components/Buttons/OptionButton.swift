@@ -88,7 +88,7 @@ extension OptionButton {
 extension OptionButton {
     public func setupSubtitle(for text: String, with size: CGFloat, color: UIColor = .subtitleColor) {
         customSubtitleLabel.font = .systemFont(ofSize: size, weight: .bold)
-        customSubtitleLabel.text = text
+        customSubtitleLabel.text = text.localize()
         customSubtitleLabel.textAlignment = .center
         customSubtitleLabel.textColor = color
 

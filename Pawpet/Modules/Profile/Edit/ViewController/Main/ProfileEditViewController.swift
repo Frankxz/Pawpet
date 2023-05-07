@@ -38,9 +38,9 @@ class ProfileEditViewController: UITableViewController {
     // MARK: Buttons
     private lazy var saveButton: UIBarButtonItem = {
         let customAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 20, weight: .medium),
-            .foregroundColor: UIColor.accentColor]
-        let saveButtonTitle = NSAttributedString(string: "Save", attributes: customAttributes)
+            .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+            .foregroundColor: UIColor.systemBlue]
+        let saveButtonTitle = NSAttributedString(string: "Save".localize(), attributes: customAttributes)
         let saveButton = UIButton(type: .system)
         saveButton.setAttributedTitle(saveButtonTitle, for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
@@ -53,7 +53,7 @@ class ProfileEditViewController: UITableViewController {
         button.backgroundColor = .clear
         button.addTarget(self, action: #selector(changeAvatarButtonTapped(_:)), for: .touchUpInside)
         let title = NSAttributedString(
-            string: "Select new photo",
+            string: "Select new photo".localize(),
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .regular),
                 NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
@@ -133,22 +133,22 @@ extension ProfileEditViewController {
             switch section {
             case .geo:
                 if indexPath.row == 0 {
-                    cell.leftLabel.text = "Change location"
+                    cell.leftLabel.text = "Change location".localize()
                     cell.rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
                 } else if indexPath.row == 1 {
-                    cell.leftLabel.text = "Change currency"
+                    cell.leftLabel.text = "Change currency".localize()
                     cell.rightLabel.text = FireStoreManager.shared.user.currency ?? "?"
                 }
             case .contactInfo:
                 if indexPath.row == 0 {
-                    cell.leftLabel.text = "Change email"
+                    cell.leftLabel.text = "Change email".localize()
                     cell.rightLabel.text = FireStoreManager.shared.getUserEmail()
                 } else {
-                    cell.leftLabel.text = "Change phone number"
+                    cell.leftLabel.text = "Change phone number".localize()
                     cell.rightLabel.text = phoneNumber
                 }
             case .password:
-                cell.leftLabel.text = "Change password"
+                cell.leftLabel.text = "Change password".localize()
                 cell.rightLabel.text = "••••••"
             default:
                 break
@@ -160,7 +160,7 @@ extension ProfileEditViewController {
             cell.backgroundColor = .backgroundColor
 
             let logoutLabel = UILabel()
-            logoutLabel.text = "Logout"
+            logoutLabel.text = "Logout".localize()
             logoutLabel.textColor = .systemRed
             cell.contentView.addSubview(logoutLabel)
 
@@ -212,7 +212,7 @@ extension ProfileEditViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 270 : 0
+        return section == 0 ? 290 : 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -269,10 +269,10 @@ extension ProfileEditViewController {
             self.saveButtonTapped()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.alertView.showAlert(with: "Location successfully changed.", message: "Current location: \(self.user.country ?? ""), \(self.user.city ?? "")", on: self)
+                self.alertView.showAlert(with: "Location successfully changed.", message: "\("Current location: ".localize()) \(self.user.country ?? ""), \(self.user.city ?? "")", on: self)
             }
         }
-
+        
         let navigationVC = UINavigationController(rootViewController: countryEditVC)
         navigationVC.modalPresentationStyle = .fullScreen
         present(navigationVC, animated: true)
@@ -284,7 +284,7 @@ extension ProfileEditViewController {
         phoneNumberChangeVC.callback = { [self] in
             tableView.reloadData()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.alertView.showAlert(with: "Ph. No. successfully changed.", message: "Current number: \(FireStoreManager.shared.getUserPhoneNumber())", on: self)
+                self.alertView.showAlert(with: "Ph. No. successfully changed.", message: "\("Current number: ".localize())\(FireStoreManager.shared.getUserPhoneNumber())", on: self)
             }
         }
 
@@ -361,7 +361,7 @@ extension ProfileEditViewController: UITextFieldDelegate {
 extension ProfileEditViewController: EmailChangeDelegate {
     func showSuccessAlert(with newEmail: String) {
         let alertView = SuccessAlertView()
-        alertView.showAlert(with: "Email successfully changed.", message: "Current email: \(newEmail)", on: self)
+        alertView.showAlert(with: "Email successfully changed.", message: "\("Current email: ") \(newEmail)", on: self)
         tableView.reloadData()
     }
 }

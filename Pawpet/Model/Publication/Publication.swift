@@ -35,7 +35,12 @@ class Publication {
     }
     
     func copy(withUpdatedImages updatedImages: [PawpetImage]) -> Publication {
-           let updatedPictures = PublicationPictures(mainImage: updatedImages[0], images: Array(updatedImages.dropFirst()))
+        var updatedPictures: PublicationPictures
+        if updatedImages.isEmpty {
+            updatedPictures = PublicationPictures()
+        } else {
+            updatedPictures = PublicationPictures(mainImage: updatedImages[0], images: Array(updatedImages.dropFirst()))
+        }
            return Publication(id: id, authorID: authorID, petInfo: petInfo.copy(), pictures: updatedPictures, price: price, currency: currency)
        }
 }

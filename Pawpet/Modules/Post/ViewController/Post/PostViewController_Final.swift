@@ -19,7 +19,7 @@ class PostViewController_Final: UIViewController {
     }()
 
     // MARK: - PromptView
-    private var promptView = PromptView(with: "Your ad has been published!",
+    private var promptView = PromptView(with: "Your publication has been published!",
                                         and: "It remains only to wait until someone notices your ad and is interested in it.", titleSize: 36, aligment: .center)
 
     // MARK: - Button

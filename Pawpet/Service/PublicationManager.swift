@@ -36,8 +36,11 @@ extension PublicationManager {
             switch result {
             case .success(let uploadedImages):
                 // Обновляем ссылки на изображения в объекте публикации
-                let updatedPublication = publication.copy(withUpdatedImages: uploadedImages)
-
+                var updatedPublication = publication
+                if !uploadedImages.isEmpty {
+                    updatedPublication = publication.copy(withUpdatedImages: uploadedImages)
+                }
+                
                 // Сохраняем данные публикации
                 self.savePublicationData(updatedPublication, to: publicationsRef) { result in
                     switch result {
@@ -55,6 +58,11 @@ extension PublicationManager {
 
     // MARK: HELPER METHODS
     private func uploadImages(_ images: [PawpetImage], to storageRef: StorageReference, completion: @escaping (Result<[PawpetImage], Error>) -> Void) {
+        if images.isEmpty {
+            completion(.success([]))
+            return
+        }
+
         var uploadedImages: [PawpetImage] = []
         let group = DispatchGroup()
 

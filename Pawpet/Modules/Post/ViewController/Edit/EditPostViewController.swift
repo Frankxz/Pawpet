@@ -21,7 +21,7 @@ class EditPostViewController: UITableViewController {
         let customAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 20, weight: .medium),
             .foregroundColor: UIColor.accentColor]
-        let saveButtonTitle = NSAttributedString(string: "Save", attributes: customAttributes)
+        let saveButtonTitle = NSAttributedString(string: "Save".localize(), attributes: customAttributes)
         let saveButton = UIButton(type: .system)
         saveButton.setAttributedTitle(saveButtonTitle, for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
@@ -84,7 +84,7 @@ extension EditPostViewController {
             // IF PetType
             if indexPath.row == 0 {
                 cell.leftLabel.text = "Pet type"
-                cell.rightLabel.text = publication.petInfo.petType.getName().capitilizeFirstChar()
+                cell.rightLabel.text = publication.petInfo.petType.getName()
             }
             // IF IsCrossBreed
             else if indexPath.row == 1 {
@@ -185,8 +185,8 @@ extension EditPostViewController {
         let ageSelectionVC = AgeSelectionBottomSheetViewController()
         ageSelectionVC.modalPresentationStyle = .overCurrentContext
         ageSelectionVC.ageSelectionView.promptView.setupTitles(
-            title: "Select your pet's age",
-            subtitle: "Please, if your pet is a puppy, set the year and month values to be zero.")
+            title: "Select your pet's age".localize(),
+            subtitle: "Please, if your pet is a newborn, set the year and month values to be zero.".localize())
         ageSelectionVC.ageSelectionView.agePickerView.setupAge(age: publication!.petInfo.age)
         ageSelectionVC.callback = {
             let newAge = ageSelectionVC.ageSelectionView.agePickerView.getAgeInMonth()

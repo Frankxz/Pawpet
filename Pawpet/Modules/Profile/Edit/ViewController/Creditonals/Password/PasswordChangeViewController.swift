@@ -28,7 +28,7 @@ class PasswordChangeViewController: SignUpViewController5 {
     }
 
     private func setupView() {
-        promptView.setupTitles(title: "Enter your new password.", subtitle: "Also you will need to enter your old password to confirm. \n\n Don't forget about password requirements:\n  1. Minimum length - 8 characters\n  2. Contains at least one capital letter\n  3. Contains at least one lowercase letter\n  4. Contains at least one number")
+        promptView.setupTitles(title: "Enter your new password", subtitle: "Also you will need to enter your old password to confirm. \n\n Don't forget about password requirements:\n  1. Minimum length - 8 characters\n  2. Contains at least one capital letter\n  3. Contains at least one lowercase letter\n  4. Contains at least one number")
 
         textField.tag = 0
         secondTextField.tag = 1

@@ -10,13 +10,13 @@ import Lottie
 
 class SignUpViewController5: BaseSignUpViewController {
     // MARK: - UI components
-    var secondTextField = AuthTextField("Surname", isSecure: false)
+    var secondTextField = AuthTextField("Surname".localize(), isSecure: false)
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         promptView.setupTitles(title: "Enter your name", subtitle: "This information will be visible to all users.")
-        textField.setupPlaceholder(placeholder: "Name")
+        textField.setupPlaceholder(placeholder: "Name".localize())
         setupAnimationView(with: "WatchingDog")
         setupSurnameTF()
 

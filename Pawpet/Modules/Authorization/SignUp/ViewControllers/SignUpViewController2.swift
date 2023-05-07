@@ -22,7 +22,7 @@ class SignUpViewController2: BaseSignUpViewController {
         super.viewDidLoad()
 
         promptView.setupTitles(title: "Create your password", subtitle:
-                                "This will help you to enter the application. \n\n Password requirements:\n  1. Minimum length - 8 characters\n  2. Contains at least one capital letter\n  3. Contains at least one lowercase letter\n  4. Contains at least one number")
+                                "Password requirements:\n  1. Minimum length - 8 characters\n  2. Contains at least one capital letter\n  3. Contains at least one lowercase letter\n  4. Contains at least one number")
         setupAnimationView(with: "WatchingDog")
         textField.setupPlaceholder(placeholder: "••••••")
         textField.isSecureTextEntry = true
@@ -41,7 +41,7 @@ extension SignUpViewController2 {
         Auth.auth().createUser(withEmail: email, password: textField.text!) { (result, error) in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
-                self.alertView.showAlert(with: "Ooops... error!", message: error.localizedDescription, on: self)
+                self.alertView.showAlert(with: "Oops... Error!", message: "The email address is already in use by another account.", on: self)
             } else {
                 UserDefaults.standard.set(self.textField.text!, forKey: "EMAIL")
                 UserDefaults.standard.set(self.password, forKey: "PASSWORD")

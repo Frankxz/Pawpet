@@ -15,7 +15,7 @@ class SignInViewController: UIViewController {
     // MARK: - Labels
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Welcome"
+        label.text = "Welcome".localize()
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         label.textColor = UIColor.accentColor.withAlphaComponent(0.8)
         return label
@@ -23,7 +23,7 @@ class SignInViewController: UIViewController {
 
     private var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Here you'll find a pet 🐶"
+        label.text = "Here you'll find a pet 🐶".localize()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .subtitleColor
         return label
@@ -31,7 +31,7 @@ class SignInViewController: UIViewController {
 
     private var signUpLabel: UILabel = {
         let label = UILabel()
-        label.text = "Don't have account ?"
+        label.text = "Don't have account ?".localize()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .subtitleColor
         return label
@@ -64,7 +64,7 @@ class SignInViewController: UIViewController {
         button.backgroundColor = .clear
         button.addTarget(self, action: #selector(forgotButtonTapped(_:)), for: .touchUpInside)
         let title = NSAttributedString(
-            string: "Forgot password ?",
+            string: "Forgot password ?".localize(),
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .bold),
                 NSAttributedString.Key.foregroundColor: UIColor.accentColor.withAlphaComponent(0.8)
@@ -79,7 +79,7 @@ class SignInViewController: UIViewController {
         button.backgroundColor = .clear
         button.addTarget(self, action: #selector(signUpButtonTapped(_:)), for: .touchUpInside)
         let title = NSAttributedString(
-            string: "Sign up now !",
+            string: "Sign up now !".localize(),
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .bold),
                 NSAttributedString.Key.foregroundColor: UIColor.accentColor.withAlphaComponent(0.8)
@@ -207,7 +207,7 @@ extension SignInViewController {
             if let error = error {
                 // Обработать ошибку авторизации
                 print(error.localizedDescription)
-                alertView.showAlert(with: "Ooops... error!", message: "Invalid email address or password. Please try again.", on: self)
+                alertView.showAlert(with: "Oops... Error!", message: "Invalid email address or password. Please try again.", on: self)
                 return
             }
 

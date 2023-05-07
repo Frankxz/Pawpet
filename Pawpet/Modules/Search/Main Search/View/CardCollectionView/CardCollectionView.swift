@@ -111,7 +111,7 @@ extension CardCollectionView {
     func updateHeaderView() {
         if let headerView = self.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) as? CardCollectionHeaderView {
             guard let name = FireStoreManager.shared.user.name else { return }
-            headerView.welcomeLabel.setAttributedText(withString: "Hello, ", boldString: "\(name) ✋🏼", font: .systemFont(ofSize: 32))
+            headerView.welcomeLabel.setAttributedText(withString: "Hello, ".localize(), boldString: "\(name) ✋🏼", font: .systemFont(ofSize: 28))
         }
 
     }

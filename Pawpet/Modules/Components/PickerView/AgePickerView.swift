@@ -58,7 +58,7 @@ class PetAgePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
     // MARK: - UIPickerViewDelegate
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let title = component == 0 ? "\(yearsArray[row]) years" : "\(monthsArray[row]) months"
+        let title = component == 0 ? "\(yearsArray[row]) \("years".localize())" : "\(monthsArray[row]) \("months".localize())"
         return title
     }
 

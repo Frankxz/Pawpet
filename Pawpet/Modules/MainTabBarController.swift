@@ -31,15 +31,15 @@ extension MainTabBarController {
 
         viewControllers = [
             generateVC(viewController: searchVC,
-                       title: "Search",
+                       title: "Search".localize(),
                        image: UIImage(systemName: "magnifyingglass")),
 
             generateVC(viewController: postVC,
-                       title: "Post",
+                       title: "Post".localize(),
                        image: UIImage(systemName: "plus.circle")),
 
             generateVC(viewController: profileVC,
-                       title: "Profile",
+                       title: "Profile".localize(),
                        image: UIImage(systemName: "person")),
         ]
     }
@@ -81,7 +81,7 @@ extension MainTabBarController {
         tabBar.tintColor = .accentColor
 
         let appearance = UITabBarItem.appearance()
-        let attributes = [NSAttributedString.Key.font:UIFont(name: "ChalkboardSE-Regular", size: 12)]
+        let attributes = [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12)]
         appearance.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
     }
 }

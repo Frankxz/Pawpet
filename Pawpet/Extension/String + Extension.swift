@@ -8,6 +8,10 @@
 import UIKit
 
 extension String {
+    func localize() -> String {
+        NSLocalizedString(self,  comment: "")
+    }
+    
     func geoCodeToEmoji() -> String {
         let base: UInt32 = 127397
         var s = ""
@@ -20,7 +24,7 @@ extension String {
     func capitilizeFirstChar() -> String {
         let inputString = self
         let capitalizedString = inputString.prefix(1).uppercased() + inputString.dropFirst()
-        return capitalizedString
+        return capitalizedString.localize()
         
     }
 

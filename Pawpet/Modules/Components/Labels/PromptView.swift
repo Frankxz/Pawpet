@@ -29,11 +29,11 @@ class PromptView: UIView {
     // MARK: - Init
     init(with title: String, and subtitle: String, titleSize: CGFloat = 34, subtitleSize: CGFloat = 16, spacing: CGFloat = 0, aligment: NSTextAlignment = .left) {
         super.init(frame: .zero)
-        titleLabel.text = title
+        titleLabel.text = title.localize()
         titleLabel.textAlignment = aligment
         titleLabel.font = UIFont.systemFont(ofSize: titleSize, weight: .bold)
 
-        subtitleLabel.text = subtitle
+        subtitleLabel.text = subtitle.localize()
         subtitleLabel.textAlignment = aligment
         subtitleLabel.font = UIFont.systemFont(ofSize: subtitleSize, weight: .medium)
         setupView(aligment: aligment, spacing: spacing)
@@ -63,7 +63,7 @@ extension PromptView {
     }
 
     public func setupTitles(title: String, subtitle: String) {
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+        titleLabel.text = title.localize()
+        subtitleLabel.text = subtitle.localize()
     }
 }

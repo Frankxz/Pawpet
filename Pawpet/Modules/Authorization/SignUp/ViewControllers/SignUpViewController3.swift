@@ -87,7 +87,7 @@ extension SignUpViewController3: FPNTextFieldDelegate {
     }
 
     func fpnDisplayCountryList() {
-        listController.title = "Countries"
+        listController.title = "Countries".localize()
         listController.setup(repository: phoneTextField.countryRepository)
         listController.didSelect = { [weak self] country in
             self?.phoneTextField.setFlag(countryCode: country.code)
@@ -104,7 +104,7 @@ extension SignUpViewController3 {
         guard phoneNumber != nil else { return }
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber!, uiDelegate: nil) { (verificationID, error) in
             if error != nil {
-                self.alertView.showAlert(with: "Ooops... error!", message: error!.localizedDescription, on: self)
+                self.alertView.showAlert(with: "Oops... Error!", message: error!.localizedDescription, on: self)
             } else {
                 self.pushToVerificationVC(with: verificationID!)
             }

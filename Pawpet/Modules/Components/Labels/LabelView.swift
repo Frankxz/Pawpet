@@ -74,9 +74,9 @@ extension LabelView {
 
     func setupTitle(with text: String,
                     and subtitle: String = "") {
-        mainLabel.text = text
+        mainLabel.text = text.localize()
         if !subtitle.isEmpty {
-            subtitleLabel.text = subtitle
+            subtitleLabel.text = subtitle.localize()
         }
     }
 

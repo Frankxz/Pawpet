@@ -15,7 +15,7 @@ class PNChangeViewController1: SignUpViewController3 {
         let customAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 20, weight: .medium),
             .foregroundColor: UIColor.accentColor]
-        let saveButtonTitle = NSAttributedString(string: "Cancel", attributes: customAttributes)
+        let saveButtonTitle = NSAttributedString(string: "Cancel".localize(), attributes: customAttributes)
         let saveButton = UIButton(type: .system)
         saveButton.setAttributedTitle(saveButtonTitle, for: .normal)
         saveButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)

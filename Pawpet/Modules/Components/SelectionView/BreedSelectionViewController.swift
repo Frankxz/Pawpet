@@ -40,16 +40,16 @@ class BreedSelectionViewController: UIViewController {
     }()
 
     // MARK: PromptView
-    public var promptView = PromptView(with: "Select the breed of pet.",
+    public var promptView = PromptView(with: "Select the breed of pet",
                                         and: "", titleSize: 28)
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if isCrossbreed && isFirstBreed {
-            promptView.titleLabel.text = "Select the first breed of the crossbreed"
+            promptView.titleLabel.text = "Select the first breed of the crossbreed".localize()
         }
         else if isCrossbreed && !isFirstBreed {
-            promptView.titleLabel.text = "Select the second breed of the crossbreed"
+            promptView.titleLabel.text = "Select the second breed of the crossbreed".localize()
         }
 
         setupView()
@@ -131,7 +131,7 @@ extension BreedSelectionViewController: UITableViewDelegate {
         searchBar.setPositionAdjustment(imageOffset, for: .search)
         searchBar.searchTextPositionAdjustment = textOffset
 
-        searchBar.placeholder = "Search your pet's breed "
+        searchBar.placeholder = "Search your pet's breed".localize()
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
     }
 }

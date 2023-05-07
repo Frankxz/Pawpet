@@ -42,13 +42,13 @@ extension OwnDetailViewController {
                     }
                 }
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            let cancelAction = UIAlertAction(title: "Cancel".localize(), style: .cancel)
             alertController.addAction(confirmAction)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true)
         }
         
-        let editAction = UIAction(title: "Edit") { _ in
+        let editAction = UIAction(title: "Edit".localize()) { _ in
             self.pushToEditPostVC()
         }
         

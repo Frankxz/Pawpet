@@ -29,7 +29,7 @@ class PublicationsViewController: UIViewController {
     private lazy var postButton: AuthButton = {
         let button = AuthButton()
         button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
-        button.setupTitle(for: "Post")
+        button.setupTitle(for: "Add post".localize())
         return button
     }()
 

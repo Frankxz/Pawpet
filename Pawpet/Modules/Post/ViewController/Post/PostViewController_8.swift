@@ -59,11 +59,10 @@ extension PostViewController_8 {
 
         // TODO: PublicationManager
         var price = Int(priceSelectionView.priceTF.text ?? "0") ?? 0
-        if priceSelectionView.isFreeControl.selectedItem == "FREE" { price = 0 }
+        if priceSelectionView.isFreeControl.selectedItem == "FREE".localize() { price = 0 }
         PublicationManager.shared.currentPublication.price = price
         PublicationManager.shared.currentPublication.currency = priceSelectionView.priceTF.currency
         PublicationManager.shared.savePublication { result in
-
             switch result {
             case .success:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

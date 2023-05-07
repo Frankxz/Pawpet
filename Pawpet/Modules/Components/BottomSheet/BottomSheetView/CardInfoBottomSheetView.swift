@@ -78,7 +78,7 @@ extension CardInfoBottomSheetView {
             priceLabel.setupTitle(with: "   \(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())   ")
             priceLabel.setupColors(viewColor: .systemYellow, textColor: .accentColor.withAlphaComponent(0.8))
         } else {
-            priceLabel.setupTitle(with: "  FREE  ")
+            priceLabel.setupTitle(with: "  \("FREE".localize())  ")
             priceLabel.snp.removeConstraints()
             priceLabel.snp.makeConstraints { make in
                 make.top.equalTo(titleView.snp.top)
@@ -88,7 +88,7 @@ extension CardInfoBottomSheetView {
         }
 
         FireStoreManager.shared.fetchUserData(for: publication.authorID) { author in
-            self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Author")
+            self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Owner".localize())
             self.authorGeoLabel.text = "\(author.country ?? "")\n\(author.city ?? "")"
         }
 
@@ -98,18 +98,18 @@ extension CardInfoBottomSheetView {
             FireStoreManager.shared.fetchAvatarImage(id: publication.authorID, imageView: authorImageView) {}
         }
 
-        let sex = publication.petInfo.isMale ? "Male" : "Female"
-        let coupping = publication.petInfo.isCupping! ? "Yes" : "No" // REMOVE FORCE UNWRAP
-        let vaccinated = publication.petInfo.isVaccinated! ? "Yes" : "No"
-        let sterilized = publication.petInfo.isSterilized! ? "Yes" : "No"
-        let isWithDocuments = publication.petInfo.isWithDocuments! ? "Yes" : "No"
+        let sex = publication.petInfo.isMale ? "Male".localize() : "Female".localize()
+        let coupping = publication.petInfo.isCupping! ? "Yes".localize() : "No".localize() // REMOVE FORCE UNWRAP
+        let vaccinated = publication.petInfo.isVaccinated! ? "Yes".localize() : "No".localize()
+        let sterilized = publication.petInfo.isSterilized! ? "Yes".localize() : "No".localize()
+        let isWithDocuments = publication.petInfo.isWithDocuments! ? "Yes".localize() : "No".localize()
 
-        vaccinated == "Yes" ? (additionInfoLabels[1].mainLabel.textColor = .systemGreen) : (infoLabels[3].mainLabel.textColor = .accentColor)
-        isWithDocuments == "Yes" ? (additionInfoLabels[0].mainLabel.textColor = .systemGreen) : (infoLabels[2].mainLabel.textColor = .accentColor)
+        vaccinated == "Yes".localize() ? (additionInfoLabels[1].mainLabel.textColor = .systemGreen) : (infoLabels[3].mainLabel.textColor = .accentColor)
+        isWithDocuments == "Yes".localize() ? (additionInfoLabels[0].mainLabel.textColor = .systemGreen) : (infoLabels[2].mainLabel.textColor = .accentColor)
 
         infoLabels[0].setupTitle(with: sex, and: "Gender")
-        infoLabels[1].setupTitle(with: "\(publication.petInfo.age) m.", and: "Age")
-        infoLabels[2].setupTitle(with: coupping, and: "Couping")
+        infoLabels[1].setupTitle(with: "\(publication.petInfo.age) \("m.".localize())", and: "Age")
+        infoLabels[2].setupTitle(with: coupping, and: "Cupping")
         infoLabels[3].setupTitle(with: sterilized, and: "Sterilized")
 
         additionInfoLabels[0].setupTitle(with: isWithDocuments, and: "Documents")
@@ -171,7 +171,7 @@ extension CardInfoBottomSheetView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.spacing = 10
         additionInfoLabels.forEach { infoLabel in
             infoLabel.snp.makeConstraints {$0.height.equalTo(53)}
             stackView.addArrangedSubview(infoLabel)
@@ -182,8 +182,8 @@ extension CardInfoBottomSheetView {
     private func getInfoLabelStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 10
         infoLabels.forEach { infoLabel in
             infoLabel.snp.makeConstraints {$0.height.equalTo(53)}
             stackView.addArrangedSubview(infoLabel)

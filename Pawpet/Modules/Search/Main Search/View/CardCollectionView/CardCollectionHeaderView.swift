@@ -40,7 +40,7 @@ class CardCollectionHeaderView: UICollectionReusableView {
     // MARK: - Labels
     public let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.setAttributedText(withString: "Hello, ", boldString: "", font: .systemFont(ofSize: 32))
+        label.setAttributedText(withString: "Hello, ".localize(), boldString: "", font: .systemFont(ofSize: 28))
         label.textColor = UIColor.accentColor.withAlphaComponent(0.8)
         return label
     }()
@@ -102,7 +102,7 @@ extension CardCollectionHeaderView {
             skeletonView.startAnimating()
         }
         FireStoreManager.shared.fetchUserData(completion: { _ in
-            self.welcomeLabel.setAttributedText(withString: "Hello, ", boldString: "\(FireStoreManager.shared.user.name ?? "" ) ✋🏼", font: .systemFont(ofSize: 32))
+            self.welcomeLabel.setAttributedText(withString: "Hello, ".localize(), boldString: "\(FireStoreManager.shared.user.name ?? "" ) ✋🏼", font: .systemFont(ofSize: 28))
             if !self.isHeaderAnimated {
                 UIView.animate(withDuration: 0.25) {
                     self.welcomeLabel.alpha = 1
@@ -141,7 +141,7 @@ extension CardCollectionHeaderView {
         searchBar.setPositionAdjustment(imageOffset, for: .search)
         searchBar.searchTextPositionAdjustment = textOffset
 
-        searchBar.placeholder = "Search your dream pet"
+        searchBar.placeholder = "Search your dream pet".localize()
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
     }
 }

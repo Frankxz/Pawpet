@@ -17,6 +17,20 @@ enum PetType: String, CaseIterable {
     case bird
 
     func getName() -> String {
-        "\(self)"
+        "\(self)".capitilizeFirstChar()
+    }
+
+    func getNamePlural() -> String {
+        var type: String
+        switch self {
+        case .dog: type = "Dogs"
+        case .cat: type = "Cats"
+        case .fish: type = "Fishes"
+        case .rodent: type = "Rodents"
+        case .reptile: type = "Reptiles"
+        case .bird: type = "Birds"
+        case .other: type = "Other"
+        }
+        return type.localize()
     }
 }

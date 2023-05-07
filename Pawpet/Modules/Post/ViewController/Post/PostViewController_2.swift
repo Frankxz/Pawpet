@@ -10,8 +10,8 @@ import UIKit
 class PostViewController_2: UIViewController {
 
     // MARK: - PromptView
-    private var promptView = PromptView(with: "Is your animal a crossbreed?",
-                                        and: "If your pet is a crossbreed, you will be able to choose the breeds of the mother and father of the pet.")
+    private var promptView = PromptView(with: "Is your pet's breed a crossbreed ?",
+                                        and: "If your pet's breed is a crossbreed, you will be able to choose the breeds of the mother and father of the pet.")
 
     private lazy var yesButton: OptionButton = {
         let button = OptionButton(systemImage: "checkmark.circle", size: 49)
@@ -34,7 +34,7 @@ class PostViewController_2: UIViewController {
         setupConstraints()
     }
     override func viewWillAppear(_ animated: Bool) {
-        typeWriterLabel.animate(newText: "A crossbreed is a pet obtained from parents of different breeds. For example, if you cross two dogs of different breeds, then their descendants will be a mixture. \n\nCrossbreeds can share the characteristics and traits of both breeds from which they are descended, and often have a unique appearance and personality.", characterDelay: 0.035)
+        typeWriterLabel.animate(newText: "A crossbreed is a pet obtained from parents of different breeds. For example, if you cross two dogs of different breeds, then their descendants will be a mixture. \n\nCrossbreeds can share the characteristics and traits of both breeds from which they are descended, and often have a unique appearance and personality.".localize(), characterDelay: 0.035)
     }
 }
 

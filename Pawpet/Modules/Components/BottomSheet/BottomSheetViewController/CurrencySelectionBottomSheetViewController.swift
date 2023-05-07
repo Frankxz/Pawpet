@@ -13,11 +13,11 @@ protocol CurrencyChangeDelegate {
 class CurrencySelectionBottomSheetViewController: BottomSheetViewController, UITableViewDataSource, UITableViewDelegate {
 
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    private let promptView = PromptView(with: "Chose the currency", and: "When you change the currency, you will see all prices in the new changed currency.")
+    private let promptView = PromptView(with: "Chose the currency", and: "The changed currency will be selected by default on selecting price screen when you will publicate new post")
 
-    private let currencies = [["🇺🇸 USD" : " - American Dollar"],
-                              ["🇷🇺 RUB" : " - Russian Ruble"],
-                              [ "🇰🇿 KZT" : " - Tenge"]]
+    private let currencies = [["🇺🇸 USD" : " - \("US's Dollar")"],
+                              ["🇷🇺 RUB" : " - \("Russian Ruble")"],
+                              [ "🇰🇿 KZT" : " - \("Tenge")"]]
 
     public var currencyDelegate: CurrencyChangeDelegate?
 
