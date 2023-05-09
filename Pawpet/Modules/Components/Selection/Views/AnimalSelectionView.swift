@@ -21,7 +21,7 @@ class AnimalSelectionView: UIView {
     }()
 
     // MARK: - CollectionView
-    public let chapterCollectionView = ChapterCollectionView()
+    public let chapterCollectionView = ChapterCollectionView(scrollDirection: .vertical)
 
     init() {
         super.init(frame: .zero)

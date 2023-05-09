@@ -16,6 +16,7 @@ class PostViewController_5: UIViewController {
         petInfoView.isForPost = true
         setupNavigationAppearence()
         petInfoView.nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
+        petInfoView.colorSelectButton.addTarget(self, action: #selector(selectColorButtonTapped), for: .touchUpInside)
         setupConstraints()
     }
 }
@@ -50,5 +51,31 @@ extension PostViewController_5 {
         PublicationManager.shared.currentPublication.petInfo.isCupping = petInfoView.isCupping
         PublicationManager.shared.currentPublication.petInfo.isSterilized = petInfoView.isSterilized
         PublicationManager.shared.currentPublication.petInfo.isWithDocuments = petInfoView.isWithDocuments
+
+    }
+}
+
+// MARK: - Color Selection
+extension PostViewController_5: ColorSelectionDelegate {
+    func didSelectColor(colorType: PetColorType) {
+        updateButtonTitle(colorType: colorType)
+        petInfoView.isColorChosen = true
+        petInfoView.checkSelection()
+        PublicationManager.shared.currentPublication.petInfo.color = colorType
+    }
+
+    @objc private func selectColorButtonTapped() {
+        let colorSelectVC = ColorSelectionBottomSheetViewController()
+        colorSelectVC.colorDelegate = self
+        colorSelectVC.modalPresentationStyle = .overCurrentContext
+        present(colorSelectVC, animated: false)
+    }
+
+    func updateButtonTitle(colorType: PetColorType) {
+        let customAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+            .foregroundColor: UIColor.systemBlue]
+        let saveButtonTitle = NSAttributedString(string: colorType.rawValue.localize(), attributes: customAttributes)
+        petInfoView.colorSelectButton.setAttributedTitle(saveButtonTitle, for: .normal)
     }
 }

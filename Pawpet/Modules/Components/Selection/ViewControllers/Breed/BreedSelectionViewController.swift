@@ -11,7 +11,7 @@ class BreedSelectionViewController: UIViewController {
     public var isCrossbreed = false
     public var isFirstBreed = false
 
-    private let breeds = Breed.generateBreeds()
+    var breeds: [Breed] = []
     private var filteredBreeds = [Breed]()
     private var isSearching = false
     public var selectedBreed: Breed?
@@ -62,6 +62,23 @@ class BreedSelectionViewController: UIViewController {
         view.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setupNavigationAppearence()
+    }
+
+    func setupBreeds(stringBreeds: [String]) {
+        for stringBreed in stringBreeds {
+            self.breeds.append(Breed(name: stringBreed))
+        }
+        breeds.append(Breed(name: "Other".localize()))
+        tableView.reloadData()
+    }
+
+    func setupBreeds(breeds: [Breed]) {
+        self.breeds = breeds
+        self.breeds.append(Breed(name: "Other".localize()))
+        self.breeds.forEach { breed in
+            breed.isChecked = false
+        }
+        tableView.reloadData()
     }
 }
 

@@ -107,7 +107,13 @@ extension PostViewController_2 {
             firstBreedVC.isCrossbreed = isCrossBreed
             firstBreedVC.isFirstBreed = isCrossBreed
 
-            self.navigationController?.pushViewController(firstBreedVC, animated: true)
+            let type =  PublicationManager.shared.currentPublication.petInfo.petType
+
+            BreedManager.shared.loadData(for: type) { fetchedBreeds in
+                firstBreedVC.setupBreeds(stringBreeds: fetchedBreeds)
+                self.navigationController?.pushViewController(firstBreedVC, animated: true)
+            }
+            
         }
     }
 }

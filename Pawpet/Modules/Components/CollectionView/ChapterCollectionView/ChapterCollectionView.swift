@@ -14,9 +14,9 @@ class ChapterCollectionView: UICollectionView {
     var selectedType = PetType.cat
 
     // MARK: - INIT
-    init () {
+    init (scrollDirection: UICollectionView.ScrollDirection = .horizontal) {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = scrollDirection
         super.init(frame: .zero, collectionViewLayout: layout)
 
         layout.minimumLineSpacing = ChapterCollectionConstants.lineSpace
@@ -56,6 +56,7 @@ extension ChapterCollectionView: UICollectionViewDelegate,UICollectionViewDataSo
             cell.nameLabel.textColor = .accentColor
         }
         cell.configure(type: petTypes[indexPath.row])
+        
         return cell
     }
 }

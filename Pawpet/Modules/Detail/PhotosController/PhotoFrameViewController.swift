@@ -10,6 +10,8 @@ import UIKit
 class PhotoFrameViewController: UIViewController {
     var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = false
+        imageView.layer.masksToBounds = false
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -20,7 +22,7 @@ class PhotoFrameViewController: UIViewController {
         view.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(100)
+            make.top.bottom.equalToSuperview()
         }
         imageView.backgroundColor = .clear
     }

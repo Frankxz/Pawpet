@@ -33,6 +33,8 @@ class PhotosPageViewController: UIPageViewController, UIPageViewControllerDataSo
         for (index, pawpetImage) in pawpetImages.enumerated() {
             imageViews.append(UIImageView())
             pawpetImage.loadMainImage(into: imageViews[index])
+            imageViews[index].layer.masksToBounds = false
+            imageViews[index].contentMode = .scaleAspectFit
         }
 
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)

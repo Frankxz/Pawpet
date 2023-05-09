@@ -26,6 +26,7 @@ extension PostViewController_3 {
             // Eсли является помесью -> Выбрана 1-ая порода
             if self.isCrossbreed && self.isFirstBreed {
                 let secondBreedVC = PostViewController_3()
+                secondBreedVC.setupBreeds(breeds: self.breeds)
                 secondBreedVC.isCrossbreed = true
                 secondBreedVC.isFirstBreed = false
 

@@ -33,6 +33,8 @@ class CardCollectionViewCell: UICollectionViewCell {
 
     let priceLabel = LabelView(text: "", weight: .heavy, viewColor: .clear, textColor: .systemRed, edgeOffset: 4)
 
+    let colorView = ColorImageView(frame: .zero)
+
     // MARK: - Buttons
     lazy var saveButton: UIButton = {
         let button = UIButton()
@@ -58,6 +60,10 @@ class CardCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func prepareForReuse() {
+        colorView.image = nil
+    }
 }
 
 // MARK: - UI + Constraints
@@ -73,6 +79,7 @@ extension CardCollectionViewCell {
         addSubview(mainImageView)
         addSubview(infoLabel)
         addSubview(priceLabel)
+        addSubview(colorView)
 
         mainImageView.snp.makeConstraints { make in
             make.width.height.equalTo(100)
@@ -96,10 +103,15 @@ extension CardCollectionViewCell {
             addSubview(saveButton)
             saveButton.snp.makeConstraints { make in
                 make.right.equalToSuperview().inset(10)
-                make.bottom.equalToSuperview()
+                make.bottom.equalToSuperview().inset(3)
                 make.height.equalTo(36)
                 make.width.equalTo(36)
             }
+        }
+
+        colorView.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(withHeart ? 50 : 10)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
 
@@ -130,9 +142,11 @@ extension CardCollectionViewCell {
             priceLabel.setupTitle(with: "  \(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())  ")
             priceLabel.setupColors(viewColor: .subtitleColor.withAlphaComponent(0.3), textColor: .accentColor.withAlphaComponent(0.8))
         } else {
-            priceLabel.setupTitle(with: "  FREE  ")
+            priceLabel.setupTitle(with: "  \("FREE".localize())  ")
             priceLabel.setupColors(viewColor: .systemGreen, textColor: .white)
         }
+
+        colorView.configure(colorType: publication.petInfo.color)
     }
 }
 

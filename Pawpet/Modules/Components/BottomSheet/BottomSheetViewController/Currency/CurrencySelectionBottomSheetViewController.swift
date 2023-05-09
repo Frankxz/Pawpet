@@ -10,6 +10,7 @@ import UIKit
 protocol CurrencyChangeDelegate {
     func currencySelected(currency: String)
 }
+
 class CurrencySelectionBottomSheetViewController: BottomSheetViewController, UITableViewDataSource, UITableViewDelegate {
 
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)

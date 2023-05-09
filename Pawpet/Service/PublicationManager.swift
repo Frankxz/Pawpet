@@ -166,8 +166,7 @@ extension PublicationManager {
 extension PublicationManager {
     func deletePublication(_ publication: Publication, completion: @escaping (Result<Void, Error>) -> Void) {
         let publicationID = publication.id
-        let storageRef = Storage.storage().reference()
-
+  
         // Remove images
         deleteImages(publicationID: publicationID) { result in
             switch result {

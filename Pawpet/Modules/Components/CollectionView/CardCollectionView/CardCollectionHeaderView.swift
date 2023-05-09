@@ -15,7 +15,7 @@ class CardCollectionHeaderView: UICollectionReusableView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "pawpet_square_logo")
+        imageView.image = UIImage(named: "pawpet_color_logo")
         return imageView
     }()
     

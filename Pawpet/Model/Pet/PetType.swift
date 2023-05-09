@@ -12,9 +12,8 @@ enum PetType: String, CaseIterable {
     case dog
     case fish
     case rodent
-    case reptile
-    case other
     case bird
+    case other
 
     func getName() -> String {
         "\(self)".capitilizeFirstChar()
@@ -27,7 +26,6 @@ enum PetType: String, CaseIterable {
         case .cat: type = "Cats"
         case .fish: type = "Fishes"
         case .rodent: type = "Rodents"
-        case .reptile: type = "Reptiles"
         case .bird: type = "Birds"
         case .other: type = "Other"
         }

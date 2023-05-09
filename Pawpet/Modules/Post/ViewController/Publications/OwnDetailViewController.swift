@@ -29,7 +29,7 @@ extension OwnDetailViewController {
     private func setupMenu() {
         let deleteAction = UIAction(title: "Remove", attributes: .destructive) { _ in
             let alertController = UIAlertController(title: "Are you sure you want to delete this post?", message: "After deletion, you and users will not be able to see this post, it will be impossible to restore it.", preferredStyle: .alert)
-            let confirmAction = UIAlertAction(title: "Remove", style: .destructive) { _ in
+            let confirmAction = UIAlertAction(title: "Remove".localize(), style: .destructive) { _ in
                 print("deleting...")
                 guard let publication = self.publication else { return }
                 PublicationManager.shared.deletePublication(publication) { result in

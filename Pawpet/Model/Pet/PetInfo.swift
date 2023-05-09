@@ -15,6 +15,7 @@ class PetInfo {
     
     var age: Int  // В месяцах
     var isMale: Bool
+    var color: PetColorType
     
     var isCupping: Bool?
     var isSterilized: Bool?
@@ -23,13 +24,14 @@ class PetInfo {
     
     var description: String = ""
     
-    init(petType: PetType, isCrossbreed: Bool? = nil, breed: String, secondBreed: String? = nil, age: Int, isMale: Bool, isCupping: Bool? = nil, isSterilized: Bool? = nil, isVaccinated: Bool? = nil, isWithDocuments: Bool? = nil, description: String) {
+    init(petType: PetType, isCrossbreed: Bool? = nil, breed: String, secondBreed: String? = nil, age: Int, isMale: Bool, color: PetColorType, isCupping: Bool? = nil, isSterilized: Bool? = nil, isVaccinated: Bool? = nil, isWithDocuments: Bool? = nil, description: String) {
         self.petType = petType
         self.isCrossbreed = isCrossbreed
         self.breed = breed
         self.secondBreed = secondBreed
         self.age = age
         self.isMale = isMale
+        self.color = color
         self.isCupping = isCupping
         self.isSterilized = isSterilized
         self.isVaccinated = isVaccinated
@@ -42,10 +44,11 @@ class PetInfo {
         breed = ""
         age = 0
         isMale = false
+        color = .black
     }
     
     func copy() -> PetInfo {
-        return PetInfo(petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, isWithDocuments: isWithDocuments, description: description)
+        return PetInfo(petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, color: color, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, isWithDocuments: isWithDocuments, description: description)
     }
 }
 
@@ -56,6 +59,7 @@ extension PetInfo {
             "breed": breed,
             "age": age,
             "isMale": isMale,
+            "color": color.rawValue,
             "description": description
         ]
         
@@ -85,10 +89,12 @@ extension PetInfo {
 extension PetInfo {
     static func fromDictionary(dictionary: [String: Any]) -> PetInfo? {
         guard let petTypeString = dictionary["petType"] as? String,
+              let colorTypeString = dictionary["color"] as? String,
               let petType = PetType(rawValue: petTypeString),
               let breed = dictionary["breed"] as? String,
               let age = dictionary["age"] as? Int,
               let isMale = dictionary["isMale"] as? Bool,
+              let color = PetColorType(rawValue: colorTypeString),
               let description = dictionary["description"] as? String else { return nil }
 
         let isCrossbreed = dictionary["isCrossbreed"] as? Bool
@@ -98,6 +104,6 @@ extension PetInfo {
         let isVaccinated = dictionary["isVaccinated"] as? Bool
         let isWithDocuments = dictionary["isWithDocuments"] as? Bool
 
-        return PetInfo(petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, isWithDocuments: isWithDocuments, description: description)
+        return PetInfo(petType: petType, isCrossbreed: isCrossbreed, breed: breed, secondBreed: secondBreed, age: age, isMale: isMale, color: color, isCupping: isCupping, isSterilized: isSterilized, isVaccinated: isVaccinated, isWithDocuments: isWithDocuments, description: description)
     }
 }

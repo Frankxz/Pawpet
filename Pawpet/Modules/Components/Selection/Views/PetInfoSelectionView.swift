@@ -11,7 +11,7 @@ class PetInfoSelectionView: UIView {
 
     // MARK: - PromptView
     var promptView = PromptView(with: "Please, provide more info",
-                                        and: "Please provide up-to-date information about your pet.", titleSize: 32)
+                                and: "Please provide up-to-date information about your pet.", titleSize: 32)
 
     // MARK: - Button
     lazy var nextButton: AuthButton = {
@@ -39,32 +39,56 @@ class PetInfoSelectionView: UIView {
         return button
     }()
 
-    let togglers: [UISwitch] = {
-        var switches: [UISwitch] = []
-        for _ in 0...3 { switches.append(UISwitch())}
-        return switches
+    var togglers: [UISwitch] = []
+
+    // MARK: Button
+    lazy var colorSelectButton: UIButton = {
+        let customAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+            .foregroundColor: UIColor.systemBlue]
+        let saveButtonTitle = NSAttributedString(string: "Select".localize(), attributes: customAttributes)
+        let button = UIButton(type: .system)
+        button.setAttributedTitle(saveButtonTitle, for: .normal)
+        return button
     }()
 
     var isMaleChosen = false
     var isFemaleChosen = false
 
     var isVacinated = false
-    var isCupping = false
-    var isSterilized = false
     var isWithDocuments = false
+
+    var isCupping: Bool?
+    var isSterilized: Bool?
 
     var isOnlyOneSelect = true
     var isForPost = false
 
+    var isColorChosen = false
+
     init(isForPost: Bool = false) {
         super.init(frame: .zero)
         backgroundColor = .white
-        setupConstraints()
 
         if isForPost {
+            self.isForPost = isForPost
             nextButton.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
             nextButton.isHidden = true
+
+            let petType = PublicationManager.shared.currentPublication.petInfo.petType
+
+            if petType == .dog {
+                for _ in 1...4 { togglers.append(UISwitch())}
+            } else if petType == .cat  {
+                for _ in 1...3 { togglers.append(UISwitch())}
+            } else {
+                for _ in 1...2 { togglers.append(UISwitch())}
+            }
         }
+
+        setupConstraints()
+
+        print("TOGLERS COUNT: \(togglers.count)")
     }
 
     required init?(coder: NSCoder) {
@@ -83,21 +107,29 @@ extension PetInfoSelectionView {
 
     private func setupConstraints() {
         let buttonStackView = getButtonsStackView()
-        let controlStackView = getControlStackView()
+        let controlStackView = getControlView()
+        let colorSelectionView = getColorSelectionView()
 
         addSubview(nextButton)
         addSubview(promptView)
+        addSubview(colorSelectionView)
         addSubview(buttonStackView)
         addSubview(controlStackView)
+
 
         promptView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalToSuperview()
         }
 
-        controlStackView.snp.makeConstraints { make in
+        colorSelectionView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(promptView.snp.bottom).offset(20)
+        }
+
+        controlStackView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(20)
+            make.top.equalTo(colorSelectionView.snp.bottom).offset(20)
         }
 
         buttonStackView.snp.makeConstraints { make in
@@ -126,7 +158,7 @@ extension PetInfoSelectionView {
         return stackView
     }
 
-    private func getControlStackView() -> UIStackView {
+    private func getControlView() -> UIView {
         let mainStackView = UIStackView()
         mainStackView.spacing = 10
         mainStackView.distribution = .fillEqually
@@ -145,22 +177,57 @@ extension PetInfoSelectionView {
                 label.text = "Vaccinated".localize()
                 control.addTarget(self, action: #selector(isVaccinatedTapped), for: .valueChanged)
             case 1:
-                label.text = "Was cupping".localize()
-                control.addTarget(self, action: #selector(isCuppingTapped), for: .valueChanged)
+                label.text = "With documents".localize()
+                control.addTarget(self, action: #selector(isWithDocumentsTapped), for: .valueChanged)
             case 2:
                 label.text = "Sterilized".localize()
                 control.addTarget(self, action: #selector(isSterilizedTapped), for: .valueChanged)
+                isSterilized = false
             case 3:
-                label.text = "With documents".localize()
-                control.addTarget(self, action: #selector(isWithDocumentsTapped), for: .valueChanged)
+                label.text = "Was cupping".localize()
+                control.addTarget(self, action: #selector(isCuppingTapped), for: .valueChanged)
+                isCupping = false
 
-            default: break
+            default: continue
             }
             stackView.addArrangedSubview(label)
             stackView.addArrangedSubview(control)
             mainStackView.addArrangedSubview(stackView)
         }
-        return mainStackView
+
+        let controlView = UIView()
+        controlView.backgroundColor = .backgroundColor
+        controlView.layer.cornerRadius = 12
+        
+        controlView.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalToSuperview().inset(10)
+        }
+
+        return controlView
+    }
+
+    private func getColorSelectionView() -> UIView {
+        let promtLabel = UILabel()
+        promtLabel.textColor = .accentColor
+        promtLabel.font = .systemFont(ofSize: 18, weight: .regular)
+        promtLabel.text = "Pet's color".localize()
+
+        let colorView = UIView()
+        colorView.backgroundColor = .backgroundColor
+        colorView.layer.cornerRadius = 12
+        colorView.addSubview(promtLabel)
+        colorView.addSubview(colorSelectButton)
+
+        promtLabel.snp.makeConstraints { make in
+            make.left.top.bottom.equalToSuperview().inset(10)
+        }
+
+        colorSelectButton.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview().inset(10)
+        }
+
+        return colorView
     }
 }
 
@@ -171,18 +238,18 @@ extension PetInfoSelectionView {
         isVacinated = togglers[0].isOn
     }
 
-    @objc func isCuppingTapped() {
-        isCupping = togglers[1].isOn
+    @objc func isWithDocumentsTapped() {
+        isWithDocuments = togglers[1].isOn
     }
-
     @objc func isSterilizedTapped() {
         isSterilized = togglers[2].isOn
     }
 
-    @objc func isWithDocumentsTapped() {
-        isWithDocuments = togglers[3].isOn
+    @objc func isCuppingTapped() {
+        isCupping = togglers[3].isOn
     }
 }
+
 
 // MARK: - Button logic
 extension PetInfoSelectionView {
@@ -230,12 +297,14 @@ extension PetInfoSelectionView {
 
 // MARK: - For Post
 extension PetInfoSelectionView {
-    private func checkSelection() {
+    func checkSelection() {
         if isForPost {
             if !isMaleChosen && !isFemaleChosen {
                 hideNextButton()
             } else {
-                showNextButton()
+                if isColorChosen {
+                    showNextButton()
+                }
             }
         }
     }
@@ -268,5 +337,4 @@ extension PetInfoSelectionView {
         }
     }
 }
-
 

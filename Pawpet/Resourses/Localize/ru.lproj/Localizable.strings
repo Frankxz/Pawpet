@@ -25,6 +25,7 @@
 "Search your location..." = "Найдите свою страну...";
 "Cancel" = "Отменить";
 "Edit" = "Редактировать";
+"Remove" = "Удалить";
 "Everything is ready !" = "Всё готово !";
 "You are signed up and can start exploring \nthe world of Pawpet" = "Вы зарегистрированы и можете начать исследовать мир Pawpet";
 
@@ -107,8 +108,21 @@
 "Vacine" = "Привит(а)";
 "Gender" = "Пол";
 "Age" = "Возраст";
+"Color" = "Окрас";
+
 "m." = "мес.";
 "Connect with seller" = "Связаться с продавцом";
+"Select the color" = "Выберите цвет";
+"Pet's color" = "Окрас питомца";
+"Black" = "Черный";
+"White" = "Белый";
+"Brown" = "Коричневый";
+"Pale" = "Палевый";
+"Gray" = "Серый";
+"Ginger" = "Рыжий";
+"Spotted" = "Пятнистый";
+"Tiger" = "Тигровый";
+"Gold" = "Золотой";
 
 // MARK: - Profile
 "Profile" = "Профиль";
@@ -161,3 +175,4 @@
 "Password successfully changed." = "Пароль успешно изменен.";
 "Ph. No. successfully changed." = "Тел. номер. успешно изменен.";
 "Current number: " = "Текущий номер:";
+"Other" = "Другое";

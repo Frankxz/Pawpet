@@ -32,7 +32,7 @@ class PriceSelectionView: UIView {
     // MARK: - TextField
     var priceTF = PriceTextField(frame: .zero)
 
-    var isFreeControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 120, height: 40), items: [" ", "FREE".localize()])
+    var isFreeControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 160, height: 40), items: [" ", "FREE".localize()])
 
     init() {
         super.init(frame: .zero)

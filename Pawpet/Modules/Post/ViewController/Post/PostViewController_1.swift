@@ -61,7 +61,20 @@ extension PostViewController_1 {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             let type = self.animalSelectionView.chapterCollectionView.selectedType
             PublicationManager.shared.currentPublication.petInfo.petType = type
-            self.navigationController?.pushViewController(PostViewController_2(), animated: true)
+            
+            if type == .cat || type == .dog {
+                self.navigationController?.pushViewController(PostViewController_2(), animated: true)
+            } else {
+                let breedVC = PostViewController_3()
+                breedVC.promptView.titleLabel.text = "Выберите вид питомца"
+                breedVC.isCrossbreed = false
+                breedVC.isFirstBreed = false
+
+                BreedManager.shared.loadData(for: type) { fetchedBreeds in
+                    breedVC.setupBreeds(stringBreeds: fetchedBreeds)
+                    self.navigationController?.pushViewController(breedVC, animated: true)
+                }
+            }
         }
     }
 

@@ -51,6 +51,25 @@ class LabelView: UIView {
         setupConstraints(withSubtitle: !subtitle.isEmpty, edgeOffset: edgeOffset)
     }
 
+    init(prompt: String, value: String, isGreenText: Bool = false) {
+        super.init(frame: .zero)
+        mainLabel.text = value
+        mainLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        mainLabel.textAlignment = .center
+        mainLabel.textColor = isGreenText ? .systemGreen : .accentColor
+
+        subtitleLabel.text = prompt.localize()
+        subtitleLabel.font = .systemFont(ofSize: 14, weight: .thin)
+        
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.textColor = .accentColor
+
+        backgroundColor = .backgroundColor
+        layer.cornerRadius = 6
+
+        setupConstraints(withSubtitle: true, edgeOffset: 8)
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,10 +80,12 @@ extension LabelView {
     private func setupConstraints(withSubtitle: Bool = false, edgeOffset: CGFloat) {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fillEqually
         stackView.spacing = 5
 
         if withSubtitle {stackView.addArrangedSubview(subtitleLabel)}
         stackView.addArrangedSubview(mainLabel)
+
         addSubview(stackView)
 
         stackView.snp.makeConstraints { make in
