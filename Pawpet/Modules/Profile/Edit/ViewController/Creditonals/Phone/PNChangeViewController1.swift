@@ -23,7 +23,7 @@ class PNChangeViewController1: SignUpViewController3 {
         return saveBarButton
     }()
     
-    private let passwordTextField = AuthTextField("Your password for confirmation...", isSecure: true)
+    private let passwordTextField = PawTextField("Your password for confirmation...", isSecure: true)
     private var password = ""
 
     private var isValidNumber: Bool = false
@@ -104,7 +104,7 @@ extension PNChangeViewController1 {
     }
 
     override func nextButtonTapped(_ sender: UIButton) {
-        FireStoreManager.shared.reauthenticateUser(password: password) { result in
+        UserManager.shared.reauthenticateUser(password: password) { result in
             switch result {
             case .success:
                 print("User reauthenticated successfully")

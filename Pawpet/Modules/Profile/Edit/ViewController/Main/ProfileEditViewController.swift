@@ -75,7 +75,7 @@ class ProfileEditViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = FireStoreManager.shared.user
+        user = UserManager.shared.user
 
         configureTableView()
         hideKeyboardWhenTappedAround()
@@ -122,7 +122,7 @@ extension ProfileEditViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath) as! TextFieldTableViewCell
             cell.textField.placeholder = indexPath.row == 0 ? "Имя" : "Фамилия"
             cell.textField.tag = indexPath.row == 0 ? 0 : 1
-            cell.textField.text = indexPath.row == 0 ? FireStoreManager.shared.user.name : FireStoreManager.shared.user.surname
+            cell.textField.text = indexPath.row == 0 ? UserManager.shared.user.name : UserManager.shared.user.surname
             cell.backgroundColor = .backgroundColor
             cell.textField.delegate = self
             return cell
@@ -134,15 +134,15 @@ extension ProfileEditViewController {
             case .geo:
                 if indexPath.row == 0 {
                     cell.leftLabel.text = "Change location".localize()
-                    cell.rightLabel.text = "\(FireStoreManager.shared.user.country ?? "Unselected"), \(FireStoreManager.shared.user.city ?? "")"
+                    cell.rightLabel.text = "\(UserManager.shared.user.country ?? "Unselected"), \(UserManager.shared.user.city ?? "")"
                 } else if indexPath.row == 1 {
                     cell.leftLabel.text = "Change currency".localize()
-                    cell.rightLabel.text = FireStoreManager.shared.user.currency ?? "?"
+                    cell.rightLabel.text = UserManager.shared.user.currency ?? "?"
                 }
             case .contactInfo:
                 if indexPath.row == 0 {
                     cell.leftLabel.text = "Change email".localize()
-                    cell.rightLabel.text = FireStoreManager.shared.getUserEmail()
+                    cell.rightLabel.text = UserManager.shared.getUserEmail()
                 } else {
                     cell.leftLabel.text = "Change phone number".localize()
                     cell.rightLabel.text = phoneNumber
@@ -264,7 +264,7 @@ extension ProfileEditViewController {
         let countryEditVC = CountryChangeViewController(geoObjects: GeoManager.shared.getAllCountries(localize: .ru), geoVCType: .country)
 
         countryEditVC.callback = { [self] in
-            self.user = FireStoreManager.shared.user
+            self.user = UserManager.shared.user
             tableView.reloadData()
             self.saveButtonTapped()
 
@@ -284,7 +284,7 @@ extension ProfileEditViewController {
         phoneNumberChangeVC.callback = { [self] in
             tableView.reloadData()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.alertView.showAlert(with: "Ph. No. successfully changed.", message: "\("Current number: ".localize())\(FireStoreManager.shared.getUserPhoneNumber())", on: self)
+                self.alertView.showAlert(with: "Ph. No. successfully changed.", message: "\("Current number: ".localize())\(UserManager.shared.getUserPhoneNumber())", on: self)
             }
         }
 
@@ -307,14 +307,14 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         showAnimationView()
 
-        FireStoreManager.shared.saveAvatarImage(image: selectedImage) { result in
+        UserManager.shared.saveAvatarImage(image: selectedImage) { result in
             switch result {
             case .success(let imagePath):
                 print("Image saved to Firebase Storage with path: \(imagePath)")
                 let alertView = SuccessAlertView()
                 self.avatarImageView.image = selectedImage
                 self.hideAnimationView()
-                FireStoreManager.shared.user.isChanged = true
+                UserManager.shared.user.isChanged = true
                 alertView.showAlert(with: "Avatar successfully changed.", message: "", on: self)
             case .failure(let error):
                 self.hideAnimationView()
@@ -332,7 +332,7 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
 // MARK: - Save & Logout buttons logic
 extension ProfileEditViewController {
     @objc func saveButtonTapped() {
-        FireStoreManager.shared.saveUserData(for: user)
+        UserManager.shared.saveUserData(for: user)
         print("\(user.name ?? "") \(user.surname ?? "")")
     }
 
@@ -377,8 +377,8 @@ extension ProfileEditViewController: PasswordChangeDelegate {
 // MARK: - CurrencyChangeDelegate realization
 extension ProfileEditViewController: CurrencyChangeDelegate {
     func currencySelected(currency: String) {
-        FireStoreManager.shared.user.currency = currency
-        FireStoreManager.shared.saveUserData(for: FireStoreManager.shared.user)
+        UserManager.shared.user.currency = currency
+        UserManager.shared.saveUserData(for: UserManager.shared.user)
         tableView.reloadData()
     }
 }

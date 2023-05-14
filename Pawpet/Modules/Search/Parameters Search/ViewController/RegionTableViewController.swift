@@ -15,10 +15,11 @@ class RegionTableViewController: UIViewController {
 
     public var cities: [GeoObject] = []
 
-    let userRegionCity = GeoObject(name: "Moscow", isChecked: true)
+    let userRegionCity = GeoObject(name: UserManager.shared.user.city!, isChecked: false)
 
     let tableView = UITableView()
-
+    var callBack: ()->() = {}
+    
     // MARK: SearchBar
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -108,7 +109,7 @@ extension RegionTableViewController {
         searchBar.setPositionAdjustment(imageOffset, for: .search)
         searchBar.searchTextPositionAdjustment = textOffset
 
-        searchBar.placeholder = "Search city.."
+        searchBar.placeholder = "Search city...".localize()
         searchBar.searchTextField.font = UIFont.systemFont(ofSize: 17)
     }
 }
@@ -174,10 +175,6 @@ extension RegionTableViewController: UITableViewDataSource, UITableViewDelegate 
         let selectedCities = getCheckedCities()
         selectedCities.isEmpty ? hideButtonWithAnimation() : showButtonWithAnimation()
     }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Ваш регион" : "Все города России"
-    }
 }
 
 // MARK: Header
@@ -185,14 +182,14 @@ extension RegionTableViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let label = UILabel()
-        label.text = "All regions"
+        label.text = "All regions".localize()
         label.textColor = .subtitleColor
         label.font = .systemFont(ofSize: 18)
         view.backgroundColor = .white
         view.addSubview(label)
 
         if section == 0 {
-            label.text = "Your current region"
+            label.text = "Your current region".localize()
             label.snp.makeConstraints { make in
                 make.left.right.equalToSuperview().inset(20)
                 make.top.equalToSuperview()
@@ -256,10 +253,10 @@ extension RegionTableViewController {
 extension RegionTableViewController {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         print("Email entered")
+        callBack()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.popViewController(animated: true)
         }
-        // TODO: - StorageManager
     }
 
     private func hideButtonWithAnimation(duration: TimeInterval = 0.3) {

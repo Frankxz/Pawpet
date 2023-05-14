@@ -90,35 +90,40 @@ extension CardCollectionViewCell {
         infoLabel.snp.makeConstraints { make in
             make.left.equalTo(mainImageView.snp.right).offset(20)
             make.top.equalToSuperview().inset(10)
+            make.bottom.equalTo(priceLabel.snp.top).offset(-10)
             make.right.equalToSuperview().inset(10)
         }
 
         priceLabel.snp.removeConstraints()
         priceLabel.snp.makeConstraints() { make in
-            make.bottom.equalToSuperview().inset(10)
+            make.height.equalTo(24)
+            make.bottom.equalTo(mainImageView.snp.bottom)
             make.left.equalTo(mainImageView.snp.right).offset(20)
         }
 
-        if withHeart {
-            addSubview(saveButton)
-            saveButton.snp.makeConstraints { make in
-                make.right.equalToSuperview().inset(10)
-                make.bottom.equalToSuperview().inset(3)
-                make.height.equalTo(36)
-                make.width.equalTo(36)
-            }
+        addSubview(saveButton)
+        saveButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(10)
+            make.centerY.equalTo(priceLabel.snp.centerY)
+//            make.bottom.equalToSuperview().inset(5)
+            make.height.equalTo(36)
+            make.width.equalTo(36)
+        }
+        
+        if !withHeart {
+            saveButton.isHidden = true
         }
 
         colorView.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(withHeart ? 50 : 10)
-            make.bottom.equalToSuperview().inset(10)
+            make.centerX.equalTo(saveButton.snp.centerX)
+            make.top.equalToSuperview().inset(10)
         }
     }
 
     func configure(with publication: Publication, withHeart: Bool = true) {
         configurateView(withHeart: withHeart)
        
-        if let favorites = FireStoreManager.shared.user.favorites, favorites.contains(publication.id) {
+        if let favorites = UserManager.shared.user.favorites, favorites.contains(publication.id) {
             if !isInFavorite  {
                 print("\nIN Favorites \(isInFavorite)")
                 updateSaveButtonAppearence { _ in }

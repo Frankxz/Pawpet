@@ -66,7 +66,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController {
     public func configure(with publication: Publication) {
         self.publication = publication
-        if publication.pictures.images?.count != 0 {
+        if publication.pictures.allImages.count != 0 {
             publication.pictures.mainImage.loadMainImage(into: mainImageView)
 
             photosPageVC = PhotosPageViewController(publication: publication)
@@ -75,7 +75,7 @@ extension DetailViewController {
         }
         infoView.configure(with: publication)
 
-        if let favorites = FireStoreManager.shared.user.favorites, favorites.contains(publication.id) {
+        if let favorites = UserManager.shared.user.favorites, favorites.contains(publication.id) {
             print("IN Favorites \(isInFavorite)")
             updateSaveButtonAppearence { _ in }
             print("IN Favorites \(isInFavorite)")
@@ -162,6 +162,22 @@ extension DetailViewController {
 extension DetailViewController {
     @objc private func connectButtonTapped(_ sender: UIButton) {
         print("Connect..")
+        guard let publication = publication else { return }
+
+        UserManager.shared.getUserPhoneNumber(userID: publication.authorID) { result in
+            switch result {
+            case .success(let phoneNumber):
+                if let url = URL(string: "tel://\(phoneNumber)") {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    } else {
+                        print("Your device doesn't support this feature.")
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     @objc private func checkPhotosTapped(_ sender: UIButton) {

@@ -40,7 +40,7 @@ class PublicationsViewController: UIViewController {
     // MARK:  Labels
     private let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.setAttributedText(withString: "", boldString: "My Publications", font: .systemFont(ofSize: 32))
+        label.setAttributedText(withString: "", boldString: "My Publications".localize(), font: .systemFont(ofSize: 32))
         label.textColor = UIColor.accentColor.withAlphaComponent(0.8)
         return label
     }()
@@ -85,7 +85,7 @@ class PublicationsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         print("PublicationsViewController viewWillAppear")
-        if FireStoreManager.shared.user.isChanged {
+        if UserManager.shared.user.isChanged {
             fetchData()
         }
     }
@@ -205,6 +205,12 @@ extension PublicationsViewController {
 
 // MARK:  Delegate
 extension PublicationsViewController: SearchViewControllerDelegate {
+    func didSelectVariant(breed: String) { }
+
+    func didSearchButtonTapped(with searchText: String) { }
+
+    func didPetTypeSelected(with petType: PetType) { }
+
     func pushToDetailVC(of publication: Publication) {
         print("Push to DetailVC")
         let detailVC = OwnDetailViewController()
@@ -220,6 +226,7 @@ extension PublicationsViewController: SearchViewControllerDelegate {
 extension PublicationsViewController {
     @objc private func addButtonTapped(_ sender: UIButton) {
         let navigationVC = UINavigationController(rootViewController: PostViewController_1())
+
         navigationVC.modalPresentationStyle = .fullScreen
         present(navigationVC, animated: true)
         //navigationController?.pushViewController(PostViewController_1(), animated: true)

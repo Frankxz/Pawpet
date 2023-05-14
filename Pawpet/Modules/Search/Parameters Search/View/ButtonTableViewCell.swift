@@ -9,9 +9,8 @@ import UIKit
 
 class ButtonTableViewCell: UITableViewCell {
     // MARK: - Button
-    private lazy var nextButton: AuthButton = {
+     lazy var nextButton: AuthButton = {
         let button = AuthButton()
-//        button.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         button.setupTitle(for: "Search")
         return button
     }()

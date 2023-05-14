@@ -27,7 +27,7 @@ class OwnDetailViewController: DetailViewController {
 // MARK: - UI + Constraints
 extension OwnDetailViewController {
     private func setupMenu() {
-        let deleteAction = UIAction(title: "Remove", attributes: .destructive) { _ in
+        let deleteAction = UIAction(title: "Remove".localize(), attributes: .destructive) { _ in
             let alertController = UIAlertController(title: "Are you sure you want to delete this post?", message: "After deletion, you and users will not be able to see this post, it will be impossible to restore it.", preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: "Remove".localize(), style: .destructive) { _ in
                 print("deleting...")

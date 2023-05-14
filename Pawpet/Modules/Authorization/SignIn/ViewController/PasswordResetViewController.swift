@@ -20,7 +20,7 @@ class PasswordResetViewController: SignUpViewController1 {
     }
 
     override func nextButtonTapped(_ sender: UIButton) {
-        FireStoreManager.shared.sendPasswordResetToEmail(email: email) { result in
+        UserManager.shared.sendPasswordResetToEmail(email: email) { result in
             switch result {
             case .success:
                 self.navigationController?.popViewController(animated: true)

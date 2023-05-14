@@ -10,7 +10,7 @@ import Lottie
 
 class SignUpViewController5: BaseSignUpViewController {
     // MARK: - UI components
-    var secondTextField = AuthTextField("Surname".localize(), isSecure: false)
+    var secondTextField = PawTextField("Surname".localize(), isSecure: false)
 
     // MARK: - LifeCycle methods
     override func viewDidLoad() {

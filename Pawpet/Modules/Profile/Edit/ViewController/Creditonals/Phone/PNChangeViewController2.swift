@@ -19,7 +19,7 @@ class PNChangeViewController2: SignUpViewController4 {
 extension PNChangeViewController2 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
         guard let code = textView.text else { return }
-        FireStoreManager.shared.updatePhoneNumber(verificationID: verificationID, verificationCode: code) { result in
+        UserManager.shared.updatePhoneNumber(verificationID: verificationID, verificationCode: code) { result in
             switch result {
             case .success:
                 print("Phone number updated successfully")

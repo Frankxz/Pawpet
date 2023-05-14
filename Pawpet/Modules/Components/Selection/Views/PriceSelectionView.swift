@@ -57,7 +57,7 @@ extension PriceSelectionView {
     func setupCurrencySymbol(with curr: String = "") {
         var currency = curr
         if curr.isEmpty {
-            currency = FireStoreManager.shared.user.currency ?? "RUB"
+            currency = UserManager.shared.user.currency ?? "RUB"
         }
         switch currency {
         case "RUB": priceTF.setupButtonTitle(with: "₽")

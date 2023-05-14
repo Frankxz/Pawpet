@@ -142,15 +142,15 @@ extension CardInfoBottomSheetView {
 
     // MARK: Author Info
     private func setupAuthorInfo(with publication: Publication) {
-        FireStoreManager.shared.fetchUserData(for: publication.authorID) { author in
+        UserManager.shared.fetchUserData(for: publication.authorID) { author in
             self.authorLabel.setupTitles(title: "\(author.name ?? "") \(author.surname ?? "")", subtitle: "Owner".localize())
             self.authorGeoLabel.text = "\(author.country ?? "")\n\(author.city ?? "")"
         }
 
         if publication.authorID == Auth.auth().currentUser?.uid {
-            FireStoreManager.shared.fetchAvatarImage(imageView: authorImageView) {}
+            UserManager.shared.fetchAvatarImage(imageView: authorImageView) {}
         } else {
-            FireStoreManager.shared.fetchAvatarImage(id: publication.authorID, imageView: authorImageView) {}
+            UserManager.shared.fetchAvatarImage(id: publication.authorID, imageView: authorImageView) {}
         }
     }
 

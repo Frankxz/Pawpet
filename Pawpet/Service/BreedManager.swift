@@ -12,6 +12,7 @@ class BreedManager {
     static let shared = BreedManager()
 
     private let database = Database.database().reference(withPath: "breeds")
+    var allBreeds: [String] = []
 
     private init() {}
 
@@ -24,6 +25,34 @@ class BreedManager {
             if let breedData = snapshot.value as? [String] {
                 completion(breedData)
             }
+        }
+    }
+
+
+    func getAllBreeds(completion: @escaping ([String])->()) {
+        if !BreedManager.shared.allBreeds.isEmpty {
+            print("Allbreeds already fetched")
+            completion(allBreeds)
+            return
+        } 
+
+        let filteredPetTypes: [PetType] = PetType.allCases.filter { $0 != .all }
+        var breeds: [String] = []
+        let dispatchGroup = DispatchGroup()
+
+        for type in filteredPetTypes {
+            dispatchGroup.enter()
+            loadData(for: type) { fetchedBreeds in
+                breeds.append(contentsOf: fetchedBreeds)
+                print("breeds for \(type) fetched and added")
+                dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            print("all breeds are fetched")
+            BreedManager.shared.allBreeds = breeds
+            completion(breeds)
         }
     }
 }

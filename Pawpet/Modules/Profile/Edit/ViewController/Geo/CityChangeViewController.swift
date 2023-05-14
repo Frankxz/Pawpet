@@ -19,9 +19,9 @@ class CityChangeViewController: GeoSelectionViewController {
 
     @objc private func nextButtonTapped() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            FireStoreManager.shared.user.country = UserDefaults.standard.string(forKey: "COUNTRY")
-            FireStoreManager.shared.user.city = self.selectedGeoObject!.name
-            FireStoreManager.shared.user.isChanged = true
+            UserManager.shared.user.country = UserDefaults.standard.string(forKey: "COUNTRY")
+            UserManager.shared.user.city = self.selectedGeoObject!.name
+            UserManager.shared.user.isChanged = true
             self.callback()
             self.dismiss(animated: true)
         }

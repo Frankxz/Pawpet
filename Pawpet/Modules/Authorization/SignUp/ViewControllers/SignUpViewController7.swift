@@ -19,7 +19,7 @@ class SignUpViewController7: GeoSelectionViewController{
 extension SignUpViewController7 {
     @objc private func nextButtonTapped(_ sender: UIButton) {
         UserDefaults.standard.set(self.selectedGeoObject!.name, forKey: "CITY")
-        FireStoreManager.shared.saveUserDataFromUD()
+        UserManager.shared.saveUserDataFromUD()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
         }

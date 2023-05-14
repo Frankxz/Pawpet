@@ -10,6 +10,8 @@ import Lottie
 
 class PostViewController_8: UIViewController {
 
+    let alertView = ErrorAlertView()
+
     private var priceSelectionView = PriceSelectionView()
 
     // MARK: - Animation view
@@ -70,11 +72,14 @@ extension PostViewController_8 {
                     self.animationView.stop()
                 }
             case .failure(let error):
-                let alertView = ErrorAlertView()
-                alertView.showAlert(with: "Oops! Error...", message: error.localizedDescription, on: self)
+                self.alertView.showAlert(with: "Oops! Error...", message: error.localizedDescription, on: self)
                 print(error.localizedDescription)
             }
         }
+    }
+
+    @objc private func dismissAlertView() {
+        alertView.dismissAlertView()
     }
 }
 

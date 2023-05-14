@@ -10,8 +10,9 @@ import UIKit
 class ChapterCollectionView: UICollectionView {
 
     var lastIndexActive: IndexPath = [0, 0]
-    let petTypes = PetType.allCases
-    var selectedType = PetType.cat
+    var petTypes = PetType.allCases
+    var selectedType = PetType.dog
+    var callBack: (()->()) = {}
 
     // MARK: - INIT
     init (scrollDirection: UICollectionView.ScrollDirection = .horizontal) {
@@ -46,17 +47,15 @@ class ChapterCollectionView: UICollectionView {
 // MARK: - DataSource
 extension ChapterCollectionView: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        PetType.allCases.count
+        petTypes.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: ChapterCollectionViewCell.reuseId, for: indexPath) as! ChapterCollectionViewCell
-        if indexPath == lastIndexActive {
-            cell.mainImageView.backgroundColor = .accentColor
-            cell.nameLabel.textColor = .accentColor
-        }
         cell.configure(type: petTypes[indexPath.row])
-        
+        if indexPath == lastIndexActive {
+            cell.setSelected()
+        }
         return cell
     }
 }
@@ -73,15 +72,15 @@ extension ChapterCollectionView: UICollectionViewDelegateFlowLayout {
         if lastIndexActive != indexPath {
             let cell = collectionView.cellForItem(at: indexPath) as! ChapterCollectionViewCell
             UIView.animate(withDuration: 0.3) {
-                cell.mainImageView.backgroundColor = .accentColor
-                cell.nameLabel.textColor = .accentColor
+                cell.setSelected()
                 self.selectedType = cell.petType ?? .cat
             }
 
+            callBack()
+
             guard let lastSelectedCell = collectionView.cellForItem(at: lastIndexActive) as? ChapterCollectionViewCell else { return }
             UIView.animate(withDuration: 0.2) {
-                lastSelectedCell.mainImageView.backgroundColor = .backgroundColor
-                lastSelectedCell.nameLabel.textColor = .subtitleColor
+                lastSelectedCell.setUnselected()
             }
             lastIndexActive = indexPath
         }

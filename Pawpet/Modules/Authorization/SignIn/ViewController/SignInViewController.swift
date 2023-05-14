@@ -48,8 +48,8 @@ class SignInViewController: UIViewController {
     }()
 
     // MARK: - TextFields
-    private var emailTextField = AuthTextField("email@mail.com")
-    private var passwordTextField = AuthTextField("••••••", isSecure: true)
+    private var emailTextField = PawTextField("email@mail.com")
+    private var passwordTextField = PawTextField("••••••", isSecure: true)
 
     // MARK: - Buttons
     private lazy var signInButton: AuthButton = {

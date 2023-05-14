@@ -13,10 +13,11 @@ class ColorTableViewCell: UITableViewCell {
     var colorType: PetColorType = .black
     let colorLabel = UILabel()
     let colorCircle = UIImageView()
-
+    var isColorSelected: Bool = false
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        selectionStyle = .blue
         contentView.addSubview(colorLabel)
         contentView.addSubview(colorCircle)
 

@@ -7,15 +7,12 @@
 
 import UIKit
 
-class AuthTextField: UITextField {
+class PawTextField: UITextField {
 
     init(_ placeholder: String = "", isSecure: Bool = false,
          _ color: UIColor = .accentColor.withAlphaComponent(0.8),
          _ fontSize: CGFloat = 18) {
         super.init(frame: .zero)
-
-        layer.cornerRadius = 12
-        backgroundColor = .backgroundColor
 
         setLeftPaddingPoints(32)
         setRightPaddingPoints(32)
@@ -28,16 +25,16 @@ class AuthTextField: UITextField {
             ]
         )
 
-        font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
         textColor = color
+        layer.cornerRadius = 12
+        backgroundColor = .backgroundColor
+        font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
 
         isSecureTextEntry = isSecure
         autocapitalizationType = .none
         autocorrectionType = .no
 
-        self.snp.makeConstraints { make in
-            make.height.equalTo(70)
-        }
+        self.snp.makeConstraints { $0.height.equalTo(70) }
     }
 
     public func setupPlaceholder(placeholder: String) {
@@ -53,5 +50,4 @@ class AuthTextField: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

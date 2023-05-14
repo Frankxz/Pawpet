@@ -7,7 +7,10 @@
 
 import UIKit
 protocol SearchViewControllerDelegate: AnyObject {
+    func didSelectVariant(breed: String)
     func pushToDetailVC(of publication: Publication)
+    func didPetTypeSelected(with petType: PetType)
+    func didSearchButtonTapped(with searchText: String)
     func pushToParams()
 }
 
@@ -15,15 +18,19 @@ class CardCollectionView: UICollectionView {
 
     public var searchViewControllerDelegate: SearchViewControllerDelegate?
     private var withHeader = true
+    private var isHeaderShort = false
     public var publications: [Publication] = []
     public var isNeedAnimate = true
 
     private var withHeart: Bool = true
     private var isFavoriteVC: Bool = false
 
+    var headerView: CardCollectionHeaderView?
+
     // MARK: - INIT
-    init (isHeaderIn: Bool = true, withHeart: Bool = true, isFavoriteVC: Bool = false) {
+    init (isHeaderIn: Bool = true, isHeaderShort: Bool = false, withHeart: Bool = true, isFavoriteVC: Bool = false) {
         self.withHeader = isHeaderIn
+        self.isHeaderShort = isHeaderShort
         self.withHeart = withHeart
         self.isFavoriteVC = isFavoriteVC
 
@@ -47,7 +54,6 @@ class CardCollectionView: UICollectionView {
         self.backgroundColor = .clear
         register(CardCollectionViewCell.self, forCellWithReuseIdentifier: CardCollectionViewCell.reuseId)
         register(CardCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier)
-
     }
 
     required init?(coder: NSCoder) {
@@ -95,25 +101,52 @@ extension CardCollectionView: UICollectionViewDelegateFlowLayout {
 // MARK: - Header
 extension CardCollectionView {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        print("Setupping header View")
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier, for: indexPath) as! CardCollectionHeaderView
+        // PARAMS
         header.buttonAction = {
             self.searchViewControllerDelegate?.pushToParams()
             print("Push to params")
         }
-        if withHeader { header.configure()}
+
+        // Type selected
+        header.chapterCollectionView.callBack = {
+            self.searchViewControllerDelegate?.didPetTypeSelected(with: header.chapterCollectionView.selectedType)
+        }
+
+        // Search button tapped
+        header.searchButtonAction = {
+            self.searchViewControllerDelegate?.didSearchButtonTapped(with: header.searchBar.text ?? "")
+        }
+
+        if withHeader {
+            header.delegate = self
+            header.configure(isShortHeader: isHeaderShort)
+        }
+
+        setupHeaderView()
         return header
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 290) : CGSize(width: UIScreen.main.bounds.width, height: 40)
+        return withHeader ? CGSize(width: UIScreen.main.bounds.width, height: 260) : CGSize(width: UIScreen.main.bounds.width, height: 40)
     }
 
     func updateHeaderView() {
         if let headerView = self.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) as? CardCollectionHeaderView {
-            guard let name = FireStoreManager.shared.user.name else { return }
+            guard let name = UserManager.shared.user.name else { return }
             headerView.welcomeLabel.setAttributedText(withString: "Hello, ".localize(), boldString: "\(name) ✋🏼", font: .systemFont(ofSize: 28))
         }
+    }
 
+    func setupHeaderView() {
+
+        if  let header = dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CardCollectionHeaderView.identifier, for: IndexPath(item: 0, section: 0)) as? CardCollectionHeaderView{
+            self.headerView = header
+            print("Header View setuped")
+        } else {
+            print("Could not catch header view")
+        }
     }
 }
 
@@ -138,12 +171,19 @@ extension CardCollectionView {
     }
 }
 
+// MARK: - Header Delegate
+extension CardCollectionView: CardCollellectionHeaderViewDelegate {
+    func didSelectVariant(breed: String) {
+        searchViewControllerDelegate?.didSelectVariant(breed: breed)
+    }
+}
+
 // MARK: - If In Favorites
 extension CardCollectionView {
     func deleteItem(at indexPath: IndexPath) {
         print("DELETE FROM COLLECTIONVIEW")
         publications.remove(at: indexPath.item)
-        FireStoreManager.shared.user.isChanged = true
+        UserManager.shared.user.isChanged = true
         performBatchUpdates({
             deleteItems(at: [indexPath])
         }, completion: nil)
@@ -155,5 +195,5 @@ struct CardCollectionConstants {
     static let right: CGFloat = 20
     static let lineSpace: CGFloat = 12
     static let itemWidth: CGFloat = UIScreen.main.bounds.width - (left + right)
-    static let itemHeight: CGFloat = 120
+    static let itemHeight: CGFloat = 130
 }

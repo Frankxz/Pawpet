@@ -14,7 +14,7 @@ class BaseSignUpViewController: UIViewController {
     public var promptView = PromptView(with: "", and: "")
 
     // MARK: - TextField
-    public var textField = AuthTextField("")
+    public var textField = PawTextField("")
 
     // MARK: - Button
     public lazy var nextButton: AuthButton = {

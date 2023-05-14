@@ -62,7 +62,7 @@ extension PasswordChangeViewController {
             return
         }
 
-        FireStoreManager.shared.reauthenticateUser(password: password) { result in
+        UserManager.shared.reauthenticateUser(password: password) { result in
             switch result {
             case .success:
                 print("User reauthenticated successfully")
@@ -80,7 +80,7 @@ extension PasswordChangeViewController {
 
     private func makeUpdate() {
         guard let newPassword = secondTextField.text else { return }
-        FireStoreManager.shared.updatePassword(to: newPassword) { result in
+        UserManager.shared.updatePassword(to: newPassword) { result in
             switch result {
             case .success:
                 self.navigationController?.popViewController(animated: true)

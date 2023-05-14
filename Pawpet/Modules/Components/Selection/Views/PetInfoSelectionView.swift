@@ -40,6 +40,7 @@ class PetInfoSelectionView: UIView {
     }()
 
     var togglers: [UISwitch] = []
+    var checkMarkButtons: [CheckmarkButton] = []
 
     // MARK: Button
     lazy var colorSelectButton: UIButton = {
@@ -63,26 +64,36 @@ class PetInfoSelectionView: UIView {
 
     var isOnlyOneSelect = true
     var isForPost = false
-
+    var isForSearch = false
     var isColorChosen = false
 
-    init(isForPost: Bool = false) {
+    init(isForPost: Bool = false, petType: PetType = .all, isForSearch: Bool = false) {
         super.init(frame: .zero)
         backgroundColor = .white
+        self.isForSearch = isForSearch
 
         if isForPost {
             self.isForPost = isForPost
             nextButton.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0)
             nextButton.isHidden = true
+        }
 
-            let petType = PublicationManager.shared.currentPublication.petInfo.petType
+        let type = petType == .all ? (PublicationManager.shared.currentPublication.petInfo.petType) : petType
 
-            if petType == .dog {
-                for _ in 1...4 { togglers.append(UISwitch())}
-            } else if petType == .cat  {
-                for _ in 1...3 { togglers.append(UISwitch())}
-            } else {
-                for _ in 1...2 { togglers.append(UISwitch())}
+        if type == .dog {
+            for _ in 1...4 {
+                togglers.append(UISwitch())
+                checkMarkButtons.append(CheckmarkButton())
+            }
+        } else if type == .cat  {
+            for _ in 1...3 {
+                togglers.append(UISwitch())
+                checkMarkButtons.append(CheckmarkButton())
+            }
+        } else {
+            for _ in 1...2 {
+                togglers.append(UISwitch())
+                checkMarkButtons.append(CheckmarkButton())
             }
         }
 
@@ -107,7 +118,7 @@ extension PetInfoSelectionView {
 
     private func setupConstraints() {
         let buttonStackView = getButtonsStackView()
-        let controlStackView = getControlView()
+        let controlStackView = isForSearch ? getControlViewForSearch() : getControlView()
         let colorSelectionView = getColorSelectionView()
 
         addSubview(nextButton)
@@ -207,6 +218,69 @@ extension PetInfoSelectionView {
         return controlView
     }
 
+    private func getControlViewForSearch() -> UIView {
+        let mainStackView = UIStackView()
+        mainStackView.spacing = 10
+        mainStackView.distribution = .fillEqually
+        mainStackView.axis = .vertical
+
+        for (index, control) in togglers.enumerated() {
+
+            let buttonStackView = UIStackView()
+            buttonStackView.distribution = .fill
+            buttonStackView.spacing = 10
+            buttonStackView.axis = .horizontal
+            checkMarkButtons[index].mainLabel.text = "Все"
+            buttonStackView.addArrangedSubview(control)
+            buttonStackView.addArrangedSubview(checkMarkButtons[index])
+
+            let stackView = UIStackView()
+            stackView.distribution = .equalSpacing
+            stackView.axis = .horizontal
+
+            let label = UILabel()
+            label.textColor = .accentColor
+            label.font = .systemFont(ofSize: 18, weight: .regular)
+
+            switch index {
+            case 0:
+                label.text = "Vaccinated".localize()
+                control.addTarget(self, action: #selector(isVaccinatedTapped), for: .valueChanged)
+                checkMarkButtons[index].button.addTarget(self, action: #selector(isAllVacinatedTapped), for: .touchUpInside)
+            case 1:
+                label.text = "With documents".localize()
+                control.addTarget(self, action: #selector(isWithDocumentsTapped), for: .valueChanged)
+                checkMarkButtons[index].button.addTarget(self, action: #selector(isAllDocumentTapped), for: .touchUpInside)
+            case 2:
+                label.text = "Sterilized".localize()
+                control.addTarget(self, action: #selector(isSterilizedTapped), for: .valueChanged)
+                checkMarkButtons[index].button.addTarget(self, action: #selector(isAllSterilizedTapped), for: .touchUpInside)
+                isSterilized = false
+            case 3:
+                label.text = "Was cupping".localize()
+                control.addTarget(self, action: #selector(isCuppingTapped), for: .valueChanged)
+                checkMarkButtons[index].button.addTarget(self, action: #selector(isAllCuppingTapped), for: .touchUpInside)
+                isCupping = false
+            default: continue
+            }
+
+            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(buttonStackView)
+            mainStackView.addArrangedSubview(stackView)
+        }
+
+        let controlView = UIView()
+        controlView.backgroundColor = .backgroundColor
+        controlView.layer.cornerRadius = 12
+
+        controlView.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalToSuperview().inset(10)
+        }
+
+        return controlView
+    }
+
     private func getColorSelectionView() -> UIView {
         let promtLabel = UILabel()
         promtLabel.textColor = .accentColor
@@ -248,6 +322,23 @@ extension PetInfoSelectionView {
     @objc func isCuppingTapped() {
         isCupping = togglers[3].isOn
     }
+
+    @objc func isAllVacinatedTapped() {
+        togglers[0].isEnabled = !checkMarkButtons[0].button.isSelected
+    }
+
+    @objc func isAllDocumentTapped() {
+        togglers[1].isEnabled = !checkMarkButtons[1].button.isSelected
+    }
+
+    @objc func isAllSterilizedTapped() {
+        togglers[2].isEnabled = !checkMarkButtons[2].button.isSelected
+    }
+
+    @objc func isAllCuppingTapped() {
+        togglers[3].isEnabled = !checkMarkButtons[3].button.isSelected
+    }
+
 }
 
 
@@ -298,7 +389,7 @@ extension PetInfoSelectionView {
 // MARK: - For Post
 extension PetInfoSelectionView {
     func checkSelection() {
-        if isForPost {
+        if isForPost && !isForSearch {
             if !isMaleChosen && !isFemaleChosen {
                 hideNextButton()
             } else {
@@ -337,4 +428,3 @@ extension PetInfoSelectionView {
         }
     }
 }
-

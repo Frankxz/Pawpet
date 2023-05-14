@@ -15,14 +15,18 @@ class Publication {
     var pictures: PublicationPictures
     var price: Int
     var currency: String
-    
-    init(id: String, authorID: String, petInfo: PetInfo, pictures: PublicationPictures, price: Int, currency: String) {
+    var country: String
+    var city: String
+
+    init(id: String, authorID: String, petInfo: PetInfo, pictures: PublicationPictures, price: Int, currency: String, country: String, city: String) {
         self.id = id
         self.authorID = authorID
         self.petInfo = petInfo
         self.pictures = pictures
         self.price = price
         self.currency = currency
+        self.country = country
+        self.city = city
     }
 
     init() {
@@ -32,6 +36,8 @@ class Publication {
         pictures = PublicationPictures()
         price = 0
         currency = ""
+        country = ""
+        city = ""
     }
     
     func copy(withUpdatedImages updatedImages: [PawpetImage]) -> Publication {
@@ -41,7 +47,7 @@ class Publication {
         } else {
             updatedPictures = PublicationPictures(mainImage: updatedImages[0], images: Array(updatedImages.dropFirst()))
         }
-           return Publication(id: id, authorID: authorID, petInfo: petInfo.copy(), pictures: updatedPictures, price: price, currency: currency)
+           return Publication(id: id, authorID: authorID, petInfo: petInfo.copy(), pictures: updatedPictures, price: price, currency: currency, country: country, city: city)
        }
 }
 
@@ -53,9 +59,11 @@ extension Publication {
               let picturesData = dictionary["pictures"] as? [String: Any],
               let pictures = PublicationPictures.fromDictionary(dictionary: picturesData),
               let price = dictionary["price"] as? Int,
-              let currency = dictionary["currency"] as? String else { return nil }
+              let currency = dictionary["currency"] as? String,
+              let country = dictionary["country"] as? String,
+              let city = dictionary["city"] as? String else { return nil }
 
-        return Publication(id: id, authorID: authorID, petInfo: petInfo, pictures: pictures, price: price, currency: currency)
+        return Publication(id: id, authorID: authorID, petInfo: petInfo, pictures: pictures, price: price, currency: currency, country: country, city: city)
     }
 }
 

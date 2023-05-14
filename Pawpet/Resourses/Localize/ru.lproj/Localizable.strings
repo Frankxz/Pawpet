@@ -83,9 +83,10 @@
 "Please, if your pet is a newborn, set the year and month values to be zero." = "Пожалуйста, если ваш питомец является новорожденным, установите значения года и месяца равными нулю.";
 "years" = "г.";
 "months" = "мес.";
+"monthes" = "мес.";
 "Please, provide more info" = "Пожалуйста, предоставьте больше информации";
 "Please provide up-to-date information about your pet." = "Пожалуйста, предоставляйте только актуальную информацию о вашем питомце.";
-"With documents" = "Имеются документы";
+"With documents" = "Документы";
 "Male" = "Муж.";
 "Female" = "Жен.";
 "Enter a description" = "Укажите описание";
@@ -109,6 +110,7 @@
 "Gender" = "Пол";
 "Age" = "Возраст";
 "Color" = "Окрас";
+"All" = "Все";
 
 "m." = "мес.";
 "Connect with seller" = "Связаться с продавцом";
@@ -160,6 +162,14 @@
 "OLD password" = "СТАРЫЙ пароль";
 "NEW password" = "НОВЫЙ пароль";
 
+// MARK: - EDIT Publication
+"Pet type" = "Тип питомца";
+"Crossbreed factor" = "Является ли помесью";
+"Breed" = "Вид";
+"Detail info" = "Детальная информация";
+"Description" = "Описание";
+"Price" = "Cтоимость";
+
 // MARK: - AlertViews
 "Oops... Error!" = "Упс... Ошибка !";
 "Please fill in all fields" = "Заполните все поля";
@@ -176,3 +186,19 @@
 "Ph. No. successfully changed." = "Тел. номер. успешно изменен.";
 "Current number: " = "Текущий номер:";
 "Other" = "Другое";
+"Search  " = "Искать";
+"Search results of" = "Результаты поиска";
+"Quick search by breed" = "Быстрый поиск по породе";
+"Select search region" = "Выберите регион поиска";
+"Select the cities where you want to find relevant publications." = "Выберите города, в которых вы хотите найти актуальные публикации.";
+"Search city..." = "Искать город...";
+"Your current region" = "Ваш текущий регион";
+"All regions" = "Все регионы";
+"Select pet's age from" = "Выберите возраст питомца от";
+"Select pet's age to" = "Выберите возраст питомца до";
+"Please, if you want to find puppy, set the year and month values to be zero." = "Пожалуйста, если вы хотите найти щенка, установите значения равными нулю";
+"Oops... Wait!" = "Упс... Погодите!";
+"First you need to select the type of pet, and based on it we will provide you with a list of detailed parameters." = "Сначала необходимо выбрать тип питомца, и исходя из него мы предоставим вам список детальных параметров.";
+"Detail info selection" = "Выбор детальной информации";
+"Please select the desired search parameters" = "Пожалуйста выберите желаемые параметры для поиска.";
+"My Publications" = "Мои публикации";

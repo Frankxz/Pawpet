@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  HomeViewController.swift
 //  Pawpet
 //
 //  Created by Robert Miller on 05.02.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     // MARK: - CollectionView
     private let cardCollectionView = CardCollectionView()
@@ -36,10 +36,10 @@ class SearchViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if FireStoreManager.shared.user.isChanged {
+        if UserManager.shared.user.isChanged {
             cardCollectionView.updateHeaderView()
             cardCollectionView.reloadData()
-            FireStoreManager.shared.user.isChanged = false
+            UserManager.shared.user.isChanged = false
             print("Reloading data")
         }
     }
@@ -50,7 +50,7 @@ class SearchViewController: UIViewController {
 }
 
 // MARK: - UI + Constraints
-extension SearchViewController {
+extension HomeViewController {
     private func configurateView() {
         view.backgroundColor = .white
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -66,7 +66,7 @@ extension SearchViewController {
 }
 
 // MARK: - Fetching data
-extension SearchViewController {
+extension HomeViewController {
     func fetchData() {
         PublicationManager.shared.fetchAllPublications { publications, error  in
             if error != nil {
@@ -74,7 +74,7 @@ extension SearchViewController {
             }
             guard let publications = publications else { return }
 
-            if publications.count == self.cardCollectionView.publications.count && FireStoreManager.shared.user.isChanged == false {
+            if publications.count == self.cardCollectionView.publications.count && UserManager.shared.user.isChanged == false {
                 self.cardCollectionView.isNeedAnimate = false
             } else {
                 self.cardCollectionView.isNeedAnimate = true
@@ -87,7 +87,47 @@ extension SearchViewController {
 }
 
 // MARK: - Delegate
-extension SearchViewController: SearchViewControllerDelegate {
+extension HomeViewController: SearchViewControllerDelegate {
+    func didSelectVariant(breed: String) {
+        let searchVC = SearchViewController()
+        searchVC.searchText = breed
+        PublicationManager.shared.fetchPublicationsByBreed(breed) { result in
+            switch result {
+            case .success(let fetchedPublications):
+                searchVC.cardCollectionView.publications = fetchedPublications
+                searchVC.cardCollectionView.reloadData()
+                self.navigationController?.pushViewController(searchVC, animated: true)
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+
+    func didSearchButtonTapped(with searchText: String) {
+        let searchVC = SearchViewController()
+        searchVC.searchText = searchText
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+
+    func didPetTypeSelected(with petType: PetType) {
+        if petType == .all {
+            fetchData()
+            return
+        }
+        
+        print("didPetTypeSelected with \(petType.rawValue)")
+        PublicationManager.shared.fetchPublicationsByPetType(petType) { result in
+            switch result {
+            case .success(let fetchedPublications):
+                self.cardCollectionView.isNeedAnimate = true
+                self.cardCollectionView.publications = fetchedPublications
+                self.cardCollectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
     func pushToDetailVC(of publication: Publication) {
         print("Push to DetailVC")
         let detailVC = DetailViewController()

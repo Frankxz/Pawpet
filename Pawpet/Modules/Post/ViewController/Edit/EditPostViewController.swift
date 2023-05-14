@@ -83,7 +83,7 @@ extension EditPostViewController {
         case .petType:
             // IF PetType
             if indexPath.row == 0 {
-                cell.leftLabel.text = "Pet type"
+                cell.leftLabel.text = "Pet type".localize()
                 cell.rightLabel.text = publication.petInfo.petType.getName()
             }
             // IF IsCrossBreed
@@ -94,11 +94,11 @@ extension EditPostViewController {
                 toggle.addTarget(self, action: #selector(breedTogglerTapped(_:)), for: .touchUpInside)
                 cell.accessoryView = toggle
                 cell.accessoryType = .none
-                cell.leftLabel.text = "Crossbreed factor"
+                cell.leftLabel.text = "Crossbreed factor".localize()
             }
             // IF Breed
             else if indexPath.row == 2 {
-                cell.leftLabel.text = "Breed"
+                cell.leftLabel.text = "Breed".localize()
                 cell.rightLabel.text = publication.petInfo.breed
                 if publication.petInfo.secondBreed != nil {
                     if  !(publication.petInfo.secondBreed!.isEmpty) {
@@ -109,20 +109,20 @@ extension EditPostViewController {
         case .info:
             // IF Age
             if indexPath.row == 0 {
-                cell.leftLabel.text = "Age"
-                cell.rightLabel.text = "\(publication.petInfo.age) monthes."
+                cell.leftLabel.text = "Age".localize()
+                cell.rightLabel.text = "\(publication.petInfo.age) \("monthes".localize())."
             }
             // If Params
             else if indexPath.row == 1 {
-                cell.leftLabel.text = "Detail info"
+                cell.leftLabel.text = "Detail info".localize()
             }
             // If description
             else if indexPath.row == 2 {
-                cell.leftLabel.text = "Description"
+                cell.leftLabel.text = "Description".localize()
                 cell.rightLabel.text = ""
             }
         case .price:
-            cell.leftLabel.text = "Price"
+            cell.leftLabel.text = "Price".localize()
             cell.rightLabel.text = "\(publication.price.formatPrice()) \(publication.currency.inCurrencySymbol())"
         }
         return cell
@@ -154,6 +154,8 @@ extension EditPostViewController {
     // MARK: CHANGE PET TYPE
     private func changePetTypeSelected() {
         let animalSelectionVC = AnimalSelectionBottomSheetViewController()
+        animalSelectionVC.animalSelectionView.chapterCollectionView.petTypes = PetType.allCases.filter { $0 != .all }
+        animalSelectionVC.animalSelectionView.chapterCollectionView.reloadData()
         animalSelectionVC.animalSelectionView.chapterCollectionView.selectItem(withPetType: publication!.petInfo.petType)
         animalSelectionVC.animalSelectionView.promptView.setupTitles(title: "Change the type of pet", subtitle: "")
         animalSelectionVC.animalSelectionView.promptView.subtitleLabel.attributedText = " Carefully. Changing the type of pet will reset all existing data!".createAttributedString(withHighlightedWord: "❗️Carefully")
@@ -171,13 +173,21 @@ extension EditPostViewController {
 
     // MARK: CHANGE BREED
     private func changeBreedSelected() {
-        let breedVC = BreedEditViewController()
-        let navigationController = UINavigationController(rootViewController: breedVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        breedVC.isCrossbreed = publication?.petInfo.isCrossbreed ?? false
-        breedVC.isFirstBreed = publication?.petInfo.isCrossbreed ?? false
-        breedVC.editPostDelegate = self
-        present(navigationController, animated: true)
+        let firstBreedVC = BreedSearchViewController()
+        BreedManager.shared.loadData(for: publication!.petInfo.petType, completion: { breeds in
+            for breed in breeds {
+                let isSelected = breed == self.publication?.petInfo.breed ? true : false
+                let breed = Breed(name: breed, isChecked: isSelected)
+                firstBreedVC.breeds.append(breed)
+
+            }
+            firstBreedVC.tableView.reloadData()
+            let navigationVC = UINavigationController(rootViewController: firstBreedVC)
+            firstBreedVC.isCrossbreed = self.publication!.petInfo.isCrossbreed!
+            firstBreedVC.isFirstBreed = self.publication!.petInfo.isCrossbreed!
+            navigationVC.modalPresentationStyle = .fullScreen
+            self.present(navigationVC, animated: true)
+        })
     }
 
     // MARK: CHANGE AGE
@@ -199,14 +209,15 @@ extension EditPostViewController {
 
     // MARK: CHANGE Pet detail info
     private func changeDetailInfoSelected() {
-        let detailPetInfoVC = PetInfoSelectionBottomSheetViewController()
+        let detailPetInfoVC = PetInfoSearchSelectionViewController()
         publication?.petInfo.isMale ?? true ? (detailPetInfoVC.petInfoView.maleButtonTapped()) : (detailPetInfoVC.petInfoView.femaleButtonTapped())
+
         detailPetInfoVC.petInfoView.setupTogglers(
             isVaccinated: publication?.petInfo.isVaccinated ?? false,
             isCupping: publication?.petInfo.isCupping ?? false,
             isSterilized: publication?.petInfo.isSterilized ?? false,
             isWithDocs: publication?.petInfo.isWithDocuments ?? false)
-        detailPetInfoVC.modalPresentationStyle = .overCurrentContext
+        detailPetInfoVC.updateButtonTitle(colorType: publication!.petInfo.color)
         detailPetInfoVC.callBack = { [weak self] in
             self?.publication?.petInfo.isVaccinated = detailPetInfoVC.petInfoView.isVacinated
             self?.publication?.petInfo.isCupping = detailPetInfoVC.petInfoView.isCupping
@@ -219,7 +230,7 @@ extension EditPostViewController {
             self?.changedData["isWithDocuments"] = detailPetInfoVC.petInfoView.isWithDocuments
             self?.tableView.reloadData()
         }
-        self.present(detailPetInfoVC, animated: false)
+        self.navigationController?.pushViewController(detailPetInfoVC, animated: true)
     }
 
     // MARK: CHANGE DESCRIPTION
@@ -270,7 +281,7 @@ extension EditPostViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 100 : 0
+        return section == 0 ? 160 : 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

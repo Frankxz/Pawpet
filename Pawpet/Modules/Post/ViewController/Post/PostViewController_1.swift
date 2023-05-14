@@ -29,6 +29,8 @@ class PostViewController_1: UIViewController {
         super.viewDidLoad()
         setupView()
         setupConstraints()
+        animalSelectionView.chapterCollectionView.petTypes = PetType.allCases.filter { $0 != .all }
+        animalSelectionView.chapterCollectionView.reloadData()
         animalSelectionView.nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
     }

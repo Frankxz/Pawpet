@@ -8,13 +8,17 @@
 import UIKit
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 import SDWebImage
-
 
 class PublicationManager {
     static let shared = PublicationManager()
     private init() {}
+
     let databaseRef = Database.database().reference()
+    let firestore = Firestore.firestore()
+    let storage = Storage.storage()
+
     var currentPublication: Publication = Publication()
 }
 
@@ -25,12 +29,15 @@ extension PublicationManager {
 
         let storageRef = Storage.storage().reference()
 
-        let publicationsRef = databaseRef.child("publications").childByAutoId()
-        let imagesFolderRef = storageRef.child("images/publications/\(publicationsRef.key!)")
+        let publicationsRef = firestore.collection("publications").document()
+        let imagesFolderRef = storageRef.child("images/publications/\(publicationsRef.documentID)")
 
-        publication.id = publicationsRef.key!
+
+        publication.id = publicationsRef.documentID
         publication.authorID = Auth.auth().currentUser!.uid
-
+        publication.country = UserManager.shared.user.country ?? ""
+        publication.city = UserManager.shared.user.city ?? ""
+        
         // Загружаем изображения
         uploadImages(publication.pictures.images ?? [], to: imagesFolderRef) { result in
             switch result {
@@ -96,17 +103,19 @@ extension PublicationManager {
         }
     }
 
-    private func savePublicationData(_ publication: Publication, to databaseRef: DatabaseReference, completion: @escaping (Result<Void, Error>) -> Void) {
+    private func savePublicationData(_ publication: Publication, to documentRef: DocumentReference, completion: @escaping (Result<Void, Error>) -> Void) {
         let publicationData: [String: Any] = [
             "id": publication.id,
             "authorID": publication.authorID,
             "petInfo": publication.petInfo.dictionaryRepresentation(),
             "pictures": publication.pictures.dictionaryRepresentation(),
             "price": publication.price,
-            "currency": publication.currency
+            "currency": publication.currency,
+            "country": publication.country,
+            "city": publication.city
         ]
 
-        databaseRef.setValue(publicationData) { (error, _) in
+        documentRef.setData(publicationData) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -157,30 +166,17 @@ extension PublicationManager {
         // Создаем новый объект публикации с обновленными данными
         let updatedPublication = oldPublication.copy(withChangedData: changedData)
 
+        let publicationData: [String: Any] = [
+            "id": updatedPublication.id,
+            "authorID": updatedPublication.authorID,
+            "petInfo": updatedPublication.petInfo.dictionaryRepresentation(),
+            "pictures": updatedPublication.pictures.dictionaryRepresentation(),
+            "price": updatedPublication.price,
+            "currency": updatedPublication.currency
+        ]
+
         // Сохраняем обновленные данные публикации
-        savePublicationData(updatedPublication, to: databaseRef.child("publications").child(publicationID), completion: completion)
-    }
-}
-
-// MARK: - DELETE Publication
-extension PublicationManager {
-    func deletePublication(_ publication: Publication, completion: @escaping (Result<Void, Error>) -> Void) {
-        let publicationID = publication.id
-  
-        // Remove images
-        deleteImages(publicationID: publicationID) { result in
-            switch result {
-            case .success:
-                // Удаляем данные публикации
-                self.deletePublicationData(from: self.databaseRef.child("publications").child(publicationID), completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    private func deletePublicationData(from databaseRef: DatabaseReference, completion: @escaping (Result<Void, Error>) -> Void) {
-        databaseRef.removeValue { (error, _) in
+        firestore.collection("publications").document(publicationID).setData(publicationData) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -190,25 +186,58 @@ extension PublicationManager {
     }
 }
 
+// MARK: - DELETE Publication
+extension PublicationManager {
+    func deletePublication(_ publication: Publication, completion: @escaping (Result<Void, Error>) -> Void) {
+        let publicationID = publication.id
+        let firestore = Firestore.firestore()
+        let publicationRef = firestore.collection("publications").document(publicationID)
+
+        // Remove images
+        deleteImages(publicationID: publicationID) { result in
+            switch result {
+            case .success:
+                // Удаляем данные публикации
+                self.deletePublicationData(from: publicationRef, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    private func deletePublicationData(from documentRef: DocumentReference, completion: @escaping (Result<Void, Error>) -> Void) {
+        documentRef.delete { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+}
+
+
 // MARK: - Fetch ALL Publication
 extension PublicationManager {
     func fetchAllPublications(completion: @escaping ([Publication]?, Error?) -> Void) {
-            databaseRef.child("publications").observeSingleEvent(of: .value) { snapshot in
-                if let publicationsData = snapshot.value as? [String: AnyObject] {
-                    var publications: [Publication] = []
-                    for (id, data) in publicationsData {
-                        if let publicationData = data as? [String: Any],
-                           let publication = Publication.fromDictionary(id: id, dictionary: publicationData) {
-                            publications.append(publication)
-                        }
+        firestore.collection("publications").getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, error)
+            } else if let snapshot = snapshot {
+                var publications: [Publication] = []
+                for document in snapshot.documents {
+                    if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
+                        publications.append(publication)
                     }
-                    completion(publications, nil)
-                } else {
-                    completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"]))
                 }
+                completion(publications, nil)
+            } else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"]))
             }
         }
+    }
 }
+
 
 // MARK: - Fetch User's Publications
 extension PublicationManager {
@@ -217,27 +246,25 @@ extension PublicationManager {
         if userID.isEmpty {
             authorID = Auth.auth().currentUser!.uid
         }
-        let userPublicationsRef = databaseRef.child("publications").queryOrdered(byChild: "authorID").queryEqual(toValue: authorID)
 
-        userPublicationsRef.observeSingleEvent(of: .value) { (snapshot, _) in
-            guard let publicationsData = snapshot.value as? [String: Any] else {
-                completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid data structure"]))
-                return
+        firestore.collection("publications").whereField("authorID", isEqualTo: authorID).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, error)
+            } else if let snapshot = snapshot {
+                var publications: [Publication] = []
+                for document in snapshot.documents {
+                    if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
+                        publications.append(publication)
+                    }
+                }
+                completion(publications, nil)
+            } else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"]))
             }
-
-            var publications: [Publication] = []
-
-            for (key, value) in publicationsData {
-                guard let publicationData = value as? [String: Any],
-                      let publication = Publication.fromDictionary(id: key, dictionary: publicationData)  else { continue }
-
-                publications.append(publication)
-            }
-
-            completion(publications, nil)
         }
     }
 }
+
 
 // MARK: - Save publication to favorites
 extension PublicationManager {
@@ -251,17 +278,17 @@ extension PublicationManager {
         let userRef = databaseRef.child("users").child(currentUserID)
 
         // Добавить ID публикации в массив `favorites`
-        if  FireStoreManager.shared.user.favorites == nil {
-            FireStoreManager.shared.user.favorites = []
+        if  UserManager.shared.user.favorites == nil {
+            UserManager.shared.user.favorites = []
         }
-        FireStoreManager.shared.user.favorites?.append(publicationID)
+        UserManager.shared.user.favorites?.append(publicationID)
 
         // Сохранить обновленный массив `favorites` в Realtime Database
-        userRef.updateChildValues(["favorites":  FireStoreManager.shared.user.favorites!]) { (error, _) in
+        userRef.updateChildValues(["favorites":  UserManager.shared.user.favorites!]) { (error, _) in
             if let error = error {
                 completion(.failure(error))
             } else {
-                FireStoreManager.shared.user.isChanged = true
+                UserManager.shared.user.isChanged = true
                 completion(.success(()))
             }
         }
@@ -272,8 +299,8 @@ extension PublicationManager {
 extension PublicationManager {
     func removeFromFavorites(publicationID: String, completion: @escaping (Result<Void, Error>) -> Void) {
             // Удалить ID публикации из массива favorites
-            if let index = FireStoreManager.shared.user.favorites?.firstIndex(of: publicationID) {
-                FireStoreManager.shared.user.favorites?.remove(at: index)
+            if let index = UserManager.shared.user.favorites?.firstIndex(of: publicationID) {
+                UserManager.shared.user.favorites?.remove(at: index)
             } else {
                 completion(.failure(NSError(domain: "Publication not found in favorites", code: 404, userInfo: nil)))
                 return
@@ -292,11 +319,11 @@ extension PublicationManager {
             let userRef = databaseRef.child("users").child(currentUserID)
 
             // Обновить данные пользователя в Realtime Database
-            userRef.updateChildValues(["favorites": FireStoreManager.shared.user.favorites ?? []]) { (error, _) in
+            userRef.updateChildValues(["favorites": UserManager.shared.user.favorites ?? []]) { (error, _) in
                 if let error = error {
                     completion(.failure(error))
                 } else {
-                    FireStoreManager.shared.user.isChanged = true
+                    UserManager.shared.user.isChanged = true
                     completion(.success(()))
                 }
             }
@@ -307,25 +334,25 @@ extension PublicationManager {
 extension PublicationManager {
     func fetchFavoritePublications(completion: @escaping (Result<[Publication], Error>) -> Void) {
 
-        guard let favorites = FireStoreManager.shared.user.favorites else {
+        guard let favorites = UserManager.shared.user.favorites else {
             completion(.success([])) // If no favorites, return an empty array
             return
         }
 
-        let publicationsRef = databaseRef.child("publications")
         var favoritePublications: [Publication] = []
         let dispatchGroup = DispatchGroup()
 
         for publicationID in favorites {
             dispatchGroup.enter()
-            publicationsRef.child(publicationID).getData { (error, snapshot) in
+            firestore.collection("publications").document(publicationID).getDocument { (snapshot, error) in
                 if let error = error {
                     dispatchGroup.leave()
                     completion(.failure(error))
                     return
                 }
 
-                if let publicationData = snapshot?.value as? [String: Any],
+                if let snapshot = snapshot,
+                   let publicationData = snapshot.data(),
                    let publication = Publication.fromDictionary(id: publicationID, dictionary: publicationData) {
                     favoritePublications.append(publication)
                 }
@@ -336,6 +363,123 @@ extension PublicationManager {
 
         dispatchGroup.notify(queue: .main) {
             completion(.success(favoritePublications))
+        }
+    }
+}
+
+// MARK: - Fetch Publication by Pet Type
+extension PublicationManager {
+    func fetchPublicationsByPetType(_ petType: PetType, completion: @escaping (Result<[Publication], Error>) -> Void) {
+        firestore.collection("publications")
+            .whereField("petInfo.petType", isEqualTo: petType.rawValue)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let snapshot = snapshot {
+                    var publications: [Publication] = []
+                    for document in snapshot.documents {
+                        if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
+                            publications.append(publication)
+                        }
+                    }
+                    completion(.success(publications))
+                } else {
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"])))
+                }
+            }
+    }
+}
+
+// MARK: - Fetch publications by breed to search
+extension PublicationManager {
+    func fetchPublicationsByBreed(_ breed: String, completion: @escaping (Result<[Publication], Error>) -> Void) {
+        firestore.collection("publications").whereField("petInfo.breed", isEqualTo: breed)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let snapshot = snapshot {
+                    var publications: [Publication] = []
+                    for document in snapshot.documents {
+                        if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
+                            publications.append(publication)
+                        }
+                    }
+                    completion(.success(publications))
+                } else {
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"])))
+                }
+            }
+    }
+}
+
+// MARK: - DETAIL Search Publications
+extension PublicationManager {
+    func fetchPublicationsWithFilter(searchData: [String: Any], completion: @escaping (Result<[Publication], Error>) -> Void) {
+        var query: Query = firestore.collection("publications")
+
+        if let petType = searchData["petType"] as? Pawpet.PetType {
+            query = query.whereField("petInfo.petType", isEqualTo: petType.rawValue)
+        }
+
+        if let breed = searchData["breed"] as? String {
+            query = query.whereField("petInfo.breed", isEqualTo: breed)
+        }
+
+        if let regions = searchData["regions"] as? [String] {
+            query = query.whereField("city", in: regions)
+        }
+
+        if let ageFrom = searchData["ageFrom"] as? Int, let ageTo = searchData["ageTo"] as? Int {
+            query = query.whereField("petInfo.age", isGreaterThan: ageFrom).whereField("petInfo.age", isLessThan: ageTo)
+        }
+
+        if let colors = searchData["colors"] as? [String] {
+            query = query.whereField("petInfo.color", in: colors)
+        }
+
+        if let isMale = searchData["isMale"] as? Bool {
+            query = query.whereField("petInfo.isMale", isEqualTo: isMale)
+        }
+
+        if let isVaccinated = searchData["isVaccinated"] as? Bool {
+            query = query.whereField("petInfo.isVaccinated", isEqualTo: isVaccinated)
+        }
+
+        if let withDocuments = searchData["withDocuments"] as? Bool {
+            query = query.whereField("petInfo.isWithDocuments", isEqualTo: withDocuments)
+        }
+
+
+        if let priceFrom = searchData["priceFrom"] as? Int {
+            // Если есть интервал цены ОТ проверяем если если ДО
+            if let priceTo = searchData["priceTo"] as? Int {
+                // Если есть интервал цены ОТ и ДО
+                query = query.whereField("price", isGreaterThan: priceFrom).whereField("price", isLessThan: priceTo)
+            } else {
+                // Если нет интервала цены ДО
+                query = query.whereField("price", isGreaterThan: priceFrom)
+            }
+        } else {
+            // Если нет интервала цены ОТ
+            if let priceTo = searchData["priceTo"] as? Int {
+                query = query.whereField("price", isLessThan: priceTo)
+            }
+        }
+
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                var publications: [Publication] = []
+                for document in snapshot.documents {
+                    if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
+                        publications.append(publication)
+                    }
+                }
+                completion(.success(publications))
+            } else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"])))
+            }
         }
     }
 

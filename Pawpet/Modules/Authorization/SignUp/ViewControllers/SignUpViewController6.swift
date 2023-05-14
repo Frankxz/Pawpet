@@ -28,7 +28,7 @@ extension SignUpViewController6 {
         } else {
             UserDefaults.standard.set(self.selectedGeoObject!.name, forKey: "COUNTRY")
             UserDefaults.standard.set("", forKey: "CITY")
-            FireStoreManager.shared.saveUserDataFromUD()
+            UserManager.shared.saveUserDataFromUD()
             self.navigationController?.pushViewController(SignUpViewController_final(), animated: true)
         }
     }

@@ -16,7 +16,7 @@ class EmailChangeViewController: SignUpViewController1 {
     // MARK: AlertView
     private let alertView = ErrorAlertView()
 
-    private let passwordTextField = AuthTextField("Your password for confirmation...", isSecure: true)
+    private let passwordTextField = PawTextField("Your password for confirmation...", isSecure: true)
     
     public var editVCDelegate: EmailChangeDelegate?
     
@@ -60,7 +60,7 @@ extension EmailChangeViewController {
         showAnimationView()
         guard let password = passwordTextField.text else {return}
 
-        FireStoreManager.shared.reauthenticateUser(password: password) { result in
+        UserManager.shared.reauthenticateUser(password: password) { result in
             switch result {
             case .success:
                 print("User reauthenticated successfully")
@@ -75,7 +75,7 @@ extension EmailChangeViewController {
 
     private func makeUpdate() {
         print("NEW email: \(textField.text ?? "")")
-        FireStoreManager.shared.updateEmail(to: textField.text!) { result in
+        UserManager.shared.updateEmail(to: textField.text!) { result in
             switch result {
             case .success:
                 self.navigationController?.popViewController(animated: true)

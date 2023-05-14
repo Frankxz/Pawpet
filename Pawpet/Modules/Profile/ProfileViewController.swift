@@ -76,24 +76,24 @@ class ProfileViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if  FireStoreManager.shared.user.isChanged {
+        if  UserManager.shared.user.isChanged {
             self.infoStackView.alpha = 0
             self.editButton.alpha = 0
             infoSkeletonView.show(on: view)
 
-            FireStoreManager.shared.fetchAvatarImage(imageView: avatarImageView) {}
+            UserManager.shared.fetchAvatarImage(imageView: avatarImageView) {}
 
-            FireStoreManager.shared.fetchUserData { _ in
+            UserManager.shared.fetchUserData { _ in
                 self.infoView.setupTitles(
-                    title: "\(FireStoreManager.shared.user.name ?? "") \(FireStoreManager.shared.user.surname ?? "")",
-                    subtitle: "\(FireStoreManager.shared.user.country ?? ""), \(FireStoreManager.shared.user.city ?? "")")
-                self.phoneTF.set(phoneNumber: (FireStoreManager.shared.getUserPhoneNumber()))
+                    title: "\(UserManager.shared.user.name ?? "") \(UserManager.shared.user.surname ?? "")",
+                    subtitle: "\(UserManager.shared.user.country ?? ""), \(UserManager.shared.user.city ?? "")")
+                self.phoneTF.set(phoneNumber: (UserManager.shared.getUserPhoneNumber()))
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     UIView.animate(withDuration: 0.25) {
                         self.infoStackView.alpha = 1
                         self.editButton.alpha = 1
                         self.infoSkeletonView.hide()
-                        FireStoreManager.shared.user.isChanged = false
+                        UserManager.shared.user.isChanged = false
                     }
                 }
             }
@@ -198,6 +198,12 @@ extension ProfileViewController {
 
 // MARK: - Delegate
 extension ProfileViewController: SearchViewControllerDelegate {
+    func didSelectVariant(breed: String) {}
+
+    func didSearchButtonTapped(with searchText: String) { }
+
+    func didPetTypeSelected(with petType: PetType) { }
+
     func pushToDetailVC(of publication: Publication) {
         print("Push to DetailVC")
         let detailVC = DetailViewController()

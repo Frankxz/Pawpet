@@ -1,5 +1,5 @@
 //
-//  FireStoreManager.swift
+//  UserManager.swift
 //  Pawpet
 //
 //  Created by Robert Miller on 26.04.2023.
@@ -11,8 +11,8 @@ import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
 
-class FireStoreManager {
-    static let shared = FireStoreManager()
+class UserManager {
+    static let shared = UserManager()
     var user = PawpetUser()
     var ref: DatabaseReference = Database.database().reference()
     
@@ -20,7 +20,7 @@ class FireStoreManager {
 }
 
 // MARK: - Save USER DATA
-extension FireStoreManager {
+extension UserManager {
     func saveUserData(for user: PawpetUser) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
@@ -28,6 +28,7 @@ extension FireStoreManager {
             "name": user.name ?? "",
             "surname": user.surname ?? "",
             "country": user.country ?? "",
+            "phoneNumber": user.phoneNumber ?? "",
             "city": user.city ?? "",
             "currency": user.currency ?? "",
             "favorites": user.favorites ?? [] //
@@ -49,6 +50,7 @@ extension FireStoreManager {
         let name = UserDefaults.standard.string(forKey: "NAME") ?? ""
         let surname = UserDefaults.standard.string(forKey: "SURNAME") ?? ""
         let country = UserDefaults.standard.string(forKey: "COUNTRY") ?? ""
+        let phoneNumber = UserDefaults.standard.string(forKey: "PHONE") ?? ""
         let city = UserDefaults.standard.string(forKey: "CITY") ?? ""
         let currency = getCurrencyForUser(for: user)
         let favorites: [String] = []
@@ -57,6 +59,7 @@ extension FireStoreManager {
             "name": name,
             "surname": surname,
             "country": country,
+            "phoneNumber": phoneNumber,
             "city": city,
             "currency": currency,
             "favorites": favorites
@@ -84,7 +87,7 @@ extension FireStoreManager {
 }
 
 // MARK: - Fetch USER DATA
-extension FireStoreManager {
+extension UserManager {
     func fetchUserData(for id: String = "", completion: @escaping (PawpetUser)->()) {
         var uid  = ""
         if id.isEmpty {
@@ -96,12 +99,13 @@ extension FireStoreManager {
                 if let name = userData["name"] as? String,
                    let surname = userData["surname"] as? String,
                    let country = userData["country"] as? String,
+                   let phoneNumber = userData["phoneNumber"] as? String,
                    let city = userData["city"] as? String,
                    let currency = userData["currency"] as? String,
                    let favorites = userData["favorites"] as? [String]? { //
-                    let user = PawpetUser(name: name, surname: surname, country: country, city: city, currency: currency, favorites: favorites)
+                    let user = PawpetUser(name: name, surname: surname, country: country, phoneNumber: phoneNumber, city: city, currency: currency, favorites: favorites)
                     if id.isEmpty {
-                        FireStoreManager.shared.user = user
+                        UserManager.shared.user = user
                         self.fetchAvatarImage {}
                     }
                     completion(user)
@@ -124,6 +128,22 @@ extension FireStoreManager {
             return "NO PHONE NUMBER"
         }
     }
+
+    func getUserPhoneNumber(userID: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let ref = Database.database().reference().child("users").child(userID)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                if let phoneNumber = dictionary["phoneNumber"] as? String {
+                    completion(.success(phoneNumber))
+                } else {
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No phone number found"])))
+                }
+            }
+        }) { (error) in
+            completion(.failure(error))
+        }
+    }
+
     
     // MARK: Getting EMAIL
     func getUserEmail() -> String {
@@ -137,7 +157,7 @@ extension FireStoreManager {
 }
 
 // MARK: Images FETCHING AND SAVING
-extension FireStoreManager {
+extension UserManager {
     func saveAvatarImage(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
@@ -180,7 +200,7 @@ extension FireStoreManager {
                             print(error.localizedDescription)
                         } else {
                             completion()
-                            FireStoreManager.shared.user.image = image
+                            UserManager.shared.user.image = image
                         }
                     }
                 }
@@ -191,7 +211,7 @@ extension FireStoreManager {
 }
 
 // MARK: - EMAIL & PHONE & PASSWORD UPDATING
-extension FireStoreManager {
+extension UserManager {
     func updateEmail(to newEmail: String, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().currentUser?.updateEmail(to: newEmail) { error in
             if let error = error {
@@ -212,6 +232,18 @@ extension FireStoreManager {
             if let error = error {
                 completion(.failure(error))
             } else {
+                let databaseRef = Database.database().reference()
+                let user = Auth.auth().currentUser!
+                let userRef = databaseRef.child("users").child(user.uid)
+                let newPhoneNumber = user.phoneNumber!
+                userRef.updateChildValues(["phoneNumber": newPhoneNumber ]) { (error, _) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        UserManager.shared.user.isChanged = true
+                        completion(.success(()))
+                    }
+                }
                 completion(.success(()))
             }
         }
@@ -229,7 +261,7 @@ extension FireStoreManager {
 }
 
 // MARK: - reauthenticateUser
-extension FireStoreManager {
+extension UserManager {
     func reauthenticateUser(password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         if let currentUser = Auth.auth().currentUser {
             let credential = EmailAuthProvider.credential(withEmail: currentUser.email!, password: password)
@@ -247,7 +279,7 @@ extension FireStoreManager {
 }
 
 // MARK: - Password reset
-extension FireStoreManager {
+extension UserManager {
     func sendPasswordResetToEmail(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {

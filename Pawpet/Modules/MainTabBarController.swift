@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController {
     private func generateTabBarItems() {
         // VC for tesing only
-        let searchVC = SearchViewController()
+        let searchVC = HomeViewController()
         let postVC = PublicationsViewController()
         let profileVC = ProfileViewController()
 

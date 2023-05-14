@@ -10,8 +10,6 @@ import Firebase
 import FirebaseDatabase
 
 class GeoManager {
-    let databaseRef = Database.database().reference()
-
     static let shared = GeoManager()
     private init() {}
 
@@ -47,6 +45,15 @@ extension GeoManager {
     func getAllCountries(localize: Localization) -> [Country] {
         if let countries = readJSONFile(fileName: "countries_\(localize.rawValue)") {
             return countries
+        }
+        return []
+    }
+
+    func getCitiesOfCountry(countryName: String, localize: Localization) -> [GeoObject] {
+        if let countries = readJSONFile(fileName: "countries_\(localize.rawValue)") {
+            if let country = countries.first(where: { $0.name == countryName }) {
+                return country.cities
+            }
         }
         return []
     }

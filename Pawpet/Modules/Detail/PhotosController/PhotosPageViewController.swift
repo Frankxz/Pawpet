@@ -25,11 +25,7 @@ class PhotosPageViewController: UIPageViewController, UIPageViewControllerDataSo
     var imageViews: [UIImageView] = []
 
     init(publication: Publication) {
-        guard let pawpetImages = publication.pictures.images else {
-            super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-            return
-        }
-
+        let pawpetImages = publication.pictures.allImages
         for (index, pawpetImage) in pawpetImages.enumerated() {
             imageViews.append(UIImageView())
             pawpetImage.loadMainImage(into: imageViews[index])
