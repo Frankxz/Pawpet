@@ -72,7 +72,7 @@ extension PostViewController_1 {
                 breedVC.isCrossbreed = false
                 breedVC.isFirstBreed = false
 
-                BreedManager.shared.loadData(for: type) { fetchedBreeds in
+                BreedHelper.shared.loadData(for: type) { fetchedBreeds in
                     breedVC.setupBreeds(stringBreeds: fetchedBreeds)
                     self.navigationController?.pushViewController(breedVC, animated: true)
                 }

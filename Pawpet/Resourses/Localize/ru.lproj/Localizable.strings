@@ -201,4 +201,8 @@
 "First you need to select the type of pet, and based on it we will provide you with a list of detailed parameters." = "Сначала необходимо выбрать тип питомца, и исходя из него мы предоставим вам список детальных параметров.";
 "Detail info selection" = "Выбор детальной информации";
 "Please select the desired search parameters" = "Пожалуйста выберите желаемые параметры для поиска.";
-"My Publications" = "Мои публикации";
+"My Publications" = "Мои Публикации";
+"Post publication" = "Опубликовать";
+"Change the type of pet" = "Cмена типа питомца";
+"❗️Carefully. Changing the type of pet will reset all existing data!" = "❗️Осторожно. Изменение типа питомца сбросит все существующие данные на экране редактирования!";
+"❗️Carefully" = "❗️Осторожно.";

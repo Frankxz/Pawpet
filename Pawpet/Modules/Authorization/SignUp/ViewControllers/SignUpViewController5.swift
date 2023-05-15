@@ -50,7 +50,7 @@ extension SignUpViewController5 {
         UserDefaults.standard.set(textField.text, forKey: "NAME")
         UserDefaults.standard.set(secondTextField.text, forKey: "SURNAME")
 
-        let countries = GeoManager.shared.getAllCountries(localize: .ru)
+        let countries = GeoHelper.shared.getAllCountries(localize: .ru)
         self.navigationController?.pushViewController(SignUpViewController6(geoObjects: countries, geoVCType: .country), animated: true)
 
 

@@ -47,7 +47,7 @@
 		C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */; };
 		C6490DF529E5D830003F4A2F /* PostViewController_4.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF429E5D830003F4A2F /* PostViewController_4.swift */; };
 		C6490DF729E5E5DA003F4A2F /* PostViewController_5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */; };
-		C67D04782A07CB5300BAB62A /* BreedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04772A07CB5300BAB62A /* BreedManager.swift */; };
+		C67D04782A07CB5300BAB62A /* BreedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04772A07CB5300BAB62A /* BreedHelper.swift */; };
 		C67D047C2A07E40F00BAB62A /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D047B2A07E40F00BAB62A /* ColorTableViewCell.swift */; };
 		C67D04822A07EA6200BAB62A /* ColorSelectionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04812A07EA6200BAB62A /* ColorSelectionBottomSheetViewController.swift */; };
 		C67D048A2A09156600BAB62A /* PetColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04892A09156600BAB62A /* PetColorType.swift */; };
@@ -57,6 +57,8 @@
 		C67D04952A0985BA00BAB62A /* InfoFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04942A0985BA00BAB62A /* InfoFlowLayout.swift */; };
 		C67D04972A0AB22900BAB62A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04962A0AB22900BAB62A /* SearchViewController.swift */; };
 		C67D049C2A0ACA0500BAB62A /* SearchAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D049B2A0ACA0500BAB62A /* SearchAlertView.swift */; };
+		C67D04A32A12556700BAB62A /* UMProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04A22A12556700BAB62A /* UMProtocols.swift */; };
+		C67D04A62A1256E500BAB62A /* PMProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D04A52A1256E500BAB62A /* PMProtocols.swift */; };
 		C6BC2E6C29E889F200205F1C /* BaseSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BC2E6B29E889F200205F1C /* BaseSignUpViewController.swift */; };
 		C6C450CD298FF2920094FF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C450CC298FF2920094FF5A /* AppDelegate.swift */; };
 		C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C450D5298FF2930094FF5A /* Assets.xcassets */; };
@@ -134,7 +136,7 @@
 		C6FA2F402A03D19E00726A0A /* PublicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */; };
 		C6FA2F422A03F14600726A0A /* PawpetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F412A03F14600726A0A /* PawpetImage.swift */; };
 		C6FA2F442A043A1D00726A0A /* PetInfoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */; };
-		C6FA2F492A05226500726A0A /* GeoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F482A05226500726A0A /* GeoManager.swift */; };
+		C6FA2F492A05226500726A0A /* GeoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FA2F482A05226500726A0A /* GeoHelper.swift */; };
 		C6FA2F4B2A056D5700726A0A /* countries_ru.json in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2F4A2A056D5700726A0A /* countries_ru.json */; };
 		C6FA2F4F2A057B0D00726A0A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6FA2F512A057B0D00726A0A /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -200,7 +202,7 @@
 		C6490DF029E5D7F9003F4A2F /* AgePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePickerView.swift; sourceTree = "<group>"; };
 		C6490DF429E5D830003F4A2F /* PostViewController_4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_4.swift; sourceTree = "<group>"; };
 		C6490DF629E5E5DA003F4A2F /* PostViewController_5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_5.swift; sourceTree = "<group>"; };
-		C67D04772A07CB5300BAB62A /* BreedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedManager.swift; sourceTree = "<group>"; };
+		C67D04772A07CB5300BAB62A /* BreedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedHelper.swift; sourceTree = "<group>"; };
 		C67D047B2A07E40F00BAB62A /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
 		C67D04812A07EA6200BAB62A /* ColorSelectionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		C67D04892A09156600BAB62A /* PetColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetColorType.swift; sourceTree = "<group>"; };
@@ -210,6 +212,8 @@
 		C67D04942A0985BA00BAB62A /* InfoFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoFlowLayout.swift; sourceTree = "<group>"; };
 		C67D04962A0AB22900BAB62A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C67D049B2A0ACA0500BAB62A /* SearchAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAlertView.swift; sourceTree = "<group>"; };
+		C67D04A22A12556700BAB62A /* UMProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UMProtocols.swift; sourceTree = "<group>"; };
+		C67D04A52A1256E500BAB62A /* PMProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMProtocols.swift; sourceTree = "<group>"; };
 		C6BC2E6B29E889F200205F1C /* BaseSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSignUpViewController.swift; sourceTree = "<group>"; };
 		C6C450C9298FF2920094FF5A /* Pawpet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pawpet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C450CC298FF2920094FF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -291,7 +295,7 @@
 		C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationManager.swift; sourceTree = "<group>"; };
 		C6FA2F412A03F14600726A0A /* PawpetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawpetImage.swift; sourceTree = "<group>"; };
 		C6FA2F432A043A1D00726A0A /* PetInfoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoSelectionView.swift; sourceTree = "<group>"; };
-		C6FA2F482A05226500726A0A /* GeoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoManager.swift; sourceTree = "<group>"; };
+		C6FA2F482A05226500726A0A /* GeoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoHelper.swift; sourceTree = "<group>"; };
 		C6FA2F4A2A056D5700726A0A /* countries_ru.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_ru.json; sourceTree = "<group>"; };
 		C6FA2F502A057B0D00726A0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C6FA2F522A057B4100726A0A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -709,6 +713,33 @@
 			path = InfoCollectionView;
 			sourceTree = "<group>";
 		};
+		C67D04A12A12554F00BAB62A /* UserManager */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2EE929F850BA00726A0A /* UserManager.swift */,
+				C67D04A22A12556700BAB62A /* UMProtocols.swift */,
+			);
+			path = UserManager;
+			sourceTree = "<group>";
+		};
+		C67D04A42A12558500BAB62A /* PublicationManager */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */,
+				C67D04A52A1256E500BAB62A /* PMProtocols.swift */,
+			);
+			path = PublicationManager;
+			sourceTree = "<group>";
+		};
+		C67D04A72A12577B00BAB62A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F482A05226500726A0A /* GeoHelper.swift */,
+				C67D04772A07CB5300BAB62A /* BreedHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		C6BC2E6D29E88A3400205F1C /* BaseSignUpViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,6 +777,7 @@
 				C6C45106298FF6160094FF5A /* Application */,
 				C6490DED29E5BE27003F4A2F /* Model */,
 				C6C45107298FF6580094FF5A /* Modules */,
+				C6490D9029C3855D003F4A2F /* Components */,
 				C6490D8429BA05E1003F4A2F /* Resourses */,
 				C6490D8329BA05D7003F4A2F /* Extension */,
 				C6FA2EEB29F850CA00726A0A /* Service */,
@@ -790,7 +822,6 @@
 				C6C4510A298FF6740094FF5A /* Search */,
 				C6C45108298FF6690094FF5A /* Post */,
 				C6C4510B298FF6790094FF5A /* Profile */,
-				C6490D9029C3855D003F4A2F /* Components */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -921,10 +952,9 @@
 		C6FA2EEB29F850CA00726A0A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				C6FA2EE929F850BA00726A0A /* UserManager.swift */,
-				C6FA2F3F2A03D19E00726A0A /* PublicationManager.swift */,
-				C6FA2F482A05226500726A0A /* GeoManager.swift */,
-				C67D04772A07CB5300BAB62A /* BreedManager.swift */,
+				C67D04A12A12554F00BAB62A /* UserManager */,
+				C67D04A42A12558500BAB62A /* PublicationManager */,
+				C67D04A72A12577B00BAB62A /* Helpers */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1418,7 +1448,7 @@
 				C6FA2F1F29FFEBB700726A0A /* PriceTextField.swift in Sources */,
 				C6FA2F1D29FFDE1600726A0A /* PostViewController_8.swift in Sources */,
 				C6CC0BB529E887200070BC50 /* UIViewController + Extension.swift in Sources */,
-				C67D04782A07CB5300BAB62A /* BreedManager.swift in Sources */,
+				C67D04782A07CB5300BAB62A /* BreedHelper.swift in Sources */,
 				C6C450FD298FF5310094FF5A /* MainTabBarController.swift in Sources */,
 				C6FA2F292A0293D900726A0A /* EditPostViewController.swift in Sources */,
 				C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */,
@@ -1427,6 +1457,7 @@
 				C6490DAB29D15B92003F4A2F /* LabelView.swift in Sources */,
 				C6FA2F272A0286C300726A0A /* Int + Extension.swift in Sources */,
 				C6490DF129E5D7F9003F4A2F /* AgePickerView.swift in Sources */,
+				C67D04A32A12556700BAB62A /* UMProtocols.swift in Sources */,
 				C6FA2F0129FC375000726A0A /* EditableTableViewCell.swift in Sources */,
 				C6FA2EE729F8396000726A0A /* SignUpViewController4.swift in Sources */,
 				C67D049C2A0ACA0500BAB62A /* SearchAlertView.swift in Sources */,
@@ -1434,6 +1465,7 @@
 				C6490D8929C33E65003F4A2F /* UITextField + Extension.swift in Sources */,
 				C6490D8F29C38556003F4A2F /* PawTextField.swift in Sources */,
 				C6FA2EED29FA8F7F00726A0A /* ErrorAlertView.swift in Sources */,
+				C67D04A62A1256E500BAB62A /* PMProtocols.swift in Sources */,
 				C6FA2EE529F838BD00726A0A /* SignUpViewController3.swift in Sources */,
 				C6FA2EFC29FC2C6700726A0A /* CountryChangeViewController.swift in Sources */,
 				C6CC0B9329E606150070BC50 /* PostViewController_6.swift in Sources */,
@@ -1442,7 +1474,7 @@
 				C6490D9C29C8C4B2003F4A2F /* PromptView.swift in Sources */,
 				C67D048A2A09156600BAB62A /* PetColorType.swift in Sources */,
 				C6FA2EEA29F850BA00726A0A /* UserManager.swift in Sources */,
-				C6FA2F492A05226500726A0A /* GeoManager.swift in Sources */,
+				C6FA2F492A05226500726A0A /* GeoHelper.swift in Sources */,
 				C6FA2F0729FD2B4E00726A0A /* EmailChangeViewController.swift in Sources */,
 				C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */,
 				C67D04932A096B1300BAB62A /* InfoCollectionView.swift in Sources */,

@@ -8,8 +8,8 @@
 import Foundation
 import Firebase
 
-class BreedManager {
-    static let shared = BreedManager()
+class BreedHelper {
+    static let shared = BreedHelper()
 
     private let database = Database.database().reference(withPath: "breeds")
     var allBreeds: [String] = []
@@ -30,7 +30,7 @@ class BreedManager {
 
 
     func getAllBreeds(completion: @escaping ([String])->()) {
-        if !BreedManager.shared.allBreeds.isEmpty {
+        if !BreedHelper.shared.allBreeds.isEmpty {
             print("Allbreeds already fetched")
             completion(allBreeds)
             return
@@ -51,7 +51,7 @@ class BreedManager {
 
         dispatchGroup.notify(queue: .main) {
             print("all breeds are fetched")
-            BreedManager.shared.allBreeds = breeds
+            BreedHelper.shared.allBreeds = breeds
             completion(breeds)
         }
     }

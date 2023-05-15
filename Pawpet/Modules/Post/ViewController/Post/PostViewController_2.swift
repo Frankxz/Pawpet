@@ -109,7 +109,7 @@ extension PostViewController_2 {
 
             let type =  PublicationManager.shared.currentPublication.petInfo.petType
 
-            BreedManager.shared.loadData(for: type) { fetchedBreeds in
+            BreedHelper.shared.loadData(for: type) { fetchedBreeds in
                 firstBreedVC.setupBreeds(stringBreeds: fetchedBreeds)
                 self.navigationController?.pushViewController(firstBreedVC, animated: true)
             }

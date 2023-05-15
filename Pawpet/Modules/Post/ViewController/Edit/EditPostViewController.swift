@@ -158,7 +158,7 @@ extension EditPostViewController {
         animalSelectionVC.animalSelectionView.chapterCollectionView.reloadData()
         animalSelectionVC.animalSelectionView.chapterCollectionView.selectItem(withPetType: publication!.petInfo.petType)
         animalSelectionVC.animalSelectionView.promptView.setupTitles(title: "Change the type of pet", subtitle: "")
-        animalSelectionVC.animalSelectionView.promptView.subtitleLabel.attributedText = " Carefully. Changing the type of pet will reset all existing data!".createAttributedString(withHighlightedWord: "❗️Carefully")
+        animalSelectionVC.animalSelectionView.promptView.subtitleLabel.attributedText = "❗️Carefully. Changing the type of pet will reset all existing data!".localize().createAttributedString(withHighlightedWord: "❗️Carefully".localize())
         animalSelectionVC.modalPresentationStyle = .overCurrentContext
         animalSelectionVC.callback = {
             let selectedType = animalSelectionVC.animalSelectionView.chapterCollectionView.selectedType
@@ -174,7 +174,7 @@ extension EditPostViewController {
     // MARK: CHANGE BREED
     private func changeBreedSelected() {
         let firstBreedVC = BreedSearchViewController()
-        BreedManager.shared.loadData(for: publication!.petInfo.petType, completion: { breeds in
+        BreedHelper.shared.loadData(for: publication!.petInfo.petType, completion: { breeds in
             for breed in breeds {
                 let isSelected = breed == self.publication?.petInfo.breed ? true : false
                 let breed = Breed(name: breed, isChecked: isSelected)
@@ -254,7 +254,7 @@ extension EditPostViewController {
         priceSelectionVC.callback = { [weak self] in
             let currency = priceSelectionVC.priceSelectionView.priceTF.currency
             var price = Int(priceSelectionVC.priceSelectionView.priceTF.text ?? "0") ?? 0
-            if priceSelectionVC.priceSelectionView.isFreeControl.selectedItem == "FREE" { price = 0 }
+            if priceSelectionVC.priceSelectionView.freeToggler.isOn { price = 0 }
             self?.changedData["price"] = price
             self?.changedData["currency"] = currency
 

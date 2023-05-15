@@ -211,7 +211,7 @@ extension ParametersViewController {
 
     // MARK: - Select Region
     private func selectRegion() {
-        regionTableVC.cities = GeoManager.shared.getCitiesOfCountry(countryName: UserManager.shared.user.country!, localize: .ru)
+        regionTableVC.cities = GeoHelper.shared.getCitiesOfCountry(countryName: UserManager.shared.user.country!, localize: .ru)
         regionTableVC.tableView.reloadData()
         regionTableVC.callBack = {
             let cities = self.regionTableVC.getCheckedCities()
@@ -233,7 +233,7 @@ extension ParametersViewController {
     private func selectBreed() {
         let firstBreedVC = BreedSearchViewController()
         firstBreedVC.paramsDelegate = self
-        BreedManager.shared.loadData(for: publication.petInfo.petType, completion: { breeds in
+        BreedHelper.shared.loadData(for: publication.petInfo.petType, completion: { breeds in
             for breed in breeds {
                 firstBreedVC.breeds.append(Breed(name: breed))
             }

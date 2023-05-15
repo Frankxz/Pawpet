@@ -9,8 +9,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class GeoManager {
-    static let shared = GeoManager()
+class GeoHelper {
+    static let shared = GeoHelper()
     private init() {}
 
     enum Localization: String {
@@ -20,7 +20,7 @@ class GeoManager {
 }
 
 // MARK: - Fetching CITIES
-extension GeoManager {
+extension GeoHelper {
     func readJSONFile(fileName: String) -> [Country]? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {

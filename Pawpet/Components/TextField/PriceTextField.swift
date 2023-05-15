@@ -11,7 +11,7 @@ import SnapKit
 class PriceTextField: UITextField, UITextFieldDelegate {
 
     var currency: String = "USD"
-    private let currencyButton: UIButton = {
+    let currencyButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .accentColor
         button.layer.cornerRadius = 16

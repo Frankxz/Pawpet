@@ -25,20 +25,26 @@ class PriceSelectionView: UIView {
     // MARK: - Button
     lazy var nextButton: AuthButton = {
         let button = AuthButton()
-        button.setupTitle(for: "Post")
+        button.setupTitle(for: "Post publication")
         return button
     }()
 
     // MARK: - TextField
     var priceTF = PriceTextField(frame: .zero)
 
-    var isFreeControl = CustomSegmentedControl(frame: CGRect(x: 0, y: 0, width: 160, height: 40), items: [" ", "FREE".localize()])
+    lazy var freeToggler: UISwitch = {
+        let toggler = UISwitch()
+        toggler.addTarget(self, action: #selector(freeTogglerTapped), for: .touchUpInside)
+        toggler.isOn = false
+        return toggler
+    }()
 
     init() {
         super.init(frame: .zero)
         backgroundColor = .white
         setupConstraints()
         addKeyBoardObservers()
+        promptView.subtitleLabel.textAlignment = .natural
     }
 
     required init?(coder: NSCoder) {
@@ -71,7 +77,7 @@ extension PriceSelectionView {
     private func setupConstraints() {
         addSubview(promptView)
         addSubview(priceTF)
-        addSubview(isFreeControl)
+        addSubview(freeToggler)
         addSubview(isFreeLabel)
         addSubview(nextButton)
 
@@ -82,7 +88,7 @@ extension PriceSelectionView {
 
         priceTF.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(isFreeControl.snp.bottom).offset(20)
+            make.top.equalTo(freeToggler.snp.bottom).offset(20)
             make.height.equalTo(70)
         }
 
@@ -92,10 +98,9 @@ extension PriceSelectionView {
             make.height.equalTo(40)
         }
 
-        isFreeControl.snp.makeConstraints { make in
-            make.left.equalTo(isFreeLabel.snp.right).offset(20)
-            make.top.equalTo(promptView.snp.bottom).offset(20)
-            make.height.equalTo(40)
+        freeToggler.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(20)
+            make.centerY.equalTo(isFreeLabel.snp.centerY)
         }
 
         nextButton.snp.makeConstraints { make in
@@ -149,6 +154,46 @@ extension PriceSelectionView {
 
         UIView.animate(withDuration: 0.3) {
             self.layoutIfNeeded()
+        }
+    }
+}
+
+// MARK: - freeToggler Logic
+extension PriceSelectionView {
+    @objc func freeTogglerTapped() {
+        freeToggler.isOn ? makePriceTFFree() : unmakePriceTFFree()
+    }
+
+    private func makePriceTFFree() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.priceTF.alpha = 0
+            self.priceTF.currencyButton.alpha = 0
+
+        }) { ended in
+            if ended {
+                self.priceTF.textColor = .white
+                self.priceTF.text = "FREE".localize()
+                UIView.animate(withDuration: 0.25) {
+                    self.priceTF.backgroundColor = .systemGreen
+                    self.priceTF.alpha = 1
+                }
+            }
+        }
+    }
+
+    private func unmakePriceTFFree() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.priceTF.alpha = 0
+        }) { ended in
+            if ended {
+                self.priceTF.currencyButton.alpha = 1
+                self.priceTF.text = nil
+                self.priceTF.textColor = .accentColor
+                self.priceTF.backgroundColor = .backgroundColor
+                UIView.animate(withDuration: 0.25) {
+                    self.priceTF.alpha = 1
+                }
+            }
         }
     }
 }
