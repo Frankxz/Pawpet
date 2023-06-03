@@ -99,7 +99,7 @@ class PublicationsViewController: UIViewController {
 extension PublicationsViewController {
     func fetchData() {
         PublicationManager.shared.fetchPublications() { fetchedPublications, error  in
-            if let error = error {
+            if error != nil {
                 self.setupViewAccordingToPosts(publications: [])
             }
 

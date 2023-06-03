@@ -8,14 +8,21 @@
 import Foundation
 import Firebase
 
-class BreedHelper {
+protocol BHProtocol {
+    func loadData(for type: PetType, completion: @escaping ([String])->())
+    func getAllBreeds(completion: @escaping ([String])->())
+}
+
+class BreedHelper: BHProtocol {
     static let shared = BreedHelper()
 
     private let database = Database.database().reference(withPath: "breeds")
     var allBreeds: [String] = []
 
     private init() {}
+}
 
+extension BreedHelper {
     func loadData(for type: PetType, completion: @escaping ([String])->()) {
         let preferredLanguage = Locale.preferredLanguages.first ?? "en"
         let breedKey = preferredLanguage.hasPrefix("ru") ? "breeds_ru" : "breeds_en"
@@ -27,7 +34,6 @@ class BreedHelper {
             }
         }
     }
-
 
     func getAllBreeds(completion: @escaping ([String])->()) {
         if !BreedHelper.shared.allBreeds.isEmpty {

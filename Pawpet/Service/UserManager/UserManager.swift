@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
 
-class UserManager {
+class UserManager: UMSaveProtocol, UMFetchProtocol, UMUpdateProtocol, UMImageProtocol {
     static let shared = UserManager()
     var user = PawpetUser()
     var ref: DatabaseReference = Database.database().reference()
@@ -70,15 +70,15 @@ extension UserManager {
                 print("Error saving user data: \(error.localizedDescription)")
                 return
             }
-            
             print("User data saved successfully")
         }
     }
 
-    private func getCurrencyForUser(for user: PawpetUser) -> String {
-        if user.country == "Russia" || user.country == "Belarus" {
+    internal func getCurrencyForUser(for user: PawpetUser) -> String {
+        if user.country == "Russia" || user.country == "Россия"
+            || user.country == "Belarus" || user.country == "Беларусь" {
             return "RUB"
-        } else if user.country == "Kazakhstan" {
+        } else if user.country == "Kazakhstan" || user.country == "Казахстан" {
             return "KZT"
         } else {
             return "USD"
@@ -117,8 +117,10 @@ extension UserManager {
             }
         }
     }
-    
-    // MARK: Getting PHONE NUMBER
+}
+
+// MARK: Getting PHONE NUMBER
+extension UserManager {
     func getUserPhoneNumber() -> String {
         guard let user = Auth.auth().currentUser else { return "NO AUTH" }
         if let phoneNumber = user.phoneNumber {

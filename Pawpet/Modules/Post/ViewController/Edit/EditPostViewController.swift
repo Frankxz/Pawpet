@@ -211,7 +211,7 @@ extension EditPostViewController {
     private func changeDetailInfoSelected() {
         let detailPetInfoVC = PetInfoSearchSelectionViewController()
         publication?.petInfo.isMale ?? true ? (detailPetInfoVC.petInfoView.maleButtonTapped()) : (detailPetInfoVC.petInfoView.femaleButtonTapped())
-
+        
         detailPetInfoVC.petInfoView.setupTogglers(
             isVaccinated: publication?.petInfo.isVaccinated ?? false,
             isCupping: publication?.petInfo.isCupping ?? false,

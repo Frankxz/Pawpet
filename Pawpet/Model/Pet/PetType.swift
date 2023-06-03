@@ -14,7 +14,9 @@ enum PetType: String, CaseIterable {
     case fish
     case rodent
     case bird
+}
 
+extension PetType {
     func getName() -> String {
         "\(self)".capitilizeFirstChar()
     }
@@ -32,3 +34,5 @@ enum PetType: String, CaseIterable {
         return type.localize()
     }
 }
+
+

@@ -114,7 +114,6 @@ extension SignUpViewController4 {
 
         if let currentUser = Auth.auth().currentUser {
             currentUser.link(with: credential) { (result, error) in
-                print(error?.localizedDescription)
                 if let error = error {
                     var message = "Unknown error. Please try again."
                     if error.localizedDescription == "This credential is already associated with a different user account." {

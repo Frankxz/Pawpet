@@ -28,7 +28,9 @@ class PublicationPictures {
     init() {
         mainImage = PawpetImage()
     }
+}
 
+extension PublicationPictures {
     func copy() -> PublicationPictures {
         return PublicationPictures(mainImage: mainImage, images: images)
     }

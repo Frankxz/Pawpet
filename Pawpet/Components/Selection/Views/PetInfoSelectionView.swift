@@ -98,8 +98,6 @@ class PetInfoSelectionView: UIView {
         }
 
         setupConstraints()
-
-        print("TOGLERS COUNT: \(togglers.count)")
     }
 
     required init?(coder: NSCoder) {
@@ -109,11 +107,11 @@ class PetInfoSelectionView: UIView {
 
 // MARK: - UI + Constraints
 extension PetInfoSelectionView {
-    func setupTogglers(isVaccinated: Bool, isCupping: Bool, isSterilized: Bool, isWithDocs: Bool) {
+    func setupTogglers(isVaccinated: Bool, isCupping: Bool?, isSterilized: Bool?, isWithDocs: Bool) {
         togglers[0].isOn = isVaccinated
-        togglers[1].isOn = isCupping
-        togglers[2].isOn = isSterilized
-        togglers[3].isOn = isWithDocs
+        togglers[1].isOn = isWithDocs
+        if isCupping != nil { togglers[1].isOn = isCupping! }
+        if isSterilized != nil { togglers[2].isOn = isSterilized! }
     }
 
     private func setupConstraints() {

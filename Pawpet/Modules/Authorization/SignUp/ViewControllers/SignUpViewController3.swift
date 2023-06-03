@@ -76,7 +76,6 @@ extension SignUpViewController3: FPNTextFieldDelegate {
                 self.nextButton.alpha = 1
                 self.nextButton.isEnabled = true
                 self.phoneNumber = textField.getFormattedPhoneNumber(format: .E164)
-                print("phoneNumber: \(self.phoneNumber ?? "")")
             }
         } else {
             UIView.animate(withDuration: 0.2) {

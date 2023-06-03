@@ -12,7 +12,7 @@ protocol UMFetchProtocol {
     func getUserPhoneNumber() -> String
     func getCurrencyForUser(for user: PawpetUser) -> String
     func getUserPhoneNumber(userID: String, completion: @escaping (Result<String, Error>) -> Void)
-    func getUserEmail()
+    func getUserEmail() -> String
 }
 
 protocol UMSaveProtocol {
@@ -31,3 +31,5 @@ protocol UMUpdateProtocol {
     func updateEmail(to newEmail: String, completion: @escaping (Result<Void, Error>) -> Void)
     func updatePassword(to newPassword: String, completion: @escaping (Result<Void, Error>) -> Void)
 }
+
+

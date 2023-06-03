@@ -25,7 +25,10 @@ class PawpetImage {
 extension PawpetImage {
     func loadMainImage(into imageView: UIImageView) {
         guard let url = url else { return }
-        imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+        imageView.sd_setImage(
+            with: url,
+            placeholderImage: UIImage(named: "placeholder")
+        )
     }
 }
 

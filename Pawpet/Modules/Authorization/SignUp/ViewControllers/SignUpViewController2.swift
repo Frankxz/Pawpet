@@ -35,7 +35,7 @@ class SignUpViewController2: BaseSignUpViewController {
     }
 }
 
-// MARK: - AUTH
+// MARK: - CREATE USER
 extension SignUpViewController2 {
     @objc internal override func nextButtonTapped(_ sender: UIButton) {
         Auth.auth().createUser(withEmail: email, password: textField.text!) { (result, error) in

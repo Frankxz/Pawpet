@@ -10,27 +10,62 @@ import XCTest
 
 final class PawpetTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    // MARK: - Validation TESTS
+    func testEmailValidationOnCorrectData() throws {
+        let email = "email@mail.ru"
+        let isValidEmail = isValidEmail(email)
+        XCTAssertTrue(isValidEmail)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testEmailValidationOnIncorrectData() throws {
+        let emails = ["emailmail.ru", "email@mail", "email.mm@mail@mail", ""]
+        emails.forEach { XCTAssertFalse(isValidEmail($0)) }
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testPasswordValidationOnCorrectData() throws {
+        let password = "123456789Zz"
+        XCTAssertTrue(isValidPassword(password))
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testPasswordValidationOnIncorrectData() throws {
+        let passwords = ["", "123456789", "bar", "-024-@d12", "NGTU"]
+        passwords.forEach { XCTAssertFalse(isValidPassword($0)) }
+    }
+
+    // MARK: - JSON Parsing TESTS
+    func testPublicationFetching() {
+        let petInfo = PetInfo(petType: .dog, breed: "French Bulldog", age: 12, isMale: true, color: .black, description: "Bar bus")
+        let publication = Publication(id: "", authorID: "", petInfo: petInfo, pictures: PublicationPictures(), price: 1000, currency: "USD", country: "Russia", city: "Moscow")
+
+        PublicationManager.shared.currentPublication = publication
+        PublicationManager.shared.savePublication { result in
+            switch result {
+            case .success(_):
+                XCTAssertTrue(false)
+
+                self.testFetchPublication()
+            case .failure(let error):
+                XCTAssertFalse(true)
+            }
         }
     }
 
+    func testFetchPublication() {
+
+    }
+
+}
+
+extension PawpetTests {
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+
+    func isValidPassword(_ password: String) -> Bool {
+        let passwordRegex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        return passwordPredicate.evaluate(with: password)
+    }
 }

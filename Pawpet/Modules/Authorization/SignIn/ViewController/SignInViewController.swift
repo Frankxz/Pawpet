@@ -194,7 +194,6 @@ extension SignInViewController {
 // MARK: - Buttons logic
 extension SignInViewController {
     @objc private func signInButtonTapped(_ sender: UIButton) {
-        print("Sign in..")
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
             alertView.showAlert(with: "Please fill in all fields", message: "Please enter your email and password to following fields.", on: self)
@@ -249,10 +248,6 @@ extension SignInViewController {
                 // Пользователь авторизован, показать основной экран приложения
                 print("User is signed in with ID: \(user.uid)")
                 self.pushToMainTabBarVC()
-            } else {
-                // Пользователь не авторизован, показать экран входа
-                print("User is not signed in.")
-
             }
         }
     }

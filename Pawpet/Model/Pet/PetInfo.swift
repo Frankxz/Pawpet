@@ -24,6 +24,7 @@ class PetInfo {
     
     var description: String = ""
     
+    
     init(petType: PetType, isCrossbreed: Bool? = nil, breed: String, secondBreed: String? = nil, age: Int, isMale: Bool, color: PetColorType, isCupping: Bool? = nil, isSterilized: Bool? = nil, isVaccinated: Bool? = nil, isWithDocuments: Bool? = nil, description: String) {
         self.petType = petType
         self.isCrossbreed = isCrossbreed

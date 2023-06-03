@@ -9,14 +9,16 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class GeoHelper {
+protocol GHReadProtocol {
+    func readJSONFile(fileName: String) -> [Country]?
+    func getAllCountries(localize: Localization) -> [Country]
+    func getCitiesOfCountry(countryName: String, localize: Localization) -> [GeoObject]
+
+}
+
+class GeoHelper: GHReadProtocol {
     static let shared = GeoHelper()
     private init() {}
-
-    enum Localization: String {
-        case ru = "ru"
-        case en = "en"
-    }
 }
 
 // MARK: - Fetching CITIES
@@ -41,7 +43,9 @@ extension GeoHelper {
         }
         return nil
     }
+}
 
+extension GeoHelper {
     func getAllCountries(localize: Localization) -> [Country] {
         if let countries = readJSONFile(fileName: "countries_\(localize.rawValue)") {
             return countries
@@ -57,4 +61,21 @@ extension GeoHelper {
         }
         return []
     }
+
+    func countGeoObjects(localize: Localization) {
+        if let countries = readJSONFile(fileName: "countries_\(localize.rawValue)") {
+            print("Countries: \(countries.count)")
+            var cities: [GeoObject] = []
+            for country in countries {
+                let citiesOfCountry =  getCitiesOfCountry(countryName: country.name, localize: .ru)
+                cities.append(contentsOf: citiesOfCountry)
+            }
+            print("Cities: \(cities.count)")
+        }
+    }
+}
+
+enum Localization: String {
+    case ru = "ru"
+    case en = "en"
 }

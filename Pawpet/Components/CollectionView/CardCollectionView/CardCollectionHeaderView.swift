@@ -147,7 +147,7 @@ extension CardCollectionHeaderView: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let allBreeds = BreedManager.shared.allBreeds
+        let allBreeds = BreedHelper.shared.allBreeds
         let matchingBreeds = allBreeds.filter { $0.localizedCaseInsensitiveContains(searchText) }
         var searchVariants: [SearchVariant] = []
         for matchingBreed in matchingBreeds {
@@ -159,7 +159,7 @@ extension CardCollectionHeaderView: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchAlertView.show(on: self)
         searchAlertView.delegate = self
-        BreedManager.shared.getAllBreeds { _ in}
+        BreedHelper.shared.getAllBreeds { _ in}
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

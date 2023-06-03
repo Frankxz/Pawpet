@@ -11,13 +11,13 @@ import FirebaseStorage
 import FirebaseFirestore
 import SDWebImage
 
-class PublicationManager {
+class PublicationManager: PMFetchProtocol, PMPDataProtocol, PMFavoritesProtocol {
     static let shared = PublicationManager()
     private init() {}
 
-    let databaseRef = Database.database().reference()
-    let firestore = Firestore.firestore()
-    let storage = Storage.storage()
+    private let databaseRef = Database.database().reference()
+    private let firestore = Firestore.firestore()
+    private let storageRef = Storage.storage().reference()
 
     var currentPublication: Publication = Publication()
 }
@@ -26,8 +26,6 @@ class PublicationManager {
 extension PublicationManager {
     func savePublication(completion: @escaping (Result<String, Error>) -> Void) {
         let publication = currentPublication
-
-        let storageRef = Storage.storage().reference()
 
         let publicationsRef = firestore.collection("publications").document()
         let imagesFolderRef = storageRef.child("images/publications/\(publicationsRef.documentID)")
@@ -47,7 +45,6 @@ extension PublicationManager {
                 if !uploadedImages.isEmpty {
                     updatedPublication = publication.copy(withUpdatedImages: uploadedImages)
                 }
-                
                 // Сохраняем данные публикации
                 self.savePublicationData(updatedPublication, to: publicationsRef) { result in
                     switch result {
@@ -62,8 +59,10 @@ extension PublicationManager {
             }
         }
     }
+}
 
-    // MARK: HELPER METHODS
+// MARK: HELPER METHODS
+extension PublicationManager {
     private func uploadImages(_ images: [PawpetImage], to storageRef: StorageReference, completion: @escaping (Result<[PawpetImage], Error>) -> Void) {
         if images.isEmpty {
             completion(.success([]))
@@ -274,7 +273,6 @@ extension PublicationManager {
             return
         }
 
-        let databaseRef = Database.database().reference()
         let userRef = databaseRef.child("users").child(currentUserID)
 
         // Добавить ID публикации в массив `favorites`
@@ -305,9 +303,6 @@ extension PublicationManager {
                 completion(.failure(NSError(domain: "Publication not found in favorites", code: 404, userInfo: nil)))
                 return
             }
-
-            // Получить ссылку на Realtime Database
-            let databaseRef = Database.database().reference()
 
             // Получить ссылку на текущего пользователя
             guard let currentUserID = Auth.auth().currentUser?.uid else {
@@ -415,6 +410,26 @@ extension PublicationManager {
 // MARK: - DETAIL Search Publications
 extension PublicationManager {
     func fetchPublicationsWithFilter(searchData: [String: Any], completion: @escaping (Result<[Publication], Error>) -> Void) {
+        let query = generateSearchQuery(searchData)
+
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                var publications: [Publication] = []
+                for document in snapshot.documents {
+                    if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
+                        publications.append(publication)
+                    }
+                }
+                completion(.success(publications))
+            } else {
+                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"])))
+            }
+        }
+    }
+
+    private func generateSearchQuery(_ searchData: [String : Any]) -> Query {
         var query: Query = firestore.collection("publications")
 
         if let petType = searchData["petType"] as? Pawpet.PetType {
@@ -466,23 +481,8 @@ extension PublicationManager {
             }
         }
 
-        query.getDocuments { (snapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else if let snapshot = snapshot {
-                var publications: [Publication] = []
-                for document in snapshot.documents {
-                    if let publication = Publication.fromDictionary(id: document.documentID, dictionary: document.data()) {
-                        publications.append(publication)
-                    }
-                }
-                completion(.success(publications))
-            } else {
-                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No publications found"])))
-            }
-        }
+        return query
     }
-
 }
 
 enum CustomError: Error {
