@@ -10,12 +10,10 @@ import UIKit
 extension UIColor {
 
     // MARK: - OFTEN USED COLORS
-    static let accentColor = hexColor(hex: "272727") // ok
-    static let titleColor = hexColor(hex: "")
-    static let backgroundColor = hexColor(hex: "F3F3F3") // ok
-    static let subtitleColor = hexColor(hex: "B4B4B4") // ok
-    static let errorColor = hexColor(hex: "272727") // ok
-    static let infoColor = hexColor(hex: "f9e784") // ok
+    static let accentColor = hexColor(hex: "272727")
+    static let backgroundColor = hexColor(hex: "F3F3F3")
+    static let subtitleColor = hexColor(hex: "B4B4B4")
+    static let errorColor = hexColor(hex: "272727")
 
     // MARK: - HEX INIT
     convenience init(hex: String, alpha: CGFloat? = nil) {
@@ -83,10 +81,10 @@ extension CGFloat {
 extension UIColor {
     static func random() -> UIColor {
         return UIColor(
-           red:   .random(),
-           green: .random(),
-           blue:  .random(),
-           alpha: 1.0
+            red:   .random(),
+            green: .random(),
+            blue:  .random(),
+            alpha: 1.0
         )
     }
 }

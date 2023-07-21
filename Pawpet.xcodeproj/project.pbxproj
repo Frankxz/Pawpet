@@ -28,8 +28,6 @@
 		C6490DB629D1B295003F4A2F /* ChapterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */; };
 		C6490DBB29D1C4EC003F4A2F /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */; };
 		C6490DBD29D1CBE4003F4A2F /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */; };
-		C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DBE29D1DF02003F4A2F /* PersonalOption.json */; };
-		C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */ = {isa = PBXBuildFile; fileRef = C6490DC029D1DF12003F4A2F /* CompanyOption.json */; };
 		C6490DC429D31DEC003F4A2F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC329D31DEC003F4A2F /* DetailViewController.swift */; };
 		C6490DC629D31F90003F4A2F /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC529D31F90003F4A2F /* BottomSheetView.swift */; };
 		C6490DC929D4A8D1003F4A2F /* CardInfoBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */; };
@@ -37,7 +35,7 @@
 		C6490DCD29DD5FC5003F4A2F /* PhotosPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCC29DD5FC5003F4A2F /* PhotosPageViewController.swift */; };
 		C6490DD029DD6090003F4A2F /* PhotoFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */; };
 		C6490DD429DDA334003F4A2F /* CardCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */; };
-		C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD529DDA96C003F4A2F /* Label + Extension.swift */; };
+		C6490DD629DDA96C003F4A2F /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD529DDA96C003F4A2F /* UILabel + Extension.swift */; };
 		C6490DD829DDF307003F4A2F /* SignUpViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DD729DDF307003F4A2F /* SignUpViewController5.swift */; };
 		C6490DE129E07A40003F4A2F /* OwnDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */; };
 		C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6490DE229E1C228003F4A2F /* PostViewController_1.swift */; };
@@ -183,8 +181,6 @@
 		C6490DB529D1B295003F4A2F /* ChapterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCollectionView.swift; sourceTree = "<group>"; };
 		C6490DBA29D1C4EC003F4A2F /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6490DBC29D1CBE4003F4A2F /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
-		C6490DBE29D1DF02003F4A2F /* PersonalOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PersonalOption.json; sourceTree = "<group>"; };
-		C6490DC029D1DF12003F4A2F /* CompanyOption.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CompanyOption.json; sourceTree = "<group>"; };
 		C6490DC329D31DEC003F4A2F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C6490DC529D31F90003F4A2F /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		C6490DC829D4A8D1003F4A2F /* CardInfoBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoBottomSheetView.swift; sourceTree = "<group>"; };
@@ -192,7 +188,7 @@
 		C6490DCC29DD5FC5003F4A2F /* PhotosPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPageViewController.swift; sourceTree = "<group>"; };
 		C6490DCF29DD6090003F4A2F /* PhotoFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrameViewController.swift; sourceTree = "<group>"; };
 		C6490DD329DDA334003F4A2F /* CardCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionHeaderView.swift; sourceTree = "<group>"; };
-		C6490DD529DDA96C003F4A2F /* Label + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label + Extension.swift"; sourceTree = "<group>"; };
+		C6490DD529DDA96C003F4A2F /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		C6490DD729DDF307003F4A2F /* SignUpViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController5.swift; sourceTree = "<group>"; };
 		C6490DE029E07A40003F4A2F /* OwnDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnDetailViewController.swift; sourceTree = "<group>"; };
 		C6490DE229E1C228003F4A2F /* PostViewController_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController_1.swift; sourceTree = "<group>"; };
@@ -355,15 +351,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C609BA742A6AC8730042D462 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA2F262A0286C300726A0A /* Int + Extension.swift */,
+				C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		C609BA752A6AC87E0042D462 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				C6490DD529DDA96C003F4A2F /* UILabel + Extension.swift */,
+				C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */,
+				C6490D8829C33E65003F4A2F /* UITextField + Extension.swift */,
+				C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		C6490D8329BA05D7003F4A2F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C6490D8129BA0452003F4A2F /* UIColor + Extension.swift */,
-				C6490D8829C33E65003F4A2F /* UITextField + Extension.swift */,
-				C6490DD529DDA96C003F4A2F /* Label + Extension.swift */,
-				C6CC0BA529E84C6F0070BC50 /* String + Extension.swift */,
-				C6CC0BB429E887200070BC50 /* UIViewController + Extension.swift */,
-				C6FA2F262A0286C300726A0A /* Int + Extension.swift */,
+				C609BA742A6AC8730042D462 /* Foundation */,
+				C609BA752A6AC87E0042D462 /* UIKit */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -454,8 +466,6 @@
 				C6490DA029C8D54C003F4A2F /* DroppedDog.json */,
 				C6490DA229C8D7F9003F4A2F /* WatchingDog.json */,
 				C6490DA829D06407003F4A2F /* ReadyCoala.json */,
-				C6490DBE29D1DF02003F4A2F /* PersonalOption.json */,
-				C6490DC029D1DF12003F4A2F /* CompanyOption.json */,
 				C6490DCA29D5BA8B003F4A2F /* SadDog.json */,
 				C6CC0B9C29E749DC0070BC50 /* Success.json */,
 				C6FA2EF129FAE87800726A0A /* Loading.json */,
@@ -585,7 +595,6 @@
 			isa = PBXGroup;
 			children = (
 				C6FA2EF829FC181900726A0A /* Geo */,
-				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
 				C6FA2F3C2A03D0D700726A0A /* User */,
 				C6FA2F3D2A03D0E000726A0A /* Publication */,
 				C6FA2F3E2A03D0E700726A0A /* Pet */,
@@ -1095,6 +1104,7 @@
 		C6FA2F3E2A03D0E700726A0A /* Pet */ = {
 			isa = PBXGroup;
 			children = (
+				C6490DEB29E5BE1B003F4A2F /* Breed.swift */,
 				C6FA2F362A03CE8400726A0A /* PetInfo.swift */,
 				C6FA2F382A03CF9E00726A0A /* PetType.swift */,
 				C6FA2F3A2A03D03900726A0A /* PublicationPictures.swift */,
@@ -1131,7 +1141,7 @@
 				C6C450C5298FF2920094FF5A /* Sources */,
 				C6C450C6298FF2920094FF5A /* Frameworks */,
 				C6C450C7298FF2920094FF5A /* Resources */,
-				F7BAFB1B310294EC255C3893 /* [CP] Embed Pods Frameworks */,
+				E61CEB2A23A36D56607D06F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1169,7 +1179,7 @@
 				C6C450E5298FF2930094FF5A /* Sources */,
 				C6C450E6298FF2930094FF5A /* Frameworks */,
 				C6C450E7298FF2930094FF5A /* Resources */,
-				CD339EA28D179ED79D5EDE94 /* [CP] Embed Pods Frameworks */,
+				EECBDB9EEC8D9F0ECF0C8946 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1232,7 +1242,6 @@
 			files = (
 				C6490DCB29D5BA8B003F4A2F /* SadDog.json in Resources */,
 				C6490DA129C8D54C003F4A2F /* DroppedDog.json in Resources */,
-				C6490DBF29D1DF02003F4A2F /* PersonalOption.json in Resources */,
 				C6FA2F4F2A057B0D00726A0A /* Localizable.strings in Resources */,
 				C6C450D9298FF2930094FF5A /* LaunchScreen.storyboard in Resources */,
 				C6CC0B9D29E749DC0070BC50 /* Success.json in Resources */,
@@ -1240,7 +1249,6 @@
 				C6490DA329C8D7F9003F4A2F /* WatchingDog.json in Resources */,
 				C6490DA929D06407003F4A2F /* ReadyCoala.json in Resources */,
 				C6FA2F4B2A056D5700726A0A /* countries_ru.json in Resources */,
-				C6490DC129D1DF12003F4A2F /* CompanyOption.json in Resources */,
 				C6FA2EDD29F557E300726A0A /* GoogleService-Info.plist in Resources */,
 				C6CC0BAC29E8538C0070BC50 /* countries_en.json in Resources */,
 				C6C450D6298FF2930094FF5A /* Assets.xcassets in Resources */,
@@ -1330,24 +1338,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CD339EA28D179ED79D5EDE94 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7BAFB1B310294EC255C3893 /* [CP] Embed Pods Frameworks */ = {
+		E61CEB2A23A36D56607D06F5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1362,6 +1353,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pawpet/Pods-Pawpet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EECBDB9EEC8D9F0ECF0C8946 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pawpet-PawpetUITests/Pods-Pawpet-PawpetUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1406,7 +1414,7 @@
 				C6490DE329E1C228003F4A2F /* PostViewController_1.swift in Sources */,
 				C6CC0B9B29E748320070BC50 /* PostViewController_Final.swift in Sources */,
 				C6FA2F1629FE6F9F00726A0A /* SkeletonView.swift in Sources */,
-				C6490DD629DDA96C003F4A2F /* Label + Extension.swift in Sources */,
+				C6490DD629DDA96C003F4A2F /* UILabel + Extension.swift in Sources */,
 				C6FA2EF029FAA9F600726A0A /* PawpetUser.swift in Sources */,
 				C6CC0BA429E847940070BC50 /* SignUpViewController6.swift in Sources */,
 				C6FA2EB829F30B1500726A0A /* ButtonTableViewCell.swift in Sources */,

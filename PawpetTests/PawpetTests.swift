@@ -31,29 +31,6 @@ final class PawpetTests: XCTestCase {
         let passwords = ["", "123456789", "bar", "-024-@d12", "NGTU"]
         passwords.forEach { XCTAssertFalse(isValidPassword($0)) }
     }
-
-    // MARK: - JSON Parsing TESTS
-    func testPublicationFetching() {
-        let petInfo = PetInfo(petType: .dog, breed: "French Bulldog", age: 12, isMale: true, color: .black, description: "Bar bus")
-        let publication = Publication(id: "", authorID: "", petInfo: petInfo, pictures: PublicationPictures(), price: 1000, currency: "USD", country: "Russia", city: "Moscow")
-
-        PublicationManager.shared.currentPublication = publication
-        PublicationManager.shared.savePublication { result in
-            switch result {
-            case .success(_):
-                XCTAssertTrue(false)
-
-                self.testFetchPublication()
-            case .failure(let error):
-                XCTAssertFalse(true)
-            }
-        }
-    }
-
-    func testFetchPublication() {
-
-    }
-
 }
 
 extension PawpetTests {

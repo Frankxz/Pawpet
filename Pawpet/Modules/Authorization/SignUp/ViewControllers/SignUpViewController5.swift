@@ -52,8 +52,6 @@ extension SignUpViewController5 {
 
         let countries = GeoHelper.shared.getAllCountries(localize: .ru)
         self.navigationController?.pushViewController(SignUpViewController6(geoObjects: countries, geoVCType: .country), animated: true)
-
-
     }
 }
 

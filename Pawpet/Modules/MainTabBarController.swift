@@ -8,7 +8,6 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         generateTabBarItems()
@@ -19,15 +18,9 @@ class MainTabBarController: UITabBarController {
 // MARK: - Configurating TABBAR items
 extension MainTabBarController {
     private func generateTabBarItems() {
-        // VC for tesing only
         let searchVC = HomeViewController()
         let postVC = PublicationsViewController()
         let profileVC = ProfileViewController()
-
-        searchVC.view.backgroundColor = .white
-        postVC.view.backgroundColor = .white
-        profileVC.view.backgroundColor = .white
-
 
         viewControllers = [
             generateVC(viewController: searchVC,
@@ -47,6 +40,7 @@ extension MainTabBarController {
     private func generateVC(viewController: UIViewController, title: String, image: UIImage?) -> UINavigationController {
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = image
+        viewController.view.backgroundColor = .white
         return UINavigationController(rootViewController: viewController)
     }
 }
