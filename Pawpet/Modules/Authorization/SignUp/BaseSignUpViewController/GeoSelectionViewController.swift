@@ -143,7 +143,6 @@ extension GeoSelectionViewController {
 
 // MARK: - SearchBar Delegate
 extension GeoSelectionViewController: UISearchBarDelegate {
-
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredGeoObjects = geoObjects.filter({ $0.name.lowercased().prefix(searchText.count) == searchText.lowercased() })
         isSearching = true

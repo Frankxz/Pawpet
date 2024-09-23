@@ -92,7 +92,6 @@ extension ProfileEditViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(TextFieldTableViewCell.self, forCellReuseIdentifier: "textFieldCell")
         tableView.register(EditableTableViewCell.self, forCellReuseIdentifier: "editableCell")
-
         tableView.backgroundColor = .white
     }
 }
